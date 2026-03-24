@@ -32,6 +32,9 @@ Persistent knowledge across sessions. Updated automatically after significant wo
 - `@risk-officer` — risk, compliance, "what could go wrong"
 - `@judge` — final verdicts on decisions
 
+### Always Last
+- `@workspace-updater` — updates CLAUDE.md + README.md after every sign-off
+
 ## Available Skills (slash commands)
 `/code-review` `/implement-feature` `/fix-bug` `/write-tests` `/refactor`
 `/optimize-performance` `/write-docs` `/explain-code` `/git-commit` `/create-pr`
