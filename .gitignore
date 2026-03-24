@@ -1,0 +1,45 @@
+# Claude local settings (contain personal tokens/paths, never commit)
+.claude/settings.local.json
+.mcp.local.json
+
+# Environment & secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Agent memory (optional - comment out if you want to share memory)
+# .claude/agent-memory/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+dist/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Node / TypeScript
+node_modules/
+dist/
+build/
+.next/
+*.tsbuildinfo
+
+# Logs
+*.log
+logs/
