@@ -38,22 +38,22 @@ flowchart TD
     USER(["👤 Your request"])
     USER --> MASTER
 
-    MASTER["@master\n────────────────────\n1. Receives every request\n2. Maps the full scope\n3. Announces the plan\n4. Dispatches agents\n5. Synthesises reports\n6. Resolves conflicts\n7. Signs off on completion\n8. Always ends with @workspace-updater"]
+    MASTER["@master\n1. Receives every request\n2. Maps the full scope\n3. Announces the plan\n4. Dispatches agents\n5. Synthesises reports\n6. Resolves conflicts\n7. Signs off on completion\n8. Always ends with @workspace-updater"]
 
-    MASTER --> ENG["⚙️ Engineering\n──────────────\n@architect\n@senior-developer\n@qa-engineer\n@security-auditor\n@debugger\n@performance-engineer\n@researcher"]
+    MASTER --> ENG["⚙️ Engineering\n@architect\n@senior-developer\n@qa-engineer\n@security-auditor\n@debugger\n@performance-engineer\n@researcher"]
 
-    MASTER --> CONT["📝 Content & Publishing\n──────────────────────\n@topic-researcher\n@content-planner\n@content-writer\n@editorial-reviewer\n@source-verifier\n@tone-calibrator\n@backlog-curator\n@feedback-synthesizer"]
+    MASTER --> CONT["📝 Content & Publishing\n@topic-researcher\n@content-planner\n@content-writer\n@editorial-reviewer\n@source-verifier\n@tone-calibrator\n@backlog-curator\n@feedback-synthesizer"]
 
-    MASTER --> DELIV["🚀 Delivery & Ops\n──────────────────\n@delivery-orchestrator\n@delivery-monitor\n@privacy-reviewer\n@changelog-writer\n@ab-tester"]
+    MASTER --> DELIV["🚀 Delivery & Ops\n@delivery-orchestrator\n@delivery-monitor\n@privacy-reviewer\n@changelog-writer\n@ab-tester"]
 
-    MASTER --> ADV["🧠 Advisory\n───────────────\n@architect\n@business-analyst\n@product-owner\n@project-manager\n@customer-advocate\n@devils-advocate\n@risk-officer\n@judge\n@tech-writer"]
+    MASTER --> ADV["🧠 Advisory\n@business-analyst\n@product-owner\n@project-manager\n@customer-advocate\n@devils-advocate\n@risk-officer\n@judge\n@tech-writer"]
 
-    ENG --> SYNTH(["@master synthesises\nall reports"])
+    ENG --> SYNTH(["@master synthesises all reports"])
     CONT --> SYNTH
     DELIV --> SYNTH
     ADV --> SYNTH
 
-    SYNTH --> WU["@workspace-updater\nfinal step — always"]
+    SYNTH --> WU["@workspace-updater — final step, always"]
     WU --> DONE(["✓ Done"])
 ```
 

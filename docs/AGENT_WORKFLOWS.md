@@ -23,7 +23,7 @@ flowchart TD
     USER(["👤 User request"])
     USER --> MASTER
 
-    MASTER["@master\n─────────────\nReceives request\nMaps scope\nAnnounces plan"]
+    MASTER["@master\nReceives request\nMaps scope\nAnnounces plan"]
 
     MASTER --> PLAN(["📋 Plan announced to user\nbefore any execution begins"])
 
@@ -31,38 +31,38 @@ flowchart TD
 
     subgraph STAGE1 ["⚡ Parallel — Stage 1: Understand the problem"]
         direction LR
-        ARCH["@architect\n─────────\nDesigns the\nauthentication flow\nand data model"]
-        RESEARCHER["@researcher\n─────────────\nSpikes JWT best\npractices, library\noptions, prior art"]
+        ARCH["@architect\nDesigns the\nauthentication flow\nand data model"]
+        RESEARCHER["@researcher\nSpikes JWT best\npractices, library\noptions, prior art"]
     end
 
     STAGE1 --> DEV
 
-    DEV["@senior-developer\n──────────────────\nImplements the feature\nbased on architect's\ndesign + researcher's findings"]
+    DEV["@senior-developer\nImplements the feature\nbased on architect design\nand researcher findings"]
 
     DEV --> STAGE2
 
     subgraph STAGE2 ["⚡ Parallel — Stage 2: Review the implementation"]
         direction LR
-        QA["@qa-engineer\n─────────────\nWrites test plan\nunit + integration\nedge cases"]
-        SEC["@security-auditor\n──────────────────\nReviews auth logic\ntokens, rate limits\ninjection surface"]
+        QA["@qa-engineer\nWrites test plan\nunit + integration\nedge cases"]
+        SEC["@security-auditor\nReviews auth logic\ntokens, rate limits\ninjection surface"]
     end
 
-    STAGE2 --> GATE1{Both reports\nback to @master?}
+    STAGE2 --> GATE1{"All reports\nback to master?"}
 
     GATE1 -->|"Issues found"| DEV
     GATE1 -->|"✓ Clean"| RISK
 
-    RISK["@risk-officer\n─────────────\nFinal sign-off\nWhat could still\ngo wrong?"]
+    RISK["@risk-officer\nFinal sign-off\nWhat could still\ngo wrong?"]
 
-    RISK --> GATE2{"@master review\nAll clear?"}
+    RISK --> GATE2{"Master review\nAll clear?"}
     GATE2 -->|"Open items"| DEV
     GATE2 -->|"✓ Approved"| WU
 
-    WU["@workspace-updater\n───────────────────\nUpdates CLAUDE.md\nand README.md"]
+    WU["@workspace-updater\nUpdates CLAUDE.md\nand README.md"]
 
     WU --> DONE(["✓ Feature shipped"])
 
-    MASTER -. "orchestrates\nevery stage" .-> DONE
+    MASTER -. "orchestrates every stage" .-> DONE
 ```
 
 **Key points:**
@@ -85,68 +85,68 @@ flowchart TD
     USER(["👤 Planning request"])
     USER --> MASTER
 
-    MASTER["@master\n─────────────\nReceives request\nMaps full pipeline\nAnnounces plan"]
+    MASTER["@master\nReceives request\nMaps full pipeline\nAnnounces plan"]
 
     MASTER --> BC
 
-    BC["@backlog-curator\n──────────────────\nScores & ranks existing\ntopic candidates\nSurfaces top picks"]
+    BC["@backlog-curator\nScores and ranks existing\ntopic candidates\nSurfaces top picks"]
 
     BC --> TR
 
-    TR["@topic-researcher\n──────────────────\nFinds fresh sources\nfor top candidates\nAdds new finds"]
+    TR["@topic-researcher\nFinds fresh sources\nfor top candidates\nAdds new finds"]
 
     TR --> STAGE1
 
     subgraph STAGE1 ["⚡ Parallel — Stage 1: Build and validate the plan"]
         direction LR
-        CP["@content-planner\n─────────────────\nBuilds structured\nweekly plan\nwith angles + prompts"]
-        SV1["@source-verifier\n─────────────────\nValidates source\ncandidates\nbefore planning locks in"]
+        CP["@content-planner\nBuilds structured\nweekly plan\nwith angles and prompts"]
+        SV1["@source-verifier\nValidates source\ncandidates\nbefore planning locks in"]
     end
 
-    STAGE1 --> HGATE{["👤 Human approval\nReview the plan\nbefore any writing"]}
+    STAGE1 --> HGATE{"👤 Human approval\nReview the plan\nbefore any writing"}
 
     HGATE -->|"Changes requested"| TR
     HGATE -->|"✓ Approved"| CW
 
-    CW["@content-writer ✦ opus\n────────────────────────\nWrites the full draft\nAudience-appropriate\n~5 min read with sources"]
+    CW["@content-writer (opus)\nWrites the full draft\nAudience-appropriate\n~5 min read with sources"]
 
     CW --> STAGE2
 
     subgraph STAGE2 ["⚡ Parallel — Stage 2: Review the draft"]
         direction LR
-        ER["@editorial-reviewer\n──────────────────\nReadability, value,\nsource quality,\ndiscussion prompt"]
-        TC["@tone-calibrator\n──────────────────\nVoice and complexity\nfit for this\nspecific audience"]
-        SV2["@source-verifier\n──────────────────\nFinal source check\nAll links live\nAll claims supported"]
+        ER["@editorial-reviewer\nReadability, value,\nsource quality,\ndiscussion prompt"]
+        TC["@tone-calibrator\nVoice and complexity\nfit for this\nspecific audience"]
+        SV2["@source-verifier\nFinal source check\nAll links live\nAll claims supported"]
     end
 
-    STAGE2 --> GATE1{"@master synthesis\nAll reviewers\npassed?"}
+    STAGE2 --> GATE1{"Master synthesis\nAll reviewers\npassed?"}
 
     GATE1 -->|"Revisions needed"| CW
     GATE1 -->|"✓ All clear"| PR
 
-    PR["@privacy-reviewer\n──────────────────\nPre-publish scan\nNo PII, no secrets\nno private data"]
+    PR["@privacy-reviewer\nPre-publish scan\nNo PII, no secrets\nno private data"]
 
     PR --> DO
 
-    DO["@delivery-orchestrator\n──────────────────────\nRenders HTML + plain text\nChecks all gates passed\nDelivers via configured channel\nArchives edition"]
+    DO["@delivery-orchestrator\nRenders HTML and plain text\nChecks all gates passed\nDelivers via configured channel\nArchives edition"]
 
     DO --> DM
 
-    DM["@delivery-monitor\n──────────────────\nReads delivery receipt\nFlags bounces or errors\nWrites health summary"]
+    DM["@delivery-monitor\nReads delivery receipt\nFlags bounces or errors\nWrites health summary"]
 
     DM --> FS
 
-    FS["@feedback-synthesizer\n──────────────────────\nProcesses audience replies\nExtracts follow-up signals\nAdds to backlog"]
+    FS["@feedback-synthesizer\nProcesses audience replies\nExtracts follow-up signals\nAdds to backlog"]
 
     FS -->|"Feeds next cycle"| BC
 
     DO --> WU
 
-    WU["@workspace-updater\n───────────────────\nArchive path updated\nCLAUDE.md + README\ncurrent"]
+    WU["@workspace-updater\nArchive path updated\nCLAUDE.md + README current"]
 
     WU --> DONE(["✓ Edition delivered"])
 
-    MASTER -. "orchestrates\nevery stage" .-> DONE
+    MASTER -. "orchestrates every stage" .-> DONE
 ```
 
 **Key points:**
@@ -169,7 +169,7 @@ flowchart TD
     USER(["👤 Launch request"])
     USER --> MASTER
 
-    MASTER["@master\n─────────────\nMaps full scope\nSplits into two tracks\nAnnounces full plan\nbefore execution"]
+    MASTER["@master\nMaps full scope\nSplits into two tracks\nAnnounces full plan\nbefore execution"]
 
     MASTER --> ENG_TRACK
     MASTER --> CNT_TRACK
@@ -194,7 +194,7 @@ flowchart TD
     subgraph CNT_TRACK ["📝 Content Track"]
         direction TB
         C1["@topic-researcher\nAnnouncement angle\nand supporting context"]
-        C2["@content-writer ✦ opus\nDrafts announcement\nrelease notes, blog post"]
+        C2["@content-writer (opus)\nDrafts announcement\nrelease notes, blog post"]
         C3["@editorial-reviewer\nQuality gate"]
         C4["@tone-calibrator\nAudience fit check"]
         C5["@source-verifier\nAll claims verified"]
@@ -220,21 +220,21 @@ flowchart TD
         S1 --> S2
     end
 
-    SHARED --> HGATE{["👤 Final human\napproval before\npublic release"]}
+    SHARED --> HGATE{"👤 Final human approval\nbefore public release"}
 
     HGATE -->|"Concerns raised"| MASTER
     HGATE -->|"✓ Ship it"| POST
 
     subgraph POST ["🚀 Parallel — Post-launch"]
         direction LR
-        P1["@delivery-orchestrator\nDeploys + announces\nvia all channels"]
+        P1["@delivery-orchestrator\nDeploys and announces\nvia all channels"]
         P2["@changelog-writer\nVersioned changelog entry"]
-        P3["@ab-tester\nDesigns post-launch\nexperiment for\nheadlines/CTAs"]
+        P3["@ab-tester\nDesigns post-launch\nexperiment for headlines/CTAs"]
     end
 
     POST --> DM
 
-    DM["@delivery-monitor\nMonitors delivery\nflags any errors"]
+    DM["@delivery-monitor\nMonitors delivery\nFlags any errors"]
 
     DM --> WU
 
@@ -242,13 +242,13 @@ flowchart TD
 
     WU --> DONE(["✓ Launched publicly"])
 
-    MASTER -. "orchestrates\nboth tracks and\nall shared stages" .-> DONE
+    MASTER -. "orchestrates both tracks and all shared stages" .-> DONE
 ```
 
 **Key points:**
 - Both tracks start **simultaneously** — `@master` dispatches them at the same moment
 - Neither track knows about the other — `@master` is the only entity holding both
-- `@master` **converges** both tracks before the shared gate — it will wait for the slower track rather than letting one proceed alone
+- `@master` **converges** both tracks before the shared gate — it waits for the slower track rather than letting one proceed alone
 - `@devils-advocate` runs **after** privacy review — it challenges the entire plan at the last responsible moment
 - The human final approval gate is the last checkpoint before any irreversible public action
 - `@delivery-orchestrator`, `@changelog-writer`, and `@ab-tester` run **in parallel** post-approval — none depend on each other
@@ -259,10 +259,10 @@ flowchart TD
 
 | Symbol | Meaning |
 |---|---|
-| `⚡ Parallel — Stage N` | Agents in this box run at the same time |
+| `⚡ Parallel — Stage N` subgraph | Agents in this box run at the same time |
 | Arrow `A → B` | B waits for A to complete |
-| `@master synthesis` diamond | `@master` collects reports, resolves conflicts, decides next step |
-| `👤 Human approval` diamond | Execution pauses — a human must decide before work continues |
+| Diamond `{ }` labelled "Master synthesis" | `@master` collects reports, resolves conflicts, decides next step |
+| Diamond `{ }` labelled "👤 Human approval" | Execution pauses — a human must decide before work continues |
 | Dashed arrow `-.->` | `@master`'s continuous orchestration role across all stages |
-| `✦ opus` | Agent uses the `claude-opus` model for higher-quality output |
+| `(opus)` in node label | Agent uses the `claude-opus` model for higher-quality output |
 | Loop arrow back | Gate failed — routes back to the appropriate fix stage |
