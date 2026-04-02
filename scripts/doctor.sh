@@ -100,6 +100,18 @@ else
   fail "master agent prompt is missing a default execution report"
 fi
 
+if [ -f "$ROOT_DIR/.claude/agents/github-safety-guard.md" ]; then
+  pass "github-safety-guard agent exists"
+else
+  fail "github-safety-guard agent is missing"
+fi
+
+if grep -q '@github-safety-guard' "$ROOT_DIR/.claude/agents/master.md"; then
+  pass "master agent prompt routes commit and push work through github-safety-guard"
+else
+  fail "master agent prompt does not route commit and push work through github-safety-guard"
+fi
+
 if grep -q 'CLAUDE.md, AGENTS.md, and README.md' "$ROOT_DIR/.claude/agents/workspace-updater.md"; then
   pass "workspace-updater prompt covers all core documentation files"
 else

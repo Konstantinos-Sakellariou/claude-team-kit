@@ -9,6 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class DoctorScriptTests(unittest.TestCase):
     def test_doctor_passes_with_expected_warnings(self) -> None:
+        agent_count = len(list((ROOT / ".claude" / "agents").glob("*.md")))
         result = subprocess.run(
             [str(ROOT / "scripts" / "doctor.sh")],
             text=True,
@@ -20,7 +21,7 @@ class DoctorScriptTests(unittest.TestCase):
         self.assertIn("PASS: .claude/settings.json sets master as the default agent", result.stdout)
         self.assertIn("PASS: master agent prompt defines a default execution report", result.stdout)
         self.assertIn("PASS: workspace-updater prompt covers all core documentation files", result.stdout)
-        self.assertRegex(result.stdout, r"INFO: agents=30 skills=17 rules=8 hooks=5")
+        self.assertRegex(result.stdout, rf"INFO: agents={agent_count} skills=17 rules=8 hooks=5")
 
     def test_readme_counts_match_repo(self) -> None:
         readme = (ROOT / "README.md").read_text()

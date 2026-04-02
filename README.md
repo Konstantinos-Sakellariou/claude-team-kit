@@ -8,7 +8,7 @@ This repo is a team-definition layer, not a standalone orchestration runtime. It
 
 ```text
 .claude/
-├── agents/          30 specialized agents across engineering, content, delivery, and advisory
+├── agents/          31 specialized agents across engineering, content, delivery, and advisory
 ├── skills/          17 reusable skills (code-review, fix-bug, business-case, create-pr...)
 ├── rules/           Modular rule files — Python, TypeScript, security, testing, git, performance, API design
 ├── hooks/           Shell automations (auto-format, secret detection, file protection...)
@@ -33,7 +33,7 @@ scripts/             Setup and validation helpers
 ## What This Repo Is
 
 - A reusable workspace kit for agent-based development
-- A curated team of 30 agents with explicit collaboration patterns
+- A curated team of 31 agents with explicit collaboration patterns
 - A prompt and guardrail layer that can be dropped into another project
 
 ## What This Repo Is Not
@@ -123,6 +123,7 @@ RECEIVE → ANALYSE scope → PLAN pipeline → ANNOUNCE plan to user
 | `@researcher` | Technology research and best practices |
 | `@qa-engineer` | Test plans, coverage, edge cases |
 | `@security-auditor` | Vulnerability scanning and hardening |
+| `@github-safety-guard` | Final pre-commit/pre-push review for secrets and sensitive disclosures |
 | `@performance-engineer` | Profiling and optimisation |
 | `@workspace-updater` | Reviews and updates `CLAUDE.md`, `AGENTS.md`, and `README.md` after every significant task |
 
@@ -173,6 +174,7 @@ These fire automatically — you don't need to ask:
 - Architectural decision → `@architect` weighs in
 - Content ready to publish → `@editorial-reviewer` must pass it first
 - Before any public release or push → `@privacy-reviewer` runs mandatory scan
+- Before any commit or push → `@github-safety-guard` reviews staged or pending changes and `@master` surfaces the findings
 - Before major release → `@risk-officer` final sign-off
 - After any significant task → `@workspace-updater` runs last and reviews the core docs automatically
 

@@ -140,6 +140,7 @@ Read current agents from `.claude/agents/` at session start. Default routing:
 | Performance problem | `@performance-engineer` | `@senior-developer` (fix) |
 | Security concern | `@security-auditor` | `@risk-officer` |
 | Release / ship decision | `@judge` | `@risk-officer`, `@qa-engineer` |
+| Commit / push / PR | `@github-safety-guard` | `@privacy-reviewer`, `@risk-officer` |
 | Documentation | `@tech-writer` | — |
 | Sprint / planning | `@project-manager` | `@product-owner` |
 | Business case | `@business-analyst` | `@judge`, `@devils-advocate` |
@@ -148,6 +149,10 @@ Read current agents from `.claude/agents/` at session start. Default routing:
 For **any significant decision** always also run:
 - `@devils-advocate` — finds what's wrong with the plan
 - `@risk-officer` — flags what could go wrong
+
+For **any commit, push, or PR creation** always also run:
+- `@github-safety-guard` — reviews staged or pending changes for secrets, sensitive information, and public-disclosure risks
+- Present its report to the user before proceeding with the commit or push
 
 ---
 
@@ -195,6 +200,7 @@ Use this reporting structure by default for significant work, even when the user
 - Running parallel stages after announcing the plan
 
 **Check in before acting:**
+- Creating a commit, push, or PR after `@github-safety-guard` reports anything contextual, sensitive, or risky
 - Creating new agent or skill files
 - Modifying existing agents, rules, or hooks
 - Recommending an irreversible architectural change
@@ -231,6 +237,11 @@ Work is complete when:
 - All conflicts are resolved
 - No open blockers
 - The deliverable is ready to hand back to the user
+
+If the task includes a commit, push, or PR:
+- `@github-safety-guard` must review the outgoing changes first
+- You must show its findings to the user
+- The user must explicitly approve proceeding if there is any contextual or sensitive risk
 
 When signing off:
 > "✓ Work complete. Here's what was done: [bullet summary]

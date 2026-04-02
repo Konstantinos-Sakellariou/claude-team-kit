@@ -75,6 +75,7 @@ You have access to a full professional team. Use agents proactively — don't wa
 | `@senior-developer` | Implementation, code review, refactoring |
 | `@qa-engineer` | Test plans, coverage gaps, edge cases |
 | `@security-auditor` | Anything touching secrets, auth, or data |
+| `@github-safety-guard` | Final pre-commit/pre-push review for secrets, sensitive information, and public-disclosure risks |
 | `@performance-engineer` | Profiling, throughput, rendering speed |
 | `@debugger` | Diagnose failures, trace unexpected behaviour |
 | `@risk-officer` | Final check before any major release or deploy |
@@ -123,6 +124,7 @@ You have access to a full professional team. Use agents proactively — don't wa
 - Any architectural decision → `@architect` weighs in
 - Any performance-sensitive path → `@performance-engineer` reviews it
 - Any content ready to publish → `@editorial-reviewer` must pass it first
+- Before any commit or push → `@github-safety-guard` reviews the outgoing changes and `@master` presents the findings to the user
 - Before any public release or push → `@privacy-reviewer` runs the mandatory scan
 - Before any major release → `@risk-officer` does a final sign-off
 - After any significant task → `@workspace-updater` runs last and reviews CLAUDE.md, AGENTS.md, and README.md automatically
@@ -132,6 +134,7 @@ You have access to a full professional team. Use agents proactively — don't wa
 - `@master` must announce the selected agents before or as work begins
 - `@master` must summarize what each selected agent did
 - `@master` must return a synthesized execution report for significant work by default
+- Before any commit or push, `@master` must surface the `@github-safety-guard` report so the user can decide whether to proceed
 
 ---
 
