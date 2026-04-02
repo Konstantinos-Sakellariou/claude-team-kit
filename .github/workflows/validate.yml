@@ -1,0 +1,30 @@
+name: Validate Workspace Kit
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Ensure scripts are executable
+        run: chmod +x scripts/*.sh
+
+      - name: Check shell syntax
+        run: bash -n scripts/setup.sh scripts/doctor.sh
+
+      - name: Run Python test suite
+        run: python -m unittest discover -s tests -v
+
+      - name: Run workspace doctor
+        run: ./scripts/doctor.sh

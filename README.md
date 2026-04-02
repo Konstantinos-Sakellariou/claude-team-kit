@@ -1,29 +1,47 @@
 # claude-team-kit
 
-A production-ready Claude workspace starter kit — copy into any project to get a full professional team of AI agents, rules, skills, hooks, and persistent memory working immediately.
+A production-ready workspace kit for Claude-style coding tools. It gives any repo a professional AI team through agent prompts, skills, rules, hooks, and persistent memory.
+
+This repo is a team-definition layer, not a standalone orchestration runtime. It focuses on reusable workspace structure and operating conventions rather than tmux workers, background daemons, or execution HUDs.
 
 ## What's Inside
 
-```
+```text
 .claude/
 ├── agents/          30 specialized agents across engineering, content, delivery, and advisory
-├── skills/          15+ slash commands (code-review, fix-bug, business-case, create-pr...)
+├── skills/          17 reusable skills (code-review, fix-bug, business-case, create-pr...)
 ├── rules/           Modular rule files — Python, TypeScript, security, testing, git, performance, API design
 ├── hooks/           Shell automations (auto-format, secret detection, file protection...)
 └── agent-memory/    Persistent per-agent memory (grows over time)
 CLAUDE.md            Master project briefing — customize per project
+AGENTS.md            Compatibility briefing for tools that read AGENTS.md
 .mcp.json            MCP server config (GitHub pre-configured)
-settings.json        Hook pipeline and permission allowlists
+docs/                Workflow and architecture documentation
+scripts/             Setup and validation helpers
+.env.example         Optional local environment template
 ```
 
 ## Quick Start
 
-1. Copy this folder into your project root (or use as a template repo)
-2. Edit `CLAUDE.md` — fill in your project name, stack, commands, and env vars
-3. Copy `.claude/settings.local.json.example` → `.claude/settings.local.json` and fill in your tokens
-4. Add your `GITHUB_TOKEN` to environment or `settings.local.json`
-5. Run `chmod +x .claude/hooks/*.sh` to make hooks executable
+1. Use this repo as a template or copy it into your project root
+2. Run `./scripts/setup.sh`
+3. Fill in `.claude/settings.local.json` and/or `.env` with your `GITHUB_TOKEN`
+4. Edit `CLAUDE.md` for the target project you want the kit to describe
+5. Run `./scripts/doctor.sh`
 6. Start a Claude session and address `@master`
+
+## What This Repo Is
+
+- A reusable workspace kit for agent-based development
+- A curated team of 30 agents with explicit collaboration patterns
+- A prompt and guardrail layer that can be dropped into another project
+
+## What This Repo Is Not
+
+- A standalone orchestration daemon
+- A CLI worker runtime
+- A token analytics platform
+- A replacement for execution engines such as OMC
 
 ---
 
@@ -32,6 +50,10 @@ settings.json        Hook pipeline and permission allowlists
 **Every request goes through `@master`. Always.**
 
 You never call specialist agents directly. You talk to `@master`, and it decides who runs, in what order, and whether things happen in parallel or sequentially — then synthesises everything back into one coherent response.
+
+Even if a user does not explicitly mention `@master`, or names a specialist directly, `@master` remains the first and only orchestrator in the main thread.
+
+By default, `@master` also reports which agents were selected, what each one did, and the outcome of the orchestration run. Users should not need to ask explicitly for that visibility.
 
 ```mermaid
 flowchart TD
@@ -53,7 +75,7 @@ flowchart TD
     DELIV --> SYNTH
     ADV --> SYNTH
 
-    SYNTH --> WU["@workspace-updater — final step, always"]
+    SYNTH --> WU["@workspace-updater\nreviews CLAUDE.md + AGENTS.md + README.md\nfinal step, always"]
     WU --> DONE(["✓ Done"])
 ```
 
@@ -66,6 +88,8 @@ RECEIVE → ANALYSE scope → PLAN pipeline → ANNOUNCE plan to user
   → DECIDE: more work needed? → loop | user decision needed? → surface it | done? → sign off
   → TRIGGER @workspace-updater → COMPLETE
 ```
+
+`@workspace-updater` runs automatically as the last step after significant work. It reviews the core docs (`CLAUDE.md`, `AGENTS.md`, and `README.md`) even when no edits are ultimately required.
 
 **Parallel vs sequential — `@master` decides:**
 
@@ -100,7 +124,7 @@ RECEIVE → ANALYSE scope → PLAN pipeline → ANNOUNCE plan to user
 | `@qa-engineer` | Test plans, coverage, edge cases |
 | `@security-auditor` | Vulnerability scanning and hardening |
 | `@performance-engineer` | Profiling and optimisation |
-| `@workspace-updater` | Keeps `CLAUDE.md` and `README.md` in sync after every task |
+| `@workspace-updater` | Reviews and updates `CLAUDE.md`, `AGENTS.md`, and `README.md` after every significant task |
 
 ### Content and Publishing
 
@@ -150,7 +174,18 @@ These fire automatically — you don't need to ask:
 - Content ready to publish → `@editorial-reviewer` must pass it first
 - Before any public release or push → `@privacy-reviewer` runs mandatory scan
 - Before major release → `@risk-officer` final sign-off
-- After any significant task → `@workspace-updater` keeps docs current
+- After any significant task → `@workspace-updater` runs last and reviews the core docs automatically
+
+## Default Reporting
+
+For significant work, `@master` should report:
+
+- which agents were selected
+- what each agent owned
+- what happened during execution
+- the synthesized outcome, conflicts, and blockers
+
+This reporting is part of the default orchestration behavior, not an optional extra.
 
 ---
 
@@ -177,9 +212,30 @@ The 30 agents split into four groups designed to cover any project type:
 
 ---
 
+## Setup and Validation
+
+- `./scripts/setup.sh` makes hook scripts executable and creates local config files from examples when needed
+- `./scripts/doctor.sh` checks repo structure, JSON validity, hook permissions, and key documentation references
+- `python3 -m unittest discover -s tests -v` runs the lightweight validation test suite for hooks and doctor behavior
+- `docs/ARCHITECTURE.md` explains the product boundary and canonical sources
+- `docs/PROJECT_CUSTOMIZATION.md` shows how to turn the generic kit into a real project briefing
+
+## Customizing for Real Projects
+
+When you copy this kit into a live repo, keep the shared `.claude/` layer mostly intact and make the repo-specific details explicit in `CLAUDE.md` and `AGENTS.md`.
+
+Good project briefings usually add:
+
+- real stack, commands, deployment flow, and environment rules
+- route or page inventories for app repos
+- domain-specific gotchas that prevent agent mistakes
+- automatic delegation rules that reflect the actual codebase
+- documentation sync targets for route catalogs, brief docs, or other registries
+
 ## Customisation
 
 - Edit `CLAUDE.md` to configure the project name, stack, commands, and notes
+- Use `docs/PROJECT_CUSTOMIZATION.md` when adapting the kit to a specific repository
 - Add project-specific rules with `@.claude/rules/your-rule.md` in `CLAUDE.md`
 - Create new agents in `.claude/agents/` — copy any existing file and update the frontmatter and instructions
 - Add skills in `.claude/skills/your-skill/SKILL.md`
@@ -190,8 +246,11 @@ The 30 agents split into four groups designed to cover any project type:
 
 | File | What it covers |
 |---|---|
-| `CLAUDE.md` | Project config — fill in stack, commands, env vars, notes |
+| `CLAUDE.md` | Project or repo briefing for Claude-compatible tools |
+| `AGENTS.md` | Compatibility briefing for tools that consume AGENTS.md |
 | `README.md` | Kit overview, agent roster, orchestration model |
+| `docs/ARCHITECTURE.md` | Product boundary, canonical sources, maintenance priorities |
+| `docs/PROJECT_CUSTOMIZATION.md` | How to adapt the generic kit to a concrete repo |
 | `docs/AGENT_WORKFLOWS.md` | Detailed workflow diagrams with parallel/sequential/gated patterns |
 
-`README.md` and `CLAUDE.md` must stay in sync. Update them together whenever the agent roster, workflow, commands, or project structure changes. `@workspace-updater` handles this automatically after major tasks — or call it explicitly after manual changes.
+`README.md`, `CLAUDE.md`, and `AGENTS.md` must stay in sync. Update them together whenever the agent roster, workflow, commands, or project structure changes. `@workspace-updater` handles this automatically after major tasks — or call it explicitly after manual changes.

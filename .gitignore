@@ -21,6 +21,9 @@ Thumbs.db
 # Agent memory (optional - comment out if you want to share memory)
 # .claude/agent-memory/
 
+# Local or legacy scratch copies - canonical implementation lives in .claude/
+.agents/
+
 # Python
 __pycache__/
 *.pyc
