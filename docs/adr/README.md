@@ -16,3 +16,11 @@ Typical ADR sections:
 - Status
 
 `@idea-executor` and `@master` should not save ADRs here without explicit user approval.
+
+Default ownership:
+
+- `@master` decides when a conversation produced an ADR-worthy decision and proposes the save path
+- `@architect` owns the technical substance of the record
+- `@devils-advocate` and `@judge` pressure-test the reasoning
+- `@tech-writer` writes the final ADR after approval
+- `@workspace-updater` aligns the rest of the core docs afterward

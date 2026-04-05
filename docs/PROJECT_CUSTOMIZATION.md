@@ -70,6 +70,8 @@ Important:
 
 - require explicit user approval before saving into `docs/plans/` or `docs/adr/`
 - let `@master` present the proposed artifact path and reason first
+- let `@master` propose ADRs by default when a decision changes architecture, policy, workflow, or repo structure
+- let `@tech-writer` own final ADR authorship after `@architect`, `@devils-advocate`, and `@judge` shape the decision record
 - if approval is not given, keep the output in chat or move it to `BACKLOG.md`
 
 If your repo has these, document them explicitly in `CLAUDE.md` or `AGENTS.md` under a section such as:

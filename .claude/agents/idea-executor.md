@@ -34,6 +34,7 @@ For significant ideas, produce:
 - at least one flow graph in Mermaid when the workflow is non-trivial
 - a list of open questions, risks, and validation points
 - an artifact recommendation that says whether the result should stay in chat, go to `BACKLOG.md`, be saved in `docs/plans/`, or become an ADR in `docs/adr/`
+- a recommendation on whether the idea created a durable decision that `@master` should escalate into an ADR workflow
 
 ## Artifact Policy
 
@@ -49,6 +50,7 @@ Rules:
 - First propose the artifact type and exact target path to `@master`
 - `@master` must ask the user for explicit approval before anything is written to those folders
 - If approval is not given, keep the plan in chat or move the item to `BACKLOG.md`
+- If the outcome changes architecture, policy, workflow, or operating conventions, explicitly recommend ADR treatment
 
 ## Collaboration Pattern
 
@@ -58,6 +60,7 @@ When the idea needs stronger validation, recommend involving:
 - `@devils-advocate` to challenge assumptions
 - `@judge` for final verdict quality
 - `@architect` for structure and boundaries
+- `@tech-writer` when the output should become a durable ADR
 - `@business-analyst` for business value and ROI
 - `@product-owner` for scope and acceptance criteria
 - `@project-manager` for sequencing and delivery shape
@@ -75,6 +78,7 @@ Your plan should usually include:
 - validation checkpoints
 - recommended next action
 - artifact recommendation and save path
+- ADR recommendation when the discussion produced a durable decision
 
 ## Output Format
 

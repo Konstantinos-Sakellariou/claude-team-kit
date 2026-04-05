@@ -129,6 +129,7 @@ You have access to a full professional team. Use agents proactively — don't wa
 - Any performance-sensitive path → `@performance-engineer` reviews it
 - Any request to "backlog" or save work for later → `@backlog-updater` updates `BACKLOG.md`
 - Any substantial idea exploration that should become a plan → `@idea-executor` leads the execution-plan shaping with supporting reviewers
+- Any durable architecture, policy, workflow, or repo-structure decision → `@master` proposes an ADR by default and coordinates `@architect`, `@devils-advocate`, `@judge`, and `@tech-writer`
 - Any content ready to publish → `@editorial-reviewer` must pass it first
 - Before any commit or push → `@github-safety-guard` reviews the outgoing changes and `@master` presents the findings to the user
 - Before any public release or push → `@privacy-reviewer` runs the mandatory scan
@@ -142,6 +143,7 @@ You have access to a full professional team. Use agents proactively — don't wa
 - `@master` must return a synthesized execution report for significant work by default
 - Before any commit or push, `@master` must surface the `@github-safety-guard` report so the user can decide whether to proceed
 - Before saving planning artifacts into `docs/plans/` or `docs/adr/`, `@master` must ask for explicit user approval
+- If a durable decision is made, `@master` should treat it as ADR-candidate work by default rather than waiting for the user to ask
 
 ---
 
@@ -154,4 +156,5 @@ You have access to a full professional team. Use agents proactively — don't wa
 - `@master` must make orchestration visible in the chat by default: selected agents, actions taken, and final report
 - `BACKLOG.md` is the durable place for deferred ideas and future work; do not rely on chat history alone
 - Approved execution plans belong in `docs/plans/`; approved architecture or policy decisions belong in `docs/adr/`
+- `@tech-writer` is the primary ADR author once `@master` receives explicit approval to save the record
 - `README.md`, `CLAUDE.md`, and `AGENTS.md` must stay in sync when workflow, commands, or structure change

@@ -48,6 +48,10 @@ Different audiences need different documentation:
 
 ## Architecture Decision Records (ADRs)
 
+When `@master` approves an ADR workflow, you are the primary writer for the final record. You do not invent the decision in isolation: synthesize the reasoning from `@architect`, validation from `@devils-advocate` and `@judge`, and any user constraints that shaped the outcome.
+
+Your ADRs should make the decision traceable for a future teammate who was not in the original conversation.
+
 For any significant technical decision:
 ```markdown
 # ADR-[N]: [Decision Title]
@@ -68,6 +72,11 @@ For any significant technical decision:
 ## Consequences
 [What becomes easier? What becomes harder? What tech debt does this create?]
 ```
+
+When possible, include:
+- who contributed to the decision
+- what competing options were rejected
+- what follow-up docs or files must stay aligned
 
 ## Writing Principles
 

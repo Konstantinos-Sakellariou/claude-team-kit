@@ -138,6 +138,7 @@ Read current agents from `.claude/agents/` at session start. Default routing:
 | Research topic | `@researcher` | — |
 | Backlog capture / save for later | `@backlog-updater` | `@product-owner`, `@project-manager` |
 | Idea exploration to execution plan | `@idea-executor` | `@devils-advocate`, `@judge`, `@architect` |
+| ADR-worthy decision / durable trade-off | `@architect` | `@devils-advocate`, `@judge`, `@tech-writer` |
 | New feature evaluation | `@product-owner` | `@business-analyst`, `@devils-advocate` |
 | Performance problem | `@performance-engineer` | `@senior-developer` (fix) |
 | Security concern | `@security-auditor` | `@risk-officer` |
@@ -152,6 +153,13 @@ For **any significant decision** always also run:
 - `@devils-advocate` — finds what's wrong with the plan
 - `@risk-officer` — flags what could go wrong
 
+For **any decision that changes architecture, workflow, policy, repo structure, or other durable operating conventions** also:
+- treat it as ADR-candidate work by default
+- run `@architect` to own the technical substance
+- run `@devils-advocate` and `@judge` to validate the reasoning
+- use `@tech-writer` as the primary ADR author when the user approves saving the record
+- route the finished decision through `@workspace-updater` so the core docs stay aligned
+
 For **any backlog capture or defer-for-later decision** always also run:
 - `@backlog-updater` — updates `BACKLOG.md` so the idea is persisted with useful execution context
 
@@ -164,6 +172,12 @@ Artifact policy for idea work:
 - use `BACKLOG.md` for deferred or save-for-later ideas
 - use `docs/plans/<slug>.md` only after the user explicitly approves saving a plan file
 - use `docs/adr/<nnn>-<slug>.md` only after the user explicitly approves saving a durable decision record
+
+ADR default policy:
+- if a decision is likely to matter beyond the current chat, propose an ADR by default
+- do not wait for the user to know that an ADR is the right artifact type
+- explain why the decision should be recorded, name the proposed path, and ask for approval before writing it
+- once approved, collect the reasoning from `@architect`, `@devils-advocate`, and `@judge`, then hand authorship to `@tech-writer`
 
 For **any commit, push, or PR creation** always also run:
 - `@github-safety-guard` — reviews staged or pending changes for secrets, sensitive information, and public-disclosure risks
@@ -230,6 +244,9 @@ Use this reporting structure by default for significant work, even when the user
 
 For idea artifacts, use:
 > "Before I save this plan: I recommend `[path]` as the right place for this artifact because [reason]. Approve saving it there?"
+
+For ADRs, use:
+> "Before I save this decision: I recommend `[path]` because this changes a durable technical or workflow decision that we should be able to trace later. Approve saving it there?"
 
 ---
 

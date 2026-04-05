@@ -4,12 +4,13 @@ All work flows through `@master`. Every example below starts and ends there.
 
 `@master` receives the request, maps the full scope, announces the plan to the user before executing, dispatches agents (in parallel or sequentially depending on dependencies), synthesises their reports, resolves conflicts, and — once the user confirms — triggers `@workspace-updater` as the mandatory final step.
 
-Four workflows are documented here, each demonstrating different collaboration patterns:
+Five workflows are documented here, each demonstrating different collaboration patterns:
 
 1. **Engineering Pipeline** — parallel spikes, sequential implementation, gated quality stages
 2. **Content Publishing Pipeline** — research loop, human approval gate, parallel review, delivery feedback loop
 3. **Full Project Launch** — dual parallel tracks (engineering + content) converging at a shared release gate
 4. **Idea To Execution Planning** — idea shaping, adversarial validation, phased plan, optional backlog capture
+5. **Decision To ADR** — durable-decision detection, validation, approval gate, ADR authorship, documentation alignment
 
 ---
 
@@ -307,6 +308,57 @@ flowchart TD
 - `@devils-advocate`, `@judge`, and `@architect` are strong default validators for non-trivial ideas
 - If the user wants to defer execution, `@backlog-updater` persists the idea in `BACKLOG.md`
 - Even planning-only work still ends with `@workspace-updater` reviewing the core docs
+
+---
+
+## Workflow 5 — Decision To ADR
+
+**Example trigger:** *"We should make `@master` propose ADRs automatically for durable decisions."*
+
+**Patterns demonstrated:** default ADR detection, adversarial validation, human approval gate, delegated authorship, final doc alignment.
+
+```mermaid
+flowchart TD
+    USER(["👤 Durable decision discussion"])
+    USER --> MASTER
+
+    MASTER["@master\nDetects that the outcome\nchanges a durable convention\nProposes ADR by default"]
+
+    MASTER --> ARCH
+
+    ARCH["@architect\nDefines the technical substance\nand boundaries of the decision"]
+
+    ARCH --> STAGE1
+
+    subgraph STAGE1 ["⚡ Parallel — Decision Validation"]
+        direction LR
+        DEVIL["@devils-advocate\nChallenges assumptions\nand trade-offs"]
+        JUDGE["@judge\nEvaluates overall quality\nand long-term fitness"]
+    end
+
+    STAGE1 --> SYNTH
+
+    SYNTH["@master synthesis\nCombines reasoning\nand recommends ADR path"]
+
+    SYNTH --> APPROVAL{"👤 Approve saving\n`docs/adr/<nnn>-<slug>.md`?"}
+
+    APPROVAL -->|"No"| CHAT_DONE["@master keeps it in chat\nor moves it to BACKLOG.md"]
+    APPROVAL -->|"Yes"| WRITER
+
+    WRITER["@tech-writer\nWrites the ADR using\narchitect + validation input"]
+
+    WRITER --> WU["@workspace-updater\nAligns README.md,\nCLAUDE.md, and AGENTS.md"]
+
+    CHAT_DONE --> DONE(["✓ Decision captured"])
+    WU --> DONE
+```
+
+**Key points:**
+- `@master` should propose this flow by default when the decision should outlive the current conversation
+- `@architect` owns the substance, but `@tech-writer` owns final ADR authorship
+- `@devils-advocate` and `@judge` validate the reasoning before the record is written
+- Saving to `docs/adr/` is still gated by explicit user approval
+- `@workspace-updater` closes the loop so the ADR does not drift away from the repo briefings
 
 ---
 

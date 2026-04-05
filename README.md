@@ -177,6 +177,7 @@ These fire automatically — you don't need to ask:
 - Architectural decision → `@architect` weighs in
 - "Backlog this" or defer-for-later requests → `@backlog-updater` updates `BACKLOG.md`
 - Significant idea discussions → `@idea-executor` shapes the idea into an execution plan
+- Durable architecture, policy, workflow, or repo-structure decisions → `@master` proposes an ADR by default
 - Content ready to publish → `@editorial-reviewer` must pass it first
 - Before any public release or push → `@privacy-reviewer` runs mandatory scan
 - Before any commit or push → `@github-safety-guard` reviews staged or pending changes and `@master` surfaces the findings
@@ -193,6 +194,18 @@ For significant work, `@master` should report:
 - the synthesized outcome, conflicts, and blockers
 
 This reporting is part of the default orchestration behavior, not an optional extra.
+
+## ADR Decision Flow
+
+ADRs are not special-case paperwork. They are the default traceability mechanism for durable decisions.
+
+- If a discussion changes architecture, policy, workflow, repo structure, or long-lived operating conventions, `@master` should propose an ADR by default
+- `@architect` owns the technical substance of the decision
+- `@devils-advocate` and `@judge` help pressure-test the reasoning
+- `@tech-writer` writes the final ADR once the user approves saving it
+- `@workspace-updater` then aligns the rest of the repo docs
+
+`@master` must still ask for explicit approval before writing anything into `docs/adr/`.
 
 ---
 

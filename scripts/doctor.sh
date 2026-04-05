@@ -139,8 +139,16 @@ else
   fail "master agent prompt does not route idea planning through idea-executor"
 fi
 
+if grep -q 'ADR-worthy decision / durable trade-off' "$ROOT_DIR/.claude/agents/master.md" && \
+   grep -q 'treat it as ADR-candidate work by default' "$ROOT_DIR/.claude/agents/master.md"; then
+  pass "master agent prompt defines default ADR routing for durable decisions"
+else
+  fail "master agent prompt is missing default ADR routing for durable decisions"
+fi
+
 if grep -q 'Do not save to `docs/plans/` or `docs/adr/` automatically' "$ROOT_DIR/.claude/agents/idea-executor.md" && \
-   grep -q 'must ask the user for explicit approval' "$ROOT_DIR/.claude/agents/idea-executor.md"; then
+   grep -q 'must ask the user for explicit approval' "$ROOT_DIR/.claude/agents/idea-executor.md" && \
+   grep -q 'explicitly recommend ADR treatment' "$ROOT_DIR/.claude/agents/idea-executor.md"; then
   pass "idea-executor prompt requires approval before saving plan artifacts"
 else
   fail "idea-executor prompt is missing artifact approval rules"
@@ -150,6 +158,19 @@ if grep -q 'Approve saving it there' "$ROOT_DIR/.claude/agents/master.md"; then
   pass "master agent prompt defines an explicit approval prompt for saved idea artifacts"
 else
   fail "master agent prompt is missing an explicit approval prompt for saved idea artifacts"
+fi
+
+if grep -q 'Approve saving it there' "$ROOT_DIR/.claude/agents/master.md" && \
+   grep -q 'Before I save this decision' "$ROOT_DIR/.claude/agents/master.md"; then
+  pass "master agent prompt defines an explicit ADR approval prompt"
+else
+  fail "master agent prompt is missing an explicit ADR approval prompt"
+fi
+
+if grep -q 'primary writer for the final record' "$ROOT_DIR/.claude/agents/tech-writer.md"; then
+  pass "tech-writer prompt defines ADR authorship responsibility"
+else
+  fail "tech-writer prompt is missing ADR authorship responsibility"
 fi
 
 if grep -q 'CLAUDE.md, AGENTS.md, and README.md' "$ROOT_DIR/.claude/agents/workspace-updater.md"; then
@@ -162,6 +183,12 @@ if grep -q 'By default, `@master` also reports which agents were selected' "$ROO
   pass "README.md documents default orchestration reporting"
 else
   fail "README.md does not document default orchestration reporting"
+fi
+
+if grep -q 'propose an ADR by default' "$ROOT_DIR/README.md"; then
+  pass "README.md documents default ADR handling"
+else
+  fail "README.md does not document default ADR handling"
 fi
 
 if grep -q "workspace kit" "$ROOT_DIR/README.md"; then
