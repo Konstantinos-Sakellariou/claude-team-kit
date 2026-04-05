@@ -55,6 +55,23 @@ Common examples:
 - sitemap-like tables in `CLAUDE.md`
 - feature matrices, integration inventories, or architecture overviews
 
+## Artifact Storage Policy
+
+Good teams define where planning artifacts live before ideas start multiplying.
+
+Recommended default policy:
+
+- keep early exploration in chat
+- save deferred ideas in `BACKLOG.md`
+- save approved execution plans in `docs/plans/`
+- save approved architecture or policy decisions in `docs/adr/`
+
+Important:
+
+- require explicit user approval before saving into `docs/plans/` or `docs/adr/`
+- let `@master` present the proposed artifact path and reason first
+- if approval is not given, keep the output in chat or move it to `BACKLOG.md`
+
 If your repo has these, document them explicitly in `CLAUDE.md` or `AGENTS.md` under a section such as:
 
 ## Documentation Sync

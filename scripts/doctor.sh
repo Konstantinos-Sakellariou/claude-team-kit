@@ -40,6 +40,8 @@ check_file "BACKLOG.md" "BACKLOG.md exists"
 check_file "docs/ARCHITECTURE.md" "docs/ARCHITECTURE.md exists"
 check_file "docs/AGENT_WORKFLOWS.md" "docs/AGENT_WORKFLOWS.md exists"
 check_file "docs/PROJECT_CUSTOMIZATION.md" "docs/PROJECT_CUSTOMIZATION.md exists"
+check_file "docs/plans/example-execution-plan.md" "docs/plans/example-execution-plan.md exists"
+check_file "docs/adr/README.md" "docs/adr/README.md exists"
 check_file ".claude/settings.json" ".claude/settings.json exists"
 check_file ".mcp.json" ".mcp.json exists"
 check_file ".env.example" ".env.example exists"
@@ -135,6 +137,19 @@ if grep -q '@idea-executor' "$ROOT_DIR/.claude/agents/master.md"; then
   pass "master agent prompt routes idea planning through idea-executor"
 else
   fail "master agent prompt does not route idea planning through idea-executor"
+fi
+
+if grep -q 'Do not save to `docs/plans/` or `docs/adr/` automatically' "$ROOT_DIR/.claude/agents/idea-executor.md" && \
+   grep -q 'must ask the user for explicit approval' "$ROOT_DIR/.claude/agents/idea-executor.md"; then
+  pass "idea-executor prompt requires approval before saving plan artifacts"
+else
+  fail "idea-executor prompt is missing artifact approval rules"
+fi
+
+if grep -q 'Approve saving it there' "$ROOT_DIR/.claude/agents/master.md"; then
+  pass "master agent prompt defines an explicit approval prompt for saved idea artifacts"
+else
+  fail "master agent prompt is missing an explicit approval prompt for saved idea artifacts"
 fi
 
 if grep -q 'CLAUDE.md, AGENTS.md, and README.md' "$ROOT_DIR/.claude/agents/workspace-updater.md"; then

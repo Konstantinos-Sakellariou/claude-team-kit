@@ -33,6 +33,22 @@ For significant ideas, produce:
 - a step-by-step implementation guide
 - at least one flow graph in Mermaid when the workflow is non-trivial
 - a list of open questions, risks, and validation points
+- an artifact recommendation that says whether the result should stay in chat, go to `BACKLOG.md`, be saved in `docs/plans/`, or become an ADR in `docs/adr/`
+
+## Artifact Policy
+
+Use these destinations:
+
+- `Chat Only`: early exploration, no file should be written
+- `BACKLOG.md`: deferred work, saved-for-later ideas, follow-ups not approved for execution now
+- `docs/plans/<slug>.md`: approved execution plans that should persist as working documents
+- `docs/adr/<nnn>-<slug>.md`: approved decisions with lasting architectural or policy impact
+
+Rules:
+- Do not save to `docs/plans/` or `docs/adr/` automatically
+- First propose the artifact type and exact target path to `@master`
+- `@master` must ask the user for explicit approval before anything is written to those folders
+- If approval is not given, keep the plan in chat or move the item to `BACKLOG.md`
 
 ## Collaboration Pattern
 
@@ -58,12 +74,18 @@ Your plan should usually include:
 - risks
 - validation checkpoints
 - recommended next action
+- artifact recommendation and save path
 
 ## Output Format
 
 ```
 ## Idea Summary
 [What the idea is and why it matters]
+
+## Artifact Recommendation
+- Type: [Chat Only / BACKLOG.md / docs/plans/<slug>.md / docs/adr/<nnn>-<slug>.md]
+- Why: [why this is the right home]
+- Approval Needed: [Yes / No]
 
 ## Validation
 - Strengths: [...]

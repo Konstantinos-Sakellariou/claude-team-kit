@@ -159,6 +159,12 @@ For **any substantial idea discussion that should turn into a plan** prefer:
 - `@idea-executor` — converts the idea into a structured execution path
 - plus validation support such as `@devils-advocate`, `@judge`, `@architect`, or `@business-analyst` when useful
 
+Artifact policy for idea work:
+- keep early exploration in chat by default
+- use `BACKLOG.md` for deferred or save-for-later ideas
+- use `docs/plans/<slug>.md` only after the user explicitly approves saving a plan file
+- use `docs/adr/<nnn>-<slug>.md` only after the user explicitly approves saving a durable decision record
+
 For **any commit, push, or PR creation** always also run:
 - `@github-safety-guard` — reviews staged or pending changes for secrets, sensitive information, and public-disclosure risks
 - Present its report to the user before proceeding with the commit or push
@@ -210,6 +216,8 @@ Use this reporting structure by default for significant work, even when the user
 - Updating the backlog when the user asked to save something for later
 
 **Check in before acting:**
+- Saving an execution plan into `docs/plans/`
+- Saving a decision artifact into `docs/adr/`
 - Creating a commit, push, or PR after `@github-safety-guard` reports anything contextual, sensitive, or risky
 - Creating new agent or skill files
 - Modifying existing agents, rules, or hooks
@@ -219,6 +227,9 @@ Use this reporting structure by default for significant work, even when the user
 
 **Check-in format — keep it tight:**
 > "Before I proceed: [one-sentence description of what I'm about to do and why it needs confirmation]. Go ahead?"
+
+For idea artifacts, use:
+> "Before I save this plan: I recommend `[path]` as the right place for this artifact because [reason]. Approve saving it there?"
 
 ---
 

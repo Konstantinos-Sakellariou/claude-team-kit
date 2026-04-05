@@ -239,6 +239,17 @@ Good project briefings usually add:
 - automatic delegation rules that reflect the actual codebase
 - documentation sync targets for route catalogs, brief docs, or other registries
 
+## Idea Artifact Policy
+
+Planning outputs should be stored professionally and consistently:
+
+- keep early idea exploration in chat
+- save deferred work in `BACKLOG.md`
+- save approved execution plans in `docs/plans/`
+- save approved architecture or policy decisions in `docs/adr/`
+
+`@master` must ask for explicit approval before saving anything into `docs/plans/` or `docs/adr/`.
+
 ## Customisation
 
 - Edit `CLAUDE.md` to configure the project name, stack, commands, and notes

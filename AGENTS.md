@@ -14,13 +14,14 @@ Owner: Konstantinos Sakellariou
 - See `docs/ARCHITECTURE.md`
 - See `docs/PROJECT_CUSTOMIZATION.md` when adapting this kit to a real repo
 - Canonical implementation lives in `.claude/`
-- Key directories: `.claude/`, `docs/`, `scripts/`
+- Key directories: `.claude/`, `docs/`, `docs/plans/`, `docs/adr/`, `scripts/`
 
 ## Commands
 - Setup workspace: `./scripts/setup.sh`
 - Validate workspace: `./scripts/doctor.sh`
 - Run validation tests: `python3 -m unittest discover -s tests -v`
 - Review backlog: `sed -n '1,240p' BACKLOG.md`
+- Review example plan: `sed -n '1,240p' docs/plans/example-execution-plan.md`
 - Review changes: `git diff --stat`
 - Inspect agents: `find .claude/agents -maxdepth 1 -type f | sort`
 - Inspect skills: `find .claude/skills -maxdepth 1 -mindepth 1 -type d | sort`
@@ -140,6 +141,7 @@ You have access to a full professional team. Use agents proactively — don't wa
 - `@master` must summarize what each selected agent did
 - `@master` must return a synthesized execution report for significant work by default
 - Before any commit or push, `@master` must surface the `@github-safety-guard` report so the user can decide whether to proceed
+- Before saving planning artifacts into `docs/plans/` or `docs/adr/`, `@master` must ask for explicit user approval
 
 ---
 
@@ -151,4 +153,5 @@ You have access to a full professional team. Use agents proactively — don't wa
 - `@master` must remain the only top-level orchestrator, and `@workspace-updater` must remain the mandatory final step for the core docs
 - `@master` must make orchestration visible in the chat by default: selected agents, actions taken, and final report
 - `BACKLOG.md` is the durable place for deferred ideas and future work; do not rely on chat history alone
+- Approved execution plans belong in `docs/plans/`; approved architecture or policy decisions belong in `docs/adr/`
 - `README.md`, `CLAUDE.md`, and `AGENTS.md` must stay in sync when workflow, commands, or structure change
