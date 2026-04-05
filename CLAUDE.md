@@ -20,6 +20,7 @@ Owner: Konstantinos Sakellariou
 - Setup workspace: `./scripts/setup.sh`
 - Validate workspace: `./scripts/doctor.sh`
 - Run validation tests: `python3 -m unittest discover -s tests -v`
+- Review backlog: `sed -n '1,240p' BACKLOG.md`
 - Review changes: `git diff --stat`
 - Inspect agents: `find .claude/agents -maxdepth 1 -type f | sort`
 - Inspect skills: `find .claude/skills -maxdepth 1 -mindepth 1 -type d | sort`
@@ -103,6 +104,7 @@ You have access to a full professional team. Use agents proactively — don't wa
 | `@privacy-reviewer` | Mandatory scan before any public release or repository push |
 | `@changelog-writer` | Generate versioned changelog entries after releases or publications |
 | `@ab-tester` | Design and analyse A/B tests for headlines, subject lines, CTAs |
+| `@backlog-updater` | Maintain `BACKLOG.md` when ideas or follow-ups should be saved for later |
 
 ## Advisory Agents
 
@@ -116,6 +118,7 @@ You have access to a full professional team. Use agents proactively — don't wa
 | `@devils-advocate` | Challenge assumptions before committing to a direction |
 | `@judge` | Tiebreaker for contested decisions |
 | `@tech-writer` | Docs, README, architecture diagrams |
+| `@idea-executor` | Take ideas from discussion to validated execution plan, flow graph, and step-by-step guidance |
 
 ## Automatic Delegation Rules
 
@@ -123,6 +126,8 @@ You have access to a full professional team. Use agents proactively — don't wa
 - Any new feature or script → `@qa-engineer` writes the test plan
 - Any architectural decision → `@architect` weighs in
 - Any performance-sensitive path → `@performance-engineer` reviews it
+- Any request to "backlog" or save work for later → `@backlog-updater` updates `BACKLOG.md`
+- Any substantial idea exploration that should become a plan → `@idea-executor` leads the execution-plan shaping with supporting reviewers
 - Any content ready to publish → `@editorial-reviewer` must pass it first
 - Before any commit or push → `@github-safety-guard` reviews the outgoing changes and `@master` presents the findings to the user
 - Before any public release or push → `@privacy-reviewer` runs the mandatory scan
@@ -145,4 +150,5 @@ You have access to a full professional team. Use agents proactively — don't wa
 - Project-specific sync workflows belong in narrow extensions to `@master` and `@workspace-updater`, not in the generic core loop
 - `@master` must remain the only top-level orchestrator, and `@workspace-updater` must remain the mandatory final step for the core docs
 - `@master` must make orchestration visible in the chat by default: selected agents, actions taken, and final report
+- `BACKLOG.md` is the durable place for deferred ideas and future work; do not rely on chat history alone
 - `README.md`, `CLAUDE.md`, and `AGENTS.md` must stay in sync when workflow, commands, or structure change

@@ -8,11 +8,12 @@ This repo is a team-definition layer, not a standalone orchestration runtime. It
 
 ```text
 .claude/
-├── agents/          31 specialized agents across engineering, content, delivery, and advisory
+├── agents/          33 specialized agents across engineering, content, delivery, and advisory
 ├── skills/          17 reusable skills (code-review, fix-bug, business-case, create-pr...)
 ├── rules/           Modular rule files — Python, TypeScript, security, testing, git, performance, API design
 ├── hooks/           Shell automations (auto-format, secret detection, file protection...)
 └── agent-memory/    Persistent per-agent memory (grows over time)
+BACKLOG.md           Durable backlog for ideas, deferred work, and future improvements
 CLAUDE.md            Master project briefing — customize per project
 AGENTS.md            Compatibility briefing for tools that read AGENTS.md
 .mcp.json            MCP server config (GitHub pre-configured)
@@ -33,7 +34,7 @@ scripts/             Setup and validation helpers
 ## What This Repo Is
 
 - A reusable workspace kit for agent-based development
-- A curated team of 31 agents with explicit collaboration patterns
+- A curated team of 33 agents with explicit collaboration patterns
 - A prompt and guardrail layer that can be dropped into another project
 
 ## What This Repo Is Not
@@ -62,13 +63,13 @@ flowchart TD
 
     MASTER["@master\n1. Receives every request\n2. Maps the full scope\n3. Announces the plan\n4. Dispatches agents\n5. Synthesises reports\n6. Resolves conflicts\n7. Signs off on completion\n8. Always ends with @workspace-updater"]
 
-    MASTER --> ENG["⚙️ Engineering\n@architect\n@senior-developer\n@qa-engineer\n@security-auditor\n@debugger\n@performance-engineer\n@researcher"]
+    MASTER --> ENG["⚙️ Engineering\n@architect\n@senior-developer\n@qa-engineer\n@security-auditor\n@debugger\n@performance-engineer\n@researcher\n@github-safety-guard"]
 
     MASTER --> CONT["📝 Content & Publishing\n@topic-researcher\n@content-planner\n@content-writer\n@editorial-reviewer\n@source-verifier\n@tone-calibrator\n@backlog-curator\n@feedback-synthesizer"]
 
-    MASTER --> DELIV["🚀 Delivery & Ops\n@delivery-orchestrator\n@delivery-monitor\n@privacy-reviewer\n@changelog-writer\n@ab-tester"]
+    MASTER --> DELIV["🚀 Delivery & Ops\n@delivery-orchestrator\n@delivery-monitor\n@privacy-reviewer\n@changelog-writer\n@ab-tester\n@backlog-updater"]
 
-    MASTER --> ADV["🧠 Advisory\n@business-analyst\n@product-owner\n@project-manager\n@customer-advocate\n@devils-advocate\n@risk-officer\n@judge\n@tech-writer"]
+    MASTER --> ADV["🧠 Advisory\n@business-analyst\n@product-owner\n@project-manager\n@customer-advocate\n@devils-advocate\n@risk-officer\n@judge\n@tech-writer\n@idea-executor"]
 
     ENG --> SYNTH(["@master synthesises all reports"])
     CONT --> SYNTH
@@ -106,11 +107,11 @@ RECEIVE → ANALYSE scope → PLAN pipeline → ANNOUNCE plan to user
 > → **Then parallel:** `@editorial-reviewer` + `@tone-calibrator` + `@source-verifier`
 > → **Then sequential:** `@privacy-reviewer` → `@delivery-orchestrator` → `@workspace-updater`
 
-**See full workflow diagrams** with all collaboration patterns (parallel stages, gated reviews, feedback loops, dual-track launches) in [`docs/AGENT_WORKFLOWS.md`](docs/AGENT_WORKFLOWS.md).
+**See full workflow diagrams** with all collaboration patterns (parallel stages, gated reviews, feedback loops, dual-track launches, and idea-to-plan execution) in [`docs/AGENT_WORKFLOWS.md`](docs/AGENT_WORKFLOWS.md).
 
 ---
 
-## The Full Team (30 Agents)
+## The Full Team (33 Agents)
 
 ### Core Engineering
 
@@ -149,6 +150,7 @@ RECEIVE → ANALYSE scope → PLAN pipeline → ANNOUNCE plan to user
 | `@privacy-reviewer` | Mandatory scan before any public release or repository push | sonnet |
 | `@changelog-writer` | Generates versioned changelog entries after releases or publications | sonnet |
 | `@ab-tester` | Designs and analyses A/B tests for headlines, CTAs, subject lines | sonnet |
+| `@backlog-updater` | Captures ideas and deferred work into `BACKLOG.md` with a consistent schema | sonnet |
 
 ### Advisory
 
@@ -162,6 +164,7 @@ RECEIVE → ANALYSE scope → PLAN pipeline → ANNOUNCE plan to user
 | `@risk-officer` | Risk, compliance, "what could go wrong" |
 | `@judge` | Final evaluation — business and technical verdict |
 | `@tech-writer` | Docs, README, architecture diagrams |
+| `@idea-executor` | Turns ideas into validated execution plans, flow diagrams, and step-by-step guides |
 
 ---
 
@@ -172,6 +175,8 @@ These fire automatically — you don't need to ask:
 - Secrets / auth / credentials touched → `@security-auditor` reviews first
 - New feature or script → `@qa-engineer` writes the test plan
 - Architectural decision → `@architect` weighs in
+- "Backlog this" or defer-for-later requests → `@backlog-updater` updates `BACKLOG.md`
+- Significant idea discussions → `@idea-executor` shapes the idea into an execution plan
 - Content ready to publish → `@editorial-reviewer` must pass it first
 - Before any public release or push → `@privacy-reviewer` runs mandatory scan
 - Before any commit or push → `@github-safety-guard` reviews staged or pending changes and `@master` surfaces the findings
@@ -202,15 +207,15 @@ This reporting is part of the default orchestration behavior, not an optional ex
 
 ## Agent Groups at a Glance
 
-The 30 agents split into four groups designed to cover any project type:
+The 33 agents split into four groups designed to cover any project type:
 
-**Engineering** (9 agents) — builds and maintains software: architecture, implementation, testing, security, performance, debugging.
+**Engineering** (10 agents) — builds and maintains software: architecture, implementation, testing, security, performance, debugging, and release safety.
 
 **Content & Publishing** (8 agents) — runs any periodic publication workflow: research → planning → writing → review → tone → sourcing → feedback → backlog.
 
-**Delivery & Ops** (5 agents) — operates the release and distribution pipeline: delivery, monitoring, privacy, changelog, experimentation.
+**Delivery & Ops** (6 agents) — operates the release and distribution pipeline: delivery, monitoring, privacy, changelog, experimentation, and backlog persistence.
 
-**Advisory** (8 agents) — provides strategic and decision-making support: product, project, business, UX, devil's advocate, risk, judgement, docs.
+**Advisory** (9 agents) — provides strategic and decision-making support: product, project, business, UX, devil's advocate, risk, judgement, docs, and idea-to-plan execution shaping.
 
 ---
 
@@ -237,6 +242,7 @@ Good project briefings usually add:
 ## Customisation
 
 - Edit `CLAUDE.md` to configure the project name, stack, commands, and notes
+- Use `BACKLOG.md` as the durable registry for deferred work and captured ideas
 - Use `docs/PROJECT_CUSTOMIZATION.md` when adapting the kit to a specific repository
 - Add project-specific rules with `@.claude/rules/your-rule.md` in `CLAUDE.md`
 - Create new agents in `.claude/agents/` — copy any existing file and update the frontmatter and instructions

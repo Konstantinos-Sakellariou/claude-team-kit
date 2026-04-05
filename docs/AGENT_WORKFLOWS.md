@@ -4,11 +4,12 @@ All work flows through `@master`. Every example below starts and ends there.
 
 `@master` receives the request, maps the full scope, announces the plan to the user before executing, dispatches agents (in parallel or sequentially depending on dependencies), synthesises their reports, resolves conflicts, and — once the user confirms — triggers `@workspace-updater` as the mandatory final step.
 
-Three workflows are documented here, each demonstrating different collaboration patterns:
+Four workflows are documented here, each demonstrating different collaboration patterns:
 
 1. **Engineering Pipeline** — parallel spikes, sequential implementation, gated quality stages
 2. **Content Publishing Pipeline** — research loop, human approval gate, parallel review, delivery feedback loop
 3. **Full Project Launch** — dual parallel tracks (engineering + content) converging at a shared release gate
+4. **Idea To Execution Planning** — idea shaping, adversarial validation, phased plan, optional backlog capture
 
 ---
 
@@ -252,6 +253,60 @@ flowchart TD
 - `@devils-advocate` runs **after** privacy review — it challenges the entire plan at the last responsible moment
 - The human final approval gate is the last checkpoint before any irreversible public action
 - `@delivery-orchestrator`, `@changelog-writer`, and `@ab-tester` run **in parallel** post-approval — none depend on each other
+
+---
+
+## Workflow 4 — Idea To Execution Planning
+
+**Example trigger:** *"We have an idea for a backlog system and an execution-planning specialist. How should we shape it?"*
+
+**Patterns demonstrated:** idea shaping, adversarial review, coordinated planning, optional backlog persistence, mandatory synthesis by `@master`.
+
+```mermaid
+flowchart TD
+    USER(["👤 New idea or concept"])
+    USER --> MASTER
+
+    MASTER["@master\nReceives the idea\nDefines planning goal\nAnnounces the agent plan"]
+
+    MASTER --> IDEA
+
+    IDEA["@idea-executor\nClarifies the concept\nDrafts execution path\nCreates flow graph\nWrites step-by-step guidance"]
+
+    IDEA --> STAGE1
+
+    subgraph STAGE1 ["⚡ Parallel — Validation Stage"]
+        direction LR
+        DEVIL["@devils-advocate\nChallenges assumptions\nFinds weak points"]
+        JUDGE["@judge\nEvaluates overall quality\nand feasibility"]
+        ARCH["@architect\nChecks structure,\nboundaries, and system fit"]
+    end
+
+    STAGE1 --> SYNTH
+
+    SYNTH["@master synthesis\nCombines planning + validation\nResolves conflicts\nDecides next step"]
+
+    SYNTH --> DECISION{"Implement now\nor save for later?"}
+
+    DECISION -->|"Implement now"| PLAN_DONE
+    DECISION -->|"Save for later"| BACKLOG
+
+    BACKLOG["@backlog-updater\nCreates or updates\nBACKLOG.md entry\nwith implementation context"]
+
+    BACKLOG --> PLAN_DONE
+
+    PLAN_DONE["@master returns:\nsummary\nagents used\nexecution report\nrisks\nnext step"]
+
+    PLAN_DONE --> WU["@workspace-updater\nreviews core docs\nas final step"]
+    WU --> DONE(["✓ Planning cycle complete"])
+```
+
+**Key points:**
+- `@idea-executor` is the primary planning specialist, not the top-level coordinator
+- `@master` still owns the thread, announces the selected agents, and synthesizes the result
+- `@devils-advocate`, `@judge`, and `@architect` are strong default validators for non-trivial ideas
+- If the user wants to defer execution, `@backlog-updater` persists the idea in `BACKLOG.md`
+- Even planning-only work still ends with `@workspace-updater` reviewing the core docs
 
 ---
 

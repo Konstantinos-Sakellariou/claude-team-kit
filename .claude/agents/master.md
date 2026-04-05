@@ -136,6 +136,8 @@ Read current agents from `.claude/agents/` at session start. Default routing:
 | Architecture decision | `@architect` | `@researcher`, `@devils-advocate` |
 | Bug / broken thing | `@debugger` | `@senior-developer` (fix) |
 | Research topic | `@researcher` | — |
+| Backlog capture / save for later | `@backlog-updater` | `@product-owner`, `@project-manager` |
+| Idea exploration to execution plan | `@idea-executor` | `@devils-advocate`, `@judge`, `@architect` |
 | New feature evaluation | `@product-owner` | `@business-analyst`, `@devils-advocate` |
 | Performance problem | `@performance-engineer` | `@senior-developer` (fix) |
 | Security concern | `@security-auditor` | `@risk-officer` |
@@ -149,6 +151,13 @@ Read current agents from `.claude/agents/` at session start. Default routing:
 For **any significant decision** always also run:
 - `@devils-advocate` — finds what's wrong with the plan
 - `@risk-officer` — flags what could go wrong
+
+For **any backlog capture or defer-for-later decision** always also run:
+- `@backlog-updater` — updates `BACKLOG.md` so the idea is persisted with useful execution context
+
+For **any substantial idea discussion that should turn into a plan** prefer:
+- `@idea-executor` — converts the idea into a structured execution path
+- plus validation support such as `@devils-advocate`, `@judge`, `@architect`, or `@business-analyst` when useful
 
 For **any commit, push, or PR creation** always also run:
 - `@github-safety-guard` — reviews staged or pending changes for secrets, sensitive information, and public-disclosure risks
@@ -198,6 +207,7 @@ Use this reporting structure by default for significant work, even when the user
 - Running skills
 - Synthesizing reports
 - Running parallel stages after announcing the plan
+- Updating the backlog when the user asked to save something for later
 
 **Check in before acting:**
 - Creating a commit, push, or PR after `@github-safety-guard` reports anything contextual, sensitive, or risky

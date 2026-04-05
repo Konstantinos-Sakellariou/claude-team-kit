@@ -36,6 +36,7 @@ echo "Root: $ROOT_DIR"
 check_file "README.md" "README.md exists"
 check_file "CLAUDE.md" "CLAUDE.md exists"
 check_file "AGENTS.md" "AGENTS.md exists"
+check_file "BACKLOG.md" "BACKLOG.md exists"
 check_file "docs/ARCHITECTURE.md" "docs/ARCHITECTURE.md exists"
 check_file "docs/AGENT_WORKFLOWS.md" "docs/AGENT_WORKFLOWS.md exists"
 check_file "docs/PROJECT_CUSTOMIZATION.md" "docs/PROJECT_CUSTOMIZATION.md exists"
@@ -106,10 +107,34 @@ else
   fail "github-safety-guard agent is missing"
 fi
 
+if [ -f "$ROOT_DIR/.claude/agents/backlog-updater.md" ]; then
+  pass "backlog-updater agent exists"
+else
+  fail "backlog-updater agent is missing"
+fi
+
+if [ -f "$ROOT_DIR/.claude/agents/idea-executor.md" ]; then
+  pass "idea-executor agent exists"
+else
+  fail "idea-executor agent is missing"
+fi
+
 if grep -q '@github-safety-guard' "$ROOT_DIR/.claude/agents/master.md"; then
   pass "master agent prompt routes commit and push work through github-safety-guard"
 else
   fail "master agent prompt does not route commit and push work through github-safety-guard"
+fi
+
+if grep -q '@backlog-updater' "$ROOT_DIR/.claude/agents/master.md"; then
+  pass "master agent prompt routes backlog capture through backlog-updater"
+else
+  fail "master agent prompt does not route backlog capture through backlog-updater"
+fi
+
+if grep -q '@idea-executor' "$ROOT_DIR/.claude/agents/master.md"; then
+  pass "master agent prompt routes idea planning through idea-executor"
+else
+  fail "master agent prompt does not route idea planning through idea-executor"
 fi
 
 if grep -q 'CLAUDE.md, AGENTS.md, and README.md' "$ROOT_DIR/.claude/agents/workspace-updater.md"; then

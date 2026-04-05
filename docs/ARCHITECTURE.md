@@ -30,6 +30,7 @@ The canonical implementation lives under `.claude/`.
 - `.claude/hooks/`: safety and formatting shell hooks
 - `.claude/agent-memory/`: persistent per-agent memory
 - `.claude/settings.json`: default Claude workspace settings
+- `BACKLOG.md`: durable backlog for ideas and deferred work
 
 Repo-level docs explain and package that implementation:
 
