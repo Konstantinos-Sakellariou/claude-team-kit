@@ -53,6 +53,8 @@ Persistent knowledge across sessions. Updated automatically after significant wo
 - Prefers check-in on big/permanent decisions
 - Wants routing narrated briefly ("Routing to @X because...")
 - Dislikes unnecessary verbosity — be direct
+- For Mermaid graph changes, do not trust Cursor preview alone; compare against GitHub rendering before finalizing layout changes
+- Preferred workflow for graph edits: try the change, push if needed to verify GitHub rendering, then decide whether to keep or adjust
 
 ## Decisions Made
 <!-- Append decisions here as sessions progress -->
@@ -65,3 +67,4 @@ Persistent knowledge across sessions. Updated automatically after significant wo
 
 ## Project-Specific Notes
 <!-- Add per-project context when this kit is deployed to a real project -->
+- Cursor may render wide Mermaid diagrams poorly even when GitHub renders them correctly, especially after adding a new category branch
