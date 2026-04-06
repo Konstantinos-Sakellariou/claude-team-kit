@@ -25,6 +25,7 @@ Owner: Konstantinos Sakellariou
 - Review example plan: `sed -n '1,240p' docs/plans/example-execution-plan.md`
 - Review changes: `git diff --stat`
 - Inspect agents: `find .claude/agents -maxdepth 1 -type f | sort`
+- Inspect teams: `find .claude/teams -maxdepth 1 -type f | sort`
 - Inspect skills: `find .claude/skills -maxdepth 1 -mindepth 1 -type d | sort`
 
 ## Environment
@@ -71,6 +72,26 @@ You have access to a full professional team. Use agents proactively — don't wa
 
 `@master` is always the first responder and only orchestrator in the main thread, even when the user does not explicitly mention it or names another specialist directly.
 `@master` must also report which agents were selected, what each one did, and the final synthesized outcome without requiring a separate user request.
+
+Teams are reusable orchestration bundles that `@master` can activate for recurring multi-agent workflows. They are not a runtime feature and they do not replace agents.
+
+Teams help by:
+- making routing more consistent for repeated request types
+- giving each recurring workflow a clear lead and supporting cast
+- making orchestration easier to explain back to the user
+- letting the kit scale to new domains without endless one-off routing rows
+
+`@master` must still report the actual agents used whenever a team is activated.
+
+## Available Teams
+
+| Team | Lead | Typical Use |
+|---|---|---|
+| `Engineering Team` | `@senior-developer` or `@architect` | features, debugging, architecture, engineering review |
+| `AI/ML Team` | `@data-scientist` or `@ml-engineer` | model framing, training, evaluation, rollout readiness |
+| `Content & Publishing Team` | `@content-planner` or `@content-writer` | planning, drafting, source-backed editorial workflows |
+| `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy, backlog persistence |
+| `Advisory Review Team` | `@product-owner`, `@business-analyst`, or `@idea-executor` | planning, prioritization, business, UX, risk, contested decisions |
 
 ## Core Engineering Agents
 
@@ -169,6 +190,7 @@ You have access to a full professional team. Use agents proactively — don't wa
 # Important Notes
 - This repo is a workspace kit, not a runtime orchestration engine
 - The canonical implementation lives in `.claude/`; repo docs must describe that implementation accurately
+- Team manifests live in `.claude/teams/`; they are a `@master` routing abstraction, not a Claude-native platform feature
 - The kit includes a generic AI/ML specialist layer; keep platform-specific ML guidance in project briefings, not in the shared core
 - Real projects should move concrete architecture, routes, deployment notes, and gotchas into `CLAUDE.md` and `AGENTS.md`
 - Project-specific sync workflows belong in narrow extensions to `@master` and `@workspace-updater`, not in the generic core loop

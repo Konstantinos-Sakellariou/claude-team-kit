@@ -45,6 +45,29 @@ Examples:
 - Public release or high-risk deploy: always include `@risk-officer`
 - AI/ML projects: route exploratory work to `@data-scientist`, enforce `@model-evaluator` as the release gate, and keep infrastructure specifics in the project briefing
 
+## Teams In Real Projects
+
+The shared kit now includes reusable teams that `@master` can activate for recurring multi-agent workflows.
+
+Use that abstraction to your advantage:
+
+- keep shared team manifests generic
+- add project-specific triggers in `CLAUDE.md` or `AGENTS.md`
+- prefer a team when the same multi-agent shape keeps repeating
+- avoid creating a new team when a single specialist or one-off rule is enough
+
+Good reasons to add or extend a project-specific team:
+
+- a domain has a stable lead plus recurring supporting reviewers
+- the workflow has a recognizable sequence or required gates
+- the same collaboration pattern appears across multiple requests
+
+Bad reasons:
+
+- renaming one specialist to sound more impressive
+- encoding project facts that belong in the repo briefing instead
+- creating overlapping teams with no clear lead or trigger boundary
+
 ## Project-Specific Sync Targets
 
 Some repos contain files that must stay synchronized whenever work lands.

@@ -38,6 +38,7 @@ check_file "CLAUDE.md" "CLAUDE.md exists"
 check_file "AGENTS.md" "AGENTS.md exists"
 check_file "BACKLOG.example.md" "BACKLOG.example.md exists"
 check_file "docs/ARCHITECTURE.md" "docs/ARCHITECTURE.md exists"
+check_file "docs/TEAMS.md" "docs/TEAMS.md exists"
 check_file "docs/AGENT_WORKFLOWS.md" "docs/AGENT_WORKFLOWS.md exists"
 check_file "docs/PROJECT_CUSTOMIZATION.md" "docs/PROJECT_CUSTOMIZATION.md exists"
 check_file "docs/plans/example-execution-plan.md" "docs/plans/example-execution-plan.md exists"
@@ -91,6 +92,26 @@ if grep -q 'Every request enters through you\.' "$ROOT_DIR/.claude/agents/master
   pass "master agent prompt states that every request enters through master"
 else
   fail "master agent prompt is missing the mandatory entrypoint rule"
+fi
+
+if [ -d "$ROOT_DIR/.claude/teams" ]; then
+  pass ".claude/teams exists"
+else
+  fail ".claude/teams directory is missing"
+fi
+
+for team in engineering-team ai-ml-team content-publishing-team delivery-ops-team advisory-review-team; do
+  if [ -f "$ROOT_DIR/.claude/teams/${team}.md" ]; then
+    pass "${team} manifest exists"
+  else
+    fail "${team} manifest is missing"
+  fi
+done
+
+if grep -q '## Team System' "$ROOT_DIR/.claude/agents/master.md"; then
+  pass "master agent prompt defines the team system"
+else
+  fail "master agent prompt is missing the team system section"
 fi
 
 if grep -q 'This is automatic and does not wait for an extra user prompt' "$ROOT_DIR/.claude/agents/master.md"; then
@@ -202,10 +223,26 @@ else
   fail "workspace-updater prompt does not cover all core documentation files"
 fi
 
-if grep -q 'By default, `@master` also reports which agents were selected' "$ROOT_DIR/README.md"; then
+if grep -q 'By default, `@master` also reports which teams and agents were selected' "$ROOT_DIR/README.md"; then
   pass "README.md documents default orchestration reporting"
 else
   fail "README.md does not document default orchestration reporting"
+fi
+
+if grep -q '## What Teams Mean' "$ROOT_DIR/README.md" && \
+   grep -q '## Available Teams' "$ROOT_DIR/README.md"; then
+  pass "README.md documents the reusable team system"
+else
+  fail "README.md does not document the reusable team system"
+fi
+
+if grep -q 'Teams are reusable orchestration bundles' "$ROOT_DIR/CLAUDE.md" && \
+   grep -q '## Available Teams' "$ROOT_DIR/CLAUDE.md" && \
+   grep -q 'Teams are reusable orchestration bundles' "$ROOT_DIR/AGENTS.md" && \
+   grep -q '## Available Teams' "$ROOT_DIR/AGENTS.md"; then
+  pass "CLAUDE.md and AGENTS.md document the team abstraction"
+else
+  fail "CLAUDE.md and AGENTS.md are not aligned on the team abstraction"
 fi
 
 if grep -q 'propose an ADR by default' "$ROOT_DIR/README.md"; then
@@ -262,6 +299,7 @@ else
 fi
 
 agent_count=$(find "$ROOT_DIR/.claude/agents" -maxdepth 1 -type f | wc -l | tr -d ' ')
+team_count=$(find "$ROOT_DIR/.claude/teams" -maxdepth 1 -type f 2>/dev/null | wc -l | tr -d ' ')
 skill_count=$(find "$ROOT_DIR/.claude/skills" -maxdepth 1 -mindepth 1 -type d | wc -l | tr -d ' ')
 rule_count=$(find "$ROOT_DIR/.claude/rules" -maxdepth 1 -type f | wc -l | tr -d ' ')
 hook_count=$(find "$ROOT_DIR/.claude/hooks" -maxdepth 1 -type f | wc -l | tr -d ' ')
@@ -278,7 +316,13 @@ else
   fail "README.md skill count does not match the repo"
 fi
 
-printf 'INFO: agents=%s skills=%s rules=%s hooks=%s\n' "$agent_count" "$skill_count" "$rule_count" "$hook_count"
+if grep -q "${team_count} reusable team manifests" "$ROOT_DIR/README.md"; then
+  pass "README.md team count matches the repo"
+else
+  fail "README.md team count does not match the repo"
+fi
+
+printf 'INFO: agents=%s teams=%s skills=%s rules=%s hooks=%s\n' "$agent_count" "$team_count" "$skill_count" "$rule_count" "$hook_count"
 
 if [ "$ERRORS" -gt 0 ]; then
   printf 'Doctor finished with %s error(s) and %s warning(s).\n' "$ERRORS" "$WARNINGS"

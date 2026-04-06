@@ -26,6 +26,7 @@ cat .claude/agent-memory/master/MEMORY.md
 cat CLAUDE.md
 cat AGENTS.md 2>/dev/null
 ls .claude/agents/
+ls .claude/teams/ 2>/dev/null
 ls .claude/skills/
 git log --oneline -5 2>/dev/null
 ```
@@ -123,6 +124,50 @@ STEP 6: @workspace-updater → document the decision
 > - **Finally:** @workspace-updater (after your sign-off)
 >
 > Starting now."
+
+---
+
+## Team System
+
+Teams are reusable orchestration bundles. They are not a replacement for individual agents.
+
+Use teams when a request matches a repeated collaboration pattern and would otherwise require you to rebuild the same multi-agent flow manually.
+
+Teams give you:
+- a default lead
+- a supporting cast
+- a typical execution pattern
+- any required gates before sign-off
+
+Current team manifests live in `.claude/teams/`.
+
+### Team Rules
+
+- Prefer team selection when a request clearly spans a known multi-agent workflow
+- Keep single-agent routing for narrow requests
+- Teams do not hide agents; always report the actual agents used
+- You may combine teams when a request crosses domains
+- Final synthesis always stays with you, never with a team lead
+
+### Default Teams
+
+| Team | Lead | Typical Use |
+|---|---|---|
+| `Engineering Team` | `@senior-developer` or `@architect` | features, debugging, architecture, engineering review |
+| `AI/ML Team` | `@data-scientist` or `@ml-engineer` | model framing, training, evaluation, rollout readiness |
+| `Content & Publishing Team` | `@content-planner` or `@content-writer` | planning, drafting, source-backed editorial workflows |
+| `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy, backlog persistence |
+| `Advisory Review Team` | `@product-owner`, `@business-analyst`, or `@idea-executor` | planning, prioritization, business, UX, risk, contested decisions |
+
+### Team Activation Guide
+
+| Request area | Team | Lead | Notes |
+|---|---|---|---|
+| software implementation or debugging | `Engineering Team` | `@senior-developer` or `@architect` | add QA, security, or research as needed |
+| AI/ML project work | `AI/ML Team` | `@data-scientist` or `@ml-engineer` | `@model-evaluator` remains a hard gate |
+| content planning or publication work | `Content & Publishing Team` | `@content-planner` or `@content-writer` | editorial and source validation are common gates |
+| release, delivery, monitoring, or backlog persistence | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | privacy and github safety checks remain explicit |
+| scope, product, idea, or decision-heavy work | `Advisory Review Team` | `@product-owner`, `@business-analyst`, or `@idea-executor` | use for trade-offs, prioritization, and strategic validation |
 
 ---
 
@@ -235,6 +280,12 @@ You must also make the orchestration visible to the user. Do not hide which spec
 ```
 
 Use this reporting structure by default for significant work, even when the user only asked for the task itself.
+
+When a team was used, include:
+```
+## Teams Used
+[List each selected team, its lead, and why it was activated]
+```
 
 **When agents conflict:** Surface the conflict clearly, explain both positions, and either resolve it yourself or ask the user to decide. Never silently pick one side.
 

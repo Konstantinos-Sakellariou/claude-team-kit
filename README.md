@@ -9,6 +9,7 @@ This repo is a team-definition layer, not a standalone orchestration runtime. It
 ```text
 .claude/
 ├── agents/          38 specialized agents across engineering, AI/ML, content, delivery, and advisory
+├── teams/           5 reusable team manifests that @master can activate for recurring workflows
 ├── skills/          17 reusable skills (code-review, fix-bug, business-case, create-pr...)
 ├── rules/           Modular rule files — Python, TypeScript, security, testing, git, performance, API design, AI/ML workflow
 ├── hooks/           Shell automations (auto-format, secret detection, file protection...)
@@ -55,7 +56,7 @@ You never call specialist agents directly. You talk to `@master`, and it decides
 
 Even if a user does not explicitly mention `@master`, or names a specialist directly, `@master` remains the first and only orchestrator in the main thread.
 
-By default, `@master` also reports which agents were selected, what each one did, and the outcome of the orchestration run. Users should not need to ask explicitly for that visibility.
+By default, `@master` also reports which teams and agents were selected, what each one did, and the outcome of the orchestration run. Users should not need to ask explicitly for that visibility.
 
 ```mermaid
 flowchart TD
@@ -94,6 +95,39 @@ RECEIVE → ANALYSE scope → PLAN pipeline → ANNOUNCE plan to user
 ```
 
 `@workspace-updater` runs automatically as the last step after significant work. It reviews the core docs (`CLAUDE.md`, `AGENTS.md`, and `README.md`) even when no edits are ultimately required.
+
+## What Teams Mean
+
+Teams are reusable orchestration bundles that `@master` can activate when a request matches a recurring collaboration pattern.
+
+They are not a Claude-native runtime feature and they do not replace agents. They are a coordination layer inside this kit that helps `@master` route work more consistently.
+
+When a team is used, `@master` still reports the real agents that ran. The team simply gives `@master` a stable default lead, supporting cast, and execution shape for that class of work.
+
+## Why Teams Help
+
+Operating this way gives Claude-style tools a few practical advantages:
+
+- more consistent routing for repeated request types
+- clearer ownership because each team has a lead
+- less orchestration drift across similar tasks
+- better user visibility into why a set of agents was chosen
+- easier future expansion when new domain packs are added
+- full backward compatibility with single-agent handling for narrow requests
+
+In short: teams help `@master` behave less like an improvised dispatcher and more like a repeatable operating system for AI collaboration.
+
+## Available Teams
+
+| Team | Lead | What it helps with |
+|---|---|---|
+| `Engineering Team` | `@senior-developer` or `@architect` | implementation, debugging, architecture, engineering review |
+| `AI/ML Team` | `@data-scientist` or `@ml-engineer` | model framing, training, evaluation, rollout readiness |
+| `Content & Publishing Team` | `@content-planner` or `@content-writer` | planning, drafting, editorial validation |
+| `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy, backlog persistence |
+| `Advisory Review Team` | `@product-owner`, `@business-analyst`, or `@idea-executor` | planning, prioritization, decision support, strategic validation |
+
+The canonical team definitions live in `.claude/teams/`. See [`docs/TEAMS.md`](docs/TEAMS.md) for the full model and operating rules.
 
 **Parallel vs sequential — `@master` decides:**
 
@@ -265,6 +299,7 @@ The 38 agents split into five groups designed to cover any project type:
 - `./scripts/doctor.sh` checks repo structure, JSON validity, hook permissions, and key documentation references
 - `python3 -m unittest discover -s tests -v` runs the lightweight validation test suite for hooks and doctor behavior
 - `docs/ARCHITECTURE.md` explains the product boundary and canonical sources
+- `docs/TEAMS.md` explains the reusable team abstraction and how `@master` uses it
 - `docs/PROJECT_CUSTOMIZATION.md` shows how to turn the generic kit into a real project briefing
 
 ## Customizing for Real Projects
@@ -309,6 +344,7 @@ Planning outputs should be stored professionally and consistently:
 | `AGENTS.md` | Compatibility briefing for tools that consume AGENTS.md |
 | `README.md` | Kit overview, agent roster, orchestration model |
 | `docs/ARCHITECTURE.md` | Product boundary, canonical sources, maintenance priorities |
+| `docs/TEAMS.md` | Team abstraction, reusable manifests, and team operating rules |
 | `docs/PROJECT_CUSTOMIZATION.md` | How to adapt the generic kit to a concrete repo |
 | `docs/AGENT_WORKFLOWS.md` | Detailed workflow diagrams with parallel/sequential/gated patterns |
 

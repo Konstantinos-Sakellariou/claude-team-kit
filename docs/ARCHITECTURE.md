@@ -26,6 +26,7 @@ Instead, it provides the configuration and prompting layer that can be dropped i
 The canonical implementation lives under `.claude/`.
 
 - `.claude/agents/`: agent definitions and orchestration prompts
+- `.claude/teams/`: reusable team manifests that `@master` can activate
 - `.claude/skills/`: reusable task skills
 - `.claude/rules/`: standing engineering rules
 - `.claude/hooks/`: safety and formatting shell hooks
@@ -42,6 +43,7 @@ Repo-level docs explain and package that implementation:
 - `README.md`: human-facing overview and setup
 - `CLAUDE.md`: repo briefing for Claude-compatible tools
 - `AGENTS.md`: repo briefing for Codex-style tools that read AGENTS files
+- `docs/TEAMS.md`: the reusable team abstraction and team operating rules
 - `docs/AGENT_WORKFLOWS.md`: collaboration and orchestration examples
 - `docs/PROJECT_CUSTOMIZATION.md`: how to adapt the kit to a real project
 
@@ -51,12 +53,22 @@ The intended operating flow is:
 
 1. A user enters through `@master`
 2. `@master` plans the work
-3. Specialist agents contribute in parallel or sequence
-4. `@master` synthesizes the result
-5. Durable decisions are proposed as ADRs by default when they should outlive the chat
-6. `@workspace-updater` reviews and aligns the core docs after significant changes
+3. `@master` decides whether the work is best handled by a single agent, one team, or multiple teams
+4. Specialist agents contribute in parallel or sequence
+5. `@master` synthesizes the result
+6. Durable decisions are proposed as ADRs by default when they should outlive the chat
+7. `@workspace-updater` reviews and aligns the core docs after significant changes
 
 This repo currently enforces that model through prompts, settings, hooks, and validation checks rather than through an external execution engine.
+
+Agents are the atomic specialists in that model.
+
+Teams are the reusable collaboration bundles around them.
+
+That means:
+- agents do the actual work
+- teams give `@master` a repeatable way to activate known multi-agent patterns
+- `@master` stays the only top-level orchestrator and final synthesizer
 
 ADR ownership in that model is:
 - `@master`: detects ADR-worthy decisions and asks for approval
