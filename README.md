@@ -8,9 +8,9 @@ This repo is a team-definition layer, not a standalone orchestration runtime. It
 
 ```text
 .claude/
-├── agents/          33 specialized agents across engineering, content, delivery, and advisory
+├── agents/          38 specialized agents across engineering, AI/ML, content, delivery, and advisory
 ├── skills/          17 reusable skills (code-review, fix-bug, business-case, create-pr...)
-├── rules/           Modular rule files — Python, TypeScript, security, testing, git, performance, API design
+├── rules/           Modular rule files — Python, TypeScript, security, testing, git, performance, API design, AI/ML workflow
 ├── hooks/           Shell automations (auto-format, secret detection, file protection...)
 └── agent-memory/    Persistent per-agent memory (grows over time)
 BACKLOG.md           Durable backlog for ideas, deferred work, and future improvements
@@ -34,7 +34,7 @@ scripts/             Setup and validation helpers
 ## What This Repo Is
 
 - A reusable workspace kit for agent-based development
-- A curated team of 33 agents with explicit collaboration patterns
+- A curated team of 38 agents with explicit collaboration patterns
 - A prompt and guardrail layer that can be dropped into another project
 
 ## What This Repo Is Not
@@ -64,6 +64,7 @@ flowchart TD
     MASTER["@master\n1. Receives every request\n2. Maps the full scope\n3. Announces the plan\n4. Dispatches agents\n5. Synthesises reports\n6. Resolves conflicts\n7. Signs off on completion\n8. Always ends with @workspace-updater"]
 
     MASTER --> ENG["⚙️ Engineering\n@architect\n@senior-developer\n@qa-engineer\n@security-auditor\n@debugger\n@performance-engineer\n@researcher\n@github-safety-guard"]
+    MASTER --> ML["🤖 AI/ML\n@data-scientist\n@ml-engineer\n@model-evaluator\n@mlops-engineer\n@research-scientist"]
 
     MASTER --> CONT["📝 Content & Publishing\n@topic-researcher\n@content-planner\n@content-writer\n@editorial-reviewer\n@source-verifier\n@tone-calibrator\n@backlog-curator\n@feedback-synthesizer"]
 
@@ -72,6 +73,7 @@ flowchart TD
     MASTER --> ADV["🧠 Advisory\n@business-analyst\n@product-owner\n@project-manager\n@customer-advocate\n@devils-advocate\n@risk-officer\n@judge\n@tech-writer\n@idea-executor"]
 
     ENG --> SYNTH(["@master synthesises all reports"])
+    ML --> SYNTH
     CONT --> SYNTH
     DELIV --> SYNTH
     ADV --> SYNTH
@@ -107,11 +109,18 @@ RECEIVE → ANALYSE scope → PLAN pipeline → ANNOUNCE plan to user
 > → **Then parallel:** `@editorial-reviewer` + `@tone-calibrator` + `@source-verifier`
 > → **Then sequential:** `@privacy-reviewer` → `@delivery-orchestrator` → `@workspace-updater`
 
+> *"Evaluate and operationalize a churn model"*
+> → **Sequential:** `@data-scientist` (problem framing, baselines, feature intent)
+> → **Then:** `@ml-engineer` (training pipeline and reproducible implementation)
+> → **Mandatory gate:** `@model-evaluator` (metrics, fairness, release readiness)
+> → **Then:** `@mlops-engineer` (rollout, monitoring, lifecycle)
+> → **Optional advisory:** `@research-scientist` when a novel approach or literature review is needed
+
 **See full workflow diagrams** with all collaboration patterns (parallel stages, gated reviews, feedback loops, dual-track launches, and idea-to-plan execution) in [`docs/AGENT_WORKFLOWS.md`](docs/AGENT_WORKFLOWS.md).
 
 ---
 
-## The Full Team (33 Agents)
+## The Full Team (38 Agents)
 
 ### Core Engineering
 
@@ -127,6 +136,16 @@ RECEIVE → ANALYSE scope → PLAN pipeline → ANNOUNCE plan to user
 | `@github-safety-guard` | Final pre-commit/pre-push review for secrets and sensitive disclosures |
 | `@performance-engineer` | Profiling and optimisation |
 | `@workspace-updater` | Reviews and updates `CLAUDE.md`, `AGENTS.md`, and `README.md` after every significant task |
+
+### AI/ML
+
+| Agent | Role | Model |
+|---|---|---|
+| `@data-scientist` | Problem framing, exploratory analysis, feature strategy, baseline design, statistical validation | **opus** |
+| `@ml-engineer` | Training pipelines, reproducibility, model packaging, inference-oriented ML engineering | sonnet |
+| `@model-evaluator` | Mandatory quality gate for metrics, fairness, robustness, explainability, and deployment readiness | **opus** |
+| `@mlops-engineer` | Rollout strategy, monitoring, model lifecycle operations, incident and rollback planning | sonnet |
+| `@research-scientist` | Literature review, benchmark critique, frontier-method assessment, novelty-vs-complexity judgement | **opus** |
 
 ### Content and Publishing
 
@@ -175,6 +194,11 @@ These fire automatically — you don't need to ask:
 - Secrets / auth / credentials touched → `@security-auditor` reviews first
 - New feature or script → `@qa-engineer` writes the test plan
 - Architectural decision → `@architect` weighs in
+- AI/ML exploratory or feature work → `@data-scientist` leads
+- AI/ML model training or pipeline implementation → `@ml-engineer` leads
+- AI/ML release readiness → `@model-evaluator` is the mandatory gate
+- AI/ML deployment or monitoring design → `@mlops-engineer` leads after evaluator sign-off
+- Novel AI/ML methods or benchmark questions → `@research-scientist` advises
 - "Backlog this" or defer-for-later requests → `@backlog-updater` updates `BACKLOG.md`
 - Significant idea discussions → `@idea-executor` shapes the idea into an execution plan
 - Durable architecture, policy, workflow, or repo-structure decisions → `@master` proposes an ADR by default
@@ -220,9 +244,11 @@ ADRs are not special-case paperwork. They are the default traceability mechanism
 
 ## Agent Groups at a Glance
 
-The 33 agents split into four groups designed to cover any project type:
+The 38 agents split into five groups designed to cover any project type:
 
 **Engineering** (10 agents) — builds and maintains software: architecture, implementation, testing, security, performance, debugging, and release safety.
+
+**AI/ML** (5 agents) — covers model-centric work from exploratory analysis through training, evaluation, deployment readiness, and frontier-method assessment.
 
 **Content & Publishing** (8 agents) — runs any periodic publication workflow: research → planning → writing → review → tone → sourcing → feedback → backlog.
 

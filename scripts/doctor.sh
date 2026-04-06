@@ -45,6 +45,7 @@ check_file "docs/adr/README.md" "docs/adr/README.md exists"
 check_file ".claude/settings.json" ".claude/settings.json exists"
 check_file ".mcp.json" ".mcp.json exists"
 check_file ".env.example" ".env.example exists"
+check_file ".claude/rules/ml-workflow.md" ".claude/rules/ml-workflow.md exists"
 
 if python3 - "$ROOT_DIR/.claude/settings.json" <<'PY' >/dev/null 2>&1
 import json
@@ -71,6 +72,13 @@ if grep -q "@.claude/rules/" "$ROOT_DIR/CLAUDE.md"; then
   pass "CLAUDE.md references .claude rules"
 else
   fail "CLAUDE.md rule references are missing"
+fi
+
+if grep -q "@.claude/rules/ml-workflow.md" "$ROOT_DIR/CLAUDE.md" && \
+   grep -q "@.claude/rules/ml-workflow.md" "$ROOT_DIR/AGENTS.md"; then
+  pass "CLAUDE.md and AGENTS.md reference the AI/ML workflow rule"
+else
+  fail "CLAUDE.md and AGENTS.md are not aligned on the AI/ML workflow rule"
 fi
 
 if grep -q 'Every request goes through `@master`. Always\.' "$ROOT_DIR/README.md"; then
@@ -121,6 +129,14 @@ else
   fail "idea-executor agent is missing"
 fi
 
+for agent in data-scientist ml-engineer model-evaluator mlops-engineer research-scientist; do
+  if [ -f "$ROOT_DIR/.claude/agents/${agent}.md" ]; then
+    pass "${agent} agent exists"
+  else
+    fail "${agent} agent is missing"
+  fi
+done
+
 if grep -q '@github-safety-guard' "$ROOT_DIR/.claude/agents/master.md"; then
   pass "master agent prompt routes commit and push work through github-safety-guard"
 else
@@ -137,6 +153,13 @@ if grep -q '@idea-executor' "$ROOT_DIR/.claude/agents/master.md"; then
   pass "master agent prompt routes idea planning through idea-executor"
 else
   fail "master agent prompt does not route idea planning through idea-executor"
+fi
+
+if grep -q 'AI/ML: Model training & pipeline implementation' "$ROOT_DIR/.claude/agents/master.md" || \
+   grep -q 'AI/ML: Model training & pipelines' "$ROOT_DIR/.claude/agents/master.md"; then
+  pass "master agent prompt defines AI/ML routing"
+else
+  fail "master agent prompt is missing AI/ML routing"
 fi
 
 if grep -q 'ADR-worthy decision / durable trade-off' "$ROOT_DIR/.claude/agents/master.md" && \
@@ -189,6 +212,12 @@ if grep -q 'propose an ADR by default' "$ROOT_DIR/README.md"; then
   pass "README.md documents default ADR handling"
 else
   fail "README.md does not document default ADR handling"
+fi
+
+if grep -q '### AI/ML' "$ROOT_DIR/README.md"; then
+  pass "README.md documents the AI/ML team"
+else
+  fail "README.md does not document the AI/ML team"
 fi
 
 if grep -q "workspace kit" "$ROOT_DIR/README.md"; then

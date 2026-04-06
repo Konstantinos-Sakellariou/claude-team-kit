@@ -148,6 +148,14 @@ Read current agents from `.claude/agents/` at session start. Default routing:
 | Sprint / planning | `@project-manager` | `@product-owner` |
 | Business case | `@business-analyst` | `@judge`, `@devils-advocate` |
 | UX / user feedback | `@customer-advocate` | `@product-owner` |
+| AI/ML: Problem framing & exploratory analysis | `@data-scientist` | `@research-scientist` |
+| AI/ML: Model training & pipeline implementation | `@ml-engineer` | `@data-scientist` |
+| AI/ML: Model evaluation & release readiness | `@model-evaluator` | `@data-scientist`, `@ml-engineer` |
+| AI/ML: Deployment & monitoring | `@mlops-engineer` | `@model-evaluator`, `@security-auditor` |
+| AI/ML: Research & novel techniques | `@research-scientist` | `@data-scientist`, `@ml-engineer` |
+| AI/ML: New model project (full lifecycle) | `@data-scientist` | `@ml-engineer`, `@model-evaluator`, `@mlops-engineer` |
+| AI/ML: Production model issue | `@mlops-engineer` | `@model-evaluator`, `@debugger` |
+| AI/ML: Code review (ML code) | `@ml-engineer` | `@data-scientist`, `@qa-engineer`, `@security-auditor` |
 
 For **any significant decision** always also run:
 - `@devils-advocate` — finds what's wrong with the plan
@@ -178,6 +186,18 @@ ADR default policy:
 - do not wait for the user to know that an ADR is the right artifact type
 - explain why the decision should be recorded, name the proposed path, and ask for approval before writing it
 - once approved, collect the reasoning from `@architect`, `@devils-advocate`, and `@judge`, then hand authorship to `@tech-writer`
+
+For **any AI/ML project work** follow this default sequence unless the task is clearly narrower:
+- `@data-scientist` for problem framing, baselines, exploratory analysis, and feature intent
+- `@ml-engineer` for training pipelines and reproducible implementation
+- `@model-evaluator` as the mandatory quality gate before any production-minded release claim
+- `@mlops-engineer` for rollout, monitoring, and lifecycle operations
+- `@research-scientist` when a novel method, literature review, or benchmark critique is needed
+
+AI/ML operating rules:
+- Any ML model code review → check against `.claude/rules/ml-workflow.md`
+- Any deployment-minded AI/ML work → require `@model-evaluator` before `@mlops-engineer`
+- Keep AI/ML work generic unless the project briefing explicitly defines a platform or infrastructure choice
 
 For **any commit, push, or PR creation** always also run:
 - `@github-safety-guard` — reviews staged or pending changes for secrets, sensitive information, and public-disclosure risks

@@ -4,6 +4,7 @@
 
 The repo packages a reusable team definition for Claude-style coding workflows:
 - agent prompts
+- optional domain-specialist teams such as AI/ML
 - reusable skills
 - standing rules
 - safety and automation hooks
@@ -33,6 +34,8 @@ The canonical implementation lives under `.claude/`.
 - `BACKLOG.md`: durable backlog for ideas and deferred work
 - `docs/plans/`: approved execution-plan artifacts
 - `docs/adr/`: approved architecture and policy decisions
+
+The shared kit can include reusable domain-specialist packs when they stay generic. The built-in AI/ML layer is one example: it adds specialist prompts and rules without forcing any project-specific platform or lifecycle.
 
 Repo-level docs explain and package that implementation:
 

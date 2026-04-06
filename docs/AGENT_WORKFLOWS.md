@@ -4,13 +4,14 @@ All work flows through `@master`. Every example below starts and ends there.
 
 `@master` receives the request, maps the full scope, announces the plan to the user before executing, dispatches agents (in parallel or sequentially depending on dependencies), synthesises their reports, resolves conflicts, and — once the user confirms — triggers `@workspace-updater` as the mandatory final step.
 
-Five workflows are documented here, each demonstrating different collaboration patterns:
+Six workflows are documented here, each demonstrating different collaboration patterns:
 
 1. **Engineering Pipeline** — parallel spikes, sequential implementation, gated quality stages
 2. **Content Publishing Pipeline** — research loop, human approval gate, parallel review, delivery feedback loop
 3. **Full Project Launch** — dual parallel tracks (engineering + content) converging at a shared release gate
 4. **Idea To Execution Planning** — idea shaping, adversarial validation, phased plan, optional backlog capture
 5. **Decision To ADR** — durable-decision detection, validation, approval gate, ADR authorship, documentation alignment
+6. **AI/ML Delivery Pipeline** — model framing, training, mandatory evaluation gate, operational rollout
 
 ---
 
@@ -359,6 +360,55 @@ flowchart TD
 - `@devils-advocate` and `@judge` validate the reasoning before the record is written
 - Saving to `docs/adr/` is still gated by explicit user approval
 - `@workspace-updater` closes the loop so the ADR does not drift away from the repo briefings
+
+---
+
+## Workflow 6 — AI/ML Delivery Pipeline
+
+**Example trigger:** *"Evaluate and operationalize a churn model for deployment."*
+
+**Patterns demonstrated:** domain-specialist routing, sequential model pipeline, mandatory evaluation gate, optional frontier-research advisory, operational rollout.
+
+```mermaid
+flowchart TD
+    USER(["👤 AI/ML request"])
+    USER --> MASTER
+
+    MASTER["@master\nReceives request\nMaps AI/ML scope\nAnnounces plan"]
+
+    MASTER --> DS
+
+    DS["@data-scientist\nFrames the problem\nDefines baselines\nShapes features and metrics"]
+
+    DS --> MLE
+
+    MLE["@ml-engineer\nBuilds reproducible\ntraining pipeline\nand model artifacts"]
+
+    MLE --> GATE1
+
+    RS["@research-scientist\nOptional advisory on\nnovel methods or\nbenchmark claims"]
+    RS -.-> MLE
+    RS -.-> GATE1
+
+    GATE1["@model-evaluator\nMandatory quality gate\nMetrics, fairness,\nrobustness, readiness"]
+
+    GATE1 --> DECISION{"Approved for\nproduction-minded rollout?"}
+
+    DECISION -->|"No"| MASTER
+    DECISION -->|"Yes"| MLO
+
+    MLO["@mlops-engineer\nDefines rollout,\nmonitoring, rollback,\nand lifecycle operations"]
+
+    MLO --> WU["@workspace-updater\nReviews core docs\nas final step"]
+    WU --> DONE(["✓ AI/ML cycle complete"])
+```
+
+**Key points:**
+- `@data-scientist` starts the default AI/ML path with framing, baselines, and feature intent
+- `@ml-engineer` turns that intent into reproducible training and artifact flow
+- `@model-evaluator` is a hard gate, not a nice-to-have reviewer
+- `@research-scientist` is advisory and only needs to run when novelty or literature fit matters
+- `@mlops-engineer` should not lead before evaluation sign-off exists
 
 ---
 

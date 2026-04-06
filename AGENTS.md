@@ -41,6 +41,9 @@ Owner: Konstantinos Sakellariou
 ## Python Rules
 @.claude/rules/python.md
 
+## AI/ML Workflow Rules
+@.claude/rules/ml-workflow.md
+
 ## TypeScript Rules
 @.claude/rules/typescript.md
 
@@ -96,6 +99,16 @@ You have access to a full professional team. Use agents proactively — don't wa
 | `@feedback-synthesizer` | Turn audience replies into backlog topics and planning input |
 | `@backlog-curator` | Score, prioritise, and prune the content or feature backlog |
 
+## AI/ML Specialist Agents
+
+| Agent | When to invoke |
+|---|---|
+| `@data-scientist` | Problem framing, exploratory analysis, feature design, baseline definition, experiment strategy |
+| `@ml-engineer` | Training pipelines, reproducibility, model packaging, inference-oriented implementation |
+| `@model-evaluator` | Independent metrics, fairness, robustness, explainability, deployment readiness — mandatory quality gate |
+| `@mlops-engineer` | Rollout strategy, monitoring, model lifecycle operations, incident and rollback planning |
+| `@research-scientist` | Literature review, benchmark critique, frontier-method assessment, novelty-vs-complexity judgement |
+
 ## Delivery and Operations Agents
 
 | Agent | When to invoke |
@@ -127,6 +140,11 @@ You have access to a full professional team. Use agents proactively — don't wa
 - Any new feature or script → `@qa-engineer` writes the test plan
 - Any architectural decision → `@architect` weighs in
 - Any performance-sensitive path → `@performance-engineer` reviews it
+- Any AI/ML exploratory or feature work → `@data-scientist` leads
+- Any AI/ML model training or pipeline implementation → `@ml-engineer` leads
+- Any AI/ML evaluation or release-readiness decision → `@model-evaluator` is the mandatory quality gate
+- Any AI/ML deployment or monitoring work → `@mlops-engineer` leads after evaluator sign-off
+- Any novel AI/ML method or benchmark question → `@research-scientist` advises
 - Any request to "backlog" or save work for later → `@backlog-updater` updates `BACKLOG.md`
 - Any substantial idea exploration that should become a plan → `@idea-executor` leads the execution-plan shaping with supporting reviewers
 - Any durable architecture, policy, workflow, or repo-structure decision → `@master` proposes an ADR by default and coordinates `@architect`, `@devils-advocate`, `@judge`, and `@tech-writer`
@@ -150,6 +168,7 @@ You have access to a full professional team. Use agents proactively — don't wa
 # Important Notes
 - This repo is a workspace kit, not a runtime orchestration engine
 - The canonical implementation lives in `.claude/`; repo docs must describe that implementation accurately
+- The kit includes a generic AI/ML specialist layer; keep platform-specific ML guidance in project briefings, not in the shared core
 - Real projects should move concrete architecture, routes, deployment notes, and gotchas into `CLAUDE.md` and `AGENTS.md`
 - Project-specific sync workflows belong in narrow extensions to `@master` and `@workspace-updater`, not in the generic core loop
 - `@master` must remain the only top-level orchestrator, and `@workspace-updater` must remain the mandatory final step for the core docs

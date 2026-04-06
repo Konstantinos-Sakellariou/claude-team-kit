@@ -17,6 +17,13 @@ Persistent knowledge across sessions. Updated automatically after significant wo
 - `@performance-engineer` — profiling, optimization
 - `@tech-writer` — docs, READMEs, ADRs
 
+### AI/ML
+- `@data-scientist` — framing, exploratory analysis, features, baselines
+- `@ml-engineer` — training pipelines, reproducibility, artifacts
+- `@model-evaluator` — mandatory model quality gate
+- `@mlops-engineer` — rollout, monitoring, lifecycle operations
+- `@research-scientist` — frontier methods and benchmark critique
+
 ### Quality & Security
 - `@qa-engineer` — test plans, edge cases, coverage
 - `@security-auditor` — OWASP, auth, secrets, injection
@@ -50,6 +57,7 @@ Persistent knowledge across sessions. Updated automatically after significant wo
 ## Decisions Made
 <!-- Append decisions here as sessions progress -->
 - 2024: Built full team kit with 15 agents, 17 skills, 8 rules, 5 hooks
+- 2026-04-06: Added a generic AI/ML specialist layer with 5 agents and a shared ML workflow rule
 
 ## Created Agents & Skills
 <!-- Log anything created beyond the initial kit -->

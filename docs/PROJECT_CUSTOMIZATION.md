@@ -43,6 +43,7 @@ Examples:
 - Performance-sensitive frontend work: always include `@performance-engineer`
 - Architecture or system-boundary changes: always include `@architect`
 - Public release or high-risk deploy: always include `@risk-officer`
+- AI/ML projects: route exploratory work to `@data-scientist`, enforce `@model-evaluator` as the release gate, and keep infrastructure specifics in the project briefing
 
 ## Project-Specific Sync Targets
 
