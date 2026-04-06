@@ -36,7 +36,7 @@ echo "Root: $ROOT_DIR"
 check_file "README.md" "README.md exists"
 check_file "CLAUDE.md" "CLAUDE.md exists"
 check_file "AGENTS.md" "AGENTS.md exists"
-check_file "BACKLOG.md" "BACKLOG.md exists"
+check_file "BACKLOG.example.md" "BACKLOG.example.md exists"
 check_file "docs/ARCHITECTURE.md" "docs/ARCHITECTURE.md exists"
 check_file "docs/AGENT_WORKFLOWS.md" "docs/AGENT_WORKFLOWS.md exists"
 check_file "docs/PROJECT_CUSTOMIZATION.md" "docs/PROJECT_CUSTOMIZATION.md exists"
@@ -253,6 +253,12 @@ if [ -f "$ROOT_DIR/.env" ]; then
   pass ".env exists"
 else
   warn ".env has not been created yet"
+fi
+
+if [ -f "$ROOT_DIR/BACKLOG.md" ]; then
+  pass "BACKLOG.md exists locally"
+else
+  warn "BACKLOG.md has not been created locally yet"
 fi
 
 agent_count=$(find "$ROOT_DIR/.claude/agents" -maxdepth 1 -type f | wc -l | tr -d ' ')

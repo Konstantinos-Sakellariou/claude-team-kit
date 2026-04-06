@@ -13,7 +13,7 @@ This repo is a team-definition layer, not a standalone orchestration runtime. It
 ├── rules/           Modular rule files — Python, TypeScript, security, testing, git, performance, API design, AI/ML workflow
 ├── hooks/           Shell automations (auto-format, secret detection, file protection...)
 └── agent-memory/    Persistent per-agent memory (grows over time)
-BACKLOG.md           Durable backlog for ideas, deferred work, and future improvements
+BACKLOG.example.md   Public template for the local ignored backlog file
 CLAUDE.md            Master project briefing — customize per project
 AGENTS.md            Compatibility briefing for tools that read AGENTS.md
 .mcp.json            MCP server config (GitHub pre-configured)
@@ -27,9 +27,10 @@ scripts/             Setup and validation helpers
 1. Use this repo as a template or copy it into your project root
 2. Run `./scripts/setup.sh`
 3. Fill in `.claude/settings.local.json` and/or `.env` with your `GITHUB_TOKEN`
-4. Edit `CLAUDE.md` for the target project you want the kit to describe
-5. Run `./scripts/doctor.sh`
-6. Start a Claude session and address `@master`
+4. Use the generated local `BACKLOG.md` for private planning and deferred work
+5. Edit `CLAUDE.md` for the target project you want the kit to describe
+6. Run `./scripts/doctor.sh`
+7. Start a Claude session and address `@master`
 
 ## What This Repo Is
 
@@ -199,7 +200,7 @@ These fire automatically — you don't need to ask:
 - AI/ML release readiness → `@model-evaluator` is the mandatory gate
 - AI/ML deployment or monitoring design → `@mlops-engineer` leads after evaluator sign-off
 - Novel AI/ML methods or benchmark questions → `@research-scientist` advises
-- "Backlog this" or defer-for-later requests → `@backlog-updater` updates `BACKLOG.md`
+- "Backlog this" or defer-for-later requests → `@backlog-updater` updates the local `BACKLOG.md`
 - Significant idea discussions → `@idea-executor` shapes the idea into an execution plan
 - Durable architecture, policy, workflow, or repo-structure decisions → `@master` proposes an ADR by default
 - Content ready to publish → `@editorial-reviewer` must pass it first
@@ -292,7 +293,7 @@ Planning outputs should be stored professionally and consistently:
 ## Customisation
 
 - Edit `CLAUDE.md` to configure the project name, stack, commands, and notes
-- Use `BACKLOG.md` as the durable registry for deferred work and captured ideas
+- Use `BACKLOG.example.md` as the tracked starter and `BACKLOG.md` as the local ignored registry for deferred work and captured ideas
 - Use `docs/PROJECT_CUSTOMIZATION.md` when adapting the kit to a specific repository
 - Add project-specific rules with `@.claude/rules/your-rule.md` in `CLAUDE.md`
 - Create new agents in `.claude/agents/` — copy any existing file and update the frontmatter and instructions

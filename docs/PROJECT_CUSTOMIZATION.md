@@ -63,7 +63,7 @@ Good teams define where planning artifacts live before ideas start multiplying.
 Recommended default policy:
 
 - keep early exploration in chat
-- save deferred ideas in `BACKLOG.md`
+- save deferred ideas in the local `BACKLOG.md` created from `BACKLOG.example.md`
 - save approved execution plans in `docs/plans/`
 - save approved architecture or policy decisions in `docs/adr/`
 

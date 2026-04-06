@@ -35,8 +35,18 @@ else
   echo "OK: .env already present or no example file needed"
 fi
 
+BACKLOG_FILE="$ROOT_DIR/BACKLOG.md"
+BACKLOG_EXAMPLE="$ROOT_DIR/BACKLOG.example.md"
+if [ ! -f "$BACKLOG_FILE" ] && [ -f "$BACKLOG_EXAMPLE" ]; then
+  cp "$BACKLOG_EXAMPLE" "$BACKLOG_FILE"
+  echo "OK: Created local BACKLOG.md from BACKLOG.example.md"
+else
+  echo "OK: Local backlog already present or no example file needed"
+fi
+
 echo
 echo "Next steps:"
 echo "1. Edit .claude/settings.local.json and/or .env with your GitHub token"
 echo "2. Review CLAUDE.md before using this repo as a template in another project"
-echo "3. Run ./scripts/doctor.sh to validate the workspace"
+echo "3. Use BACKLOG.md locally; it is ignored and safe for private planning details"
+echo "4. Run ./scripts/doctor.sh to validate the workspace"

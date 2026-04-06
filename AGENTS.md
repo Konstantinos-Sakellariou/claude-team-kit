@@ -21,6 +21,7 @@ Owner: Konstantinos Sakellariou
 - Validate workspace: `./scripts/doctor.sh`
 - Run validation tests: `python3 -m unittest discover -s tests -v`
 - Review backlog: `sed -n '1,240p' BACKLOG.md`
+- Review public backlog template: `sed -n '1,240p' BACKLOG.example.md`
 - Review example plan: `sed -n '1,240p' docs/plans/example-execution-plan.md`
 - Review changes: `git diff --stat`
 - Inspect agents: `find .claude/agents -maxdepth 1 -type f | sort`
@@ -118,7 +119,7 @@ You have access to a full professional team. Use agents proactively — don't wa
 | `@privacy-reviewer` | Mandatory scan before any public release or repository push |
 | `@changelog-writer` | Generate versioned changelog entries after releases or publications |
 | `@ab-tester` | Design and analyse A/B tests for headlines, subject lines, CTAs |
-| `@backlog-updater` | Maintain `BACKLOG.md` when ideas or follow-ups should be saved for later |
+| `@backlog-updater` | Maintain the local `BACKLOG.md` when ideas or follow-ups should be saved for later |
 
 ## Advisory Agents
 
@@ -145,7 +146,7 @@ You have access to a full professional team. Use agents proactively — don't wa
 - Any AI/ML evaluation or release-readiness decision → `@model-evaluator` is the mandatory quality gate
 - Any AI/ML deployment or monitoring work → `@mlops-engineer` leads after evaluator sign-off
 - Any novel AI/ML method or benchmark question → `@research-scientist` advises
-- Any request to "backlog" or save work for later → `@backlog-updater` updates `BACKLOG.md`
+- Any request to "backlog" or save work for later → `@backlog-updater` updates the local `BACKLOG.md`
 - Any substantial idea exploration that should become a plan → `@idea-executor` leads the execution-plan shaping with supporting reviewers
 - Any durable architecture, policy, workflow, or repo-structure decision → `@master` proposes an ADR by default and coordinates `@architect`, `@devils-advocate`, `@judge`, and `@tech-writer`
 - Any content ready to publish → `@editorial-reviewer` must pass it first
@@ -173,7 +174,7 @@ You have access to a full professional team. Use agents proactively — don't wa
 - Project-specific sync workflows belong in narrow extensions to `@master` and `@workspace-updater`, not in the generic core loop
 - `@master` must remain the only top-level orchestrator, and `@workspace-updater` must remain the mandatory final step for the core docs
 - `@master` must make orchestration visible in the chat by default: selected agents, actions taken, and final report
-- `BACKLOG.md` is the durable place for deferred ideas and future work; do not rely on chat history alone
+- `BACKLOG.md` is the local ignored place for deferred ideas and future work; start it from `BACKLOG.example.md` and do not rely on chat history alone
 - Approved execution plans belong in `docs/plans/`; approved architecture or policy decisions belong in `docs/adr/`
 - `@tech-writer` is the primary ADR author once `@master` receives explicit approval to save the record
 - `README.md`, `CLAUDE.md`, and `AGENTS.md` must stay in sync when workflow, commands, or structure change
