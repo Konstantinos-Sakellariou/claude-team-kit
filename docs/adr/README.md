@@ -7,13 +7,33 @@ Suggested naming:
 - `001-decision-name.md`
 - `002-another-decision.md`
 
-Typical ADR sections:
+Required ADR sections:
 
+- Title (`# ADR-001: Decision Title`)
+- Date
+- Status
+- Deciders
 - Context
 - Decision
+- Rationale
 - Alternatives Considered
 - Consequences
-- Status
+
+Optional ADR sections:
+
+- Risks
+- Revisit When
+- Related Decisions
+- Follow-Up Docs
+
+File naming rule:
+
+- use zero-padded numeric filenames without repeating the `ADR-` prefix in the file path
+- example: `docs/adr/001-decision-name.md`
+
+The ADR title inside the file should still use the ADR label, for example:
+
+- `# ADR-001: Use a private local backlog by default`
 
 `@idea-executor` and `@master` should not save ADRs here without explicit user approval.
 

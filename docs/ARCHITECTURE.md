@@ -32,7 +32,8 @@ The canonical implementation lives under `.claude/`.
 - `.claude/hooks/`: safety and formatting shell hooks
 - `.claude/agent-memory/`: persistent per-agent memory
 - `.claude/settings.json`: default Claude workspace settings
-- `BACKLOG.example.md`: tracked public starter for the local backlog file
+- `BACKLOG.example.md`: tracked starter for the private local backlog file
+- `docs/BACKLOG.example.md`: tracked starter for an optional public backlog
 - `docs/plans/`: approved execution-plan artifacts
 - `docs/adr/`: approved architecture and policy decisions
 

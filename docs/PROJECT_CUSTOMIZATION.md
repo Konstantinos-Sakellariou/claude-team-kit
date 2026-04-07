@@ -86,17 +86,21 @@ Good teams define where planning artifacts live before ideas start multiplying.
 Recommended default policy:
 
 - keep early exploration in chat
-- save deferred ideas in the local `BACKLOG.md` created from `BACKLOG.example.md`
+- save deferred ideas in either:
+  - private local `BACKLOG.md` created from `BACKLOG.example.md`
+  - or tracked public `docs/BACKLOG.md` created from `docs/BACKLOG.example.md`
+- for important deferred work, prefer both a backlog entry and a linked plan in `docs/plans/`
 - save approved execution plans in `docs/plans/`
 - save approved architecture or policy decisions in `docs/adr/`
 
 Important:
 
 - require explicit user approval before saving into `docs/plans/` or `docs/adr/`
+- if backlog preference is unknown, let `@master` ask whether the repo wants private or public backlog storage
 - let `@master` present the proposed artifact path and reason first
 - let `@master` propose ADRs by default when a decision changes architecture, policy, workflow, or repo structure
 - let `@tech-writer` own final ADR authorship after `@architect`, `@devils-advocate`, and `@judge` shape the decision record
-- if approval is not given, keep the output in chat or move it to `BACKLOG.md`
+- if approval is not given, keep the output in chat or move it to the chosen backlog
 
 If your repo has these, document them explicitly in `CLAUDE.md` or `AGENTS.md` under a section such as:
 

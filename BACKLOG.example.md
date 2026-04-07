@@ -22,6 +22,6 @@ Copy this file to `BACKLOG.md` for your local working backlog.
 
 ## Entries
 
-| ID | Idea | Description | Where To Use | How To Use / Create | Trigger / Source | Priority | Status | Target Phase / When | Owner / Agents | Dependencies | Validation | Notes |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| BL-001 | Example backlog item | Replace this row in your local `BACKLOG.md` with a real backlog item. | Example workflow | Describe how it would be implemented or adopted. | Template starter | P3 | Proposed | TBD | `@backlog-updater` | None | Define success checks here. | Remove once your local backlog contains real work. |
+| ID | Idea | Description | Where To Use | How To Use / Create | Trigger / Source | Priority | Status | Assigned | Artifact / Plan | Target Phase / When | Owner / Agents | Dependencies | Validation | Notes |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| BL-001 | Example backlog item | Replace this row in your local `BACKLOG.md` with a real backlog item. | Example workflow | Describe how it would be implemented or adopted. | Template starter | P3 | Proposed | Unassigned | — | TBD | `@backlog-updater` | None | Define success checks here. | Remove once your local backlog contains real work. |

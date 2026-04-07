@@ -264,7 +264,7 @@ flowchart TD
 
 **Example trigger:** *"We have an idea for a backlog system and an execution-planning specialist. How should we shape it?"*
 
-**Patterns demonstrated:** idea shaping, adversarial review, coordinated planning, optional backlog persistence, mandatory synthesis by `@master`.
+**Patterns demonstrated:** idea shaping, adversarial review, coordinated planning, backlog persistence, optional linked plan artifact, mandatory synthesis by `@master`.
 
 ```mermaid
 flowchart TD
@@ -293,11 +293,19 @@ flowchart TD
     SYNTH --> DECISION{"Implement now\nor save for later?"}
 
     DECISION -->|"Implement now"| PLAN_DONE
-    DECISION -->|"Save for later"| BACKLOG
+    DECISION -->|"Save for later"| APPROVAL
 
-    BACKLOG["@backlog-updater\nCreates or updates\nBACKLOG.md entry\nwith implementation context"]
+    APPROVAL{"👤 Approve linked\n`docs/plans/<slug>.md`?"}
+
+    APPROVAL -->|"Backlog only"| BACKLOG
+    APPROVAL -->|"Backlog + plan"| PLAN
+
+    BACKLOG["@backlog-updater\nCreates or updates\nthe chosen backlog entry\nwith implementation context"]
+
+    PLAN["@backlog-updater + @tech-writer\nCreate or update linked\n`docs/plans/<slug>.md`\nand backlog row"]
 
     BACKLOG --> PLAN_DONE
+    PLAN --> PLAN_DONE
 
     PLAN_DONE["@master returns:\nsummary\nagents used\nexecution report\nrisks\nnext step"]
 
@@ -309,7 +317,8 @@ flowchart TD
 - `@idea-executor` is the primary planning specialist, not the top-level coordinator
 - `@master` still owns the thread, announces the selected agents, and synthesizes the result
 - `@devils-advocate`, `@judge`, and `@architect` are strong default validators for non-trivial ideas
-- If the user wants to defer execution, `@backlog-updater` persists the idea in `BACKLOG.md`
+- If the user wants to defer execution, `@backlog-updater` persists the idea in the chosen backlog
+- For substantial deferred work, the best default is often backlog entry plus linked plan, not backlog row alone
 - Even planning-only work still ends with `@workspace-updater` reviewing the core docs
 
 ---

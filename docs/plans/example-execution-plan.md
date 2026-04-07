@@ -9,6 +9,8 @@ Add a reusable backlog workflow so ideas discussed in chat can be captured consi
 - Type: `docs/plans/`
 - Status: Example only
 - Approval: Required before saving real project plans
+- Backlog Link: `BL-001`
+- Intended Assignee: `Unassigned`
 
 ## Goal
 

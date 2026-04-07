@@ -37,6 +37,7 @@ check_file "README.md" "README.md exists"
 check_file "CLAUDE.md" "CLAUDE.md exists"
 check_file "AGENTS.md" "AGENTS.md exists"
 check_file "BACKLOG.example.md" "BACKLOG.example.md exists"
+check_file "docs/BACKLOG.example.md" "docs/BACKLOG.example.md exists"
 check_file "docs/ARCHITECTURE.md" "docs/ARCHITECTURE.md exists"
 check_file "docs/TEAMS.md" "docs/TEAMS.md exists"
 check_file "docs/AGENT_WORKFLOWS.md" "docs/AGENT_WORKFLOWS.md exists"
@@ -144,6 +145,14 @@ else
   fail "backlog-updater agent is missing"
 fi
 
+if grep -q 'Assigned' "$ROOT_DIR/.claude/agents/backlog-updater.md" && \
+   grep -q 'Artifact / Plan' "$ROOT_DIR/.claude/agents/backlog-updater.md" && \
+   grep -q 'docs/BACKLOG.md' "$ROOT_DIR/.claude/agents/backlog-updater.md"; then
+  pass "backlog-updater prompt defines assignment, artifact links, and public/private backlog modes"
+else
+  fail "backlog-updater prompt is missing assignment, artifact links, or backlog mode rules"
+fi
+
 if [ -f "$ROOT_DIR/.claude/agents/idea-executor.md" ]; then
   pass "idea-executor agent exists"
 else
@@ -176,6 +185,13 @@ else
   fail "master agent prompt does not route idea planning through idea-executor"
 fi
 
+if grep -q 'Backlog mode rules' "$ROOT_DIR/.claude/agents/master.md" && \
+   grep -q 'backlog + linked plan' "$ROOT_DIR/.claude/agents/master.md"; then
+  pass "master agent prompt defines backlog mode selection and linked-plan behavior"
+else
+  fail "master agent prompt is missing backlog mode selection or linked-plan behavior"
+fi
+
 if grep -q 'AI/ML: Model training & pipeline implementation' "$ROOT_DIR/.claude/agents/master.md" || \
    grep -q 'AI/ML: Model training & pipelines' "$ROOT_DIR/.claude/agents/master.md"; then
   pass "master agent prompt defines AI/ML routing"
@@ -188,6 +204,21 @@ if grep -q 'ADR-worthy decision / durable trade-off' "$ROOT_DIR/.claude/agents/m
   pass "master agent prompt defines default ADR routing for durable decisions"
 else
   fail "master agent prompt is missing default ADR routing for durable decisions"
+fi
+
+if grep -q 'docs/adr/\[NNN\]-\[kebab-case-title\]\.md' "$ROOT_DIR/.agents/skills/create-adr/SKILL.md" && \
+   grep -q 'docs/adr/001-decision-name.md' "$ROOT_DIR/docs/adr/README.md"; then
+  pass "ADR docs and skill agree on the canonical filename format"
+else
+  fail "ADR docs and skill are not aligned on the canonical filename format"
+fi
+
+if grep -q 'Required ADR sections' "$ROOT_DIR/docs/adr/README.md" && \
+   grep -q 'Always include:' "$ROOT_DIR/.claude/agents/tech-writer.md" && \
+   grep -q 'Optional sections:' "$ROOT_DIR/.agents/skills/create-adr/SKILL.md"; then
+  pass "ADR guidance defines required and optional sections consistently"
+else
+  fail "ADR guidance is missing the required/optional section split"
 fi
 
 if grep -q 'Do not save to `docs/plans/` or `docs/adr/` automatically' "$ROOT_DIR/.claude/agents/idea-executor.md" && \

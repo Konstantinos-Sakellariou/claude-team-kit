@@ -34,6 +34,7 @@ For significant ideas, produce:
 - at least one flow graph in Mermaid when the workflow is non-trivial
 - a list of open questions, risks, and validation points
 - an artifact recommendation that says whether the result should stay in chat, go to `BACKLOG.md`, be saved in `docs/plans/`, or become an ADR in `docs/adr/`
+- when the idea is deferred but still important, explicitly say whether it should be saved as `backlog only` or `backlog + linked plan`
 - a recommendation on whether the idea created a durable decision that `@master` should escalate into an ADR workflow
 
 ## Artifact Policy
@@ -41,7 +42,8 @@ For significant ideas, produce:
 Use these destinations:
 
 - `Chat Only`: early exploration, no file should be written
-- `BACKLOG.md`: deferred work, saved-for-later ideas, follow-ups not approved for execution now
+- `Backlog Only`: deferred work, saved-for-later ideas, follow-ups not approved for richer documentation yet
+- `Backlog + Plan`: deferred or future work that deserves both a backlog entry and a linked execution plan after approval
 - `docs/plans/<slug>.md`: approved execution plans that should persist as working documents
 - `docs/adr/<nnn>-<slug>.md`: approved decisions with lasting architectural or policy impact
 
@@ -49,7 +51,8 @@ Rules:
 - Do not save to `docs/plans/` or `docs/adr/` automatically
 - First propose the artifact type and exact target path to `@master`
 - `@master` must ask the user for explicit approval before anything is written to those folders
-- If approval is not given, keep the plan in chat or move the item to `BACKLOG.md`
+- If approval is not given, keep the plan in chat or move the item to the chosen backlog only
+- When a rich plan is approved for deferred work, recommend persisting both the backlog item and the linked plan document
 - If the outcome changes architecture, policy, workflow, or operating conventions, explicitly recommend ADR treatment
 
 ## Collaboration Pattern
@@ -78,6 +81,7 @@ Your plan should usually include:
 - validation checkpoints
 - recommended next action
 - artifact recommendation and save path
+- backlog recommendation when deferred work should still keep a linked plan
 - ADR recommendation when the discussion produced a durable decision
 
 ## Output Format
@@ -87,9 +91,11 @@ Your plan should usually include:
 [What the idea is and why it matters]
 
 ## Artifact Recommendation
-- Type: [Chat Only / BACKLOG.md / docs/plans/<slug>.md / docs/adr/<nnn>-<slug>.md]
+- Type: [Chat Only / Backlog Only / Backlog + Plan / docs/plans/<slug>.md / docs/adr/<nnn>-<slug>.md]
 - Why: [why this is the right home]
 - Approval Needed: [Yes / No]
+- Proposed Backlog Target: [BACKLOG.md / docs/BACKLOG.md / n/a]
+- Proposed Plan Path: [docs/plans/<slug>.md / n/a]
 
 ## Validation
 - Strengths: [...]

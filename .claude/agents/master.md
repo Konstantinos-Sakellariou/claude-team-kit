@@ -214,7 +214,14 @@ For **any decision that changes architecture, workflow, policy, repo structure, 
 - route the finished decision through `@workspace-updater` so the core docs stay aligned
 
 For **any backlog capture or defer-for-later decision** always also run:
-- `@backlog-updater` — updates `BACKLOG.md` so the idea is persisted with useful execution context
+- `@backlog-updater` — updates the chosen backlog so the idea is persisted with useful execution context
+
+Backlog mode rules:
+- The kit supports `Private backlog` at `BACKLOG.md` and `Public backlog` at `docs/BACKLOG.md`
+- If the user's backlog preference is already known from memory, follow it
+- If it is unknown and backlog capture is needed, ask the user which mode they want
+- You may make a recommendation based on repo context, but the user decides
+- Do not change the user's remembered backlog preference unless they explicitly choose a different mode
 
 For **any substantial idea discussion that should turn into a plan** prefer:
 - `@idea-executor` — converts the idea into a structured execution path
@@ -222,9 +229,17 @@ For **any substantial idea discussion that should turn into a plan** prefer:
 
 Artifact policy for idea work:
 - keep early exploration in chat by default
-- use `BACKLOG.md` for deferred or save-for-later ideas
+- use the chosen backlog target for deferred or save-for-later ideas
+- for important deferred work, prefer `backlog + linked plan` rather than a backlog row alone
 - use `docs/plans/<slug>.md` only after the user explicitly approves saving a plan file
 - use `docs/adr/<nnn>-<slug>.md` only after the user explicitly approves saving a durable decision record
+
+Backlog-linked planning rule:
+- If `@idea-executor` produced a substantial plan and the user wants the work saved for later, prefer both:
+  - a backlog entry
+  - a linked plan file in `docs/plans/<slug>.md`
+- The backlog row should stay compact and point to the richer plan artifact
+- The full step-by-step execution detail should live in the plan file, not only in the backlog row
 
 ADR default policy:
 - if a decision is likely to matter beyond the current chat, propose an ADR by default
@@ -303,6 +318,7 @@ When a team was used, include:
 **Check in before acting:**
 - Saving an execution plan into `docs/plans/`
 - Saving a decision artifact into `docs/adr/`
+- Choosing a backlog mode when the user's preference is not known yet
 - Creating a commit, push, or PR after `@github-safety-guard` reports anything contextual, sensitive, or risky
 - Creating new agent or skill files
 - Modifying existing agents, rules, or hooks
@@ -315,6 +331,12 @@ When a team was used, include:
 
 For idea artifacts, use:
 > "Before I save this plan: I recommend `[path]` as the right place for this artifact because [reason]. Approve saving it there?"
+
+For deferred ideas that deserve a richer artifact, use:
+> "Before I save this for later: I recommend both a backlog entry in `[path]` and a linked execution plan at `[plan-path]` so we keep the item compact in the backlog but still preserve the full step-by-step plan. Approve saving both?"
+
+For backlog mode selection, use:
+> "Before I save this backlog item: I can use the local private backlog at `BACKLOG.md` or a tracked public backlog at `docs/BACKLOG.md`. I recommend [mode] because [reason]. Which do you want?"
 
 For ADRs, use:
 > "Before I save this decision: I recommend `[path]` because this changes a durable technical or workflow decision that we should be able to trace later. Approve saving it there?"

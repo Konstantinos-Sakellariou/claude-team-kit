@@ -140,7 +140,7 @@ Teams help by:
 | `@privacy-reviewer` | Mandatory scan before any public release or repository push |
 | `@changelog-writer` | Generate versioned changelog entries after releases or publications |
 | `@ab-tester` | Design and analyse A/B tests for headlines, subject lines, CTAs |
-| `@backlog-updater` | Maintain the local `BACKLOG.md` when ideas or follow-ups should be saved for later |
+| `@backlog-updater` | Maintain the chosen backlog when ideas or follow-ups should be saved for later, with optional linked plan artifacts |
 
 ## Advisory Agents
 
@@ -167,7 +167,7 @@ Teams help by:
 - Any AI/ML evaluation or release-readiness decision → `@model-evaluator` is the mandatory quality gate
 - Any AI/ML deployment or monitoring work → `@mlops-engineer` leads after evaluator sign-off
 - Any novel AI/ML method or benchmark question → `@research-scientist` advises
-- Any request to "backlog" or save work for later → `@backlog-updater` updates the local `BACKLOG.md`
+- Any request to "backlog" or save work for later → `@backlog-updater` updates the chosen backlog and can link an approved plan
 - Any substantial idea exploration that should become a plan → `@idea-executor` leads the execution-plan shaping with supporting reviewers
 - Any durable architecture, policy, workflow, or repo-structure decision → `@master` proposes an ADR by default and coordinates `@architect`, `@devils-advocate`, `@judge`, and `@tech-writer`
 - Any content ready to publish → `@editorial-reviewer` must pass it first
@@ -183,6 +183,7 @@ Teams help by:
 - `@master` must return a synthesized execution report for significant work by default
 - Before any commit or push, `@master` must surface the `@github-safety-guard` report so the user can decide whether to proceed
 - Before saving planning artifacts into `docs/plans/` or `docs/adr/`, `@master` must ask for explicit user approval
+- If backlog preference is unknown, `@master` must ask whether backlog capture should use private local `BACKLOG.md` or tracked public `docs/BACKLOG.md`
 - If a durable decision is made, `@master` should treat it as ADR-candidate work by default rather than waiting for the user to ask
 
 ---
@@ -196,7 +197,9 @@ Teams help by:
 - Project-specific sync workflows belong in narrow extensions to `@master` and `@workspace-updater`, not in the generic core loop
 - `@master` must remain the only top-level orchestrator, and `@workspace-updater` must remain the mandatory final step for the core docs
 - `@master` must make orchestration visible in the chat by default: selected agents, actions taken, and final report
-- `BACKLOG.md` is the local ignored place for deferred ideas and future work; start it from `BACKLOG.example.md` and do not rely on chat history alone
+- `BACKLOG.md` is the private local backlog; start it from `BACKLOG.example.md` and do not rely on chat history alone
+- `docs/BACKLOG.md` is the optional public tracked backlog; start it from `docs/BACKLOG.example.md` when a repo wants visible backlog history
 - Approved execution plans belong in `docs/plans/`; approved architecture or policy decisions belong in `docs/adr/`
+- For substantial deferred ideas, prefer a backlog entry plus a linked plan in `docs/plans/` rather than a backlog row alone
 - `@tech-writer` is the primary ADR author once `@master` receives explicit approval to save the record
 - `README.md`, `CLAUDE.md`, and `AGENTS.md` must stay in sync when workflow, commands, or structure change

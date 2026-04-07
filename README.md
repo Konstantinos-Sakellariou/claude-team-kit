@@ -14,7 +14,9 @@ This repo is a team-definition layer, not a standalone orchestration runtime. It
 ├── rules/           Modular rule files — Python, TypeScript, security, testing, git, performance, API design, AI/ML workflow
 ├── hooks/           Shell automations (auto-format, secret detection, file protection...)
 └── agent-memory/    Persistent per-agent memory (grows over time)
-BACKLOG.example.md   Public template for the local ignored backlog file
+BACKLOG.example.md   Starter for the private local backlog file
+docs/BACKLOG.example.md
+                    Starter for an optional tracked public backlog
 CLAUDE.md            Master project briefing — customize per project
 AGENTS.md            Compatibility briefing for tools that read AGENTS.md
 .mcp.json            MCP server config (GitHub pre-configured)
@@ -28,7 +30,7 @@ scripts/             Setup and validation helpers
 1. Use this repo as a template or copy it into your project root
 2. Run `./scripts/setup.sh`
 3. Fill in `.claude/settings.local.json` and/or `.env` with your `GITHUB_TOKEN`
-4. Use the generated local `BACKLOG.md` for private planning and deferred work
+4. Use the generated local `BACKLOG.md` for private planning and deferred work, or create `docs/BACKLOG.md` from `docs/BACKLOG.example.md` if you want a public tracked backlog
 5. Edit `CLAUDE.md` for the target project you want the kit to describe
 6. Run `./scripts/doctor.sh`
 7. Start a Claude session and address `@master`
@@ -204,7 +206,7 @@ The canonical team definitions live in `.claude/teams/`. See [`docs/TEAMS.md`](d
 | `@privacy-reviewer` | Mandatory scan before any public release or repository push | sonnet |
 | `@changelog-writer` | Generates versioned changelog entries after releases or publications | sonnet |
 | `@ab-tester` | Designs and analyses A/B tests for headlines, CTAs, subject lines | sonnet |
-| `@backlog-updater` | Captures ideas and deferred work into `BACKLOG.md` with a consistent schema | sonnet |
+| `@backlog-updater` | Captures ideas and deferred work into the chosen backlog with a consistent schema and optional linked plan artifacts | sonnet |
 
 ### Advisory
 
@@ -234,7 +236,7 @@ These fire automatically — you don't need to ask:
 - AI/ML release readiness → `@model-evaluator` is the mandatory gate
 - AI/ML deployment or monitoring design → `@mlops-engineer` leads after evaluator sign-off
 - Novel AI/ML methods or benchmark questions → `@research-scientist` advises
-- "Backlog this" or defer-for-later requests → `@backlog-updater` updates the local `BACKLOG.md`
+- "Backlog this" or defer-for-later requests → `@backlog-updater` updates the chosen backlog and can link an approved plan
 - Significant idea discussions → `@idea-executor` shapes the idea into an execution plan
 - Durable architecture, policy, workflow, or repo-structure decisions → `@master` proposes an ADR by default
 - Content ready to publish → `@editorial-reviewer` must pass it first
@@ -319,16 +321,22 @@ Good project briefings usually add:
 Planning outputs should be stored professionally and consistently:
 
 - keep early idea exploration in chat
-- save deferred work in `BACKLOG.md`
+- save deferred work in the chosen backlog:
+  - private local `BACKLOG.md`
+  - or tracked public `docs/BACKLOG.md`
+- for important deferred work, prefer a backlog entry plus a linked plan in `docs/plans/`
 - save approved execution plans in `docs/plans/`
 - save approved architecture or policy decisions in `docs/adr/`
 
 `@master` must ask for explicit approval before saving anything into `docs/plans/` or `docs/adr/`.
 
+If backlog preference is not known yet, `@master` should ask whether the project wants a private local backlog or a public tracked backlog before persisting backlog items.
+
 ## Customisation
 
 - Edit `CLAUDE.md` to configure the project name, stack, commands, and notes
 - Use `BACKLOG.example.md` as the tracked starter and `BACKLOG.md` as the local ignored registry for deferred work and captured ideas
+- Use `docs/BACKLOG.example.md` if you want a tracked public backlog at `docs/BACKLOG.md`
 - Use `docs/PROJECT_CUSTOMIZATION.md` when adapting the kit to a specific repository
 - Add project-specific rules with `@.claude/rules/your-rule.md` in `CLAUDE.md`
 - Create new agents in `.claude/agents/` — copy any existing file and update the frontmatter and instructions
@@ -343,6 +351,8 @@ Planning outputs should be stored professionally and consistently:
 | `CLAUDE.md` | Project or repo briefing for Claude-compatible tools |
 | `AGENTS.md` | Compatibility briefing for tools that consume AGENTS.md |
 | `README.md` | Kit overview, agent roster, orchestration model |
+| `BACKLOG.example.md` | Starter for a private local backlog at `BACKLOG.md` |
+| `docs/BACKLOG.example.md` | Starter for a tracked public backlog at `docs/BACKLOG.md` |
 | `docs/ARCHITECTURE.md` | Product boundary, canonical sources, maintenance priorities |
 | `docs/TEAMS.md` | Team abstraction, reusable manifests, and team operating rules |
 | `docs/PROJECT_CUSTOMIZATION.md` | How to adapt the generic kit to a concrete repo |

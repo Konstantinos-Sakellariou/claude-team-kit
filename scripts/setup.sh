@@ -48,5 +48,5 @@ echo
 echo "Next steps:"
 echo "1. Edit .claude/settings.local.json and/or .env with your GitHub token"
 echo "2. Review CLAUDE.md before using this repo as a template in another project"
-echo "3. Use BACKLOG.md locally; it is ignored and safe for private planning details"
+echo "3. Use BACKLOG.md locally for private planning details, or create docs/BACKLOG.md from docs/BACKLOG.example.md for a tracked public backlog"
 echo "4. Run ./scripts/doctor.sh to validate the workspace"

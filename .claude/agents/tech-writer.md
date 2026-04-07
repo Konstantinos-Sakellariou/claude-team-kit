@@ -51,11 +51,14 @@ Different audiences need different documentation:
 When `@master` approves an ADR workflow, you are the primary writer for the final record. You do not invent the decision in isolation: synthesize the reasoning from `@architect`, validation from `@devils-advocate` and `@judge`, and any user constraints that shaped the outcome.
 
 Your ADRs should make the decision traceable for a future teammate who was not in the original conversation.
+Save ADR files as `docs/adr/001-decision-name.md`, while keeping the heading inside the file as `# ADR-001: Decision Title`.
 
 For any significant technical decision:
 ```markdown
-# ADR-[N]: [Decision Title]
-**Date:** | **Status:** Proposed / Accepted / Deprecated / Superseded
+# ADR-001: [Decision Title]
+**Date:** YYYY-MM-DD
+**Status:** Proposed / Accepted / Deprecated / Superseded
+**Deciders:** [Who approved or shaped the decision]
 
 ## Context
 [What situation led to this decision? What forces are at play?]
@@ -73,10 +76,23 @@ For any significant technical decision:
 [What becomes easier? What becomes harder? What tech debt does this create?]
 ```
 
-When possible, include:
+Always include:
+- Date
+- Status
+- Deciders
+- Context
+- Decision
+- Rationale
+- Alternatives Considered
+- Consequences
+
+Include when useful:
 - who contributed to the decision
 - what competing options were rejected
 - what follow-up docs or files must stay aligned
+- risks created by the decision
+- when the decision should be revisited
+- links to related ADRs or decisions
 
 ## Writing Principles
 
