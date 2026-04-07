@@ -48,11 +48,9 @@ class PromptContractTests(unittest.TestCase):
     def test_adr_guidance_is_aligned_across_docs_prompt_and_skill(self) -> None:
         adr_readme = read("docs/adr/README.md")
         tech_writer = read(".claude/agents/tech-writer.md")
-        create_adr = read(".agents/skills/create-adr/SKILL.md")
 
         self.assertIn("docs/adr/001-decision-name.md", adr_readme)
         self.assertIn("docs/adr/001-decision-name.md", tech_writer)
-        self.assertIn("docs/adr/[NNN]-[kebab-case-title].md", create_adr)
 
         for required in [
             "Date",
@@ -66,10 +64,20 @@ class PromptContractTests(unittest.TestCase):
         ]:
             self.assertIn(required, adr_readme)
             self.assertIn(required, tech_writer)
-            self.assertIn(required, create_adr)
 
         self.assertIn("Optional ADR sections:", adr_readme)
         self.assertIn("Include when useful:", tech_writer)
+
+    def test_optional_local_create_adr_skill_aligns_when_present(self) -> None:
+        skill_path = ROOT / ".agents" / "skills" / "create-adr" / "SKILL.md"
+
+        if not skill_path.exists():
+            self.skipTest("Optional local create-adr skill is not present in this checkout")
+
+        create_adr = skill_path.read_text()
+
+        self.assertIn("docs/adr/[NNN]-[kebab-case-title].md", create_adr)
+        self.assertIn("Always include:", create_adr)
         self.assertIn("Optional sections:", create_adr)
 
 

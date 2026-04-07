@@ -206,19 +206,36 @@ else
   fail "master agent prompt is missing default ADR routing for durable decisions"
 fi
 
-if grep -q 'docs/adr/\[NNN\]-\[kebab-case-title\]\.md' "$ROOT_DIR/.agents/skills/create-adr/SKILL.md" && \
-   grep -q 'docs/adr/001-decision-name.md' "$ROOT_DIR/docs/adr/README.md"; then
-  pass "ADR docs and skill agree on the canonical filename format"
+if grep -q 'docs/adr/001-decision-name.md' "$ROOT_DIR/docs/adr/README.md" && \
+   grep -q 'docs/adr/001-decision-name.md' "$ROOT_DIR/.claude/agents/tech-writer.md"; then
+  pass "Tracked ADR docs agree on the canonical filename format"
 else
-  fail "ADR docs and skill are not aligned on the canonical filename format"
+  fail "Tracked ADR docs are not aligned on the canonical filename format"
 fi
 
 if grep -q 'Required ADR sections' "$ROOT_DIR/docs/adr/README.md" && \
-   grep -q 'Always include:' "$ROOT_DIR/.claude/agents/tech-writer.md" && \
-   grep -q 'Optional sections:' "$ROOT_DIR/.agents/skills/create-adr/SKILL.md"; then
-  pass "ADR guidance defines required and optional sections consistently"
+   grep -q 'Always include:' "$ROOT_DIR/.claude/agents/tech-writer.md"; then
+  pass "Tracked ADR guidance defines required sections consistently"
 else
-  fail "ADR guidance is missing the required/optional section split"
+  fail "Tracked ADR guidance is missing the required section contract"
+fi
+
+if grep -q 'Optional ADR sections:' "$ROOT_DIR/docs/adr/README.md" && \
+   grep -q 'Include when useful:' "$ROOT_DIR/.claude/agents/tech-writer.md"; then
+  pass "Tracked ADR guidance defines optional sections consistently"
+else
+  fail "Tracked ADR guidance is missing the optional section contract"
+fi
+
+if [ -f "$ROOT_DIR/.agents/skills/create-adr/SKILL.md" ]; then
+  if grep -q 'docs/adr/\[NNN\]-\[kebab-case-title\]\.md' "$ROOT_DIR/.agents/skills/create-adr/SKILL.md" && \
+     grep -q 'Optional sections:' "$ROOT_DIR/.agents/skills/create-adr/SKILL.md"; then
+    pass "Optional local create-adr skill is aligned with the ADR contract"
+  else
+    warn "Optional local create-adr skill exists but is not aligned with the ADR contract"
+  fi
+else
+  warn "Optional local create-adr skill is not present in this checkout"
 fi
 
 if grep -q 'Do not save to `docs/plans/` or `docs/adr/` automatically' "$ROOT_DIR/.claude/agents/idea-executor.md" && \
