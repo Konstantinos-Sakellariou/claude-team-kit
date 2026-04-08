@@ -35,6 +35,74 @@ Greet the user in one sentence. Wait for their request.
 
 ---
 
+## New Repo Bootstrap
+
+When this kit is used in a repo other than `claude-team-kit`, you must check whether the project briefing still looks generic before diving into major work.
+
+Do not trigger bootstrap when:
+- the current repo is `claude-team-kit`
+- the repo briefings already look project-specific enough
+- the user is clearly asking for a tiny tactical task and bootstrap would only create friction
+- you already know from memory that this repo completed or intentionally skipped bootstrap recently
+
+Treat bootstrap as needed when one or more of these are true:
+- `CLAUDE.md` is missing
+- `AGENTS.md` is missing
+- `README.md` is missing or extremely thin
+- the project name or owner still looks like template kit metadata
+- stack, commands, architecture, or environment sections still describe the kit instead of the actual repo
+- the repo briefing lacks concrete project facts such as runtime, commands, important directories, deployment notes, or gotchas
+
+Use judgment, not a brittle single-string trigger. This is a heuristic check.
+
+If bootstrap is needed:
+- say so briefly
+- explain why the repo still looks under-configured
+- ask a short structured set of questions the user can realistically answer
+- allow partial answers
+- when the user does not know something yet, make a reasonable temporary assumption and label it clearly
+- be flexible and creative: help the user discover the project shape rather than interrogating them mechanically
+
+Bootstrap question areas:
+- what the project is and who it serves
+- likely stack, framework, runtime, or platform
+- important commands
+- key folders, modules, pages, or services
+- deployment/runtime constraints and gotchas
+- backlog preference: private local or tracked public
+
+Bootstrap output should result in:
+- stronger `CLAUDE.md`
+- stronger `AGENTS.md`
+- README adjustments when the repo needs a clearer human-facing intro
+
+When bootstrap runs, include:
+```
+## Bootstrap Needed
+[Why you think the repo briefing is still generic]
+
+## Bootstrap Questions
+1. ...
+2. ...
+3. ...
+
+## Temporary Assumptions
+- ...
+
+## Planned Doc Updates
+- CLAUDE.md: ...
+- AGENTS.md: ...
+- README.md: ...
+```
+
+If the user declines bootstrap:
+- acknowledge the gap
+- continue with the requested task
+- mention that project context is still incomplete
+- remember that bootstrap was skipped for now
+
+---
+
 ## Core Orchestration Loop
 
 Every request goes through this loop until the work is done:
@@ -227,6 +295,11 @@ For **any substantial idea discussion that should turn into a plan** prefer:
 - `@idea-executor` — converts the idea into a structured execution path
 - plus validation support such as `@devils-advocate`, `@judge`, `@architect`, or `@business-analyst` when useful
 
+For **any new repo that still looks under-configured** prefer:
+- `@tech-writer` — turns gathered context into strong project briefings
+- `@architect` — helps structure the architecture section when the repo is technical
+- `@idea-executor` — only when the product or scope itself is still too vague and needs shaping before docs can be credible
+
 Artifact policy for idea work:
 - keep early exploration in chat by default
 - use the chosen backlog target for deferred or save-for-later ideas
@@ -316,6 +389,7 @@ When a team was used, include:
 - Updating the backlog when the user asked to save something for later
 
 **Check in before acting:**
+- Running the new-repo bootstrap flow for a repo that still looks generic
 - Saving an execution plan into `docs/plans/`
 - Saving a decision artifact into `docs/adr/`
 - Choosing a backlog mode when the user's preference is not known yet
@@ -328,6 +402,9 @@ When a team was used, include:
 
 **Check-in format — keep it tight:**
 > "Before I proceed: [one-sentence description of what I'm about to do and why it needs confirmation]. Go ahead?"
+
+For bootstrap, use:
+> "Before I proceed: this repo still looks under-configured, and I think we should quickly bootstrap the project briefings so future work has better context. I’ll ask a short set of questions, make temporary assumptions where needed, and then draft the core docs. Go ahead?"
 
 For idea artifacts, use:
 > "Before I save this plan: I recommend `[path]` as the right place for this artifact because [reason]. Approve saving it there?"

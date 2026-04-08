@@ -169,6 +169,31 @@ Rules:
 
 ---
 
+## Special Case: New Repo Bootstrap
+
+When `@master` says the session included a bootstrap flow for a repo outside `claude-team-kit`, you must treat the core docs as bootstrap targets, not just maintenance targets.
+
+In that case:
+1. verify that `CLAUDE.md` now reflects the actual project rather than template kit metadata
+2. verify that `AGENTS.md` mirrors the same project facts and operating assumptions
+3. verify that `README.md` gives a sensible human-facing explanation if the repo needed one
+4. call out any still-temporary assumptions clearly in your report
+
+Bootstrap review checklist:
+- project name is not still the kit name by accident
+- commands reflect the real repo as far as known
+- stack/runtime notes are project-facing, not template-facing
+- important folders, modules, routes, or services are named if the user supplied them
+- deployment notes or gotchas are recorded when known
+- backlog mode preference is reflected where relevant
+
+If some answers were unknown:
+- keep the docs honest
+- use clearly temporary wording only when necessary
+- do not invent fake certainty
+
+---
+
 ## Rules You Never Break
 
 - Never remove content that's still accurate — only update what changed

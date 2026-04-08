@@ -20,6 +20,23 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn("Before I save this backlog item:", master)
         self.assertIn("Approve saving both?", master)
 
+    def test_master_defines_bootstrap_flow(self) -> None:
+        master = read(".claude/agents/master.md")
+
+        self.assertIn("## New Repo Bootstrap", master)
+        self.assertIn("Do not trigger bootstrap when:", master)
+        self.assertIn("Treat bootstrap as needed when", master)
+        self.assertIn("Bootstrap question areas:", master)
+        self.assertIn("make a reasonable temporary assumption and label it clearly", master)
+        self.assertIn("Before I proceed: this repo still looks under-configured", master)
+
+    def test_workspace_updater_understands_bootstrap_follow_up(self) -> None:
+        updater = read(".claude/agents/workspace-updater.md")
+
+        self.assertIn("## Special Case: New Repo Bootstrap", updater)
+        self.assertIn("bootstrap flow for a repo outside `claude-team-kit`", updater)
+        self.assertIn("call out any still-temporary assumptions clearly", updater)
+
     def test_backlog_updater_schema_includes_assignment_and_artifact(self) -> None:
         backlog_updater = read(".claude/agents/backlog-updater.md")
 
@@ -44,6 +61,18 @@ class PromptContractTests(unittest.TestCase):
             self.assertIn("Assigned", content)
             self.assertIn("Artifact / Plan", content)
             self.assertIn("| ID | Idea | Description |", content)
+
+    def test_bootstrap_docs_exist_and_are_aligned(self) -> None:
+        bootstrap = read("docs/BOOTSTRAP.md")
+        readme = read("README.md")
+        claude = read("CLAUDE.md")
+        agents = read("AGENTS.md")
+
+        self.assertIn("When `claude-team-kit` is dropped into a repo other than itself", bootstrap)
+        self.assertIn("## New Repo Bootstrap", readme)
+        self.assertIn("docs/BOOTSTRAP.md", readme)
+        self.assertIn("Bootstrap should stay flexible:", claude)
+        self.assertIn("Bootstrap should stay flexible:", agents)
 
     def test_adr_guidance_is_aligned_across_docs_prompt_and_skill(self) -> None:
         adr_readme = read("docs/adr/README.md")

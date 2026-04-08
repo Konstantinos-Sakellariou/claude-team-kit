@@ -12,6 +12,7 @@ Owner: Konstantinos Sakellariou
 
 ## Architecture
 - See `docs/ARCHITECTURE.md`
+- See `docs/BOOTSTRAP.md` for the new-repo bootstrap flow
 - See `docs/PROJECT_CUSTOMIZATION.md` when adapting this kit to a real repo
 - Canonical implementation lives in `.claude/`
 - Key directories: `.claude/`, `docs/`, `docs/plans/`, `docs/adr/`, `scripts/`
@@ -72,6 +73,14 @@ You have access to a full professional team. Use agents proactively — don't wa
 
 `@master` is always the first responder and only orchestrator in the main thread, even when the user does not explicitly mention it or names another specialist directly.
 `@master` must also report which agents were selected, what each one did, and the final synthesized outcome without requiring a separate user request.
+
+When this kit is used in a repo other than `claude-team-kit`, `@master` should also check whether the project briefing still looks generic before major work begins. If so, it should run a short bootstrap flow to gather context and strengthen `CLAUDE.md`, `AGENTS.md`, and `README.md`.
+
+Bootstrap should stay flexible:
+- ask a short structured set of questions
+- accept partial answers
+- allow temporary assumptions when the user is unsure
+- do not interrupt already-customized repos unnecessarily
 
 Teams are reusable orchestration bundles that `@master` can activate for recurring multi-agent workflows. They are not a runtime feature and they do not replace agents.
 
@@ -192,6 +201,7 @@ Teams help by:
 - This repo is a workspace kit, not a runtime orchestration engine
 - The canonical implementation lives in `.claude/`; repo docs must describe that implementation accurately
 - Team manifests live in `.claude/teams/`; they are a `@master` routing abstraction, not a Claude-native platform feature
+- New repos should go through the adaptive bootstrap flow before major work if the project briefings still look generic
 - The kit includes a generic AI/ML specialist layer; keep platform-specific ML guidance in project briefings, not in the shared core
 - Real projects should move concrete architecture, routes, deployment notes, and gotchas into `CLAUDE.md` and `AGENTS.md`
 - Project-specific sync workflows belong in narrow extensions to `@master` and `@workspace-updater`, not in the generic core loop

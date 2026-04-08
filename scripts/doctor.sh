@@ -39,6 +39,7 @@ check_file "AGENTS.md" "AGENTS.md exists"
 check_file "BACKLOG.example.md" "BACKLOG.example.md exists"
 check_file "docs/BACKLOG.example.md" "docs/BACKLOG.example.md exists"
 check_file "docs/ARCHITECTURE.md" "docs/ARCHITECTURE.md exists"
+check_file "docs/BOOTSTRAP.md" "docs/BOOTSTRAP.md exists"
 check_file "docs/TEAMS.md" "docs/TEAMS.md exists"
 check_file "docs/AGENT_WORKFLOWS.md" "docs/AGENT_WORKFLOWS.md exists"
 check_file "docs/PROJECT_CUSTOMIZATION.md" "docs/PROJECT_CUSTOMIZATION.md exists"
@@ -113,6 +114,14 @@ if grep -q '## Team System' "$ROOT_DIR/.claude/agents/master.md"; then
   pass "master agent prompt defines the team system"
 else
   fail "master agent prompt is missing the team system section"
+fi
+
+if grep -q '## New Repo Bootstrap' "$ROOT_DIR/.claude/agents/master.md" && \
+   grep -q 'Do not trigger bootstrap when:' "$ROOT_DIR/.claude/agents/master.md" && \
+   grep -q 'Bootstrap question areas:' "$ROOT_DIR/.claude/agents/master.md"; then
+  pass "master agent prompt defines the new-repo bootstrap flow"
+else
+  fail "master agent prompt is missing the new-repo bootstrap flow"
 fi
 
 if grep -q 'This is automatic and does not wait for an extra user prompt' "$ROOT_DIR/.claude/agents/master.md"; then
@@ -291,6 +300,15 @@ if grep -q 'Teams are reusable orchestration bundles' "$ROOT_DIR/CLAUDE.md" && \
   pass "CLAUDE.md and AGENTS.md document the team abstraction"
 else
   fail "CLAUDE.md and AGENTS.md are not aligned on the team abstraction"
+fi
+
+if grep -q '## New Repo Bootstrap' "$ROOT_DIR/README.md" && \
+   grep -q 'docs/BOOTSTRAP.md' "$ROOT_DIR/README.md" && \
+   grep -q 'Bootstrap should stay flexible:' "$ROOT_DIR/CLAUDE.md" && \
+   grep -q 'Bootstrap should stay flexible:' "$ROOT_DIR/AGENTS.md"; then
+  pass "README.md, CLAUDE.md, and AGENTS.md document the bootstrap flow"
+else
+  fail "Core docs are not aligned on the bootstrap flow"
 fi
 
 if grep -q 'propose an ADR by default' "$ROOT_DIR/README.md"; then

@@ -32,6 +32,19 @@ High-signal project briefings often add:
 
 The goal is simple: include the facts an agent would need to avoid obvious mistakes.
 
+## Bootstrap For New Repos
+
+When this kit is copied into a repo that still has generic template docs, `@master` should run a lightweight bootstrap flow before major work starts.
+
+That bootstrap should:
+- detect when the repo still looks like an uncustomized template
+- ask a short structured set of questions
+- accept partial answers
+- make clearly labeled temporary assumptions where the user is unsure
+- update `CLAUDE.md`, `AGENTS.md`, and `README.md` toward a real project briefing
+
+The goal is not perfect upfront certainty. The goal is enough real context that future agent work stops making obvious mistakes.
+
 ## Automatic Delegation Should Be Domain-Specific
 
 The default kit rules are intentionally broad. Real projects should tighten them.

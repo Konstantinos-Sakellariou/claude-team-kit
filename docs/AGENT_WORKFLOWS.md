@@ -6,7 +6,7 @@ All work flows through `@master`. Every example below starts and ends there.
 
 These workflows are also the reason the kit now defines reusable teams: when the same multi-agent shape appears repeatedly, `@master` can activate a team instead of reconstructing the orchestration pattern from scratch each time.
 
-Six workflows are documented here, each demonstrating different collaboration patterns:
+Seven workflows are documented here, each demonstrating different collaboration patterns:
 
 1. **Engineering Pipeline** — parallel spikes, sequential implementation, gated quality stages
 2. **Content Publishing Pipeline** — research loop, human approval gate, parallel review, delivery feedback loop
@@ -14,6 +14,7 @@ Six workflows are documented here, each demonstrating different collaboration pa
 4. **Idea To Execution Planning** — idea shaping, adversarial validation, phased plan, optional backlog capture
 5. **Decision To ADR** — durable-decision detection, validation, approval gate, ADR authorship, documentation alignment
 6. **AI/ML Delivery Pipeline** — model framing, training, mandatory evaluation gate, operational rollout
+7. **New Repo Bootstrap** — adaptive discovery, temporary assumptions, initial briefing alignment
 
 ---
 
@@ -420,6 +421,51 @@ flowchart TD
 - `@model-evaluator` is a hard gate, not a nice-to-have reviewer
 - `@research-scientist` is advisory and only needs to run when novelty or literature fit matters
 - `@mlops-engineer` should not lead before evaluation sign-off exists
+
+---
+
+## Workflow 7 — New Repo Bootstrap
+
+**Example trigger:** *"We just copied this kit into a new startup repo. Help us set it up properly."*
+
+**Patterns demonstrated:** adaptive discovery, flexible questioning, temporary assumptions, initial doc alignment, final workspace sync.
+
+```mermaid
+flowchart TD
+    USER(["👤 First serious request in a new repo"])
+    USER --> MASTER
+
+    MASTER["@master\nDetects repo is not claude-team-kit\nChecks whether docs still look generic\nExplains why bootstrap is recommended"]
+
+    MASTER --> APPROVAL{"👤 Run bootstrap\nbefore major work?"}
+
+    APPROVAL -->|"No"| CONTINUE["@master proceeds with task\nbut notes that repo context\nis still incomplete"]
+    APPROVAL -->|"Yes"| QS
+
+    QS["@master\nAsks a short structured set of questions\nPurpose · stack · commands · architecture\nconstraints · backlog preference"]
+
+    QS --> INPUT
+
+    INPUT["@master synthesis\nCollects answers\nMakes clearly labeled\ntemporary assumptions where needed"]
+
+    INPUT --> WRITER
+
+    WRITER["@tech-writer\nDrafts stronger\nCLAUDE.md, AGENTS.md,\nand README.md context"]
+
+    INPUT -. "optional support when useful" .-> ARCH
+    ARCH["@architect\nHelps shape architecture\nand boundaries if the repo\nis technical or unclear"]
+
+    WRITER --> WU["@workspace-updater\nVerifies bootstrap results\nand reports remaining assumptions"]
+    CONTINUE --> WU
+    WU --> DONE(["✓ Repo briefing strengthened"])
+```
+
+**Key points:**
+- bootstrap should not run inside `claude-team-kit` itself
+- bootstrap should not interrupt already-customized repos
+- `@master` should ask only high-signal questions, not a giant questionnaire
+- users can answer partially; `@master` may make temporary assumptions and label them clearly
+- `@workspace-updater` closes the loop by checking that the core docs now reflect the repo better than before
 
 ---
 

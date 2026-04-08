@@ -44,6 +44,7 @@ Repo-level docs explain and package that implementation:
 - `README.md`: human-facing overview and setup
 - `CLAUDE.md`: repo briefing for Claude-compatible tools
 - `AGENTS.md`: repo briefing for Codex-style tools that read AGENTS files
+- `docs/BOOTSTRAP.md`: how new repos should be initialized when the kit is copied elsewhere
 - `docs/TEAMS.md`: the reusable team abstraction and team operating rules
 - `docs/AGENT_WORKFLOWS.md`: collaboration and orchestration examples
 - `docs/PROJECT_CUSTOMIZATION.md`: how to adapt the kit to a real project
@@ -53,12 +54,13 @@ Repo-level docs explain and package that implementation:
 The intended operating flow is:
 
 1. A user enters through `@master`
-2. `@master` plans the work
-3. `@master` decides whether the work is best handled by a single agent, one team, or multiple teams
-4. Specialist agents contribute in parallel or sequence
-5. `@master` synthesizes the result
-6. Durable decisions are proposed as ADRs by default when they should outlive the chat
-7. `@workspace-updater` reviews and aligns the core docs after significant changes
+2. In a new repo, `@master` may first run a bootstrap flow if the briefing still looks generic
+3. `@master` plans the work
+4. `@master` decides whether the work is best handled by a single agent, one team, or multiple teams
+5. Specialist agents contribute in parallel or sequence
+6. `@master` synthesizes the result
+7. Durable decisions are proposed as ADRs by default when they should outlive the chat
+8. `@workspace-updater` reviews and aligns the core docs after significant changes
 
 This repo currently enforces that model through prompts, settings, hooks, and validation checks rather than through an external execution engine.
 

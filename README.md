@@ -98,6 +98,16 @@ RECEIVE → ANALYSE scope → PLAN pipeline → ANNOUNCE plan to user
 
 `@workspace-updater` runs automatically as the last step after significant work. It reviews the core docs (`CLAUDE.md`, `AGENTS.md`, and `README.md`) even when no edits are ultimately required.
 
+## New Repo Bootstrap
+
+When this kit is copied into a repo other than `claude-team-kit`, `@master` should check whether the project briefing still looks generic before major work starts.
+
+If the repo docs still look template-like, `@master` should pause briefly, ask a short structured set of questions, accept partial answers, make clearly labeled temporary assumptions when needed, and then improve the core docs before work continues.
+
+This is intentionally flexible. Users will not always know their exact stack, runtime, or architecture yet, so `@master` should help discover the project shape rather than rigidly interrogating them.
+
+See [`docs/BOOTSTRAP.md`](docs/BOOTSTRAP.md) for the full bootstrap model.
+
 ## What Teams Mean
 
 Teams are reusable orchestration bundles that `@master` can activate when a request matches a recurring collaboration pattern.
@@ -301,6 +311,7 @@ The 38 agents split into five groups designed to cover any project type:
 - `./scripts/doctor.sh` checks repo structure, JSON validity, hook permissions, and key documentation references
 - `python3 -m unittest discover -s tests -v` runs the lightweight validation test suite for hooks and doctor behavior
 - `docs/ARCHITECTURE.md` explains the product boundary and canonical sources
+- `docs/BOOTSTRAP.md` explains how `@master` should initialize a new repo briefing when this kit is copied elsewhere
 - `docs/TEAMS.md` explains the reusable team abstraction and how `@master` uses it
 - `docs/PROJECT_CUSTOMIZATION.md` shows how to turn the generic kit into a real project briefing
 
@@ -354,6 +365,7 @@ If backlog preference is not known yet, `@master` should ask whether the project
 | `BACKLOG.example.md` | Starter for a private local backlog at `BACKLOG.md` |
 | `docs/BACKLOG.example.md` | Starter for a tracked public backlog at `docs/BACKLOG.md` |
 | `docs/ARCHITECTURE.md` | Product boundary, canonical sources, maintenance priorities |
+| `docs/BOOTSTRAP.md` | New-repo bootstrap behavior, trigger rules, and adaptive question flow |
 | `docs/TEAMS.md` | Team abstraction, reusable manifests, and team operating rules |
 | `docs/PROJECT_CUSTOMIZATION.md` | How to adapt the generic kit to a concrete repo |
 | `docs/AGENT_WORKFLOWS.md` | Detailed workflow diagrams with parallel/sequential/gated patterns |
