@@ -44,9 +44,63 @@ else
   echo "OK: Local backlog already present or no example file needed"
 fi
 
+LOCAL_CONTEXT_DIR="$ROOT_DIR/.claude/local-context"
+if [ ! -d "$LOCAL_CONTEXT_DIR" ]; then
+  mkdir -p "$LOCAL_CONTEXT_DIR"
+  cat > "$LOCAL_CONTEXT_DIR/README.md" <<'EOF'
+# Private Local Context
+
+This folder is for local-only context that helps agents work better without putting sensitive material into tracked docs.
+
+Good examples:
+- private business or startup context
+- customer or stakeholder notes
+- unreleased roadmap details
+- pricing, fundraising, or GTM notes
+- internal constraints, risks, or organizational sensitivities
+
+Do not commit this folder.
+EOF
+  cat > "$LOCAL_CONTEXT_DIR/project-private.md" <<'EOF'
+# Project Private Context
+
+## What This Project Is Really Trying To Achieve
+
+## Important Business Context
+
+## Sensitive Strategic Notes
+
+## Private Success Criteria
+EOF
+  cat > "$LOCAL_CONTEXT_DIR/customers.md" <<'EOF'
+# Customers And Stakeholders
+
+## Primary Users
+
+## Key Stakeholders
+
+## Sensitive Customer Notes
+EOF
+  cat > "$LOCAL_CONTEXT_DIR/constraints.md" <<'EOF'
+# Constraints
+
+## Technical Constraints
+
+## Commercial Constraints
+
+## Legal Or Compliance Constraints
+
+## Timing Or Organizational Constraints
+EOF
+  echo "OK: Created .claude/local-context/ starter files"
+else
+  echo "OK: Private local context already present"
+fi
+
 echo
 echo "Next steps:"
 echo "1. Edit .claude/settings.local.json and/or .env with your GitHub token"
 echo "2. Review CLAUDE.md before using this repo as a template in another project"
 echo "3. Use BACKLOG.md locally for private planning details, or create docs/BACKLOG.md from docs/BACKLOG.example.md for a tracked public backlog"
-echo "4. Run ./scripts/doctor.sh to validate the workspace"
+echo "4. Add any sensitive startup, customer, or strategy notes to .claude/local-context/ and keep that folder local-only"
+echo "5. Run ./scripts/doctor.sh to validate the workspace"

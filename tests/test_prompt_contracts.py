@@ -37,6 +37,27 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn("bootstrap flow for a repo outside `claude-team-kit`", updater)
         self.assertIn("call out any still-temporary assumptions clearly", updater)
 
+    def test_private_local_context_rules_are_aligned(self) -> None:
+        master = read(".claude/agents/master.md")
+        guard = read(".claude/agents/github-safety-guard.md")
+        updater = read(".claude/agents/workspace-updater.md")
+        readme = read("README.md")
+        claude = read("CLAUDE.md")
+        agents = read("AGENTS.md")
+        local_context = read("docs/LOCAL_CONTEXT.md")
+        gitignore = read(".gitignore")
+
+        self.assertIn("## Private Local Context", master)
+        self.assertIn(".claude/local-context/", master)
+        self.assertIn("never copy private local-context details into tracked files automatically", master)
+        self.assertIn(".claude/local-context/", guard)
+        self.assertIn("## Special Case: Private Local Context Boundary", updater)
+        self.assertIn("## Private Local Context", readme)
+        self.assertIn("private local context layer", claude)
+        self.assertIn("private local context layer", agents)
+        self.assertIn(".claude/local-context/", local_context)
+        self.assertIn(".claude/local-context/", gitignore)
+
     def test_backlog_updater_schema_includes_assignment_and_artifact(self) -> None:
         backlog_updater = read(".claude/agents/backlog-updater.md")
 
@@ -69,6 +90,7 @@ class PromptContractTests(unittest.TestCase):
         agents = read("AGENTS.md")
 
         self.assertIn("When `claude-team-kit` is dropped into a repo other than itself", bootstrap)
+        self.assertIn("private local context layer", bootstrap)
         self.assertIn("## New Repo Bootstrap", readme)
         self.assertIn("docs/BOOTSTRAP.md", readme)
         self.assertIn("Bootstrap should stay flexible:", claude)

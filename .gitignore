@@ -1,6 +1,7 @@
 # Claude local settings (contain personal tokens/paths, never commit)
 .claude/settings.local.json
 .mcp.local.json
+.claude/local-context/
 
 # Environment & secrets
 .env

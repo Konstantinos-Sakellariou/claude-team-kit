@@ -37,11 +37,13 @@ If there is nothing staged yet, review the working tree that is intended for com
 - machine-specific paths, local settings, or editor residue
 - logs, caches, notebooks, or exports containing sensitive traces
 - files that should be gitignored but are about to be shared
+- anything under `.claude/local-context/`, which should be treated as local-only by default
 
 ### Public-Disclosure Risks
 - placeholders or TODOs that would look unfinished in a public repo
 - internal-only comments or prompts not meant for external readers
 - documents that drift from the actual code and could mislead reviewers
+- tracked docs that appear to repeat private local-context material without clear user approval
 
 ## Commands to Use
 
@@ -53,6 +55,7 @@ git diff --cached 2>/dev/null
 git diff --stat 2>/dev/null
 git diff 2>/dev/null
 rg -n "gh[pousr]_|AKIA|BEGIN .*PRIVATE KEY|password|secret|api[_-]?key|token" .
+git diff --cached --name-only 2>/dev/null | rg "^\\.claude/local-context/"
 ```
 
 Prefer staged changes when present. If nothing is staged, inspect the tracked changes intended for commit.
@@ -70,6 +73,7 @@ Prefer staged changes when present. If nothing is staged, inspect the tracked ch
 
 ### Sensitive Items
 - [file or pattern] — [why it may be sensitive]
+- [.claude/local-context/... if present] — [why it should stay local-only]
 
 ### Safe To Commit / Push?
 [YES / NO / YES WITH USER CONFIRMATION]
@@ -83,5 +87,6 @@ Prefer staged changes when present. If nothing is staged, inspect the tracked ch
 - If you find an exposed secret or clearly sensitive information: mark as `NO`
 - If the risk is contextual or business-sensitive: mark as `YES WITH USER CONFIRMATION`
 - If nothing sensitive is found: mark as `YES`
+- If `.claude/local-context/` is staged or a tracked file appears to copy from it: assume `YES WITH USER CONFIRMATION` at minimum, and escalate to `NO` if the disclosure looks clearly unsafe
 
 You do not make the final decision. `@master` must present your report to the user before commit or push proceeds.

@@ -48,6 +48,7 @@ Good question areas:
 - important folders, modules, routes, or services
 - deployment constraints and gotchas
 - preferred backlog mode: private local or tracked public
+- whether the repo should use the private local context layer for sensitive business, customer, or strategy notes
 
 ## Flexibility Rule
 

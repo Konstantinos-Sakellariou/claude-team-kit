@@ -469,6 +469,42 @@ flowchart TD
 
 ---
 
+## Workflow 8 — Private Local Context In Planning
+
+**Example trigger:** *"Help me shape the roadmap and messaging for this startup, but keep the sensitive company notes private."*
+
+**Patterns demonstrated:** private-context lookup, planning support without disclosure, tracked-doc boundary.
+
+```mermaid
+flowchart TD
+    USER(["👤 Strategic or company-sensitive request"])
+    USER --> MASTER
+
+    MASTER["@master\nChecks whether\n.claude/local-context/\nexists and is relevant"]
+
+    MASTER --> LC["@master reads only the\nrelevant local-context files\n(project-private / customers /\nconstraints)"]
+    LC --> PLAN["@idea-executor or\nadvisory team shapes the work"]
+
+    PLAN --> CHECK{"Would a tracked doc\nneed private details to stay accurate?"}
+
+    CHECK -->|"No"| RESULT["@master returns plan\nusing private context locally"]
+    CHECK -->|"Yes"| ASK["👤 Ask user whether the\nprivate detail may be promoted\ninto tracked docs"]
+
+    ASK -->|"No"| RESULT
+    ASK -->|"Yes"| WU["@workspace-updater\nmakes the minimum safe\ntracked-doc update"]
+
+    RESULT --> DONE(["✓ Private context used safely"])
+    WU --> DONE
+```
+
+**Key points:**
+- `.claude/local-context/` is optional and local-only
+- `@master` should read only the minimum relevant private file
+- private context may guide planning without being copied into tracked docs
+- when tracked docs would benefit from private context, the user must approve that promotion explicitly
+
+---
+
 ## Reading These Diagrams
 
 | Symbol | Meaning |

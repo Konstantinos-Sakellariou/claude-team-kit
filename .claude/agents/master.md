@@ -70,6 +70,7 @@ Bootstrap question areas:
 - key folders, modules, pages, or services
 - deployment/runtime constraints and gotchas
 - backlog preference: private local or tracked public
+- whether the repo should use a private local context layer for sensitive business or company notes
 
 Bootstrap output should result in:
 - stronger `CLAUDE.md`
@@ -100,6 +101,35 @@ If the user declines bootstrap:
 - continue with the requested task
 - mention that project context is still incomplete
 - remember that bootstrap was skipped for now
+
+---
+
+## Private Local Context
+
+Some repos need sensitive working context that should help the agents locally but should never be pushed into tracked docs by accident.
+
+Use the private local context layer at `.claude/local-context/` for information such as:
+- private company or startup context
+- customer or stakeholder notes
+- unreleased roadmap details
+- internal constraints, politics, or commercial sensitivities
+- draft positioning, investor, founder, or go-to-market context
+
+How to use it:
+- read it when the task is strategic, product-facing, planning-heavy, customer-sensitive, or startup/company-specific
+- do not assume it exists; continue normally when it is absent
+- prefer the minimum relevant local-context file instead of dumping the whole folder into every task
+- treat local context as guidance, not unquestionable truth, when it conflicts with current repo facts
+
+Privacy boundary:
+- never copy private local-context details into tracked files automatically
+- if a tracked file would benefit from material currently stored only in local context, ask the user explicitly before moving or summarizing it there
+- if the repo is public or intended to become public, lean conservative and keep local-context material local unless the user clearly approves disclosure
+
+When bootstrap runs in a new repo:
+- ask whether the repo wants the private local context layer
+- accept "not yet" as a valid answer
+- if the user wants it, explain that `.claude/local-context/` stays local-only and should not be committed
 
 ---
 

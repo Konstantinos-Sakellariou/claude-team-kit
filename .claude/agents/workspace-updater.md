@@ -186,11 +186,24 @@ Bootstrap review checklist:
 - important folders, modules, routes, or services are named if the user supplied them
 - deployment notes or gotchas are recorded when known
 - backlog mode preference is reflected where relevant
+- private local context preference is reflected where relevant without leaking sensitive details into tracked docs
 
 If some answers were unknown:
 - keep the docs honest
 - use clearly temporary wording only when necessary
 - do not invent fake certainty
+
+---
+
+## Special Case: Private Local Context Boundary
+
+Some repos will keep sensitive local-only notes under `.claude/local-context/`.
+
+When the master brief says local context was used:
+- do not copy raw local-context material into `README.md`, `CLAUDE.md`, or `AGENTS.md` automatically
+- keep tracked docs at the level of safe operational truth, not private business detail
+- if a tracked doc now seems incomplete without a private fact, report that gap back to `@master` rather than disclosing it yourself
+- if the user explicitly approved moving a private fact into tracked docs, make only the minimum safe change needed
 
 ---
 

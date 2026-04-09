@@ -32,6 +32,22 @@ High-signal project briefings often add:
 
 The goal is simple: include the facts an agent would need to avoid obvious mistakes.
 
+## Private Local Context
+
+Not every important project fact belongs in tracked docs.
+
+Use `.claude/local-context/` for local-only material such as:
+- private startup or company strategy
+- customer or stakeholder notes
+- pricing, fundraising, or GTM context
+- unreleased roadmap details
+- internal constraints that should influence decisions without being committed
+
+Keep the boundary clean:
+- tracked docs describe safe operational truth
+- local context stores private working truth
+- if a tracked doc would benefit from private material, `@master` should ask before moving it there
+
 ## Bootstrap For New Repos
 
 When this kit is copied into a repo that still has generic template docs, `@master` should run a lightweight bootstrap flow before major work starts.
@@ -42,6 +58,7 @@ That bootstrap should:
 - accept partial answers
 - make clearly labeled temporary assumptions where the user is unsure
 - update `CLAUDE.md`, `AGENTS.md`, and `README.md` toward a real project briefing
+- ask whether the repo also wants the private local context layer for sensitive business or customer notes
 
 The goal is not perfect upfront certainty. The goal is enough real context that future agent work stops making obvious mistakes.
 

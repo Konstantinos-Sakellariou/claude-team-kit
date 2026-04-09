@@ -31,6 +31,7 @@ The canonical implementation lives under `.claude/`.
 - `.claude/rules/`: standing engineering rules
 - `.claude/hooks/`: safety and formatting shell hooks
 - `.claude/agent-memory/`: persistent per-agent memory
+- `.claude/local-context/`: optional local-only business, customer, and strategy context
 - `.claude/settings.json`: default Claude workspace settings
 - `BACKLOG.example.md`: tracked starter for the private local backlog file
 - `docs/BACKLOG.example.md`: tracked starter for an optional public backlog
@@ -45,6 +46,7 @@ Repo-level docs explain and package that implementation:
 - `CLAUDE.md`: repo briefing for Claude-compatible tools
 - `AGENTS.md`: repo briefing for Codex-style tools that read AGENTS files
 - `docs/BOOTSTRAP.md`: how new repos should be initialized when the kit is copied elsewhere
+- `docs/LOCAL_CONTEXT.md`: how the private local-context layer works and where the privacy boundary sits
 - `docs/TEAMS.md`: the reusable team abstraction and team operating rules
 - `docs/AGENT_WORKFLOWS.md`: collaboration and orchestration examples
 - `docs/PROJECT_CUSTOMIZATION.md`: how to adapt the kit to a real project
@@ -55,12 +57,13 @@ The intended operating flow is:
 
 1. A user enters through `@master`
 2. In a new repo, `@master` may first run a bootstrap flow if the briefing still looks generic
-3. `@master` plans the work
-4. `@master` decides whether the work is best handled by a single agent, one team, or multiple teams
-5. Specialist agents contribute in parallel or sequence
-6. `@master` synthesizes the result
-7. Durable decisions are proposed as ADRs by default when they should outlive the chat
-8. `@workspace-updater` reviews and aligns the core docs after significant changes
+3. When relevant, `@master` may also read `.claude/local-context/` for local-only private context
+4. `@master` plans the work
+5. `@master` decides whether the work is best handled by a single agent, one team, or multiple teams
+6. Specialist agents contribute in parallel or sequence
+7. `@master` synthesizes the result
+8. Durable decisions are proposed as ADRs by default when they should outlive the chat
+9. `@workspace-updater` reviews and aligns the core docs after significant changes
 
 This repo currently enforces that model through prompts, settings, hooks, and validation checks rather than through an external execution engine.
 
@@ -108,3 +111,4 @@ When the kit is copied into a real repo, the adaptation work should happen in th
 - `README.md`, `CLAUDE.md`, and `AGENTS.md` can drift unless updated together
 - shell hooks rely on common local tools such as `python3`, `black`, `isort`, and `prettier`
 - local secrets belong in `.claude/settings.local.json` or environment variables, never tracked files
+- local private business and customer context belongs in `.claude/local-context/`, never tracked files by default

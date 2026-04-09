@@ -13,7 +13,8 @@ This repo is a team-definition layer, not a standalone orchestration runtime. It
 ├── skills/          17 reusable skills (code-review, fix-bug, business-case, create-pr...)
 ├── rules/           Modular rule files — Python, TypeScript, security, testing, git, performance, API design, AI/ML workflow
 ├── hooks/           Shell automations (auto-format, secret detection, file protection...)
-└── agent-memory/    Persistent per-agent memory (grows over time)
+├── agent-memory/    Persistent per-agent memory (grows over time)
+└── local-context/   Optional local-only business, customer, and strategy context
 BACKLOG.example.md   Starter for the private local backlog file
 docs/BACKLOG.example.md
                     Starter for an optional tracked public backlog
@@ -31,9 +32,10 @@ scripts/             Setup and validation helpers
 2. Run `./scripts/setup.sh`
 3. Fill in `.claude/settings.local.json` and/or `.env` with your `GITHUB_TOKEN`
 4. Use the generated local `BACKLOG.md` for private planning and deferred work, or create `docs/BACKLOG.md` from `docs/BACKLOG.example.md` if you want a public tracked backlog
-5. Edit `CLAUDE.md` for the target project you want the kit to describe
-6. Run `./scripts/doctor.sh`
-7. Start a Claude session and address `@master`
+5. Add any sensitive startup, customer, or strategy notes to `.claude/local-context/` and keep that folder local-only
+6. Edit `CLAUDE.md` for the target project you want the kit to describe
+7. Run `./scripts/doctor.sh`
+8. Start a Claude session and address `@master`
 
 ## What This Repo Is
 
@@ -107,6 +109,28 @@ If the repo docs still look template-like, `@master` should pause briefly, ask a
 This is intentionally flexible. Users will not always know their exact stack, runtime, or architecture yet, so `@master` should help discover the project shape rather than rigidly interrogating them.
 
 See [`docs/BOOTSTRAP.md`](docs/BOOTSTRAP.md) for the full bootstrap model.
+
+## Private Local Context
+
+Some repos need a second context layer that should help agents locally but should not become part of tracked repo history.
+
+For that, this kit supports a private local context folder at `.claude/local-context/`.
+
+Use it for:
+- private startup or company notes
+- customer or stakeholder context
+- pricing, GTM, fundraising, or investor framing
+- unreleased roadmap items
+- sensitive constraints that should guide planning without being pushed publicly
+
+`@master` should consult this layer when work is strategic, planning-heavy, customer-sensitive, or company-specific.
+
+The privacy rule is simple:
+- local context may guide the work
+- local context must not be copied into tracked docs automatically
+- if a tracked file would benefit from that private information, `@master` should ask first
+
+See [`docs/LOCAL_CONTEXT.md`](docs/LOCAL_CONTEXT.md) for the full model and boundary rules.
 
 ## What Teams Mean
 
@@ -249,6 +273,7 @@ These fire automatically — you don't need to ask:
 - "Backlog this" or defer-for-later requests → `@backlog-updater` updates the chosen backlog and can link an approved plan
 - Significant idea discussions → `@idea-executor` shapes the idea into an execution plan
 - Durable architecture, policy, workflow, or repo-structure decisions → `@master` proposes an ADR by default
+- Strategic, startup, customer, or company-sensitive work → `@master` consults `.claude/local-context/` first when it exists
 - Content ready to publish → `@editorial-reviewer` must pass it first
 - Before any public release or push → `@privacy-reviewer` runs mandatory scan
 - Before any commit or push → `@github-safety-guard` reviews staged or pending changes and `@master` surfaces the findings
@@ -312,6 +337,7 @@ The 38 agents split into five groups designed to cover any project type:
 - `python3 -m unittest discover -s tests -v` runs the lightweight validation test suite for hooks and doctor behavior
 - `docs/ARCHITECTURE.md` explains the product boundary and canonical sources
 - `docs/BOOTSTRAP.md` explains how `@master` should initialize a new repo briefing when this kit is copied elsewhere
+- `docs/LOCAL_CONTEXT.md` explains the private local context layer and its privacy boundary
 - `docs/TEAMS.md` explains the reusable team abstraction and how `@master` uses it
 - `docs/PROJECT_CUSTOMIZATION.md` shows how to turn the generic kit into a real project briefing
 
@@ -348,6 +374,7 @@ If backlog preference is not known yet, `@master` should ask whether the project
 - Edit `CLAUDE.md` to configure the project name, stack, commands, and notes
 - Use `BACKLOG.example.md` as the tracked starter and `BACKLOG.md` as the local ignored registry for deferred work and captured ideas
 - Use `docs/BACKLOG.example.md` if you want a tracked public backlog at `docs/BACKLOG.md`
+- Use `.claude/local-context/` for sensitive local-only startup, customer, or strategy context
 - Use `docs/PROJECT_CUSTOMIZATION.md` when adapting the kit to a specific repository
 - Add project-specific rules with `@.claude/rules/your-rule.md` in `CLAUDE.md`
 - Create new agents in `.claude/agents/` — copy any existing file and update the frontmatter and instructions
@@ -366,6 +393,7 @@ If backlog preference is not known yet, `@master` should ask whether the project
 | `docs/BACKLOG.example.md` | Starter for a tracked public backlog at `docs/BACKLOG.md` |
 | `docs/ARCHITECTURE.md` | Product boundary, canonical sources, maintenance priorities |
 | `docs/BOOTSTRAP.md` | New-repo bootstrap behavior, trigger rules, and adaptive question flow |
+| `docs/LOCAL_CONTEXT.md` | Private local-context model for sensitive company, customer, and strategy notes |
 | `docs/TEAMS.md` | Team abstraction, reusable manifests, and team operating rules |
 | `docs/PROJECT_CUSTOMIZATION.md` | How to adapt the generic kit to a concrete repo |
 | `docs/AGENT_WORKFLOWS.md` | Detailed workflow diagrams with parallel/sequential/gated patterns |

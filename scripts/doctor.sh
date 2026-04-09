@@ -40,6 +40,7 @@ check_file "BACKLOG.example.md" "BACKLOG.example.md exists"
 check_file "docs/BACKLOG.example.md" "docs/BACKLOG.example.md exists"
 check_file "docs/ARCHITECTURE.md" "docs/ARCHITECTURE.md exists"
 check_file "docs/BOOTSTRAP.md" "docs/BOOTSTRAP.md exists"
+check_file "docs/LOCAL_CONTEXT.md" "docs/LOCAL_CONTEXT.md exists"
 check_file "docs/TEAMS.md" "docs/TEAMS.md exists"
 check_file "docs/AGENT_WORKFLOWS.md" "docs/AGENT_WORKFLOWS.md exists"
 check_file "docs/PROJECT_CUSTOMIZATION.md" "docs/PROJECT_CUSTOMIZATION.md exists"
@@ -124,6 +125,14 @@ else
   fail "master agent prompt is missing the new-repo bootstrap flow"
 fi
 
+if grep -q '## Private Local Context' "$ROOT_DIR/.claude/agents/master.md" && \
+   grep -q '.claude/local-context/' "$ROOT_DIR/.claude/agents/master.md" && \
+   grep -q 'never copy private local-context details into tracked files automatically' "$ROOT_DIR/.claude/agents/master.md"; then
+  pass "master agent prompt defines the private local-context boundary"
+else
+  fail "master agent prompt is missing the private local-context boundary"
+fi
+
 if grep -q 'This is automatic and does not wait for an extra user prompt' "$ROOT_DIR/.claude/agents/master.md"; then
   pass "master agent prompt requires automatic final workspace updates"
 else
@@ -146,6 +155,12 @@ if [ -f "$ROOT_DIR/.claude/agents/github-safety-guard.md" ]; then
   pass "github-safety-guard agent exists"
 else
   fail "github-safety-guard agent is missing"
+fi
+
+if grep -q '.claude/local-context/' "$ROOT_DIR/.claude/agents/github-safety-guard.md"; then
+  pass "github-safety-guard protects the private local-context layer"
+else
+  fail "github-safety-guard does not protect the private local-context layer"
 fi
 
 if [ -f "$ROOT_DIR/.claude/agents/backlog-updater.md" ]; then
@@ -280,6 +295,12 @@ else
   fail "workspace-updater prompt does not cover all core documentation files"
 fi
 
+if grep -q '## Special Case: Private Local Context Boundary' "$ROOT_DIR/.claude/agents/workspace-updater.md"; then
+  pass "workspace-updater respects the private local-context boundary"
+else
+  fail "workspace-updater is missing the private local-context boundary"
+fi
+
 if grep -q 'By default, `@master` also reports which teams and agents were selected' "$ROOT_DIR/README.md"; then
   pass "README.md documents default orchestration reporting"
 else
@@ -309,6 +330,21 @@ if grep -q '## New Repo Bootstrap' "$ROOT_DIR/README.md" && \
   pass "README.md, CLAUDE.md, and AGENTS.md document the bootstrap flow"
 else
   fail "Core docs are not aligned on the bootstrap flow"
+fi
+
+if grep -q '## Private Local Context' "$ROOT_DIR/README.md" && \
+   grep -q 'docs/LOCAL_CONTEXT.md' "$ROOT_DIR/README.md" && \
+   grep -q 'private local context layer' "$ROOT_DIR/CLAUDE.md" && \
+   grep -q 'private local context layer' "$ROOT_DIR/AGENTS.md"; then
+  pass "README.md, CLAUDE.md, and AGENTS.md document the private local-context layer"
+else
+  fail "Core docs are not aligned on the private local-context layer"
+fi
+
+if grep -q '^\.claude/local-context/$' "$ROOT_DIR/.gitignore"; then
+  pass ".gitignore protects the private local-context folder"
+else
+  fail ".gitignore does not protect the private local-context folder"
 fi
 
 if grep -q 'propose an ADR by default' "$ROOT_DIR/README.md"; then

@@ -1,0 +1,65 @@
+# Private Local Context
+
+Some projects need sensitive operating context that helps agents work well but should not live in tracked repo docs.
+
+Use `.claude/local-context/` for that layer.
+
+This folder is local-only and should stay gitignored.
+
+## What Belongs There
+
+Good candidates:
+- private startup or company context
+- customer or stakeholder notes
+- pricing, fundraising, GTM, or investor framing
+- unreleased roadmap details
+- commercial, legal, or organizational constraints
+- sensitive success metrics or internal operating assumptions
+
+Keep tracked docs for safe operational truth.
+Keep local context for private working truth.
+
+## Suggested Files
+
+The setup script can scaffold these starter files:
+- `.claude/local-context/README.md`
+- `.claude/local-context/project-private.md`
+- `.claude/local-context/customers.md`
+- `.claude/local-context/constraints.md`
+
+Use only the files you actually need.
+
+## How `@master` Should Use It
+
+`@master` should consult local context when work is:
+- strategic or product-facing
+- planning-heavy
+- startup or business-sensitive
+- customer-sensitive
+- content or positioning work that needs private context
+
+`@master` should not assume local context exists, and should continue normally if the folder is absent.
+
+## Privacy Boundary
+
+The local-context layer is not a shadow README.
+
+Rules:
+- do not copy local-context material into tracked files automatically
+- do not commit `.claude/local-context/`
+- if tracked docs would benefit from a private fact, ask the user before moving or summarizing it there
+- if the repo is public, prefer keeping private context local unless the user explicitly approves disclosure
+
+## Git Safety
+
+`@github-safety-guard` should treat `.claude/local-context/` as sensitive by default.
+
+If files from that folder are staged, or if tracked docs appear to repeat private local-context material, the safety review should flag that before any commit or push proceeds.
+
+## Relationship To Bootstrap
+
+During new-repo bootstrap, `@master` should ask whether the repo wants a private local context layer in addition to the core project briefing.
+
+That lets a team establish two different context surfaces early:
+- tracked repo context in `CLAUDE.md`, `AGENTS.md`, and `README.md`
+- local-only sensitive context in `.claude/local-context/`

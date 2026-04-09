@@ -13,9 +13,10 @@ Owner: Konstantinos Sakellariou
 ## Architecture
 - See `docs/ARCHITECTURE.md`
 - See `docs/BOOTSTRAP.md` for the new-repo bootstrap flow
+- See `docs/LOCAL_CONTEXT.md` for the private local context layer
 - See `docs/PROJECT_CUSTOMIZATION.md` when adapting this kit to a real repo
 - Canonical implementation lives in `.claude/`
-- Key directories: `.claude/`, `docs/`, `docs/plans/`, `docs/adr/`, `scripts/`
+- Key directories: `.claude/`, `.claude/local-context/` (local only), `docs/`, `docs/plans/`, `docs/adr/`, `scripts/`
 
 ## Commands
 - Setup workspace: `./scripts/setup.sh`
@@ -24,6 +25,8 @@ Owner: Konstantinos Sakellariou
 - Review backlog: `sed -n '1,240p' BACKLOG.md`
 - Review public backlog template: `sed -n '1,240p' BACKLOG.example.md`
 - Review example plan: `sed -n '1,240p' docs/plans/example-execution-plan.md`
+- Review private local context guide: `sed -n '1,240p' docs/LOCAL_CONTEXT.md`
+- Inspect local context files: `find .claude/local-context -maxdepth 1 -type f 2>/dev/null | sort`
 - Review changes: `git diff --stat`
 - Inspect agents: `find .claude/agents -maxdepth 1 -type f | sort`
 - Inspect teams: `find .claude/teams -maxdepth 1 -type f | sort`
@@ -81,6 +84,14 @@ Bootstrap should stay flexible:
 - accept partial answers
 - allow temporary assumptions when the user is unsure
 - do not interrupt already-customized repos unnecessarily
+
+The private local context layer exists for sensitive company, customer, or strategy notes that should stay out of tracked docs by default.
+
+When local context is relevant:
+- `@master` may consult `.claude/local-context/`
+- it must not assume that folder exists
+- it must not copy local-context details into tracked docs automatically
+- it should ask before promoting private notes into `CLAUDE.md`, `AGENTS.md`, or `README.md`
 
 Teams are reusable orchestration bundles that `@master` can activate for recurring multi-agent workflows. They are not a runtime feature and they do not replace agents.
 
@@ -179,6 +190,7 @@ Teams help by:
 - Any request to "backlog" or save work for later → `@backlog-updater` updates the chosen backlog and can link an approved plan
 - Any substantial idea exploration that should become a plan → `@idea-executor` leads the execution-plan shaping with supporting reviewers
 - Any durable architecture, policy, workflow, or repo-structure decision → `@master` proposes an ADR by default and coordinates `@architect`, `@devils-advocate`, `@judge`, and `@tech-writer`
+- Any strategic, startup, customer, or company-sensitive request → `@master` should consult the private local context layer first when it exists
 - Any content ready to publish → `@editorial-reviewer` must pass it first
 - Before any commit or push → `@github-safety-guard` reviews the outgoing changes and `@master` presents the findings to the user
 - Before any public release or push → `@privacy-reviewer` runs the mandatory scan
@@ -202,6 +214,7 @@ Teams help by:
 - The canonical implementation lives in `.claude/`; repo docs must describe that implementation accurately
 - Team manifests live in `.claude/teams/`; they are a `@master` routing abstraction, not a Claude-native platform feature
 - New repos should go through the adaptive bootstrap flow before major work if the project briefings still look generic
+- The private local context layer lives in `.claude/local-context/`; keep it local-only and use it for sensitive business or customer notes
 - The kit includes a generic AI/ML specialist layer; keep platform-specific ML guidance in project briefings, not in the shared core
 - Real projects should move concrete architecture, routes, deployment notes, and gotchas into `CLAUDE.md` and `AGENTS.md`
 - Project-specific sync workflows belong in narrow extensions to `@master` and `@workspace-updater`, not in the generic core loop
@@ -209,6 +222,7 @@ Teams help by:
 - `@master` must make orchestration visible in the chat by default: selected agents, actions taken, and final report
 - `BACKLOG.md` is the private local backlog; start it from `BACKLOG.example.md` and do not rely on chat history alone
 - `docs/BACKLOG.md` is the optional public tracked backlog; start it from `docs/BACKLOG.example.md` when a repo wants visible backlog history
+- If `.claude/local-context/` exists, treat it as a private local context layer rather than a tracked documentation target
 - Approved execution plans belong in `docs/plans/`; approved architecture or policy decisions belong in `docs/adr/`
 - For substantial deferred ideas, prefer a backlog entry plus a linked plan in `docs/plans/` rather than a backlog row alone
 - `@tech-writer` is the primary ADR author once `@master` receives explicit approval to save the record
