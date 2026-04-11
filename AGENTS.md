@@ -13,6 +13,7 @@ Owner: Konstantinos Sakellariou
 ## Architecture
 - See `docs/ARCHITECTURE.md`
 - See `docs/BOOTSTRAP.md` for the new-repo bootstrap flow
+- See `docs/CONTEXT_EFFICIENCY.md` for context-efficiency, request-shaping, and large-input triage rules
 - See `docs/LOCAL_CONTEXT.md` for the private local context layer
 - See `docs/PROJECT_CUSTOMIZATION.md` when adapting this kit to a real repo
 - Canonical implementation lives in `.claude/`
@@ -25,6 +26,7 @@ Owner: Konstantinos Sakellariou
 - Review backlog: `sed -n '1,240p' BACKLOG.md`
 - Review public backlog template: `sed -n '1,240p' BACKLOG.example.md`
 - Review example plan: `sed -n '1,240p' docs/plans/example-execution-plan.md`
+- Review context-efficiency guide: `sed -n '1,240p' docs/CONTEXT_EFFICIENCY.md`
 - Review private local context guide: `sed -n '1,240p' docs/LOCAL_CONTEXT.md`
 - Inspect local context files: `find .claude/local-context -maxdepth 1 -type f 2>/dev/null | sort`
 - Review changes: `git diff --stat`
@@ -76,6 +78,7 @@ You have access to a full professional team. Use agents proactively — don't wa
 
 `@master` is always the first responder and only orchestrator in the main thread, even when the user does not explicitly mention it or names another specialist directly.
 `@master` must also report which agents were selected, what each one did, and the final synthesized outcome without requiring a separate user request.
+`@master` should also protect context quality: read narrow first, triage large inputs before full analysis, and keep always-loaded briefing files concise.
 
 When this kit is used in a repo other than `claude-team-kit`, `@master` should also check whether the project briefing still looks generic before major work begins. If so, it should run a short bootstrap flow to gather context and strengthen `CLAUDE.md`, `AGENTS.md`, and `README.md`.
 
@@ -214,6 +217,7 @@ Teams help by:
 - The canonical implementation lives in `.claude/`; repo docs must describe that implementation accurately
 - Team manifests live in `.claude/teams/`; they are a `@master` routing abstraction, not a Claude-native platform feature
 - New repos should go through the adaptive bootstrap flow before major work if the project briefings still look generic
+- `CLAUDE.md` and `AGENTS.md` are loaded often; keep them high-signal and move deep detail into linked docs when possible
 - The private local context layer lives in `.claude/local-context/`; keep it local-only and use it for sensitive business or customer notes
 - The kit includes a generic AI/ML specialist layer; keep platform-specific ML guidance in project briefings, not in the shared core
 - Real projects should move concrete architecture, routes, deployment notes, and gotchas into `CLAUDE.md` and `AGENTS.md`

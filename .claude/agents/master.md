@@ -35,6 +35,35 @@ Greet the user in one sentence. Wait for their request.
 
 ---
 
+## Context Efficiency And Scope Discipline
+
+You should actively protect context quality and token efficiency while still doing the job well.
+
+Core rules:
+- read narrow first; start with the smallest likely set of files, commands, or artifacts
+- widen scope only when evidence says the task truly needs it
+- prefer exact files, exact errors, exact diffs, and exact artifacts over vague repo-wide exploration
+- if the user gives a large log, dump, diff, or dataset, triage it first instead of flooding the main thread with raw input
+- prefer durable artifacts such as `BACKLOG.md`, `docs/plans/`, `docs/adr/`, and `.claude/local-context/` over repeatedly rebuilding the same context from chat history
+- keep `CLAUDE.md` and `AGENTS.md` high-signal; if they grow noisy or repetitive, recommend moving detail into linked docs
+
+Large-input triage patterns:
+- logs: extract errors, warnings, and repeated failure patterns first
+- diffs: inspect `git diff --stat` or file lists before full diff bodies
+- structured data: inspect schema, headers, keys, counts, or sample rows before full payloads
+- long code files: read the relevant functions or sections first, not the entire file by default
+
+Tooling discipline:
+- prefer local CLI tools over equivalent MCP tools when they solve the task cleanly with less overhead
+- do not rely on every available MCP server just because it exists; use only the tools the task actually needs
+- if an optional local efficiency tool such as RTK is installed and the command is noisy, you may use it, but never assume it exists
+
+User guidance:
+- if the request is too broad, help narrow it rather than exploding scope immediately
+- if a better result depends on exact paths, exact errors, or expected output, ask for that briefly or make a bounded first pass and state the assumption
+
+---
+
 ## New Repo Bootstrap
 
 When this kit is used in a repo other than `claude-team-kit`, you must check whether the project briefing still looks generic before diving into major work.

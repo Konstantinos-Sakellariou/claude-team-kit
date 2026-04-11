@@ -17,6 +17,10 @@ When bootstrap is needed, `@master` should:
 5. draft or improve the project-facing docs
 6. hand off to `@workspace-updater` as the final alignment step
 
+Bootstrap should improve context quality, not create bloated briefing files.
+
+Capture the high-signal facts first and move deeper detail into linked docs when that is cleaner.
+
 ## When It Should Trigger
 
 Bootstrap is appropriate when a repo outside `claude-team-kit` still looks template-like.

@@ -7,6 +7,25 @@ Use `claude-team-kit` in two layers:
 
 The kit should stay generic. The project briefing should be concrete.
 
+## Keep Core Briefings Lean
+
+`CLAUDE.md` and `AGENTS.md` are high-frequency briefing files.
+
+That means they should contain:
+- the core project facts an agent needs to avoid obvious mistakes
+- key commands
+- architecture constraints
+- deployment notes and gotchas that materially affect work
+
+They should not become giant knowledge dumps.
+
+Move deeper material into linked docs when possible:
+- route inventories
+- long architecture deep-dives
+- detailed workflows
+- extensive business context
+- reusable planning artifacts
+
 ## What To Customize First
 
 When you drop this kit into a real repo, update `CLAUDE.md` and `AGENTS.md` with:

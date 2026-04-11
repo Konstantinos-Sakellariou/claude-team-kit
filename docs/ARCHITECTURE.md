@@ -46,6 +46,7 @@ Repo-level docs explain and package that implementation:
 - `CLAUDE.md`: repo briefing for Claude-compatible tools
 - `AGENTS.md`: repo briefing for Codex-style tools that read AGENTS files
 - `docs/BOOTSTRAP.md`: how new repos should be initialized when the kit is copied elsewhere
+- `docs/CONTEXT_EFFICIENCY.md`: how to keep context lean, high-signal, and cheaper to reuse across sessions
 - `docs/LOCAL_CONTEXT.md`: how the private local-context layer works and where the privacy boundary sits
 - `docs/TEAMS.md`: the reusable team abstraction and team operating rules
 - `docs/AGENT_WORKFLOWS.md`: collaboration and orchestration examples
@@ -112,3 +113,4 @@ When the kit is copied into a real repo, the adaptation work should happen in th
 - shell hooks rely on common local tools such as `python3`, `black`, `isort`, and `prettier`
 - local secrets belong in `.claude/settings.local.json` or environment variables, never tracked files
 - local private business and customer context belongs in `.claude/local-context/`, never tracked files by default
+- `CLAUDE.md` and `AGENTS.md` should stay concise because they are high-frequency briefing files

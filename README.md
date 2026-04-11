@@ -26,6 +26,19 @@ scripts/             Setup and validation helpers
 .env.example         Optional local environment template
 ```
 
+## Context Efficiency
+
+This kit should stay efficient as well as capable.
+
+That means:
+- keep always-loaded briefing files high-signal
+- prefer narrow reads before broad repo sweeps
+- triage large logs, diffs, and dumps before handing raw output to the model
+- prefer durable artifacts over repeating long chat recaps
+- use only the tools and MCP servers the task actually needs
+
+See [`docs/CONTEXT_EFFICIENCY.md`](docs/CONTEXT_EFFICIENCY.md) for the full guidance, including request-shaping, large-input triage, and optional RTK usage.
+
 ## Quick Start
 
 1. Use this repo as a template or copy it into your project root
@@ -337,6 +350,7 @@ The 38 agents split into five groups designed to cover any project type:
 - `python3 -m unittest discover -s tests -v` runs the lightweight validation test suite for hooks and doctor behavior
 - `docs/ARCHITECTURE.md` explains the product boundary and canonical sources
 - `docs/BOOTSTRAP.md` explains how `@master` should initialize a new repo briefing when this kit is copied elsewhere
+- `docs/CONTEXT_EFFICIENCY.md` explains how to keep briefing files lean, requests high-signal, and large inputs under control
 - `docs/LOCAL_CONTEXT.md` explains the private local context layer and its privacy boundary
 - `docs/TEAMS.md` explains the reusable team abstraction and how `@master` uses it
 - `docs/PROJECT_CUSTOMIZATION.md` shows how to turn the generic kit into a real project briefing
@@ -393,6 +407,7 @@ If backlog preference is not known yet, `@master` should ask whether the project
 | `docs/BACKLOG.example.md` | Starter for a tracked public backlog at `docs/BACKLOG.md` |
 | `docs/ARCHITECTURE.md` | Product boundary, canonical sources, maintenance priorities |
 | `docs/BOOTSTRAP.md` | New-repo bootstrap behavior, trigger rules, and adaptive question flow |
+| `docs/CONTEXT_EFFICIENCY.md` | Context-quality rules, request-shaping, and large-input triage guidance |
 | `docs/LOCAL_CONTEXT.md` | Private local-context model for sensitive company, customer, and strategy notes |
 | `docs/TEAMS.md` | Team abstraction, reusable manifests, and team operating rules |
 | `docs/PROJECT_CUSTOMIZATION.md` | How to adapt the generic kit to a concrete repo |

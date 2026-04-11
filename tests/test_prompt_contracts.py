@@ -58,6 +58,24 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn(".claude/local-context/", local_context)
         self.assertIn(".claude/local-context/", gitignore)
 
+    def test_context_efficiency_guidance_is_aligned(self) -> None:
+        master = read(".claude/agents/master.md")
+        readme = read("README.md")
+        claude = read("CLAUDE.md")
+        agents = read("AGENTS.md")
+        context = read("docs/CONTEXT_EFFICIENCY.md")
+
+        self.assertIn("## Context Efficiency And Scope Discipline", master)
+        self.assertIn("read narrow first", master)
+        self.assertIn("prefer local CLI tools over equivalent MCP tools", master)
+        self.assertIn("## Context Efficiency", readme)
+        self.assertIn("docs/CONTEXT_EFFICIENCY.md", readme)
+        self.assertIn("docs/CONTEXT_EFFICIENCY.md", claude)
+        self.assertIn("docs/CONTEXT_EFFICIENCY.md", agents)
+        self.assertIn("## Read Narrow First", context)
+        self.assertIn("## Triage Large Inputs First", context)
+        self.assertIn("## MCP And Tool Hygiene", context)
+
     def test_backlog_updater_schema_includes_assignment_and_artifact(self) -> None:
         backlog_updater = read(".claude/agents/backlog-updater.md")
 

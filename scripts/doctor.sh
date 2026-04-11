@@ -40,6 +40,7 @@ check_file "BACKLOG.example.md" "BACKLOG.example.md exists"
 check_file "docs/BACKLOG.example.md" "docs/BACKLOG.example.md exists"
 check_file "docs/ARCHITECTURE.md" "docs/ARCHITECTURE.md exists"
 check_file "docs/BOOTSTRAP.md" "docs/BOOTSTRAP.md exists"
+check_file "docs/CONTEXT_EFFICIENCY.md" "docs/CONTEXT_EFFICIENCY.md exists"
 check_file "docs/LOCAL_CONTEXT.md" "docs/LOCAL_CONTEXT.md exists"
 check_file "docs/TEAMS.md" "docs/TEAMS.md exists"
 check_file "docs/AGENT_WORKFLOWS.md" "docs/AGENT_WORKFLOWS.md exists"
@@ -123,6 +124,14 @@ if grep -q '## New Repo Bootstrap' "$ROOT_DIR/.claude/agents/master.md" && \
   pass "master agent prompt defines the new-repo bootstrap flow"
 else
   fail "master agent prompt is missing the new-repo bootstrap flow"
+fi
+
+if grep -q '## Context Efficiency And Scope Discipline' "$ROOT_DIR/.claude/agents/master.md" && \
+   grep -q 'read narrow first' "$ROOT_DIR/.claude/agents/master.md" && \
+   grep -q 'prefer local CLI tools over equivalent MCP tools' "$ROOT_DIR/.claude/agents/master.md"; then
+  pass "master agent prompt defines context-efficiency and scope-discipline rules"
+else
+  fail "master agent prompt is missing context-efficiency and scope-discipline rules"
 fi
 
 if grep -q '## Private Local Context' "$ROOT_DIR/.claude/agents/master.md" && \
@@ -341,10 +350,33 @@ else
   fail "Core docs are not aligned on the private local-context layer"
 fi
 
+if grep -q '## Context Efficiency' "$ROOT_DIR/README.md" && \
+   grep -q 'docs/CONTEXT_EFFICIENCY.md' "$ROOT_DIR/README.md" && \
+   grep -q 'docs/CONTEXT_EFFICIENCY.md' "$ROOT_DIR/CLAUDE.md" && \
+   grep -q 'docs/CONTEXT_EFFICIENCY.md' "$ROOT_DIR/AGENTS.md"; then
+  pass "README.md, CLAUDE.md, and AGENTS.md document context-efficiency guidance"
+else
+  fail "Core docs are not aligned on context-efficiency guidance"
+fi
+
 if grep -q '^\.claude/local-context/$' "$ROOT_DIR/.gitignore"; then
   pass ".gitignore protects the private local-context folder"
 else
   fail ".gitignore does not protect the private local-context folder"
+fi
+
+claude_lines=$(wc -l < "$ROOT_DIR/CLAUDE.md" | tr -d ' ')
+agents_lines=$(wc -l < "$ROOT_DIR/AGENTS.md" | tr -d ' ')
+if [ "$claude_lines" -le 260 ]; then
+  pass "CLAUDE.md stays within the context-efficiency warning threshold"
+else
+  warn "CLAUDE.md is getting large for an always-loaded briefing file ($claude_lines lines)"
+fi
+
+if [ "$agents_lines" -le 260 ]; then
+  pass "AGENTS.md stays within the context-efficiency warning threshold"
+else
+  warn "AGENTS.md is getting large for an always-loaded briefing file ($agents_lines lines)"
 fi
 
 if grep -q 'propose an ADR by default' "$ROOT_DIR/README.md"; then
