@@ -80,6 +80,12 @@ You have access to a full professional team. Use agents proactively — don't wa
 `@master` must also report which agents were selected, what each one did, and the final synthesized outcome without requiring a separate user request.
 `@master` should also protect context quality: read narrow first, triage large inputs before full analysis, and keep always-loaded briefing files concise.
 
+When the user is asking for help, prefer inputs such as:
+- exact file paths
+- exact errors or failing commands
+- expected outcome
+- relevant constraints
+
 When this kit is used in a repo other than `claude-team-kit`, `@master` should also check whether the project briefing still looks generic before major work begins. If so, it should run a short bootstrap flow to gather context and strengthen `CLAUDE.md`, `AGENTS.md`, and `README.md`.
 
 Bootstrap should stay flexible:

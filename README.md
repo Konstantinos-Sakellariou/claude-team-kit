@@ -1,5 +1,13 @@
 # claude-team-kit
 
+[![Validate Workspace Kit](https://img.shields.io/github/actions/workflow/status/Konstantinos-Sakellariou/claude-team-kit/validate.yml?branch=main&label=validate)](https://github.com/Konstantinos-Sakellariou/claude-team-kit/actions/workflows/validate.yml)
+![Agents](https://img.shields.io/badge/agents-38-0ea5e9)
+![Teams](https://img.shields.io/badge/teams-5-14b8a6)
+![Skills](https://img.shields.io/badge/skills-17-f97316)
+![Local Context](https://img.shields.io/badge/local_context-supported-22c55e)
+
+![claude-team-kit hero](docs/assets/claude-team-kit-hero.svg)
+
 A production-ready workspace kit for Claude-style coding tools. It gives any repo a professional AI team through agent prompts, skills, rules, hooks, and persistent memory.
 
 This repo is a team-definition layer, not a standalone orchestration runtime. It focuses on reusable workspace structure and operating conventions rather than tmux workers, background daemons, or execution HUDs.
@@ -38,6 +46,28 @@ That means:
 - use only the tools and MCP servers the task actually needs
 
 See [`docs/CONTEXT_EFFICIENCY.md`](docs/CONTEXT_EFFICIENCY.md) for the full guidance, including request-shaping, large-input triage, and optional RTK usage.
+
+## How To Ask Well
+
+High-signal requests make the system both cheaper and better.
+
+Best inputs usually include:
+- exact file paths when you know them
+- exact errors or failing commands when you have them
+- what outcome you want
+- any constraints, such as "do not change behavior" or "docs only"
+
+Examples:
+- "Update [`README.md`](README.md) to explain the new setup flow."
+- "Fix the failing doctor check in [`scripts/doctor.sh`](scripts/doctor.sh)."
+- "Review the auth changes in `src/auth.ts` and focus on security regressions."
+
+Lower-signal requests are still okay, but they usually cost more context:
+- "scan the whole repo"
+- "fix bugs everywhere"
+- "read this huge log and tell me what happened" without narrowing
+
+If your request starts broad, `@master` should help narrow it before doing a large sweep.
 
 ## Quick Start
 

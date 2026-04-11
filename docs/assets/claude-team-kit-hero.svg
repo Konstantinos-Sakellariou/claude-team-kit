@@ -1,0 +1,42 @@
+<svg width="1200" height="460" viewBox="0 0 1200 460" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="460" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="card" x1="180" y1="70" x2="1020" y2="390" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="1" stop-color="#1F2937"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="460" rx="28" fill="url(#bg)"/>
+  <circle cx="1072" cy="92" r="88" fill="#0EA5E9" fill-opacity="0.12"/>
+  <circle cx="140" cy="360" r="120" fill="#14B8A6" fill-opacity="0.10"/>
+  <rect x="88" y="58" width="1024" height="344" rx="28" fill="url(#card)" stroke="#334155" stroke-width="2"/>
+
+  <rect x="126" y="98" width="178" height="36" rx="18" fill="#0B1220" stroke="#334155"/>
+  <text x="155" y="121" fill="#93C5FD" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="18" font-weight="700">workspace kit</text>
+
+  <text x="126" y="184" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="54" font-weight="800">claude-team-kit</text>
+  <text x="126" y="228" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="24">Reusable agents, teams, skills, hooks, and memory</text>
+  <text x="126" y="262" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="24">for Claude-style coding workflows across projects.</text>
+
+  <rect x="126" y="304" width="164" height="42" rx="21" fill="#0EA5E9"/>
+  <text x="154" y="331" fill="#E0F2FE" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="18" font-weight="700">@master orchestrated</text>
+
+  <rect x="690" y="112" width="330" height="238" rx="24" fill="#0B1220" stroke="#334155"/>
+  <text x="726" y="154" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="26" font-weight="800">Operational Layers</text>
+
+  <rect x="726" y="182" width="258" height="34" rx="17" fill="#172554"/>
+  <text x="748" y="204" fill="#BFDBFE" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="16" font-weight="700">Agents + Teams</text>
+
+  <rect x="726" y="226" width="258" height="34" rx="17" fill="#0F3D3E"/>
+  <text x="748" y="248" fill="#99F6E4" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="16" font-weight="700">Skills + Rules</text>
+
+  <rect x="726" y="270" width="258" height="34" rx="17" fill="#4A1D1F"/>
+  <text x="748" y="292" fill="#FECACA" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="16" font-weight="700">Hooks + Guardrails</text>
+
+  <rect x="726" y="314" width="258" height="34" rx="17" fill="#3F2B11"/>
+  <text x="748" y="336" fill="#FDE68A" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="16" font-weight="700">Artifacts + Memory</text>
+</svg>

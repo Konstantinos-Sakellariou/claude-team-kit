@@ -359,10 +359,26 @@ else
   fail "Core docs are not aligned on context-efficiency guidance"
 fi
 
+if grep -q '## How To Ask Well' "$ROOT_DIR/README.md" && \
+   grep -q 'exact file paths' "$ROOT_DIR/CLAUDE.md" && \
+   grep -q 'exact file paths' "$ROOT_DIR/AGENTS.md"; then
+  pass "README.md, CLAUDE.md, and AGENTS.md document request-shaping guidance"
+else
+  fail "Core docs are not aligned on request-shaping guidance"
+fi
+
 if grep -q '^\.claude/local-context/$' "$ROOT_DIR/.gitignore"; then
   pass ".gitignore protects the private local-context folder"
 else
   fail ".gitignore does not protect the private local-context folder"
+fi
+
+check_file "docs/assets/claude-team-kit-hero.svg" "docs/assets/claude-team-kit-hero.svg exists"
+
+if grep -q 'github/actions/workflow/status/Konstantinos-Sakellariou/claude-team-kit/validate.yml' "$ROOT_DIR/README.md"; then
+  pass "README.md includes the validation badge"
+else
+  fail "README.md is missing the validation badge"
 fi
 
 claude_lines=$(wc -l < "$ROOT_DIR/CLAUDE.md" | tr -d ' ')

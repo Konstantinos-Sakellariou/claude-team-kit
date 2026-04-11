@@ -76,6 +76,24 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn("## Triage Large Inputs First", context)
         self.assertIn("## MCP And Tool Hygiene", context)
 
+    def test_request_shaping_guidance_is_aligned(self) -> None:
+        readme = read("README.md")
+        claude = read("CLAUDE.md")
+        agents = read("AGENTS.md")
+
+        self.assertIn("## How To Ask Well", readme)
+        self.assertIn("exact file paths", claude)
+        self.assertIn("exact file paths", agents)
+
+    def test_readme_includes_badges_and_hero(self) -> None:
+        readme = read("README.md")
+        hero = read("docs/assets/claude-team-kit-hero.svg")
+
+        self.assertIn("github/actions/workflow/status/Konstantinos-Sakellariou/claude-team-kit/validate.yml", readme)
+        self.assertIn("claude-team-kit hero", readme)
+        self.assertIn("<svg", hero)
+        self.assertIn("Operational Layers", hero)
+
     def test_backlog_updater_schema_includes_assignment_and_artifact(self) -> None:
         backlog_updater = read(".claude/agents/backlog-updater.md")
 
