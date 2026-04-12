@@ -120,10 +120,19 @@ fi
 
 if grep -q '## New Repo Bootstrap' "$ROOT_DIR/.claude/agents/master.md" && \
    grep -q 'Do not trigger bootstrap when:' "$ROOT_DIR/.claude/agents/master.md" && \
-   grep -q 'Bootstrap question areas:' "$ROOT_DIR/.claude/agents/master.md"; then
-  pass "master agent prompt defines the new-repo bootstrap flow"
+   grep -q 'Bootstrap question areas:' "$ROOT_DIR/.claude/agents/master.md" && \
+   grep -q '### Guided Initialization Mode' "$ROOT_DIR/.claude/agents/master.md"; then
+  pass "master agent prompt defines the new-repo bootstrap flow and guided initialization mode"
 else
-  fail "master agent prompt is missing the new-repo bootstrap flow"
+  fail "master agent prompt is missing the new-repo bootstrap flow or guided initialization mode"
+fi
+
+if grep -q 'Guided initialization should:' "$ROOT_DIR/docs/BOOTSTRAP.md" && \
+   grep -q '## Suggested Rounds' "$ROOT_DIR/docs/BOOTSTRAP.md" && \
+   grep -q 'guided initialization' "$ROOT_DIR/README.md"; then
+  pass "bootstrap docs define guided initialization behavior"
+else
+  fail "bootstrap docs are missing guided initialization behavior"
 fi
 
 if grep -q '## Context Efficiency And Scope Discipline' "$ROOT_DIR/.claude/agents/master.md" && \

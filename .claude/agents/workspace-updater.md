@@ -193,6 +193,12 @@ If some answers were unknown:
 - use clearly temporary wording only when necessary
 - do not invent fake certainty
 
+If the master brief says guided initialization was used:
+- verify that the docs reflect the confirmed answers first and assumptions second
+- keep the guidance collaborative and practical rather than bloated
+- check that temporary wording is clearly marked and easy to replace later
+- prefer linked docs over stuffing every discovery into `CLAUDE.md` or `AGENTS.md`
+
 ---
 
 ## Special Case: Private Local Context Boundary

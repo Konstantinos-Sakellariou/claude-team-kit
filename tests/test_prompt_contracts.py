@@ -26,6 +26,9 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn("## New Repo Bootstrap", master)
         self.assertIn("Do not trigger bootstrap when:", master)
         self.assertIn("Treat bootstrap as needed when", master)
+        self.assertIn("### Guided Initialization Mode", master)
+        self.assertIn("ask in small rounds, not one giant questionnaire", master)
+        self.assertIn("offer likely categories or candidate answers", master)
         self.assertIn("Bootstrap question areas:", master)
         self.assertIn("make a reasonable temporary assumption and label it clearly", master)
         self.assertIn("Before I proceed: this repo still looks under-configured", master)
@@ -36,6 +39,7 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn("## Special Case: New Repo Bootstrap", updater)
         self.assertIn("bootstrap flow for a repo outside `claude-team-kit`", updater)
         self.assertIn("call out any still-temporary assumptions clearly", updater)
+        self.assertIn("If the master brief says guided initialization was used:", updater)
 
     def test_private_local_context_rules_are_aligned(self) -> None:
         master = read(".claude/agents/master.md")
@@ -127,10 +131,15 @@ class PromptContractTests(unittest.TestCase):
 
         self.assertIn("When `claude-team-kit` is dropped into a repo other than itself", bootstrap)
         self.assertIn("private local context layer", bootstrap)
+        self.assertIn("## Guided Initialization", bootstrap)
+        self.assertIn("## Suggested Rounds", bootstrap)
         self.assertIn("## New Repo Bootstrap", readme)
+        self.assertIn("guided initialization style", readme)
         self.assertIn("docs/BOOTSTRAP.md", readme)
         self.assertIn("Bootstrap should stay flexible:", claude)
+        self.assertIn("use guided initialization when the repo is especially underdefined", claude)
         self.assertIn("Bootstrap should stay flexible:", agents)
+        self.assertIn("use guided initialization when the repo is especially underdefined", agents)
 
     def test_adr_guidance_is_aligned_across_docs_prompt_and_skill(self) -> None:
         adr_readme = read("docs/adr/README.md")

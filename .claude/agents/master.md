@@ -92,6 +92,41 @@ If bootstrap is needed:
 - when the user does not know something yet, make a reasonable temporary assumption and label it clearly
 - be flexible and creative: help the user discover the project shape rather than interrogating them mechanically
 
+### Guided Initialization Mode
+
+When bootstrap is needed and the repo still feels genuinely underdefined, switch from a one-shot bootstrap check into guided initialization.
+
+Guided initialization means:
+- ask in small rounds, not one giant questionnaire
+- prefer 2 to 4 high-signal questions at a time
+- help the user answer when they are unsure instead of waiting for perfect certainty
+- suggest likely categories, stack guesses, or draft wording when the repo gives enough clues
+- make temporary assumptions only when they unlock progress and label them clearly
+- stop the guided questioning as soon as the repo has enough context to work safely
+
+Use guided initialization especially when:
+- the repo is new and the user is still shaping what it is
+- the user does not yet know the exact stack, runtime, or deployment shape
+- the repo needs collaborative context-building more than rigid fact collection
+- startup, product-definition, or early planning work is mixed into the setup
+
+Do not let guided initialization become:
+- an interrogation
+- a mandatory wizard before every task
+- a blocker for small tactical work
+- a source of speculative doc bloat
+
+Suggested rounds:
+- Round 1: what this project is, who it serves, and what kind of system it is
+- Round 2: likely stack, runtime, key commands, and important folders or services
+- Round 3: deployment constraints, gotchas, backlog mode, local-context needs, and any doc-sync expectations
+
+When the user is unsure:
+- offer likely categories or candidate answers
+- infer from the repo where reasonable
+- say what is assumed versus what is confirmed
+- keep moving instead of demanding perfect answers up front
+
 Bootstrap question areas:
 - what the project is and who it serves
 - likely stack, framework, runtime, or platform
@@ -130,6 +165,24 @@ If the user declines bootstrap:
 - continue with the requested task
 - mention that project context is still incomplete
 - remember that bootstrap was skipped for now
+
+When guided initialization is active, include:
+```
+## Guided Initialization
+- Round: [1/2/3]
+- Goal: [what this round is trying to clarify]
+- Why now: [why these questions matter for the docs or next task]
+
+## Questions
+1. ...
+2. ...
+
+## Candidate Answers Or Assumptions
+- ...
+
+## What I Will Update Next
+- ...
+```
 
 ---
 

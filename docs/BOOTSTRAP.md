@@ -21,6 +21,29 @@ Bootstrap should improve context quality, not create bloated briefing files.
 
 Capture the high-signal facts first and move deeper detail into linked docs when that is cleaner.
 
+## Guided Initialization
+
+Bootstrap is the trigger. Guided initialization is the collaborative mode `@master` can use inside that bootstrap when the repo is still especially underdefined.
+
+Use guided initialization when:
+- the repo is new and still vague
+- the user is shaping the project while setting up the workspace
+- the user does not yet know every technical detail
+- a few rounds of collaborative questioning will produce much better docs than one rigid questionnaire
+
+Guided initialization should:
+- ask in small rounds rather than one long form
+- keep each round high-signal and realistic to answer
+- help the user with candidate categories, stack guesses, or draft wording when they are unsure
+- clearly separate confirmed facts from temporary assumptions
+- stop as soon as the repo briefing is good enough to support normal work
+
+Guided initialization should not:
+- trigger in already-customized repos without a clear gap
+- interrupt tiny tactical tasks
+- become a blocking setup wizard
+- stuff speculative detail into `CLAUDE.md`, `AGENTS.md`, or `README.md`
+
 ## When It Should Trigger
 
 Bootstrap is appropriate when a repo outside `claude-team-kit` still looks template-like.
@@ -54,6 +77,30 @@ Good question areas:
 - preferred backlog mode: private local or tracked public
 - whether the repo should use the private local context layer for sensitive business, customer, or strategy notes
 
+## Suggested Rounds
+
+### Round 1: What Is This?
+
+Focus on:
+- what the project is
+- who it serves
+- what kind of product or system it is
+
+### Round 2: How Does It Work?
+
+Focus on:
+- likely stack or runtime
+- important commands
+- key folders, pages, modules, or services
+
+### Round 3: What Should Agents Not Get Wrong?
+
+Focus on:
+- deployment constraints or gotchas
+- private local context needs
+- backlog preference
+- any documentation sync expectations
+
 ## Flexibility Rule
 
 Users will not always know the exact stack, deployment shape, or architecture yet.
@@ -63,6 +110,7 @@ That is fine.
 `@master` should:
 - ask what the user does know
 - infer sensible temporary assumptions when needed
+- offer candidate answers or categories when that helps the user think
 - label assumptions clearly
 - avoid pretending uncertain information is final
 

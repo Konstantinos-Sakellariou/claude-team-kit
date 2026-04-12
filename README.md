@@ -151,6 +151,12 @@ If the repo docs still look template-like, `@master` should pause briefly, ask a
 
 This is intentionally flexible. Users will not always know their exact stack, runtime, or architecture yet, so `@master` should help discover the project shape rather than rigidly interrogating them.
 
+When the repo is especially underdefined, `@master` should switch into a guided initialization style:
+- ask in small rounds instead of one giant questionnaire
+- help the user with candidate answers when they are unsure
+- keep confirmed facts and temporary assumptions clearly separated
+- stop as soon as the briefing is strong enough for normal work
+
 See [`docs/BOOTSTRAP.md`](docs/BOOTSTRAP.md) for the full bootstrap model.
 
 ## Private Local Context

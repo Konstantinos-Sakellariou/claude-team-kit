@@ -92,6 +92,9 @@ Bootstrap should stay flexible:
 - ask a short structured set of questions
 - accept partial answers
 - allow temporary assumptions when the user is unsure
+- use guided initialization when the repo is especially underdefined
+- ask in small rounds instead of a giant setup questionnaire
+- offer candidate answers or categories when the user is still figuring the project out
 - do not interrupt already-customized repos unnecessarily
 
 The private local context layer exists for sensitive company, customer, or strategy notes that should stay out of tracked docs by default.

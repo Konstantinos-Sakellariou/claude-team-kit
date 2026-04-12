@@ -76,6 +76,8 @@ That bootstrap should:
 - ask a short structured set of questions
 - accept partial answers
 - make clearly labeled temporary assumptions where the user is unsure
+- shift into guided initialization when the repo is still too vague for a one-pass bootstrap
+- ask in small rounds and help the user with candidate answers when needed
 - update `CLAUDE.md`, `AGENTS.md`, and `README.md` toward a real project briefing
 - ask whether the repo also wants the private local context layer for sensitive business or customer notes
 

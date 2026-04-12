@@ -428,7 +428,7 @@ flowchart TD
 
 **Example trigger:** *"We just copied this kit into a new startup repo. Help us set it up properly."*
 
-**Patterns demonstrated:** adaptive discovery, flexible questioning, temporary assumptions, initial doc alignment, final workspace sync.
+**Patterns demonstrated:** adaptive discovery, guided initialization in small rounds, flexible questioning, temporary assumptions, initial doc alignment, final workspace sync.
 
 ```mermaid
 flowchart TD
@@ -442,7 +442,7 @@ flowchart TD
     APPROVAL -->|"No"| CONTINUE["@master proceeds with task\nbut notes that repo context\nis still incomplete"]
     APPROVAL -->|"Yes"| QS
 
-    QS["@master\nAsks a short structured set of questions\nPurpose · stack · commands · architecture\nconstraints · backlog preference"]
+    QS["@master\nRuns guided initialization in small rounds\nPurpose first · then stack and commands\nthen constraints and preferences"]
 
     QS --> INPUT
 
@@ -464,6 +464,8 @@ flowchart TD
 - bootstrap should not run inside `claude-team-kit` itself
 - bootstrap should not interrupt already-customized repos
 - `@master` should ask only high-signal questions, not a giant questionnaire
+- when the repo is still vague, `@master` should use guided initialization in small rounds instead of a single dump of questions
+- if the user is unsure, `@master` should help with candidate answers or repo-informed guesses
 - users can answer partially; `@master` may make temporary assumptions and label them clearly
 - `@workspace-updater` closes the loop by checking that the core docs now reflect the repo better than before
 
