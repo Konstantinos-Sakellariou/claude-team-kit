@@ -19,8 +19,8 @@ This repo is a team-definition layer, not a standalone orchestration runtime. It
 ├── agents/          38 specialized agents across engineering, AI/ML, content, delivery, and advisory
 ├── teams/           5 reusable team manifests that @master can activate for recurring workflows
 ├── skills/          17 reusable skills (code-review, fix-bug, business-case, create-pr...)
-├── rules/           Modular rule files — Python, TypeScript, security, testing, git, performance, API design, AI/ML workflow
-├── hooks/           Shell automations (auto-format, secret detection, file protection...)
+├── rules/           Modular rule files — docs, artifacts, context, Python, TypeScript, security, testing, git, performance, API design, AI/ML workflow
+├── hooks/           Shell automations (auto-format, secret detection, file protection, doc-drift warning...)
 ├── agent-memory/    Persistent per-agent memory (grows over time)
 └── local-context/   Optional local-only business, customer, and strategy context
 BACKLOG.example.md   Starter for the private local backlog file

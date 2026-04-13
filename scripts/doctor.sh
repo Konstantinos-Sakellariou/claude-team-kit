@@ -50,7 +50,11 @@ check_file "docs/adr/README.md" "docs/adr/README.md exists"
 check_file ".claude/settings.json" ".claude/settings.json exists"
 check_file ".mcp.json" ".mcp.json exists"
 check_file ".env.example" ".env.example exists"
+check_file ".claude/rules/documentation-governance.md" ".claude/rules/documentation-governance.md exists"
+check_file ".claude/rules/artifact-governance.md" ".claude/rules/artifact-governance.md exists"
+check_file ".claude/rules/context-efficiency.md" ".claude/rules/context-efficiency.md exists"
 check_file ".claude/rules/ml-workflow.md" ".claude/rules/ml-workflow.md exists"
+check_file ".claude/hooks/warn-doc-drift.sh" ".claude/hooks/warn-doc-drift.sh exists"
 
 if python3 - "$ROOT_DIR/.claude/settings.json" <<'PY' >/dev/null 2>&1
 import json
@@ -65,6 +69,12 @@ else
   fail ".claude/settings.json does not set master as the default agent"
 fi
 
+if grep -q 'warn-doc-drift.sh' "$ROOT_DIR/.claude/settings.json"; then
+  pass ".claude/settings.json registers the doc-drift warning hook"
+else
+  fail ".claude/settings.json does not register the doc-drift warning hook"
+fi
+
 if grep -q "@.Codex/rules/" "$ROOT_DIR/AGENTS.md"; then
   fail "AGENTS.md still references @.Codex paths"
 elif grep -q "@.claude/rules/" "$ROOT_DIR/AGENTS.md"; then
@@ -77,6 +87,17 @@ if grep -q "@.claude/rules/" "$ROOT_DIR/CLAUDE.md"; then
   pass "CLAUDE.md references .claude rules"
 else
   fail "CLAUDE.md rule references are missing"
+fi
+
+if grep -q "@.claude/rules/documentation-governance.md" "$ROOT_DIR/CLAUDE.md" && \
+   grep -q "@.claude/rules/documentation-governance.md" "$ROOT_DIR/AGENTS.md" && \
+   grep -q "@.claude/rules/artifact-governance.md" "$ROOT_DIR/CLAUDE.md" && \
+   grep -q "@.claude/rules/artifact-governance.md" "$ROOT_DIR/AGENTS.md" && \
+   grep -q "@.claude/rules/context-efficiency.md" "$ROOT_DIR/CLAUDE.md" && \
+   grep -q "@.claude/rules/context-efficiency.md" "$ROOT_DIR/AGENTS.md"; then
+  pass "CLAUDE.md and AGENTS.md reference the governance rules"
+else
+  fail "CLAUDE.md and AGENTS.md are not aligned on the governance rules"
 fi
 
 if grep -q "@.claude/rules/ml-workflow.md" "$ROOT_DIR/CLAUDE.md" && \

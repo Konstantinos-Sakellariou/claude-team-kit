@@ -28,8 +28,8 @@ The canonical implementation lives under `.claude/`.
 - `.claude/agents/`: agent definitions and orchestration prompts
 - `.claude/teams/`: reusable team manifests that `@master` can activate
 - `.claude/skills/`: reusable task skills
-- `.claude/rules/`: standing engineering rules
-- `.claude/hooks/`: safety and formatting shell hooks
+- `.claude/rules/`: standing engineering and governance rules
+- `.claude/hooks/`: safety, formatting, and drift-warning shell hooks
 - `.claude/agent-memory/`: persistent per-agent memory
 - `.claude/local-context/`: optional local-only business, customer, and strategy context
 - `.claude/settings.json`: default Claude workspace settings
@@ -39,6 +39,11 @@ The canonical implementation lives under `.claude/`.
 - `docs/adr/`: approved architecture and policy decisions
 
 The shared kit can include reusable domain-specialist packs when they stay generic. The built-in AI/ML layer is one example: it adds specialist prompts and rules without forcing any project-specific platform or lifecycle.
+
+The rules layer now covers more than language or code quality concerns. It also carries reusable governance for:
+- documentation alignment
+- artifact placement
+- context efficiency and scope discipline
 
 Repo-level docs explain and package that implementation:
 

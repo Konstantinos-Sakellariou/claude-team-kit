@@ -129,5 +129,69 @@ class NotifyOnCompleteHookTests(unittest.TestCase):
         self.assertEqual(result.stdout, "")
 
 
+class WarnDocDriftHookTests(unittest.TestCase):
+    def _init_repo(self, tmpdir: str) -> Path:
+        repo = Path(tmpdir)
+        subprocess.run(["git", "init"], cwd=repo, check=True, capture_output=True)
+        subprocess.run(["git", "config", "user.name", "Test User"], cwd=repo, check=True, capture_output=True)
+        subprocess.run(["git", "config", "user.email", "test@example.com"], cwd=repo, check=True, capture_output=True)
+
+        for name in ("README.md", "CLAUDE.md", "AGENTS.md"):
+            (repo / name).write_text(f"# {name}\n")
+
+        (repo / ".claude").mkdir()
+        (repo / ".claude" / "agents").mkdir()
+        (repo / ".claude" / "rules").mkdir()
+        (repo / "docs").mkdir()
+
+        subprocess.run(["git", "add", "."], cwd=repo, check=True, capture_output=True)
+        subprocess.run(["git", "commit", "-m", "init"], cwd=repo, check=True, capture_output=True)
+        return repo
+
+    def test_warns_when_only_one_core_doc_is_changed(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            repo = self._init_repo(tmpdir)
+            (repo / "README.md").write_text("# README\nchanged\n")
+
+            result = run_hook(
+                "warn-doc-drift.sh",
+                {"tool_input": {"file_path": str(repo / "README.md")}},
+                env={"CLAUDE_PROJECT_DIR": str(repo)},
+            )
+
+            self.assertEqual(result.returncode, 0)
+            self.assertIn("DOC DRIFT CHECK", result.stderr)
+
+    def test_stays_quiet_when_multiple_core_docs_already_changed(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            repo = self._init_repo(tmpdir)
+            (repo / "README.md").write_text("# README\nchanged\n")
+            (repo / "CLAUDE.md").write_text("# CLAUDE\nchanged\n")
+
+            result = run_hook(
+                "warn-doc-drift.sh",
+                {"tool_input": {"file_path": str(repo / "README.md")}},
+                env={"CLAUDE_PROJECT_DIR": str(repo)},
+            )
+
+            self.assertEqual(result.returncode, 0)
+            self.assertEqual(result.stderr, "")
+
+    def test_warns_when_governance_file_changes_without_core_doc_review(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            repo = self._init_repo(tmpdir)
+            governance_file = repo / ".claude" / "agents" / "master.md"
+            governance_file.write_text("# master\nchanged\n")
+
+            result = run_hook(
+                "warn-doc-drift.sh",
+                {"tool_input": {"file_path": str(governance_file)}},
+                env={"CLAUDE_PROJECT_DIR": str(repo)},
+            )
+
+            self.assertEqual(result.returncode, 0)
+            self.assertIn("core briefings", result.stderr)
+
+
 if __name__ == "__main__":
     unittest.main()

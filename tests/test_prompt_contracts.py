@@ -80,6 +80,37 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn("## Triage Large Inputs First", context)
         self.assertIn("## MCP And Tool Hygiene", context)
 
+    def test_governance_rules_are_tracked_and_linked(self) -> None:
+        documentation = read(".claude/rules/documentation-governance.md")
+        artifact = read(".claude/rules/artifact-governance.md")
+        context_rule = read(".claude/rules/context-efficiency.md")
+        claude = read("CLAUDE.md")
+        agents = read("AGENTS.md")
+        architecture = read("docs/ARCHITECTURE.md")
+
+        self.assertIn("Keep `README.md`, `CLAUDE.md`, and `AGENTS.md` aligned", documentation)
+        self.assertIn("Use `BACKLOG.md` for private local deferred work", artifact)
+        self.assertIn("Read narrow first", context_rule)
+        self.assertIn("@.claude/rules/documentation-governance.md", claude)
+        self.assertIn("@.claude/rules/documentation-governance.md", agents)
+        self.assertIn("@.claude/rules/artifact-governance.md", claude)
+        self.assertIn("@.claude/rules/artifact-governance.md", agents)
+        self.assertIn("@.claude/rules/context-efficiency.md", claude)
+        self.assertIn("@.claude/rules/context-efficiency.md", agents)
+        self.assertIn("documentation alignment", architecture)
+        self.assertIn("artifact placement", architecture)
+
+    def test_doc_drift_hook_is_tracked_and_registered(self) -> None:
+        settings = read(".claude/settings.json")
+        hook = read(".claude/hooks/warn-doc-drift.sh")
+        readme = read("README.md")
+        architecture = read("docs/ARCHITECTURE.md")
+
+        self.assertIn("warn-doc-drift.sh", settings)
+        self.assertIn("DOC DRIFT CHECK", hook)
+        self.assertIn("doc-drift warning", readme)
+        self.assertIn("drift-warning shell hooks", architecture)
+
     def test_request_shaping_guidance_is_aligned(self) -> None:
         readme = read("README.md")
         claude = read("CLAUDE.md")

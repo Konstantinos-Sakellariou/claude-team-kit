@@ -46,6 +46,15 @@ Owner: Konstantinos Sakellariou
 ## Code Style
 @.claude/rules/code-quality.md
 
+## Documentation Governance
+@.claude/rules/documentation-governance.md
+
+## Artifact Governance
+@.claude/rules/artifact-governance.md
+
+## Context Efficiency
+@.claude/rules/context-efficiency.md
+
 ## Python Rules
 @.claude/rules/python.md
 
@@ -224,6 +233,7 @@ Teams help by:
 # Important Notes
 - This repo is a workspace kit, not a runtime orchestration engine
 - The canonical implementation lives in `.claude/`; repo docs must describe that implementation accurately
+- The rules layer now includes dedicated governance for docs, artifacts, and context quality in addition to language or domain rules
 - Team manifests live in `.claude/teams/`; they are a `@master` routing abstraction, not a Claude-native platform feature
 - New repos should go through the adaptive bootstrap flow before major work if the project briefings still look generic
 - `CLAUDE.md` and `AGENTS.md` are loaded often; keep them high-signal and move deep detail into linked docs when possible
