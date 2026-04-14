@@ -73,6 +73,8 @@ Lower-signal requests:
 
 If the request is broad, `@master` should help narrow it rather than exploding scope immediately.
 
+When the input is especially noisy, the `triage-input` skill is a good fit before deeper reasoning.
+
 ## Triage Large Inputs First
 
 Do not dump massive raw inputs into the main reasoning loop unless necessary.
@@ -178,3 +180,5 @@ Before doing a broad exploration, ask:
 - Am I using a heavier tool surface than the task needs?
 
 If the answer is yes, start narrower.
+
+If the repo itself feels unclear or bloated, the `context-audit` skill is a good follow-up for checking whether the working briefings and linked artifacts are still healthy.

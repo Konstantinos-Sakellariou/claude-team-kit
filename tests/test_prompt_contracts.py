@@ -111,6 +111,20 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn("doc-drift warning", readme)
         self.assertIn("drift-warning shell hooks", architecture)
 
+    def test_new_skills_are_tracked_and_visible(self) -> None:
+        context_audit = read(".claude/skills/context-audit/SKILL.md")
+        triage_input = read(".claude/skills/triage-input/SKILL.md")
+        readme = read("README.md")
+        context = read("docs/CONTEXT_EFFICIENCY.md")
+
+        self.assertIn("Audit the repo's working context", context_audit)
+        self.assertIn("Triage this input first", triage_input)
+        self.assertIn("19 reusable skills", readme)
+        self.assertIn("context-audit", readme)
+        self.assertIn("triage-input", readme)
+        self.assertIn("`triage-input` skill", context)
+        self.assertIn("`context-audit` skill", context)
+
     def test_request_shaping_guidance_is_aligned(self) -> None:
         readme = read("README.md")
         claude = read("CLAUDE.md")

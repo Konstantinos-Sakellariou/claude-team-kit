@@ -3,7 +3,7 @@
 [![Validate Workspace Kit](https://img.shields.io/github/actions/workflow/status/Konstantinos-Sakellariou/claude-team-kit/validate.yml?branch=main&label=validate)](https://github.com/Konstantinos-Sakellariou/claude-team-kit/actions/workflows/validate.yml)
 ![Agents](https://img.shields.io/badge/agents-38-0ea5e9)
 ![Teams](https://img.shields.io/badge/teams-5-14b8a6)
-![Skills](https://img.shields.io/badge/skills-17-f97316)
+![Skills](https://img.shields.io/badge/skills-19-f97316)
 ![Local Context](https://img.shields.io/badge/local_context-supported-22c55e)
 
 ![claude-team-kit hero](docs/assets/claude-team-kit-hero.svg)
@@ -18,7 +18,7 @@ This repo is a team-definition layer, not a standalone orchestration runtime. It
 .claude/
 ├── agents/          38 specialized agents across engineering, AI/ML, content, delivery, and advisory
 ├── teams/           5 reusable team manifests that @master can activate for recurring workflows
-├── skills/          17 reusable skills (code-review, fix-bug, business-case, create-pr...)
+├── skills/          19 reusable skills (code-review, fix-bug, business-case, create-pr, context-audit, triage-input...)
 ├── rules/           Modular rule files — docs, artifacts, context, Python, TypeScript, security, testing, git, performance, API design, AI/ML workflow
 ├── hooks/           Shell automations (auto-format, secret detection, file protection, doc-drift warning...)
 ├── agent-memory/    Persistent per-agent memory (grows over time)
@@ -46,6 +46,10 @@ That means:
 - use only the tools and MCP servers the task actually needs
 
 See [`docs/CONTEXT_EFFICIENCY.md`](docs/CONTEXT_EFFICIENCY.md) for the full guidance, including request-shaping, large-input triage, and optional RTK usage.
+
+Two repo-native skills now support this directly:
+- `context-audit` for auditing briefing quality, doc drift, and artifact placement
+- `triage-input` for compressing noisy logs, diffs, dumps, and large evidence into a smaller next step
 
 ## How To Ask Well
 

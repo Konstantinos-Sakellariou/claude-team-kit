@@ -11,6 +11,7 @@ class DoctorScriptTests(unittest.TestCase):
     def test_doctor_passes_with_expected_warnings(self) -> None:
         agent_count = len(list((ROOT / ".claude" / "agents").glob("*.md")))
         team_count = len(list((ROOT / ".claude" / "teams").glob("*.md")))
+        skill_count = len([p for p in (ROOT / ".claude" / "skills").iterdir() if p.is_dir()])
         rule_count = len(list((ROOT / ".claude" / "rules").glob("*.md")))
         hook_count = len(list((ROOT / ".claude" / "hooks").glob("*.sh")))
         result = subprocess.run(
@@ -26,7 +27,7 @@ class DoctorScriptTests(unittest.TestCase):
         self.assertIn("PASS: workspace-updater prompt covers all core documentation files", result.stdout)
         self.assertRegex(
             result.stdout,
-            rf"INFO: agents={agent_count} teams={team_count} skills=17 rules={rule_count} hooks={hook_count}",
+            rf"INFO: agents={agent_count} teams={team_count} skills={skill_count} rules={rule_count} hooks={hook_count}",
         )
 
     def test_readme_counts_match_repo(self) -> None:
