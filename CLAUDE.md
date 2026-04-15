@@ -55,6 +55,9 @@ Owner: Konstantinos Sakellariou
 ## Context Efficiency
 @.claude/rules/context-efficiency.md
 
+## GitHub Quality Gate
+@.claude/rules/github-quality-gate.md
+
 ## Python Rules
 @.claude/rules/python.md
 
@@ -132,6 +135,7 @@ Teams help by:
 | `AI/ML Team` | `@data-scientist` or `@ml-engineer` | model framing, training, evaluation, rollout readiness |
 | `Content & Publishing Team` | `@content-planner` or `@content-writer` | planning, drafting, source-backed editorial workflows |
 | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy, backlog persistence |
+| `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness, branch hygiene, repo-safety review |
 | `Advisory Review Team` | `@product-owner`, `@business-analyst`, or `@idea-executor` | planning, prioritization, business, UX, risk, contested decisions |
 
 ## Core Engineering Agents
@@ -144,6 +148,9 @@ Teams help by:
 | `@qa-engineer` | Test plans, coverage gaps, edge cases |
 | `@security-auditor` | Anything touching secrets, auth, or data |
 | `@github-safety-guard` | Final pre-commit/pre-push review for secrets, sensitive information, and public-disclosure risks |
+| `@code-reviewer` | Production-grade code review and standards gate across languages |
+| `@pr-operator` | PR readiness, reviewer context, and pull-request packaging quality |
+| `@production-readiness-reviewer` | Final merge/release-readiness review for config, rollout, and operational safety |
 | `@performance-engineer` | Profiling, throughput, rendering speed |
 | `@debugger` | Diagnose failures, trace unexpected behaviour |
 | `@risk-officer` | Final check before any major release or deploy |
@@ -213,6 +220,9 @@ Teams help by:
 - Any durable architecture, policy, workflow, or repo-structure decision → `@master` proposes an ADR by default and coordinates `@architect`, `@devils-advocate`, `@judge`, and `@tech-writer`
 - Any strategic, startup, customer, or company-sensitive request → `@master` should consult the private local context layer first when it exists
 - Any content ready to publish → `@editorial-reviewer` must pass it first
+- Before any code-affecting commit, push, or PR → `@github-safety-guard`, `@code-reviewer`, and `@qa-engineer` review the change
+- Before merge-critical or release-heavy GitHub work → `@production-readiness-reviewer` is a required gate
+- Before any PR packaging flow → `@pr-operator` improves reviewer context and PR quality
 - Before any commit or push → `@github-safety-guard` reviews the outgoing changes and `@master` presents the findings to the user
 - Before any public release or push → `@privacy-reviewer` runs the mandatory scan
 - Before any major release → `@risk-officer` does a final sign-off
@@ -234,6 +244,7 @@ Teams help by:
 - This repo is a workspace kit, not a runtime orchestration engine
 - The canonical implementation lives in `.claude/`; repo docs must describe that implementation accurately
 - The rules layer now includes dedicated governance for docs, artifacts, and context quality in addition to language or domain rules
+- GitHub-bound code should follow the visible quality gate defined in `.claude/rules/github-quality-gate.md`
 - Team manifests live in `.claude/teams/`; they are a `@master` routing abstraction, not a Claude-native platform feature
 - New repos should go through the adaptive bootstrap flow before major work if the project briefings still look generic
 - `CLAUDE.md` and `AGENTS.md` are loaded often; keep them high-signal and move deep detail into linked docs when possible

@@ -125,6 +125,46 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn("`triage-input` skill", context)
         self.assertIn("`context-audit` skill", context)
 
+    def test_git_github_team_is_defined_and_visible(self) -> None:
+        team = read(".claude/teams/git-github-team.md")
+        master = read(".claude/agents/master.md")
+        readme = read("README.md")
+        claude = read("CLAUDE.md")
+        agents = read("AGENTS.md")
+        teams_doc = read("docs/TEAMS.md")
+
+        self.assertIn("# Git / GitHub Team", team)
+        self.assertIn("@github-safety-guard", team)
+        self.assertIn("Git / GitHub Team", master)
+        self.assertIn("git, GitHub, PR, or repository-safety work", master)
+        self.assertIn("Git / GitHub Team", readme)
+        self.assertIn("Git / GitHub Team", claude)
+        self.assertIn("Git / GitHub Team", agents)
+        self.assertIn("Git / GitHub Team", teams_doc)
+
+    def test_github_quality_gate_agents_and_rule_are_visible(self) -> None:
+        code_reviewer = read(".claude/agents/code-reviewer.md")
+        pr_operator = read(".claude/agents/pr-operator.md")
+        prod_ready = read(".claude/agents/production-readiness-reviewer.md")
+        quality_gate = read(".claude/rules/github-quality-gate.md")
+        master = read(".claude/agents/master.md")
+        readme = read("README.md")
+        claude = read("CLAUDE.md")
+        agents = read("AGENTS.md")
+        teams_doc = read("docs/TEAMS.md")
+        workflows = read("docs/AGENT_WORKFLOWS.md")
+
+        self.assertIn("Production-grade code reviewer", code_reviewer)
+        self.assertIn("Pull-request readiness", pr_operator)
+        self.assertIn("Final production-readiness gate", prod_ready)
+        self.assertIn("Code should not be committed, pushed, or packaged for PR as \"ready\"", quality_gate)
+        self.assertIn("Git / GitHub blocking policy:", master)
+        self.assertIn("GitHub Quality Gate", readme)
+        self.assertIn("@.claude/rules/github-quality-gate.md", claude)
+        self.assertIn("@.claude/rules/github-quality-gate.md", agents)
+        self.assertIn("@code-reviewer", teams_doc)
+        self.assertIn("@code-reviewer", workflows)
+
     def test_request_shaping_guidance_is_aligned(self) -> None:
         readme = read("README.md")
         claude = read("CLAUDE.md")

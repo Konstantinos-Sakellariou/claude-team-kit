@@ -6,7 +6,7 @@ All work flows through `@master`. Every example below starts and ends there.
 
 These workflows are also the reason the kit now defines reusable teams: when the same multi-agent shape appears repeatedly, `@master` can activate a team instead of reconstructing the orchestration pattern from scratch each time.
 
-Seven workflows are documented here, each demonstrating different collaboration patterns:
+Nine workflows are documented here, each demonstrating different collaboration patterns:
 
 1. **Engineering Pipeline** — parallel spikes, sequential implementation, gated quality stages
 2. **Content Publishing Pipeline** — research loop, human approval gate, parallel review, delivery feedback loop
@@ -15,6 +15,8 @@ Seven workflows are documented here, each demonstrating different collaboration 
 5. **Decision To ADR** — durable-decision detection, validation, approval gate, ADR authorship, documentation alignment
 6. **AI/ML Delivery Pipeline** — model framing, training, mandatory evaluation gate, operational rollout
 7. **New Repo Bootstrap** — adaptive discovery, temporary assumptions, initial briefing alignment
+8. **Private Local Context In Planning** — private-context lookup, safe planning support, tracked-doc boundary
+9. **Git / GitHub Team Flow** — commit/push safety, PR readiness, and release-governance orchestration
 
 ---
 
@@ -504,6 +506,51 @@ flowchart TD
 - `@master` should read only the minimum relevant private file
 - private context may guide planning without being copied into tracked docs
 - when tracked docs would benefit from private context, the user must approve that promotion explicitly
+
+---
+
+## Workflow 9 — Git / GitHub Team Flow
+
+**Example trigger:** *"Before I push and open a PR, run the full repo-safety and release-readiness check."*
+
+**Patterns demonstrated:** reusable team activation, safety-first commit/push flow, PR prep support, optional release-risk gate.
+
+```mermaid
+flowchart TD
+    USER(["👤 Commit / push / PR request"])
+    USER --> MASTER
+
+    MASTER["@master\nActivates Git / GitHub Team\nAnnounces lead, support,\nand approval gates"]
+
+    MASTER --> SAFE["@github-safety-guard\nReviews changes for secrets,\nsensitive disclosures,\nand repo-safety risks"]
+    SAFE --> PRIV["@privacy-reviewer\nChecks public/private\nboundary and disclosure risk"]
+
+    PRIV --> DECIDE{"PR or release\nwork also involved?"}
+
+    DECIDE -->|"PR"| PRPREP["@changelog-writer\nSummarizes changes\nfor PR / release notes"]
+    DECIDE -->|"Release"| RISK["@risk-officer\nFinal release-risk\nreview and go/no-go"]
+    DECIDE -->|"Commit or push only"| REPORT
+
+    PRPREP --> REPORT
+    RISK --> REPORT
+
+    REPORT["@master synthesis\nSurfaces findings,\nteam used, and any\napproval gates"]
+
+    REPORT --> USERGATE{"👤 Proceed with\ngit action?"}
+    USERGATE -->|"No"| DONE(["✓ Review complete"])
+    USERGATE -->|"Yes"| WU["@workspace-updater\nRuns if workflow or docs\nneed alignment"]
+    WU --> DONE
+```
+
+**Key points:**
+- `Git / GitHub Team` is the reusable coordination layer for commit, push, PR, and release-governance work
+- `@github-safety-guard` remains the default lead for outgoing repo actions
+- `@code-reviewer` acts as the code-quality and standards gate for code-affecting changes
+- `@pr-operator` improves PR packaging and reviewer context when a PR is involved
+- `@privacy-reviewer` stays explicit for disclosure-sensitive changes
+- `@production-readiness-reviewer` is added when the path is merge-critical, migration-heavy, or release-heavy
+- `@risk-officer` becomes the decisive gate only when the flow is truly release-heavy
+- `@master` must surface the team, agents used, findings, and approval gate before any irreversible Git action
 
 ---
 

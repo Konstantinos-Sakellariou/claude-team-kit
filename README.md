@@ -1,8 +1,8 @@
 # claude-team-kit
 
 [![Validate Workspace Kit](https://img.shields.io/github/actions/workflow/status/Konstantinos-Sakellariou/claude-team-kit/validate.yml?branch=main&label=validate)](https://github.com/Konstantinos-Sakellariou/claude-team-kit/actions/workflows/validate.yml)
-![Agents](https://img.shields.io/badge/agents-38-0ea5e9)
-![Teams](https://img.shields.io/badge/teams-5-14b8a6)
+![Agents](https://img.shields.io/badge/agents-41-0ea5e9)
+![Teams](https://img.shields.io/badge/teams-6-14b8a6)
 ![Skills](https://img.shields.io/badge/skills-19-f97316)
 ![Local Context](https://img.shields.io/badge/local_context-supported-22c55e)
 
@@ -16,8 +16,8 @@ This repo is a team-definition layer, not a standalone orchestration runtime. It
 
 ```text
 .claude/
-├── agents/          38 specialized agents across engineering, AI/ML, content, delivery, and advisory
-├── teams/           5 reusable team manifests that @master can activate for recurring workflows
+├── agents/          41 specialized agents across engineering, AI/ML, content, delivery, and advisory
+├── teams/           6 reusable team manifests that @master can activate for recurring workflows
 ├── skills/          19 reusable skills (code-review, fix-bug, business-case, create-pr, context-audit, triage-input...)
 ├── rules/           Modular rule files — docs, artifacts, context, Python, TypeScript, security, testing, git, performance, API design, AI/ML workflow
 ├── hooks/           Shell automations (auto-format, secret detection, file protection, doc-drift warning...)
@@ -46,6 +46,18 @@ That means:
 - use only the tools and MCP servers the task actually needs
 
 See [`docs/CONTEXT_EFFICIENCY.md`](docs/CONTEXT_EFFICIENCY.md) for the full guidance, including request-shaping, large-input triage, and optional RTK usage.
+
+## GitHub Quality Gate
+
+This kit now treats GitHub-bound code as a high-standard surface.
+
+For code-affecting commit, push, and PR flows, the default expectation is:
+- safety review
+- code review
+- test adequacy review
+- production-readiness review when the change is risky enough
+
+See [`@.claude/rules/github-quality-gate.md`](.claude/rules/github-quality-gate.md) for the canonical gate.
 
 Two repo-native skills now support this directly:
 - `context-audit` for auditing briefing quality, doc drift, and artifact placement
@@ -122,6 +134,7 @@ flowchart TD
     MASTER --> CONT["📝 Content & Publishing\n@topic-researcher\n@content-planner\n@content-writer\n@editorial-reviewer\n@source-verifier\n@tone-calibrator\n@backlog-curator\n@feedback-synthesizer"]
 
     MASTER --> DELIV["🚀 Delivery & Ops\n@delivery-orchestrator\n@delivery-monitor\n@privacy-reviewer\n@changelog-writer\n@ab-tester\n@backlog-updater"]
+    MASTER --> GIT["🔐 Git / GitHub\n@github-safety-guard\n@code-reviewer\n@pr-operator\n@production-readiness-reviewer\n@privacy-reviewer\n@changelog-writer"]
 
     MASTER --> ADV["🧠 Advisory\n@business-analyst\n@product-owner\n@project-manager\n@customer-advocate\n@devils-advocate\n@risk-officer\n@judge\n@tech-writer\n@idea-executor"]
 
@@ -129,6 +142,7 @@ flowchart TD
     ML --> SYNTH
     CONT --> SYNTH
     DELIV --> SYNTH
+    GIT --> SYNTH
     ADV --> SYNTH
 
     SYNTH --> WU["@workspace-updater\nreviews CLAUDE.md + AGENTS.md + README.md\nfinal step, always"]
@@ -214,6 +228,7 @@ In short: teams help `@master` behave less like an improvised dispatcher and mor
 | `AI/ML Team` | `@data-scientist` or `@ml-engineer` | model framing, training, evaluation, rollout readiness |
 | `Content & Publishing Team` | `@content-planner` or `@content-writer` | planning, drafting, editorial validation |
 | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy, backlog persistence |
+| `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness, branch hygiene, repo-safety review |
 | `Advisory Review Team` | `@product-owner`, `@business-analyst`, or `@idea-executor` | planning, prioritization, decision support, strategic validation |
 
 The canonical team definitions live in `.claude/teams/`. See [`docs/TEAMS.md`](docs/TEAMS.md) for the full model and operating rules.
@@ -244,7 +259,7 @@ The canonical team definitions live in `.claude/teams/`. See [`docs/TEAMS.md`](d
 
 ---
 
-## The Full Team (38 Agents)
+## The Full Team (41 Agents)
 
 ### Core Engineering
 
@@ -258,6 +273,9 @@ The canonical team definitions live in `.claude/teams/`. See [`docs/TEAMS.md`](d
 | `@qa-engineer` | Test plans, coverage, edge cases |
 | `@security-auditor` | Vulnerability scanning and hardening |
 | `@github-safety-guard` | Final pre-commit/pre-push review for secrets and sensitive disclosures |
+| `@code-reviewer` | Production-grade code review and coding-standards gate across languages |
+| `@pr-operator` | Pull-request readiness, reviewer context, and PR packaging quality |
+| `@production-readiness-reviewer` | Final merge/release-readiness gate for rollout, config, and operational safety |
 | `@performance-engineer` | Profiling and optimisation |
 | `@workspace-updater` | Reviews and updates `CLAUDE.md`, `AGENTS.md`, and `README.md` after every significant task |
 
@@ -329,6 +347,8 @@ These fire automatically — you don't need to ask:
 - Strategic, startup, customer, or company-sensitive work → `@master` consults `.claude/local-context/` first when it exists
 - Content ready to publish → `@editorial-reviewer` must pass it first
 - Before any public release or push → `@privacy-reviewer` runs mandatory scan
+- Before any code-affecting commit, push, or PR → `@github-safety-guard`, `@code-reviewer`, and `@qa-engineer` review the change
+- Before any merge-critical or release-heavy GitHub flow → `@production-readiness-reviewer` must pass it
 - Before any commit or push → `@github-safety-guard` reviews staged or pending changes and `@master` surfaces the findings
 - Before major release → `@risk-officer` final sign-off
 - After any significant task → `@workspace-updater` runs last and reviews the core docs automatically

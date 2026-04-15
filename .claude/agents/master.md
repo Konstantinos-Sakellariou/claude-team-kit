@@ -337,6 +337,7 @@ Current team manifests live in `.claude/teams/`.
 | `AI/ML Team` | `@data-scientist` or `@ml-engineer` | model framing, training, evaluation, rollout readiness |
 | `Content & Publishing Team` | `@content-planner` or `@content-writer` | planning, drafting, source-backed editorial workflows |
 | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy, backlog persistence |
+| `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness, branch hygiene, repo-safety review |
 | `Advisory Review Team` | `@product-owner`, `@business-analyst`, or `@idea-executor` | planning, prioritization, business, UX, risk, contested decisions |
 
 ### Team Activation Guide
@@ -347,6 +348,7 @@ Current team manifests live in `.claude/teams/`.
 | AI/ML project work | `AI/ML Team` | `@data-scientist` or `@ml-engineer` | `@model-evaluator` remains a hard gate |
 | content planning or publication work | `Content & Publishing Team` | `@content-planner` or `@content-writer` | editorial and source validation are common gates |
 | release, delivery, monitoring, or backlog persistence | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | privacy and github safety checks remain explicit |
+| git, GitHub, PR, or repository-safety work | `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | use for commit, push, PR, release, and branch hygiene flows |
 | scope, product, idea, or decision-heavy work | `Advisory Review Team` | `@product-owner`, `@business-analyst`, or `@idea-executor` | use for trade-offs, prioritization, and strategic validation |
 
 ---
@@ -368,7 +370,8 @@ Read current agents from `.claude/agents/` at session start. Default routing:
 | Performance problem | `@performance-engineer` | `@senior-developer` (fix) |
 | Security concern | `@security-auditor` | `@risk-officer` |
 | Release / ship decision | `@judge` | `@risk-officer`, `@qa-engineer` |
-| Commit / push / PR | `@github-safety-guard` | `@privacy-reviewer`, `@risk-officer` |
+| Commit / push / PR | `@github-safety-guard` | `@code-reviewer`, `@privacy-reviewer`, `@qa-engineer`, `@pr-operator`, `@risk-officer` |
+| Git hygiene / branch sync / release prep | `@github-safety-guard` | `@code-reviewer`, `@privacy-reviewer`, `@production-readiness-reviewer`, `@changelog-writer`, `@workspace-updater` |
 | Documentation | `@tech-writer` | — |
 | Sprint / planning | `@project-manager` | `@product-owner` |
 | Business case | `@business-analyst` | `@judge`, `@devils-advocate` |
@@ -447,6 +450,24 @@ AI/ML operating rules:
 For **any commit, push, or PR creation** always also run:
 - `@github-safety-guard` — reviews staged or pending changes for secrets, sensitive information, and public-disclosure risks
 - Present its report to the user before proceeding with the commit or push
+
+For **any commit, push, PR, release-candidate, or branch-hygiene workflow** prefer:
+- activate the `Git / GitHub Team`
+- keep `@github-safety-guard` as the default lead unless the task is primarily a high-risk release decision
+- include `@code-reviewer` for any code-affecting workflow so correctness, standards, and test adequacy are reviewed before GitHub progression
+- include `@privacy-reviewer` for public or disclosure-sensitive changes
+- include `@pr-operator` when the workflow includes PR preparation or reviewer-facing packaging
+- include `@production-readiness-reviewer` when the change is merge-critical, migration-heavy, release-heavy, or operationally risky
+- include `@changelog-writer` when a PR summary, release note, or changelog entry is part of the workflow
+- include `@workspace-updater` when Git/GitHub workflow conventions or documented release behavior changed
+
+Git / GitHub blocking policy:
+- If `@github-safety-guard` reports `NO`, do not proceed
+- If `@code-reviewer` reports unresolved blocking findings, do not proceed
+- If required tests are missing for changed behavior, do not proceed
+- If unresolved security findings remain, do not proceed
+- If `@production-readiness-reviewer` reports `NOT READY`, do not proceed
+- Only present a proceed/no-proceed choice to the user once the remaining findings are non-blocking or clearly documented as conditional risk
 
 ---
 

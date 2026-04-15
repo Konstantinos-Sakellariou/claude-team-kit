@@ -29,7 +29,7 @@ Teams improve the workflow in a few practical ways:
 
 ## Team Model
 
-This kit currently defines five reusable teams:
+This kit currently defines six reusable teams:
 
 | Team | Lead | Typical Scope |
 |---|---|---|
@@ -37,6 +37,7 @@ This kit currently defines five reusable teams:
 | `AI/ML Team` | `@data-scientist` or `@ml-engineer` | model framing, training, evaluation, rollout readiness |
 | `Content & Publishing Team` | `@content-planner` or `@content-writer` | content planning, drafting, editorial validation |
 | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy, backlog persistence |
+| `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness, branch hygiene, repo-safety review |
 | `Advisory Review Team` | `@product-owner`, `@business-analyst`, or `@idea-executor` | planning, product, business, risk, and decision support |
 
 The canonical team manifests live in `.claude/teams/`.
@@ -45,8 +46,25 @@ The canonical team manifests live in `.claude/teams/`.
 
 - `@master` decides whether a request is best handled by a team, a single agent, or a combination of teams.
 - Teams are visible in the report, but the actual agents used must still be named.
-- Teams can be combined when needed, for example `Engineering Team` plus `Advisory Review Team`.
+- Teams can be combined when needed, for example `Engineering Team` plus `Advisory Review Team`, or `Git / GitHub Team` plus `Delivery & Ops Team` for release-heavy workflows.
 - Final synthesis always stays with `@master`.
+
+## Git / GitHub Team Notes
+
+The `Git / GitHub Team` is intentionally stricter than most teams.
+
+Its goal is not just routing convenience. It is a visible quality gate for code that is about to become part of repo history or a reviewer-facing PR.
+
+Default expectation for code-affecting GitHub flows:
+- `@github-safety-guard`
+- `@code-reviewer`
+- `@qa-engineer`
+
+Add when needed:
+- `@security-auditor`
+- `@production-readiness-reviewer`
+- `@pr-operator`
+- `@risk-officer`
 
 ## Customization Guidance
 

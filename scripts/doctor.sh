@@ -53,6 +53,7 @@ check_file ".env.example" ".env.example exists"
 check_file ".claude/rules/documentation-governance.md" ".claude/rules/documentation-governance.md exists"
 check_file ".claude/rules/artifact-governance.md" ".claude/rules/artifact-governance.md exists"
 check_file ".claude/rules/context-efficiency.md" ".claude/rules/context-efficiency.md exists"
+check_file ".claude/rules/github-quality-gate.md" ".claude/rules/github-quality-gate.md exists"
 check_file ".claude/rules/ml-workflow.md" ".claude/rules/ml-workflow.md exists"
 check_file ".claude/hooks/warn-doc-drift.sh" ".claude/hooks/warn-doc-drift.sh exists"
 
@@ -94,7 +95,9 @@ if grep -q "@.claude/rules/documentation-governance.md" "$ROOT_DIR/CLAUDE.md" &&
    grep -q "@.claude/rules/artifact-governance.md" "$ROOT_DIR/CLAUDE.md" && \
    grep -q "@.claude/rules/artifact-governance.md" "$ROOT_DIR/AGENTS.md" && \
    grep -q "@.claude/rules/context-efficiency.md" "$ROOT_DIR/CLAUDE.md" && \
-   grep -q "@.claude/rules/context-efficiency.md" "$ROOT_DIR/AGENTS.md"; then
+   grep -q "@.claude/rules/context-efficiency.md" "$ROOT_DIR/AGENTS.md" && \
+   grep -q "@.claude/rules/github-quality-gate.md" "$ROOT_DIR/CLAUDE.md" && \
+   grep -q "@.claude/rules/github-quality-gate.md" "$ROOT_DIR/AGENTS.md"; then
   pass "CLAUDE.md and AGENTS.md reference the governance rules"
 else
   fail "CLAUDE.md and AGENTS.md are not aligned on the governance rules"
@@ -125,7 +128,7 @@ else
   fail ".claude/teams directory is missing"
 fi
 
-for team in engineering-team ai-ml-team content-publishing-team delivery-ops-team advisory-review-team; do
+for team in engineering-team ai-ml-team content-publishing-team delivery-ops-team git-github-team advisory-review-team; do
   if [ -f "$ROOT_DIR/.claude/teams/${team}.md" ]; then
     pass "${team} manifest exists"
   else
@@ -195,6 +198,14 @@ if [ -f "$ROOT_DIR/.claude/agents/github-safety-guard.md" ]; then
 else
   fail "github-safety-guard agent is missing"
 fi
+
+for agent in code-reviewer pr-operator production-readiness-reviewer; do
+  if [ -f "$ROOT_DIR/.claude/agents/${agent}.md" ]; then
+    pass "${agent} agent exists"
+  else
+    fail "${agent} agent is missing"
+  fi
+done
 
 if grep -q '.claude/local-context/' "$ROOT_DIR/.claude/agents/github-safety-guard.md"; then
   pass "github-safety-guard protects the private local-context layer"
