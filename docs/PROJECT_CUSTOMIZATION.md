@@ -151,8 +151,9 @@ Recommended default policy:
 - save deferred ideas in either:
   - private local `BACKLOG.md` created from `BACKLOG.example.md`
   - or tracked public `docs/BACKLOG.md` created from `docs/BACKLOG.example.md`
-- for important deferred work, prefer both a backlog entry and a linked plan in `docs/plans/`
-- save approved execution plans in `docs/plans/`
+- for important deferred work, prefer both a backlog entry and a linked plan
+- save approved public-safe implementation plans in `docs/plans/`
+- keep private strategy, roadmap, or company-operating plans in `.claude/local-context/plans/`
 - save approved architecture or policy decisions in `docs/adr/`
 
 Important:

@@ -417,8 +417,9 @@ Planning outputs should be stored professionally and consistently:
 - save deferred work in the chosen backlog:
   - private local `BACKLOG.md`
   - or tracked public `docs/BACKLOG.md`
-- for important deferred work, prefer a backlog entry plus a linked plan in `docs/plans/`
-- save approved execution plans in `docs/plans/`
+- for important deferred work, prefer a backlog entry plus a linked plan
+- save public-safe implementation plans in `docs/plans/`
+- keep private strategy or roadmap plans in `.claude/local-context/plans/`
 - save approved architecture or policy decisions in `docs/adr/`
 
 `@master` must ask for explicit approval before saving anything into `docs/plans/` or `docs/adr/`.

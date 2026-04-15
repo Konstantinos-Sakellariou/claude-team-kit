@@ -7,7 +7,8 @@
 - Use chat for early exploration and lightweight discussion
 - Use `BACKLOG.md` for private local deferred work
 - Use `docs/BACKLOG.md` only when the repo wants a tracked public backlog
-- Use `docs/plans/` for approved execution plans and structured implementation artifacts
+- Use `docs/plans/` for approved public-safe execution plans and structured implementation artifacts
+- Use `.claude/local-context/plans/` for private strategy, roadmap, phase, or company-operating plans that should stay local
 - Use `docs/adr/` for approved architecture, workflow, or policy decisions that should remain traceable
 - Use `.claude/local-context/` for private local business, customer, or strategy context that should not be tracked by default
 
@@ -19,6 +20,8 @@
 ## Planning Rules
 - For substantial deferred work, prefer a backlog entry plus a linked plan rather than a backlog row alone
 - Keep backlog rows compact and use linked artifacts for the step-by-step details
+- If the plan is reusable and public-safe, use `docs/plans/`
+- If the plan contains real strategy, roadmap sequencing, company direction, or private operating detail, keep it under `.claude/local-context/plans/`
 - Treat durable decisions as ADR candidates by default
 
 ## Privacy Rules

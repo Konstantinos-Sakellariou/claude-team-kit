@@ -13,6 +13,7 @@ Good candidates:
 - customer or stakeholder notes
 - pricing, fundraising, GTM, or investor framing
 - unreleased roadmap details
+- private phase plans or company-operating plans
 - commercial, legal, or organizational constraints
 - sensitive success metrics or internal operating assumptions
 
@@ -26,6 +27,14 @@ The setup script can scaffold these starter files:
 - `.claude/local-context/project-private.md`
 - `.claude/local-context/customers.md`
 - `.claude/local-context/constraints.md`
+
+When a plan should stay private, keep it under:
+- `.claude/local-context/plans/`
+
+Examples:
+- private roadmap execution notes
+- company-building phase plans
+- strategy-bearing horizon plans
 
 Use only the files you actually need.
 
@@ -63,3 +72,7 @@ During new-repo bootstrap, `@master` should ask whether the repo wants a private
 That lets a team establish two different context surfaces early:
 - tracked repo context in `CLAUDE.md`, `AGENTS.md`, and `README.md`
 - local-only sensitive context in `.claude/local-context/`
+
+The same rule applies to plans:
+- public-safe implementation plans can live in `docs/plans/`
+- private strategy or roadmap plans should stay in `.claude/local-context/plans/`

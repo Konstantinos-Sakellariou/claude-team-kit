@@ -29,7 +29,7 @@ Pair it with:
 | Local Context | Private local-only company or strategy context | `.claude/local-context/` | Use for sensitive notes that should not be tracked | master, backlog, planning |
 | Backlog | Durable deferred-work registry | `BACKLOG.md` or `docs/BACKLOG.md` | Save ideas for later through `@backlog-updater` | plans, vision, local context |
 | Roadmap | Optional local phased sequencing and milestone view, with a tracked template | `docs/ROADMAP.md` and `docs/ROADMAP.example.md` | Use for phase planning and roadmap-level priorities | vision, backlog, plans |
-| Plans | Rich execution artifacts for approved work | `docs/plans/` | Save only with approval | backlog, idea-executor |
+| Plans | Rich execution artifacts for approved work | `docs/plans/` and `.claude/local-context/plans/` | Save only with approval, choosing tracked vs local by privacy | backlog, idea-executor, local context |
 | ADRs | Durable architecture and policy decisions | `docs/adr/` | Save only with approval | master, architect, tech-writer |
 | Core Briefings | High-frequency summary docs | `README.md`, `CLAUDE.md`, `AGENTS.md` | Keep concise and link outward | everything |
 
@@ -171,7 +171,8 @@ Hooks should reinforce hygiene, not replace judgment.
 | `docs/VISION.example.md` | tracked starter for a local vision brief |
 | `docs/ROADMAP.example.md` | tracked starter for a local roadmap |
 | `docs/ROADMAP.md` | optional local phased roadmap |
-| `docs/plans/` | approved execution plans |
+| `docs/plans/` | approved public-safe execution plans |
+| `.claude/local-context/plans/` | local private strategy and roadmap plans |
 | `docs/adr/` | approved architecture/policy decisions |
 | `.claude/local-context/` | private local context |
 | `README.md` | public-facing summary |

@@ -79,4 +79,5 @@ Good defaults:
 - keep the roadmap directional, not task-dense
 - align backlog timing with roadmap phases where possible
 - let plans carry execution depth
+- keep private phase plans under `.claude/local-context/plans/` when they should not be tracked
 - keep private sequencing local unless you explicitly want it tracked
