@@ -21,6 +21,7 @@ Pair it with:
 |---|---|---|---|---|
 | Orchestrator | Top-level intake, routing, synthesis, approvals, sign-off | `.claude/agents/master.md` | Talk to `@master` first for every request | teams, agents, backlog, plans, ADRs, local context |
 | Teams | Reusable multi-agent collaboration bundles | `.claude/teams/` | Let `@master` activate them for recurring workflows | agents, workflows, quality gates |
+| Commands | Thin workflow entrypoints for repeated flows | `.claude/commands/` | Let users trigger known workflows explicitly while `@master` still orchestrates | teams, skills, agents, artifacts |
 | Agents | Specialist roles that do the work | `.claude/agents/` | Trigger through `@master` | teams, rules, memory |
 | Skills | Repeatable procedures for stable workflows | `.claude/skills/` | Use directly when the workflow is clearly procedural | agents, hooks, docs |
 | Rules | Standing behavioral and governance constraints | `.claude/rules/` | Referenced by core briefings and prompts | agents, docs, doctor |
@@ -126,6 +127,26 @@ Use a skill when:
 - the task matches a stable repeatable workflow
 - the output shape is predictable
 - a procedural workflow is stronger than free-form reasoning alone
+
+## Commands
+
+Current command definitions live in `.claude/commands/`.
+
+They are best for:
+- onboarding-heavy flows
+- approval-gated flows
+- artifact-producing workflows
+- repeated maintenance or safety workflows
+
+Current command set:
+- `/bootstrap-repo`
+- `/save-backlog`
+- `/plan-idea`
+- `/write-adr`
+- `/release-check`
+- `/sync-docs`
+- `/triage-input`
+- `/context-audit`
 
 ## Rules
 

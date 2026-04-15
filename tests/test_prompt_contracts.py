@@ -20,6 +20,48 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn("Before I save this backlog item:", master)
         self.assertIn("Approve saving both?", master)
 
+    def test_master_defines_lightweight_and_full_reporting(self) -> None:
+        master = read(".claude/agents/master.md")
+        readme = read("README.md")
+        claude = read("CLAUDE.md")
+        agents = read("AGENTS.md")
+
+        self.assertIn("## Reporting Levels", master)
+        self.assertIn("### 1. Lightweight Report", master)
+        self.assertIn("### 2. Full Execution Report", master)
+        self.assertIn("No delegation was needed because", master)
+        self.assertIn("For all tasks, `@master` should at least report:", readme)
+        self.assertIn("lightweight visible report even when no delegation was needed", claude)
+        self.assertIn("lightweight visible report even when no delegation was needed", agents)
+
+    def test_command_layer_is_tracked_and_visible(self) -> None:
+        master = read(".claude/agents/master.md")
+        readme = read("README.md")
+        claude = read("CLAUDE.md")
+        agents = read("AGENTS.md")
+        architecture = read("docs/ARCHITECTURE.md")
+        system_reference = read("docs/SYSTEM_REFERENCE.md")
+
+        for path in [
+            ".claude/commands/bootstrap-repo.md",
+            ".claude/commands/save-backlog.md",
+            ".claude/commands/plan-idea.md",
+            ".claude/commands/write-adr.md",
+            ".claude/commands/release-check.md",
+            ".claude/commands/sync-docs.md",
+            ".claude/commands/triage-input.md",
+            ".claude/commands/context-audit.md",
+        ]:
+            self.assertTrue((ROOT / path).exists(), path)
+
+        self.assertIn("## Command Layer", master)
+        self.assertIn("/bootstrap-repo", master)
+        self.assertIn("Workflow Commands", readme)
+        self.assertIn("Inspect command layer", claude)
+        self.assertIn("Inspect command layer", agents)
+        self.assertIn(".claude/commands/", architecture)
+        self.assertIn("Current command set:", system_reference)
+
     def test_master_defines_bootstrap_flow(self) -> None:
         master = read(".claude/agents/master.md")
 

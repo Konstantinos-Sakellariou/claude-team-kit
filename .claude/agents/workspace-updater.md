@@ -139,7 +139,8 @@ When work is done on the kit itself (new agents, skills, hooks, rules added), up
 
 **README.md:**
 - The Agent table — add the new agent with its role
-- The Skills list — add the new slash command
+- The command list — add the new workflow command
+- The Skills list — update it if the skill inventory changed
 - The "What's Inside" directory tree if structure changed
 
 ---

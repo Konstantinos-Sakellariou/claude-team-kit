@@ -28,6 +28,7 @@ The canonical implementation lives under `.claude/`.
 - `.claude/agents/`: agent definitions and orchestration prompts
 - `.claude/teams/`: reusable team manifests that `@master` can activate
 - `.claude/skills/`: reusable task skills
+- `.claude/commands/`: thin workflow entrypoints interpreted by `@master`
 - `.claude/rules/`: standing engineering and governance rules
 - `.claude/hooks/`: safety, formatting, and drift-warning shell hooks
 - `.claude/agent-memory/`: persistent per-agent memory

@@ -156,7 +156,7 @@ You never call specialist agents directly. You talk to `@master`, and it decides
 
 Even if a user does not explicitly mention `@master`, or names a specialist directly, `@master` remains the first and only orchestrator in the main thread.
 
-By default, `@master` also reports which teams and agents were selected, what each one did, and the outcome of the orchestration run. Users should not need to ask explicitly for that visibility.
+By default, `@master` also reports which teams and agents were selected, what each one did, and the outcome of the orchestration run. If no delegation was needed, `@master` should say that explicitly instead of silently skipping the report.
 
 ```mermaid
 flowchart TD
@@ -334,14 +334,21 @@ These fire automatically — you don't need to ask:
 
 ## Default Reporting
 
-For significant work, `@master` should report:
+For all tasks, `@master` should at least report:
+
+- whether delegation happened
+- which teams or agents ran, or that `@master` handled it alone
+- what happened
+- what comes next
+
+For significant work, `@master` should upgrade that into a fuller execution report with:
 
 - which agents were selected
 - what each agent owned
 - what happened during execution
 - the synthesized outcome, conflicts, and blockers
 
-This reporting is part of the default orchestration behavior, not an optional extra.
+This reporting is part of the default orchestration behavior, not an optional extra and not something the user should need to request explicitly.
 
 ## ADR Decision Flow
 
@@ -357,12 +364,42 @@ ADRs are not special-case paperwork. They are the default traceability mechanism
 
 ---
 
-## Key Skills (Slash Commands)
+## Workflow Commands
 
-`/code-review` `/fix-bug` `/implement-feature` `/write-tests` `/refactor`
-`/security-audit` `/optimize-performance` `/write-docs` `/explain-code`
-`/git-commit` `/create-pr` `/business-case` `/sprint-planning` `/research`
-`/daily-standup` `/retrospective` `/repo-cleanup`
+This kit now supports a thin command layer on top of agents, teams, and skills.
+
+Commands are explicit workflow entrypoints.
+They do not bypass `@master`; they simply help users trigger repeatable multi-step flows more consistently.
+
+Current command set:
+- `/bootstrap-repo`
+- `/save-backlog`
+- `/plan-idea`
+- `/write-adr`
+- `/release-check`
+- `/sync-docs`
+- `/triage-input`
+- `/context-audit`
+
+These command definitions live in `.claude/commands/`.
+
+The reusable skills still matter underneath that layer, including:
+- `code-review`
+- `fix-bug`
+- `write-tests`
+- `refactor`
+- `security-audit`
+- `optimize-performance`
+- `write-docs`
+- `explain-code`
+- `git-commit`
+- `create-pr`
+- `business-case`
+- `sprint-planning`
+- `research`
+- `daily-standup`
+- `retrospective`
+- `repo-cleanup`
 
 ---
 

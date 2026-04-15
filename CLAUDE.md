@@ -41,6 +41,7 @@ Owner: Konstantinos Sakellariou
 - Inspect agents: `find .claude/agents -maxdepth 1 -type f | sort`
 - Inspect teams: `find .claude/teams -maxdepth 1 -type f | sort`
 - Inspect skills: `find .claude/skills -maxdepth 1 -mindepth 1 -type d | sort`
+- Inspect command layer: `find .claude/commands -maxdepth 1 -type f | sort`
 
 ## Environment
 - Copy `.env.example` → `.env` for optional local configuration
@@ -180,8 +181,11 @@ The hot-path agents to keep in mind here are:
 ## Default Reporting Rules
 
 - `@master` must announce the selected agents before or as work begins
+- `@master` must still return a lightweight visible report even when no delegation was needed
 - `@master` must summarize what each selected agent did
+- if `@master` handled the task alone, it must say so explicitly and explain why delegation was unnecessary
 - `@master` must return a synthesized execution report for significant work by default
+- for supported slash-style workflow commands, `@master` must identify the command and map it to the underlying workflow owner
 - Before any commit or push, `@master` must surface the `@github-safety-guard` report so the user can decide whether to proceed
 - Before saving planning artifacts into `docs/plans/` or `docs/adr/`, `@master` must ask for explicit user approval
 - If backlog preference is unknown, `@master` must ask whether backlog capture should use private local `BACKLOG.md` or tracked public `docs/BACKLOG.md`
@@ -201,6 +205,7 @@ The hot-path agents to keep in mind here are:
 - GitHub-bound code should follow the visible quality gate defined in `.claude/rules/github-quality-gate.md`
 - `docs/SYSTEM_REFERENCE.md` is the full feature and connection report; prefer linking to it over expanding `CLAUDE.md` or `AGENTS.md` inline
 - Team manifests live in `.claude/teams/`; they are a `@master` routing abstraction, not a Claude-native platform feature
+- Command definitions live in `.claude/commands/`; they are thin workflow entrypoints interpreted by `@master`, not a second orchestration system
 - New repos should go through the adaptive bootstrap flow before major work if the project briefings still look generic
 - `CLAUDE.md` and `AGENTS.md` are loaded often; keep them high-signal and move deep detail into linked docs when possible
 - The private local context layer lives in `.claude/local-context/`; keep it local-only and use it for sensitive business or customer notes

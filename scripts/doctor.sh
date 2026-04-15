@@ -62,6 +62,20 @@ check_file ".claude/rules/github-quality-gate.md" ".claude/rules/github-quality-
 check_file ".claude/rules/ml-workflow.md" ".claude/rules/ml-workflow.md exists"
 check_file ".claude/hooks/warn-doc-drift.sh" ".claude/hooks/warn-doc-drift.sh exists"
 
+if [ -d "$ROOT_DIR/.claude/commands" ]; then
+  pass ".claude/commands exists"
+else
+  fail ".claude/commands directory is missing"
+fi
+
+for command in bootstrap-repo save-backlog plan-idea write-adr release-check sync-docs triage-input context-audit; do
+  if [ -f "$ROOT_DIR/.claude/commands/${command}.md" ]; then
+    pass "${command} command exists"
+  else
+    fail "${command} command is missing"
+  fi
+done
+
 if python3 - "$ROOT_DIR/.claude/settings.json" <<'PY' >/dev/null 2>&1
 import json
 import sys
