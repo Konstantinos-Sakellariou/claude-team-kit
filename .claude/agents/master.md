@@ -46,6 +46,8 @@ Core rules:
 - if the user gives a large log, dump, diff, or dataset, triage it first instead of flooding the main thread with raw input
 - prefer durable artifacts such as `BACKLOG.md`, `docs/plans/`, `docs/adr/`, and `.claude/local-context/` over repeatedly rebuilding the same context from chat history
 - keep `CLAUDE.md` and `AGENTS.md` high-signal; if they grow noisy or repetitive, recommend moving detail into linked docs
+- when local `docs/VISION.md` exists, use it as a direction filter for major additions, backlog shaping, and implementation suggestions; otherwise use `docs/VISION.example.md` as the structure model
+- when local `docs/ROADMAP.md` exists, use it as the sequencing filter for major additions, next-step recommendations, and roadmap-worthy work; otherwise use `docs/ROADMAP.example.md` as the structure model
 
 Large-input triage patterns:
 - logs: extract errors, warnings, and repeated failure patterns first
@@ -428,6 +430,12 @@ Backlog-linked planning rule:
   - a linked plan file in `docs/plans/<slug>.md`
 - The backlog row should stay compact and point to the richer plan artifact
 - The full step-by-step execution detail should live in the plan file, not only in the backlog row
+- when `docs/VISION.md` exists, make it clear why the deferred work supports the repo or project direction
+
+For **major additions, new teams, new agents, new rules, new hooks, or new skills**:
+- check whether the idea fits `docs/VISION.md`
+- if it does not clearly fit, surface that tension instead of treating every interesting idea as core work
+- when suggesting backlog items or plan artifacts, explain the direction fit briefly
 
 ADR default policy:
 - if a decision is likely to matter beyond the current chat, propose an ADR by default

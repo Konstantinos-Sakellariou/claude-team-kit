@@ -39,6 +39,10 @@ check_file "AGENTS.md" "AGENTS.md exists"
 check_file "BACKLOG.example.md" "BACKLOG.example.md exists"
 check_file "docs/BACKLOG.example.md" "docs/BACKLOG.example.md exists"
 check_file "docs/ARCHITECTURE.md" "docs/ARCHITECTURE.md exists"
+check_file "docs/DOCUMENTATION_GOVERNANCE.md" "docs/DOCUMENTATION_GOVERNANCE.md exists"
+check_file "docs/ROADMAP.example.md" "docs/ROADMAP.example.md exists"
+check_file "docs/SYSTEM_REFERENCE.md" "docs/SYSTEM_REFERENCE.md exists"
+check_file "docs/VISION.example.md" "docs/VISION.example.md exists"
 check_file "docs/BOOTSTRAP.md" "docs/BOOTSTRAP.md exists"
 check_file "docs/CONTEXT_EFFICIENCY.md" "docs/CONTEXT_EFFICIENCY.md exists"
 check_file "docs/LOCAL_CONTEXT.md" "docs/LOCAL_CONTEXT.md exists"
@@ -51,6 +55,7 @@ check_file ".claude/settings.json" ".claude/settings.json exists"
 check_file ".mcp.json" ".mcp.json exists"
 check_file ".env.example" ".env.example exists"
 check_file ".claude/rules/documentation-governance.md" ".claude/rules/documentation-governance.md exists"
+check_file ".claude/rules/repo-cleanup.md" ".claude/rules/repo-cleanup.md exists"
 check_file ".claude/rules/artifact-governance.md" ".claude/rules/artifact-governance.md exists"
 check_file ".claude/rules/context-efficiency.md" ".claude/rules/context-efficiency.md exists"
 check_file ".claude/rules/github-quality-gate.md" ".claude/rules/github-quality-gate.md exists"
@@ -90,17 +95,25 @@ else
   fail "CLAUDE.md rule references are missing"
 fi
 
-if grep -q "@.claude/rules/documentation-governance.md" "$ROOT_DIR/CLAUDE.md" && \
+if grep -q "docs/VISION.example.md" "$ROOT_DIR/README.md" && \
+   grep -q "docs/VISION.example.md" "$ROOT_DIR/CLAUDE.md" && \
+   grep -q "docs/VISION.example.md" "$ROOT_DIR/AGENTS.md" && \
+   grep -q "docs/ROADMAP.example.md" "$ROOT_DIR/README.md" && \
+   grep -q "docs/ROADMAP.example.md" "$ROOT_DIR/CLAUDE.md" && \
+   grep -q "docs/ROADMAP.example.md" "$ROOT_DIR/AGENTS.md" && \
+   grep -q "@.claude/rules/documentation-governance.md" "$ROOT_DIR/CLAUDE.md" && \
    grep -q "@.claude/rules/documentation-governance.md" "$ROOT_DIR/AGENTS.md" && \
+   grep -q "@.claude/rules/repo-cleanup.md" "$ROOT_DIR/CLAUDE.md" && \
+   grep -q "@.claude/rules/repo-cleanup.md" "$ROOT_DIR/AGENTS.md" && \
    grep -q "@.claude/rules/artifact-governance.md" "$ROOT_DIR/CLAUDE.md" && \
    grep -q "@.claude/rules/artifact-governance.md" "$ROOT_DIR/AGENTS.md" && \
    grep -q "@.claude/rules/context-efficiency.md" "$ROOT_DIR/CLAUDE.md" && \
    grep -q "@.claude/rules/context-efficiency.md" "$ROOT_DIR/AGENTS.md" && \
    grep -q "@.claude/rules/github-quality-gate.md" "$ROOT_DIR/CLAUDE.md" && \
    grep -q "@.claude/rules/github-quality-gate.md" "$ROOT_DIR/AGENTS.md"; then
-  pass "CLAUDE.md and AGENTS.md reference the governance rules"
+  pass "README.md, CLAUDE.md, and AGENTS.md reference the vision and roadmap templates plus governance docs"
 else
-  fail "CLAUDE.md and AGENTS.md are not aligned on the governance rules"
+  fail "README.md, CLAUDE.md, or AGENTS.md are missing the vision template link, roadmap template link, or one or more governance rule references"
 fi
 
 if grep -q "@.claude/rules/ml-workflow.md" "$ROOT_DIR/CLAUDE.md" && \
@@ -442,7 +455,7 @@ else
   fail "README.md does not document default ADR handling"
 fi
 
-if grep -q '### AI/ML' "$ROOT_DIR/README.md"; then
+if grep -q 'AI/ML Team' "$ROOT_DIR/README.md"; then
   pass "README.md documents the AI/ML team"
 else
   fail "README.md does not document the AI/ML team"

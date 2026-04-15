@@ -8,6 +8,8 @@
 .env.local
 .env.*.local
 BACKLOG.md
+docs/VISION.md
+docs/ROADMAP.md
 *.pem
 *.key
 

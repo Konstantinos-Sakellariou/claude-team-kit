@@ -51,6 +51,17 @@ High-signal project briefings often add:
 
 The goal is simple: include the facts an agent would need to avoid obvious mistakes.
 
+## Cleanup After Customization
+
+Once the repo has real project-facing docs, do a cleanup pass.
+
+The purpose is to review whether copied-kit artifacts are still helpful or whether they should now be:
+- kept as reusable infrastructure
+- customized to the repo
+- deleted as template leftovers
+
+Use the `repo-cleanup` skill for that review instead of silently carrying generic files forever.
+
 ## Private Local Context
 
 Not every important project fact belongs in tracked docs.
@@ -195,3 +206,5 @@ Use the kit for reusable behavior.
 Use project briefings for facts.
 
 Use project-specific orchestrator extensions only when a repo has a repeated synchronization need that agents would otherwise forget.
+
+Use cleanup passes to prune template leftovers once the repo has enough project identity to do that safely.

@@ -15,7 +15,8 @@ When bootstrap is needed, `@master` should:
 3. accept partial answers
 4. make clearly labeled temporary assumptions when the user does not know something yet
 5. draft or improve the project-facing docs
-6. hand off to `@workspace-updater` as the final alignment step
+6. recommend a cleanup pass once the repo is clearly customized enough to prune generic kit leftovers
+7. hand off to `@workspace-updater` as the final alignment step
 
 Bootstrap should improve context quality, not create bloated briefing files.
 
@@ -115,3 +116,14 @@ That is fine.
 - avoid pretending uncertain information is final
 
 The goal is better working context, not perfect upfront documentation.
+
+## Post-Bootstrap Cleanup
+
+Once the repo has a real identity and the main docs are no longer generic, run a cleanup review.
+
+The cleanup goal is to decide which copied-kit artifacts should now be:
+- kept
+- customized
+- deleted
+
+Use the `repo-cleanup` skill for that pass rather than leaving template leftovers in place forever.

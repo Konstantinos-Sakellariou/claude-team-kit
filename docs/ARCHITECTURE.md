@@ -42,6 +42,7 @@ The shared kit can include reusable domain-specialist packs when they stay gener
 
 The rules layer now covers more than language or code quality concerns. It also carries reusable governance for:
 - documentation alignment
+- copied-repo cleanup
 - artifact placement
 - context efficiency and scope discipline
 
@@ -52,10 +53,16 @@ Repo-level docs explain and package that implementation:
 - `AGENTS.md`: repo briefing for Codex-style tools that read AGENTS files
 - `docs/BOOTSTRAP.md`: how new repos should be initialized when the kit is copied elsewhere
 - `docs/CONTEXT_EFFICIENCY.md`: how to keep context lean, high-signal, and cheaper to reuse across sessions
+- `docs/DOCUMENTATION_GOVERNANCE.md`: how to keep the repo fully documented without bloating the hot path
+- `docs/ROADMAP.md`: phased roadmap and milestone view for the repo
 - `docs/LOCAL_CONTEXT.md`: how the private local-context layer works and where the privacy boundary sits
+- `docs/SYSTEM_REFERENCE.md`: full feature inventory, connections, and navigation map
 - `docs/TEAMS.md`: the reusable team abstraction and team operating rules
 - `docs/AGENT_WORKFLOWS.md`: collaboration and orchestration examples
 - `docs/PROJECT_CUSTOMIZATION.md`: how to adapt the kit to a real project
+- `docs/VISION.example.md`: tracked starter for a local repo vision
+- `docs/ROADMAP.example.md`: tracked starter for a local repo roadmap
+- local `docs/VISION.md` / `docs/ROADMAP.md`: optional private strategy surfaces
 
 ## Operating Model
 
@@ -99,9 +106,11 @@ The core documentation files in that loop are:
 When extending the kit, prefer this order:
 
 1. Keep docs aligned with the actual `.claude/` contents
+2. Keep the always-loaded briefings lean and push depth into focused docs
 2. Improve setup and validation ergonomics
 3. Add tests and CI for hooks, prompts, and metadata
 4. Add new agents or skills only when the workflow gap is clear
+5. Keep roadmap phases and backlog timing aligned when the direction changes
 
 ## Adaptation Layer
 

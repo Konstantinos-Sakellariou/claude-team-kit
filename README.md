@@ -3,7 +3,7 @@
 [![Validate Workspace Kit](https://img.shields.io/github/actions/workflow/status/Konstantinos-Sakellariou/claude-team-kit/validate.yml?branch=main&label=validate)](https://github.com/Konstantinos-Sakellariou/claude-team-kit/actions/workflows/validate.yml)
 ![Agents](https://img.shields.io/badge/agents-41-0ea5e9)
 ![Teams](https://img.shields.io/badge/teams-6-14b8a6)
-![Skills](https://img.shields.io/badge/skills-19-f97316)
+![Skills](https://img.shields.io/badge/skills-20-f97316)
 ![Local Context](https://img.shields.io/badge/local_context-supported-22c55e)
 
 ![claude-team-kit hero](docs/assets/claude-team-kit-hero.svg)
@@ -12,13 +12,16 @@ A production-ready workspace kit for Claude-style coding tools. It gives any rep
 
 This repo is a team-definition layer, not a standalone orchestration runtime. It focuses on reusable workspace structure and operating conventions rather than tmux workers, background daemons, or execution HUDs.
 
+This kit supports a local vision and roadmap model.
+Use [`docs/VISION.example.md`](docs/VISION.example.md) and [`docs/ROADMAP.example.md`](docs/ROADMAP.example.md) as tracked starters, and keep real `docs/VISION.md` / `docs/ROADMAP.md` local when they contain private strategy or sequencing.
+
 ## What's Inside
 
 ```text
 .claude/
 ├── agents/          41 specialized agents across engineering, AI/ML, content, delivery, and advisory
 ├── teams/           6 reusable team manifests that @master can activate for recurring workflows
-├── skills/          19 reusable skills (code-review, fix-bug, business-case, create-pr, context-audit, triage-input...)
+├── skills/          20 reusable skills (code-review, fix-bug, business-case, create-pr, context-audit, triage-input, repo-cleanup...)
 ├── rules/           Modular rule files — docs, artifacts, context, Python, TypeScript, security, testing, git, performance, API design, AI/ML workflow
 ├── hooks/           Shell automations (auto-format, secret detection, file protection, doc-drift warning...)
 ├── agent-memory/    Persistent per-agent memory (grows over time)
@@ -26,6 +29,14 @@ This repo is a team-definition layer, not a standalone orchestration runtime. It
 BACKLOG.example.md   Starter for the private local backlog file
 docs/BACKLOG.example.md
                     Starter for an optional tracked public backlog
+docs/DOCUMENTATION_GOVERNANCE.md
+                    Anti-bloat documentation policy
+docs/ROADMAP.example.md
+                    Starter for a local repo-specific roadmap
+docs/SYSTEM_REFERENCE.md
+                    Full feature inventory and connection map
+docs/VISION.example.md
+                    Starter for a local repo-specific vision brief
 CLAUDE.md            Master project briefing — customize per project
 AGENTS.md            Compatibility briefing for tools that read AGENTS.md
 .mcp.json            MCP server config (GitHub pre-configured)
@@ -94,12 +105,38 @@ If your request starts broad, `@master` should help narrow it before doing a lar
 5. Add any sensitive startup, customer, or strategy notes to `.claude/local-context/` and keep that folder local-only
 6. Edit `CLAUDE.md` for the target project you want the kit to describe
 7. Run `./scripts/doctor.sh`
-8. Start a Claude session and address `@master`
+8. Run a cleanup pass once the repo is clearly customized enough to prune generic leftovers
+9. Start a Claude session and address `@master`
+
+## Vision Alignment
+
+This repo now has an explicit direction.
+
+When adding backlog items, plans, agents, teams, rules, hooks, or skills, we should ask:
+- does this strengthen the reusable workspace kit?
+- does it move the repo toward a stronger digital-product or digital-company operating model?
+- does it belong in the core, or only in a plan/customization layer?
+
+Use [`docs/VISION.example.md`](docs/VISION.example.md) as the public model for how a vision doc should work, and use local `docs/VISION.md` as the actual filter when a repo has one.
+
+Use [`docs/DOCUMENTATION_GOVERNANCE.md`](docs/DOCUMENTATION_GOVERNANCE.md) to keep the core briefings lean while the repo grows, and [`docs/SYSTEM_REFERENCE.md`](docs/SYSTEM_REFERENCE.md) when you need the full feature map instead of a hot-path summary.
+
+## Roadmap And Backlog
+
+This kit now treats roadmap and backlog as separate but connected surfaces:
+
+- [`docs/ROADMAP.example.md`](docs/ROADMAP.example.md) shows the roadmap structure the kit expects
+- local `docs/ROADMAP.md` is where a repo can keep its real phased priorities if they should stay private
+- `BACKLOG.md` is the local private registry of future work and follow-ups
+- `docs/BACKLOG.md` is the optional tracked public backlog for repos that want visible backlog history
+
+Use the roadmap to decide sequence and milestone fit.
+Use the backlog to capture concrete items and deferred work.
 
 ## What This Repo Is
 
 - A reusable workspace kit for agent-based development
-- A curated team of 38 agents with explicit collaboration patterns
+- A curated team of 41 agents with explicit collaboration patterns
 - A prompt and guardrail layer that can be dropped into another project
 
 ## What This Repo Is Not
@@ -259,73 +296,15 @@ The canonical team definitions live in `.claude/teams/`. See [`docs/TEAMS.md`](d
 
 ---
 
-## The Full Team (41 Agents)
+## Team And Feature Inventory
 
-### Core Engineering
+The full agent roster, system layers, connections, and navigation map now live in [`docs/SYSTEM_REFERENCE.md`](docs/SYSTEM_REFERENCE.md).
 
-| Agent | Role |
-|---|---|
-| `@master` | **Superagent & orchestrator** — default entry point for every session |
-| `@senior-developer` | Clean, production-ready implementation |
-| `@architect` | System design and technical decisions |
-| `@debugger` | Deep debugging and root-cause analysis |
-| `@researcher` | Technology research and best practices |
-| `@qa-engineer` | Test plans, coverage, edge cases |
-| `@security-auditor` | Vulnerability scanning and hardening |
-| `@github-safety-guard` | Final pre-commit/pre-push review for secrets and sensitive disclosures |
-| `@code-reviewer` | Production-grade code review and coding-standards gate across languages |
-| `@pr-operator` | Pull-request readiness, reviewer context, and PR packaging quality |
-| `@production-readiness-reviewer` | Final merge/release-readiness gate for rollout, config, and operational safety |
-| `@performance-engineer` | Profiling and optimisation |
-| `@workspace-updater` | Reviews and updates `CLAUDE.md`, `AGENTS.md`, and `README.md` after every significant task |
-
-### AI/ML
-
-| Agent | Role | Model |
-|---|---|---|
-| `@data-scientist` | Problem framing, exploratory analysis, feature strategy, baseline design, statistical validation | **opus** |
-| `@ml-engineer` | Training pipelines, reproducibility, model packaging, inference-oriented ML engineering | sonnet |
-| `@model-evaluator` | Mandatory quality gate for metrics, fairness, robustness, explainability, and deployment readiness | **opus** |
-| `@mlops-engineer` | Rollout strategy, monitoring, model lifecycle operations, incident and rollback planning | sonnet |
-| `@research-scientist` | Literature review, benchmark critique, frontier-method assessment, novelty-vs-complexity judgement | **opus** |
-
-### Content and Publishing
-
-| Agent | Role | Model |
-|---|---|---|
-| `@topic-researcher` | Finds fresh, source-backed topics for any content workflow | sonnet |
-| `@content-planner` | Builds structured multi-edition editorial plans | sonnet |
-| `@content-writer` | Writes polished content for any publication format | **opus** |
-| `@editorial-reviewer` | Final quality gate before any content is published | sonnet |
-| `@source-verifier` | Verifies all claims are backed by strong, current sources | sonnet |
-| `@tone-calibrator` | Ensures voice and complexity match the target audience | sonnet |
-| `@feedback-synthesizer` | Turns audience responses into backlog topics and planning input | sonnet |
-| `@backlog-curator` | Scores, prioritises, and prunes content or feature backlog | sonnet |
-
-### Delivery and Operations
-
-| Agent | Role | Model |
-|---|---|---|
-| `@delivery-orchestrator` | Renders, gate-checks, and delivers content via any configured channel | sonnet |
-| `@delivery-monitor` | Reviews delivery reports and flags errors or anomalies | sonnet |
-| `@privacy-reviewer` | Mandatory scan before any public release or repository push | sonnet |
-| `@changelog-writer` | Generates versioned changelog entries after releases or publications | sonnet |
-| `@ab-tester` | Designs and analyses A/B tests for headlines, CTAs, subject lines | sonnet |
-| `@backlog-updater` | Captures ideas and deferred work into the chosen backlog with a consistent schema and optional linked plan artifacts | sonnet |
-
-### Advisory
-
-| Agent | Role |
-|---|---|
-| `@product-owner` | User stories, acceptance criteria, scope decisions |
-| `@project-manager` | Timelines, blockers, sprint planning |
-| `@business-analyst` | Requirements, ROI, business cases |
-| `@customer-advocate` | End-user and reader experience, UX empathy |
-| `@devils-advocate` | Challenges assumptions before committing to a direction |
-| `@risk-officer` | Risk, compliance, "what could go wrong" |
-| `@judge` | Final evaluation — business and technical verdict |
-| `@tech-writer` | Docs, README, architecture diagrams |
-| `@idea-executor` | Turns ideas into validated execution plans, flow diagrams, and step-by-step guides |
+Use that doc when you want:
+- the full 41-agent inventory
+- the feature map across agents, teams, skills, rules, hooks, memory, and artifacts
+- a clearer picture of how the layers connect
+- a faster route into the right detailed documentation
 
 ---
 
@@ -383,13 +362,13 @@ ADRs are not special-case paperwork. They are the default traceability mechanism
 `/code-review` `/fix-bug` `/implement-feature` `/write-tests` `/refactor`
 `/security-audit` `/optimize-performance` `/write-docs` `/explain-code`
 `/git-commit` `/create-pr` `/business-case` `/sprint-planning` `/research`
-`/daily-standup` `/retrospective`
+`/daily-standup` `/retrospective` `/repo-cleanup`
 
 ---
 
 ## Agent Groups at a Glance
 
-The 38 agents split into five groups designed to cover any project type:
+The 41 agents split into five specialist groups designed to cover any project type:
 
 **Engineering** (10 agents) — builds and maintains software: architecture, implementation, testing, security, performance, debugging, and release safety.
 
@@ -409,11 +388,14 @@ The 38 agents split into five groups designed to cover any project type:
 - `./scripts/doctor.sh` checks repo structure, JSON validity, hook permissions, and key documentation references
 - `python3 -m unittest discover -s tests -v` runs the lightweight validation test suite for hooks and doctor behavior
 - `docs/ARCHITECTURE.md` explains the product boundary and canonical sources
+- `docs/DOCUMENTATION_GOVERNANCE.md` explains how to keep the repo fully documented without hot-path bloat
 - `docs/BOOTSTRAP.md` explains how `@master` should initialize a new repo briefing when this kit is copied elsewhere
 - `docs/CONTEXT_EFFICIENCY.md` explains how to keep briefing files lean, requests high-signal, and large inputs under control
 - `docs/LOCAL_CONTEXT.md` explains the private local context layer and its privacy boundary
+- `docs/SYSTEM_REFERENCE.md` gives the full feature inventory, system connections, and navigation map
 - `docs/TEAMS.md` explains the reusable team abstraction and how `@master` uses it
 - `docs/PROJECT_CUSTOMIZATION.md` shows how to turn the generic kit into a real project briefing
+- `repo-cleanup` is the direct cleanup skill for pruning or customizing copied-kit leftovers safely
 
 ## Customizing for Real Projects
 
@@ -468,7 +450,9 @@ If backlog preference is not known yet, `@master` should ask whether the project
 | `docs/ARCHITECTURE.md` | Product boundary, canonical sources, maintenance priorities |
 | `docs/BOOTSTRAP.md` | New-repo bootstrap behavior, trigger rules, and adaptive question flow |
 | `docs/CONTEXT_EFFICIENCY.md` | Context-quality rules, request-shaping, and large-input triage guidance |
+| `docs/DOCUMENTATION_GOVERNANCE.md` | Hot-path summary policy, linkback rules, and anti-bloat documentation guidance |
 | `docs/LOCAL_CONTEXT.md` | Private local-context model for sensitive company, customer, and strategy notes |
+| `docs/SYSTEM_REFERENCE.md` | Full feature inventory, connections, and usage/navigation map |
 | `docs/TEAMS.md` | Team abstraction, reusable manifests, and team operating rules |
 | `docs/PROJECT_CUSTOMIZATION.md` | How to adapt the generic kit to a concrete repo |
 | `docs/AGENT_WORKFLOWS.md` | Detailed workflow diagrams with parallel/sequential/gated patterns |
