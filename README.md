@@ -347,6 +347,9 @@ For all tasks, `@master` should at least report:
 
 For significant work, `@master` should upgrade that into a fuller execution report with:
 
+- which team was primary, if a team was used
+- who led that team
+- why that team was activated
 - which agents were selected
 - what each agent owned
 - what happened during execution

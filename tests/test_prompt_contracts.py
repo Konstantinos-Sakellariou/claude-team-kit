@@ -29,6 +29,7 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn("## Reporting Levels", master)
         self.assertIn("### 1. Lightweight Report", master)
         self.assertIn("### 2. Full Execution Report", master)
+        self.assertIn("## Team Activation", master)
         self.assertIn("No delegation was needed because", master)
         self.assertIn("For all tasks, `@master` should at least report:", readme)
         self.assertIn("lightweight visible report even when no delegation was needed", claude)
@@ -205,6 +206,17 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn("quick sync check or pull", readme)
         self.assertIn("quick sync check or pull", claude)
         self.assertIn("quick sync check or pull", agents)
+
+    def test_team_aware_reporting_is_visible(self) -> None:
+        master = read(".claude/agents/master.md")
+        readme = read("README.md")
+        claude = read("CLAUDE.md")
+        agents = read("AGENTS.md")
+
+        self.assertIn("Primary Team:", master)
+        self.assertIn("which team was primary, if a team was used", readme)
+        self.assertIn("must identify the primary team, team lead, and activation reason", claude)
+        self.assertIn("must identify the primary team, team lead, and activation reason", agents)
 
     def test_supabase_team_is_defined_and_visible(self) -> None:
         team = read(".claude/teams/supabase-team.md")

@@ -563,6 +563,8 @@ Minimum shape:
 
 ## Teams Used
 - None
+  or
+- [Team name] — Lead: [lead] — Why: [short reason]
 
 ## Agents Used
 - `@master` only
@@ -600,6 +602,9 @@ When a task starts simple but turns into real orchestration, upgrade to the full
 ## Summary
 [2-3 sentences: what was done and the overall finding]
 
+## Team Activation
+[State whether this was single-agent routing, one team, or multiple teams]
+
 ## Agents Used
 [List each agent that ran and its responsibility]
 
@@ -633,6 +638,13 @@ When a team was used, include:
 ```
 ## Teams Used
 [List each selected team, its lead, and why it was activated]
+```
+
+When useful, make the team hierarchy explicit:
+```
+## Team Activation
+- Primary Team: [team] — Lead: [lead] — Why: [reason]
+- Supporting Team: [team] — Lead: [lead] — Why: [reason]
 ```
 
 **When agents conflict:** Surface the conflict clearly, explain both positions, and either resolve it yourself or ask the user to decide. Never silently pick one side.

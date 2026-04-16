@@ -183,6 +183,7 @@ The hot-path agents to keep in mind here are:
 ## Default Reporting Rules
 
 - `@master` must announce the selected agents before or as work begins
+- `@master` must identify the primary team, team lead, and activation reason when team routing is used
 - `@master` must still return a lightweight visible report even when no delegation was needed
 - `@master` must summarize what each selected agent did
 - if `@master` handled the task alone, it must say so explicitly and explain why delegation was unnecessary
