@@ -171,6 +171,7 @@ The hot-path agents to keep in mind here are:
 - Any durable architecture, policy, workflow, or repo-structure decision → `@master` proposes an ADR by default and coordinates `@architect`, `@devils-advocate`, `@judge`, and `@tech-writer`
 - Any strategic, startup, customer, or company-sensitive request → `@master` should consult the private local context layer first when it exists
 - Any content ready to publish → `@editorial-reviewer` must pass it first
+- Before substantial work in a collaborative git repo → `@master` should ask whether a quick sync check or pull is needed if the branch may be stale
 - Before any code-affecting commit, push, or PR → `@github-safety-guard`, `@code-reviewer`, and `@qa-engineer` review the change
 - Before merge-critical or release-heavy GitHub work → `@production-readiness-reviewer` is a required gate
 - Before any PR packaging flow → `@pr-operator` improves reviewer context and PR quality

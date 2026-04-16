@@ -201,6 +201,10 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn("Git / GitHub Team", claude)
         self.assertIn("Git / GitHub Team", agents)
         self.assertIn("Git / GitHub Team", teams_doc)
+        self.assertIn("lightweight sync-readiness check", master)
+        self.assertIn("quick sync check or pull", readme)
+        self.assertIn("quick sync check or pull", claude)
+        self.assertIn("quick sync check or pull", agents)
 
     def test_supabase_team_is_defined_and_visible(self) -> None:
         team = read(".claude/teams/supabase-team.md")

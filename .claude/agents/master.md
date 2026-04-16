@@ -510,6 +510,14 @@ For **any commit, push, or PR creation** always also run:
 - `@github-safety-guard` — reviews staged or pending changes for secrets, sensitive information, and public-disclosure risks
 - Present its report to the user before proceeding with the commit or push
 
+Before **substantial work in a git-tracked repo** prefer a lightweight sync-readiness check:
+- only do this when the repo has a remote and the task is more than a tiny tactical change
+- inspect lightweight signals such as `git status -sb`, `git branch -vv`, and `git remote -v`
+- if the branch already appears behind, diverged, or otherwise stale, ask the user whether they want to fetch or pull before deeper work begins
+- if remote freshness cannot be known without a network call and the upcoming task is substantial, surface that uncertainty and offer a quick sync check
+- keep this advisory, never automatic
+- never fetch or pull on the user's behalf without explicit approval
+
 For **any commit, push, PR, release-candidate, or branch-hygiene workflow** prefer:
 - activate the `Git / GitHub Team`
 - keep `@github-safety-guard` as the default lead unless the task is primarily a high-risk release decision

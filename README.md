@@ -328,6 +328,7 @@ These fire automatically — you don't need to ask:
 - Durable architecture, policy, workflow, or repo-structure decisions → `@master` proposes an ADR by default
 - Strategic, startup, customer, or company-sensitive work → `@master` consults `.claude/local-context/` first when it exists
 - Content ready to publish → `@editorial-reviewer` must pass it first
+- Before substantial work in a collaborative git repo → `@master` should ask whether a quick sync check or pull is needed if the branch may be stale
 - Before any public release or push → `@privacy-reviewer` runs mandatory scan
 - Before any code-affecting commit, push, or PR → `@github-safety-guard`, `@code-reviewer`, and `@qa-engineer` review the change
 - Before any merge-critical or release-heavy GitHub flow → `@production-readiness-reviewer` must pass it
