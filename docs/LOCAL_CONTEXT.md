@@ -74,5 +74,6 @@ That lets a team establish two different context surfaces early:
 - local-only sensitive context in `.claude/local-context/`
 
 The same rule applies to plans:
-- public-safe implementation plans can live in `docs/plans/`
+- public-safe example plans or intentionally shareable implementation references can live in `docs/plans/`
 - private strategy or roadmap plans should stay in `.claude/local-context/plans/`
+- when a plan reflects the repo's real likely-next work, prefer the local plan path unless the user explicitly wants it tracked

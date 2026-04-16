@@ -153,12 +153,14 @@ The short version is:
 
 ## Roadmap And Backlog
 
-This kit now treats roadmap and backlog as separate but connected surfaces:
+This kit now treats roadmap, backlog, and plans as separate but connected surfaces:
 
 - [`docs/ROADMAP.example.md`](docs/ROADMAP.example.md) shows the roadmap structure the kit expects
 - local `docs/ROADMAP.md` is where a repo can keep its real phased priorities if they should stay private
 - `BACKLOG.md` is the local private registry of future work and follow-ups
 - `docs/BACKLOG.md` is the optional tracked public backlog for repos that want visible backlog history
+- `docs/plans/` should stay mostly for public-safe examples and intentionally shareable references
+- `.claude/local-context/plans/` should hold real likely-next implementation plans when they expose current strategy or sequencing
 
 Use the roadmap to decide sequence and milestone fit.
 Use the backlog to capture concrete items and deferred work.

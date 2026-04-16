@@ -39,7 +39,7 @@ Run when:
 - Add a new item or update an existing item instead of creating duplicates
 - Keep the table fields consistent and useful
 - Preserve useful context from the chat without dumping the whole conversation
-- When a richer execution artifact was explicitly approved, create or update the linked `docs/plans/<slug>.md` file as well
+- When a richer execution artifact was explicitly approved, create or update the linked plan file in the approved location as well
 - When local `docs/VISION.md` exists, prefer wording that makes the item's direction fit understandable instead of treating the work as isolated
 - When local `docs/ROADMAP.md` exists, align timing and phase wording to the roadmap instead of inventing disconnected labels
 
@@ -56,7 +56,7 @@ Each backlog entry should capture:
 - `Priority`: `P0`, `P1`, `P2`, or `P3`
 - `Status`: `Proposed`, `Planned`, `In Progress`, `Blocked`, `Done`, or `Dropped`
 - `Assigned`: who owns or is expected to own the item; use `Unassigned` unless the user specified something better
-- `Artifact / Plan`: linked docs artifact such as `docs/plans/<slug>.md` when one exists, otherwise `—`
+- `Artifact / Plan`: linked plan artifact such as `.claude/local-context/plans/<slug>.md` or `docs/plans/<slug>.md` when one exists, otherwise `—`
 - `Target Phase / When`: rough implementation window
 - `Owner / Agents`: likely owning agent or collaborator set
 - `Dependencies`: blockers, prerequisites, or related items
@@ -74,14 +74,18 @@ Each backlog entry should capture:
 - Never mark an item `Done` unless the work actually landed and the user wants the backlog state updated
 - If the user explicitly says not to work on it now, keep status as `Proposed` or `Planned`
 - If the backlog mode is `Public`, keep the wording safe for tracked repo history and avoid private paths, secrets, or sensitive notes
-- If the user approved a richer plan artifact, keep the backlog row compact and put the full execution detail in `docs/plans/`
+- If the user approved a richer plan artifact, keep the backlog row compact and put the full execution detail in the approved plan location
 
 ## Plan Artifact Rule
 
 When `@idea-executor` produced a meaningful execution plan and the user approved saving a richer artifact:
 - persist the backlog row
-- create or update `docs/plans/<slug>.md`
+- create or update the approved plan path
 - set `Artifact / Plan` to that path
+
+Default path rule:
+- prefer `.claude/local-context/plans/<slug>.md` for real next-step implementation plans
+- use `docs/plans/<slug>.md` only when the user explicitly wants a tracked plan and the plan is safe and useful as a public-facing reference
 
 When approval was not given:
 - keep the full plan in chat

@@ -179,13 +179,14 @@ Recommended default policy:
   - private local `BACKLOG.md` created from `BACKLOG.example.md`
   - or tracked public `docs/BACKLOG.md` created from `docs/BACKLOG.example.md`
 - for important deferred work, prefer both a backlog entry and a linked plan
-- save approved public-safe implementation plans in `docs/plans/`
+- save only intentionally public-safe example plans or shareable implementation references in `docs/plans/`
 - keep private strategy, roadmap, or company-operating plans in `.claude/local-context/plans/`
 - save approved architecture or policy decisions in `docs/adr/`
 
 Important:
 
 - require explicit user approval before saving into `docs/plans/` or `docs/adr/`
+- when it is not obvious whether a plan should be tracked or local, let `@master` ask and recommend the safer local path first
 - if backlog preference is unknown, let `@master` ask whether the repo wants private or public backlog storage
 - let `@master` present the proposed artifact path and reason first
 - let `@master` propose ADRs by default when a decision changes architecture, policy, workflow, or repo structure

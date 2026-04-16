@@ -229,7 +229,7 @@ The hot-path agents to keep in mind here are:
 - `BACKLOG.md` is the private local backlog; start it from `BACKLOG.example.md` and do not rely on chat history alone
 - `docs/BACKLOG.md` is the optional public tracked backlog; start it from `docs/BACKLOG.example.md` when a repo wants visible backlog history
 - If `.claude/local-context/` exists, treat it as a private local context layer rather than a tracked documentation target
-- Approved public-safe execution plans belong in `docs/plans/`; private strategy or roadmap plans belong in `.claude/local-context/plans/`; approved architecture or policy decisions belong in `docs/adr/`
-- For substantial deferred ideas, prefer a backlog entry plus a linked plan rather than a backlog row alone, choosing `docs/plans/` versus `.claude/local-context/plans/` based on privacy
+- Approved public-safe example plans or shareable implementation references belong in `docs/plans/`; real next-step strategy or sequencing plans belong in `.claude/local-context/plans/`; approved architecture or policy decisions belong in `docs/adr/`
+- For substantial deferred ideas, prefer a backlog entry plus a linked plan rather than a backlog row alone, and default to `.claude/local-context/plans/` unless the user explicitly wants the plan tracked and it is safe to publish
 - `@tech-writer` is the primary ADR author once `@master` receives explicit approval to save the record
 - `README.md`, `CLAUDE.md`, and `AGENTS.md` must stay in sync when workflow, commands, or structure change

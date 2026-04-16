@@ -45,7 +45,7 @@ Core rules:
 - widen scope only when evidence says the task truly needs it
 - prefer exact files, exact errors, exact diffs, and exact artifacts over vague repo-wide exploration
 - if the user gives a large log, dump, diff, or dataset, triage it first instead of flooding the main thread with raw input
-- prefer durable artifacts such as `BACKLOG.md`, `docs/plans/`, `docs/adr/`, and `.claude/local-context/` over repeatedly rebuilding the same context from chat history
+- prefer durable artifacts such as `BACKLOG.md`, `.claude/local-context/plans/`, `docs/plans/`, `docs/adr/`, and `.claude/local-context/` over repeatedly rebuilding the same context from chat history
 - keep `CLAUDE.md` and `AGENTS.md` high-signal; if they grow noisy or repetitive, recommend moving detail into linked docs
 - when local `docs/VISION.md` exists, use it as a direction filter for major additions, backlog shaping, and implementation suggestions; otherwise use `docs/VISION.example.md` as the structure model
 - when local `docs/ROADMAP.md` exists, use it as the sequencing filter for major additions, next-step recommendations, and roadmap-worthy work; otherwise use `docs/ROADMAP.example.md` as the structure model
@@ -461,16 +461,18 @@ Artifact policy for idea work:
 - keep early exploration in chat by default
 - use the chosen backlog target for deferred or save-for-later ideas
 - for important deferred work, prefer `backlog + linked plan` rather than a backlog row alone
-- use `docs/plans/<slug>.md` only after the user explicitly approves saving a plan file
+- use plan files only after the user explicitly approves saving them
 - use `docs/adr/<nnn>-<slug>.md` only after the user explicitly approves saving a durable decision record
 
 Backlog-linked planning rule:
 - If `@idea-executor` produced a substantial plan and the user wants the work saved for later, prefer both:
   - a backlog entry
-  - a linked plan file in `docs/plans/<slug>.md`
+  - a linked plan file in an approved plan location
 - The backlog row should stay compact and point to the richer plan artifact
 - The full step-by-step execution detail should live in the plan file, not only in the backlog row
 - when `docs/VISION.md` exists, make it clear why the deferred work supports the repo or project direction
+- Default to `.claude/local-context/plans/<slug>.md` when the plan reflects real current implementation direction, sequencing, or strategy
+- Use `docs/plans/<slug>.md` only when the user explicitly wants a tracked plan and the artifact is genuinely safe and useful as a public reference
 
 For **major additions, new teams, new agents, new rules, new hooks, or new skills**:
 - check whether the idea fits `docs/VISION.md`
@@ -698,7 +700,10 @@ For idea artifacts, use:
 > "Before I save this plan: I recommend `[path]` as the right place for this artifact because [reason]. Approve saving it there?"
 
 For deferred ideas that deserve a richer artifact, use:
-> "Before I save this for later: I recommend both a backlog entry in `[path]` and a linked execution plan at `[plan-path]` so we keep the item compact in the backlog but still preserve the full step-by-step plan. Approve saving both?"
+> "Before I save this for later: I recommend both a backlog entry in `[path]` and a linked execution plan at `[plan-path]` so we keep the item compact in the backlog but still preserve the full step-by-step plan. I’m recommending the [local / tracked] plan path because [reason]. Approve saving both?"
+
+When plan visibility is not obvious, ask explicitly:
+> "Before I save this plan: I can keep it local at `.claude/local-context/plans/<slug>.md` or save a tracked version at `docs/plans/<slug>.md`. I recommend the [local / tracked] path because [reason]. Which do you want?"
 
 For backlog mode selection, use:
 > "Before I save this backlog item: I can use the local private backlog at `BACKLOG.md` or a tracked public backlog at `docs/BACKLOG.md`. I recommend [mode] because [reason]. Which do you want?"

@@ -93,7 +93,7 @@ Tracked by default:
 - `CLAUDE.md`
 - `AGENTS.md`
 - public-safe focused docs in `docs/`
-- public-safe execution plans in `docs/plans/`
+- public-safe example plans or intentionally shareable reference plans in `docs/plans/`
 - approved ADRs in `docs/adr/`
 
 Local-only by default:
@@ -105,6 +105,7 @@ Local-only by default:
 Before committing, ask:
 - does this belong in the shared kit?
 - does this reveal private product, customer, or company strategy?
+- does this reveal our actual near-term implementation direction more than a reusable example needs to?
 - should this stay in local context instead?
 
 ## Upgrade Checklist By Change Type
@@ -181,7 +182,7 @@ If the work is substantial but not yet approved:
 - use backlog plus plan flow first
 
 Use:
-- `docs/plans/` for approved public-safe implementation plans
+- `docs/plans/` for approved public-safe example plans and shareable implementation references
 - `.claude/local-context/plans/` for private strategy or roadmap plans
 - `docs/adr/` for approved durable decisions
 
