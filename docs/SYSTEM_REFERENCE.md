@@ -46,7 +46,7 @@ Pair it with:
 | Content & Publishing Team | `@content-planner` or `@content-writer` | planning, drafting, editorial workflows | source, tone, review, feedback | `docs/TEAMS.md` |
 | Delivery & Ops Team | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, backlog persistence | privacy, changelog, experimentation | `docs/TEAMS.md` |
 | Git / GitHub Team | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness | code review, PR packaging, production readiness | `docs/TEAMS.md` |
-| Advisory Review Team | `@product-owner`, `@business-analyst`, or `@idea-executor` | planning, prioritization, strategic validation | customer, judge, devil's advocate, tech writer | `docs/TEAMS.md` |
+| Advisory Review Team | `@product-owner`, `@business-analyst`, or `@idea-executor` | planning, prioritization, strategic validation | customer, strategy review, judge, devil's advocate, session-budget estimation, tech writer | `docs/TEAMS.md` |
 
 ## Agent Inventory
 
@@ -110,7 +110,9 @@ Pair it with:
 | `@project-manager` | Coordination, timing, execution tracking |
 | `@business-analyst` | Requirements, ROI, business framing |
 | `@customer-advocate` | User and reader experience |
+| `@strategy-reviewer` | Vision fit, roadmap fit, leverage, timing, and strategic pushback |
 | `@devils-advocate` | Challenge assumptions |
+| `@session-budget-estimator` | Session-sized effort, model-mix, and reset-pressure estimation |
 | `@risk-officer` | Release and operational risk review |
 | `@judge` | Decision tiebreaking |
 | `@tech-writer` | Documentation and narrative structure |
@@ -198,6 +200,7 @@ Hooks should reinforce hygiene, not replace judgment.
 | `docs/ROADMAP.md` | optional local phased roadmap |
 | `docs/plans/` | approved public-safe example plans and shareable implementation references |
 | `.claude/local-context/plans/` | local private strategy and roadmap plans |
+| `.claude/local-context/estimation-log.md` | local private estimate-versus-actual history and mode preference |
 | `docs/adr/` | approved architecture/policy decisions |
 | `.claude/local-context/` | private local context |
 | `README.md` | public-facing summary |

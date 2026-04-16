@@ -374,7 +374,7 @@ Current team manifests live in `.claude/teams/`.
 | `Content & Publishing Team` | `@content-planner` or `@content-writer` | planning, drafting, source-backed editorial workflows |
 | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy, backlog persistence |
 | `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness, branch hygiene, repo-safety review |
-| `Advisory Review Team` | `@product-owner`, `@business-analyst`, or `@idea-executor` | planning, prioritization, business, UX, risk, contested decisions |
+| `Advisory Review Team` | `@product-owner`, `@business-analyst`, or `@idea-executor` | planning, prioritization, business, UX, risk, contested decisions, strategy-fit review |
 
 ### Team Activation Guide
 
@@ -401,6 +401,8 @@ Read current agents from `.claude/agents/` at session start. Default routing:
 | Bug / broken thing | `@debugger` | `@senior-developer` (fix) |
 | Research topic | `@researcher` | — |
 | Backlog capture / save for later | `@backlog-updater` | `@product-owner`, `@project-manager` |
+| Session budget / reset-limit / model-capacity estimate | `@session-budget-estimator` | `@project-manager`, `@idea-executor`, `@business-analyst` |
+| Strategic fit / roadmap fit / portfolio pushback | `@strategy-reviewer` | `@business-analyst`, `@product-owner`, `@session-budget-estimator`, `@judge` |
 | Idea exploration to execution plan | `@idea-executor` | `@devils-advocate`, `@judge`, `@architect` |
 | ADR-worthy decision / durable trade-off | `@architect` | `@devils-advocate`, `@judge`, `@tech-writer` |
 | New feature evaluation | `@product-owner` | `@business-analyst`, `@devils-advocate` |
@@ -440,6 +442,31 @@ For **any decision that changes architecture, workflow, policy, repo structure, 
 
 For **any backlog capture or defer-for-later decision** always also run:
 - `@backlog-updater` — updates the chosen backlog so the idea is persisted with useful execution context
+
+For **any backlog reprioritization, roadmap sequencing discussion, "what should we do next?" question, or reset-limit / session-budget concern** prefer:
+- `@session-budget-estimator` — estimates likely session shape, model mix, and context/reset pressure
+- add `@project-manager` when sequencing and delivery coordination matter
+- add `@idea-executor` when the scope is still too fuzzy to estimate cleanly
+- add `@business-analyst` when priority depends on value, opportunity cost, or trade-offs as much as effort
+
+For **any new major capability, team, agent, rule, hook, skill, command, backlog item, or roadmap change that could materially affect direction or consume meaningful effort** prefer:
+- `@strategy-reviewer` — evaluates vision fit, roadmap fit, leverage, timing, complexity added, and opportunity cost
+- add `@session-budget-estimator` when the answer depends on what fits in realistic Claude/Codex sessions
+- add `@business-analyst` when value and cost trade-offs need stronger business framing
+- add `@judge` when the decision is contested or high stakes
+
+Automatic strategy-review trigger rules:
+- use `@strategy-reviewer` when the user proposes a major addition to the core
+- use it when roadmap reprioritization or "what next?" needs strategic pushback, not just effort sizing
+- use it when an idea sounds exciting but may add more scope than leverage
+- skip it for tiny tactical edits, simple bug fixes, straightforward doc corrections, and already-approved execution of a clearly aligned item
+
+Estimation mode rules:
+- The estimator supports `Session Mode`, `Roadmap Mode`, and `Hybrid Mode`
+- If the user's estimation preference is already known, use it
+- If it is unknown, recommend `Session Mode`
+- If the user does not care or does not answer, default to `Session Mode`
+- Remember or update the preferred mode only when the user explicitly chooses it
 
 Backlog mode rules:
 - The kit supports `Private backlog` at `BACKLOG.md` and `Public backlog` at `docs/BACKLOG.md`

@@ -11,7 +11,7 @@ Ten workflows are documented here, each demonstrating different collaboration pa
 1. **Engineering Pipeline** — parallel spikes, sequential implementation, gated quality stages
 2. **Content Publishing Pipeline** — research loop, human approval gate, parallel review, delivery feedback loop
 3. **Full Project Launch** — dual parallel tracks (engineering + content) converging at a shared release gate
-4. **Idea To Execution Planning** — idea shaping, adversarial validation, phased plan, optional backlog capture
+4. **Idea To Execution Planning** — idea shaping, strategic-fit review, adversarial validation, phased plan, optional backlog capture
 5. **Decision To ADR** — durable-decision detection, validation, approval gate, ADR authorship, documentation alignment
 6. **AI/ML Delivery Pipeline** — model framing, training, mandatory evaluation gate, operational rollout
 7. **New Repo Bootstrap** — adaptive discovery, temporary assumptions, initial briefing alignment
@@ -268,7 +268,7 @@ flowchart TD
 
 **Example trigger:** *"We have an idea for a backlog system and an execution-planning specialist. How should we shape it?"*
 
-**Patterns demonstrated:** idea shaping, adversarial review, coordinated planning, backlog persistence, optional linked plan artifact, mandatory synthesis by `@master`.
+**Patterns demonstrated:** idea shaping, strategic-fit review, adversarial review, coordinated planning, backlog persistence, optional linked plan artifact, mandatory synthesis by `@master`.
 
 ```mermaid
 flowchart TD
@@ -285,6 +285,7 @@ flowchart TD
 
     subgraph STAGE1 ["⚡ Parallel — Validation Stage"]
         direction LR
+        STRAT["@strategy-reviewer\nChecks vision fit,\nroadmap fit,\nand timing"]
         DEVIL["@devils-advocate\nChallenges assumptions\nFinds weak points"]
         JUDGE["@judge\nEvaluates overall quality\nand feasibility"]
         ARCH["@architect\nChecks structure,\nboundaries, and system fit"]
@@ -320,7 +321,7 @@ flowchart TD
 **Key points:**
 - `@idea-executor` is the primary planning specialist, not the top-level coordinator
 - `@master` still owns the thread, announces the selected agents, and synthesizes the result
-- `@devils-advocate`, `@judge`, and `@architect` are strong default validators for non-trivial ideas
+- `@strategy-reviewer`, `@devils-advocate`, `@judge`, and `@architect` are strong default validators for non-trivial ideas
 - If the user wants to defer execution, `@backlog-updater` persists the idea in the chosen backlog
 - For substantial deferred work, the best default is often backlog entry plus linked plan, not backlog row alone
 - Even planning-only work still ends with `@workspace-updater` reviewing the core docs

@@ -1,7 +1,7 @@
 # claude-team-kit
 
 [![Validate Workspace Kit](https://img.shields.io/github/actions/workflow/status/Konstantinos-Sakellariou/claude-team-kit/validate.yml?branch=main&label=validate)](https://github.com/Konstantinos-Sakellariou/claude-team-kit/actions/workflows/validate.yml)
-![Agents](https://img.shields.io/badge/agents-41-0ea5e9)
+![Agents](https://img.shields.io/badge/agents-43-0ea5e9)
 ![Teams](https://img.shields.io/badge/teams-7-14b8a6)
 ![Skills](https://img.shields.io/badge/skills-20-f97316)
 ![Local Context](https://img.shields.io/badge/local_context-supported-22c55e)
@@ -19,7 +19,7 @@ Use [`docs/VISION.example.md`](docs/VISION.example.md) and [`docs/ROADMAP.exampl
 
 ```text
 .claude/
-├── agents/          41 specialized agents across engineering, AI/ML, content, delivery, and advisory
+├── agents/          43 specialized agents across engineering, AI/ML, content, delivery, and advisory
 ├── teams/           7 reusable team manifests that @master can activate for recurring workflows
 ├── skills/          20 reusable skills (code-review, fix-bug, business-case, create-pr, context-audit, triage-input, repo-cleanup...)
 ├── rules/           Modular rule files — docs, artifacts, context, Python, TypeScript, security, testing, git, performance, API design, AI/ML workflow
@@ -165,6 +165,18 @@ This kit now treats roadmap, backlog, and plans as separate but connected surfac
 Use the roadmap to decide sequence and milestone fit.
 Use the backlog to capture concrete items and deferred work.
 
+When the main question is capacity rather than raw importance, use `@session-budget-estimator`:
+- `Session Mode` for what fits in real Claude/Codex work sessions
+- `Roadmap Mode` for sequencing and phase fit
+- `Hybrid Mode` for both together
+
+Real estimate-versus-actual history should stay local in `.claude/local-context/estimation-log.md`.
+
+When the main question is strategic fit rather than capacity, use `@strategy-reviewer`:
+- `Strong fit`, `Moderate fit`, `Weak fit`, or `Misaligned`
+- explicit pushback when an addition costs more than it adds
+- a narrower or better-timed alternative when the underlying idea is directionally useful
+
 ## Starter Packs
 
 This kit now includes optional starter packs for common repo shapes.
@@ -181,7 +193,7 @@ They are adaptation overlays that help bootstrap and customization converge fast
 ## What This Repo Is
 
 - A reusable workspace kit for agent-based development
-- A curated team of 41 agents with explicit collaboration patterns
+- A curated team of 43 agents with explicit collaboration patterns
 - A prompt and guardrail layer that can be dropped into another project
 
 ## What This Repo Is Not
@@ -219,7 +231,7 @@ flowchart TD
     MASTER --> DELIV["🚀 Delivery & Ops\n@delivery-orchestrator\n@delivery-monitor\n@privacy-reviewer\n@changelog-writer\n@ab-tester\n@backlog-updater"]
     MASTER --> GIT["🔐 Git / GitHub\n@github-safety-guard\n@code-reviewer\n@pr-operator\n@production-readiness-reviewer\n@privacy-reviewer\n@changelog-writer"]
 
-    MASTER --> ADV["🧠 Advisory\n@business-analyst\n@product-owner\n@project-manager\n@customer-advocate\n@devils-advocate\n@risk-officer\n@judge\n@tech-writer\n@idea-executor"]
+    MASTER --> ADV["🧠 Advisory\n@business-analyst\n@product-owner\n@project-manager\n@customer-advocate\n@strategy-reviewer\n@devils-advocate\n@risk-officer\n@judge\n@tech-writer\n@idea-executor\n@session-budget-estimator"]
 
     ENG --> SYNTH(["@master synthesises all reports"])
     ML --> SYNTH
@@ -314,7 +326,7 @@ In short: teams help `@master` behave less like an improvised dispatcher and mor
 | `Content & Publishing Team` | `@content-planner` or `@content-writer` | planning, drafting, editorial validation |
 | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy, backlog persistence |
 | `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness, branch hygiene, repo-safety review |
-| `Advisory Review Team` | `@product-owner`, `@business-analyst`, or `@idea-executor` | planning, prioritization, decision support, strategic validation |
+| `Advisory Review Team` | `@product-owner`, `@business-analyst`, or `@idea-executor` | planning, prioritization, decision support, strategic validation, and pushback on major additions |
 
 The canonical team definitions live in `.claude/teams/`. See [`docs/TEAMS.md`](docs/TEAMS.md) for the full model and operating rules, and [`docs/SUPABASE_REFERENCE.md`](docs/SUPABASE_REFERENCE.md) for the Supabase-specific reference.
 
@@ -349,7 +361,7 @@ The canonical team definitions live in `.claude/teams/`. See [`docs/TEAMS.md`](d
 The full agent roster, system layers, connections, and navigation map now live in [`docs/SYSTEM_REFERENCE.md`](docs/SYSTEM_REFERENCE.md).
 
 Use that doc when you want:
-- the full 41-agent inventory
+- the full 43-agent inventory
 - the feature map across agents, teams, skills, rules, hooks, memory, and artifacts
 - a clearer picture of how the layers connect
 - a faster route into the right detailed documentation
@@ -370,6 +382,8 @@ These fire automatically — you don't need to ask:
 - Novel AI/ML methods or benchmark questions → `@research-scientist` advises
 - "Backlog this" or defer-for-later requests → `@backlog-updater` updates the chosen backlog and can link an approved plan
 - Significant idea discussions → `@idea-executor` shapes the idea into an execution plan
+- Roadmap reprioritization, “what next?”, or reset-limit concerns → `@session-budget-estimator` estimates likely session shape and model mix
+- Major additions to the core → `@strategy-reviewer` checks vision fit, roadmap fit, leverage, and timing before we treat them as good next work
 - Durable architecture, policy, workflow, or repo-structure decisions → `@master` proposes an ADR by default
 - Strategic, startup, customer, or company-sensitive work → `@master` consults `.claude/local-context/` first when it exists
 - Content ready to publish → `@editorial-reviewer` must pass it first
@@ -457,9 +471,9 @@ The reusable skills still matter underneath that layer, including:
 
 ## Agent Groups at a Glance
 
-The 41 agents split into five specialist groups designed to cover any project type:
+The 43 agents split into five specialist groups designed to cover any project type:
 
-**Engineering** (10 agents) — builds and maintains software: architecture, implementation, testing, security, performance, debugging, and release safety.
+**Engineering** (13 agents) — builds and maintains software: architecture, implementation, testing, security, performance, debugging, GitHub quality gates, and release safety.
 
 **AI/ML** (5 agents) — covers model-centric work from exploratory analysis through training, evaluation, deployment readiness, and frontier-method assessment.
 
@@ -467,7 +481,7 @@ The 41 agents split into five specialist groups designed to cover any project ty
 
 **Delivery & Ops** (6 agents) — operates the release and distribution pipeline: delivery, monitoring, privacy, changelog, experimentation, and backlog persistence.
 
-**Advisory** (9 agents) — provides strategic and decision-making support: product, project, business, UX, devil's advocate, risk, judgement, docs, and idea-to-plan execution shaping.
+**Advisory** (11 agents) — provides strategic and decision-making support: product, project, business, UX, strategic-fit review, session-budget estimation, devil's advocate, risk, judgement, docs, and idea-to-plan execution shaping.
 
 ---
 

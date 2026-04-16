@@ -15,6 +15,7 @@ If local `docs/VISION.md` exists, use that as the real shaping filter.
 A good backlog row should explain not only what the idea is, but why it deserves to move the tracked project forward.
 When local `docs/ROADMAP.md` exists, align `Target Phase / When` with it.
 Otherwise use [`ROADMAP.example.md`](ROADMAP.example.md) as the structure reference.
+When session limits or reset pressure matter, use `@session-budget-estimator` to decide whether an item should stay whole, be split, or be sequenced later.
 
 ## Status Guide
 

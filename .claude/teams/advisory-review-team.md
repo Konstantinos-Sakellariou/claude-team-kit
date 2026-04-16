@@ -14,6 +14,8 @@ Default team for scope, decision-making, business, product, UX, risk, and strate
 
 - `@project-manager`
 - `@customer-advocate`
+- `@strategy-reviewer`
+- `@session-budget-estimator`
 - `@devils-advocate`
 - `@risk-officer`
 - `@judge`
@@ -24,17 +26,21 @@ Default team for scope, decision-making, business, product, UX, risk, and strate
 - idea shaping
 - product or business evaluation
 - prioritization decisions
+- roadmap fit and vision-fit review
 - trade-off analysis
 - risk-heavy or contested choices
 
 ## Default Flow
 
 - frame the decision
+- test strategic fit and timing
+- test practical session pressure when needed
 - challenge assumptions
 - evaluate consequences
 - document the outcome when durable
 
 ## Required Gates
 
+- `@strategy-reviewer` for major additions, roadmap reshaping, or strategic-fit questions
 - `@devils-advocate` for significant decisions
 - `@judge` when competing options need a final verdict

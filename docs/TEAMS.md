@@ -39,7 +39,7 @@ This kit currently defines seven reusable teams:
 | `Content & Publishing Team` | `@content-planner` or `@content-writer` | content planning, drafting, editorial validation |
 | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy, backlog persistence |
 | `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness, branch hygiene, repo-safety review |
-| `Advisory Review Team` | `@product-owner`, `@business-analyst`, or `@idea-executor` | planning, product, business, risk, and decision support |
+| `Advisory Review Team` | `@product-owner`, `@business-analyst`, or `@idea-executor` | planning, product, business, risk, strategic-fit review, and decision support |
 
 The canonical team manifests live in `.claude/teams/`.
 
@@ -90,6 +90,26 @@ Add when needed:
 - `@production-readiness-reviewer`
 - `@pr-operator`
 - `@risk-officer`
+
+## Advisory Review Team Notes
+
+The `Advisory Review Team` is where idea quality, strategy fit, and sequencing quality come together.
+
+Use it for:
+- backlog shaping
+- roadmap trade-offs
+- prioritization and scope pushback
+- idea-to-plan work that still needs pressure-testing
+
+Add `@strategy-reviewer` when the question is:
+- whether something fits the vision or roadmap strongly enough
+- whether a new addition adds more scope than leverage
+- whether the repo should push back instead of saying yes too quickly
+
+Add `@session-budget-estimator` when the question is not only "is this valuable?" but also:
+- what fits in one realistic Claude/Codex session
+- whether reset limits make the item too large right now
+- whether the work should be split before execution starts
 
 ## Customization Guidance
 

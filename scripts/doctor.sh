@@ -68,6 +68,10 @@ check_file ".claude/rules/github-quality-gate.md" ".claude/rules/github-quality-
 check_file ".claude/rules/release-governance.md" ".claude/rules/release-governance.md exists"
 check_file ".claude/rules/ml-workflow.md" ".claude/rules/ml-workflow.md exists"
 check_file ".claude/hooks/warn-doc-drift.sh" ".claude/hooks/warn-doc-drift.sh exists"
+check_file ".claude/agents/session-budget-estimator.md" ".claude/agents/session-budget-estimator.md exists"
+check_file ".claude/agent-memory/session-budget-estimator/MEMORY.md" ".claude/agent-memory/session-budget-estimator/MEMORY.md exists"
+check_file ".claude/agents/strategy-reviewer.md" ".claude/agents/strategy-reviewer.md exists"
+check_file ".claude/agent-memory/strategy-reviewer/MEMORY.md" ".claude/agent-memory/strategy-reviewer/MEMORY.md exists"
 
 if [ -d "$ROOT_DIR/.claude/commands" ]; then
   pass ".claude/commands exists"
@@ -213,6 +217,29 @@ if grep -q '## Context Efficiency And Scope Discipline' "$ROOT_DIR/.claude/agent
   pass "master agent prompt defines context-efficiency and scope-discipline rules"
 else
   fail "master agent prompt is missing context-efficiency and scope-discipline rules"
+fi
+
+if grep -q '@session-budget-estimator' "$ROOT_DIR/.claude/agents/master.md" && \
+   grep -q 'Session Mode' "$ROOT_DIR/.claude/agents/master.md" && \
+   grep -q 'Roadmap Mode' "$ROOT_DIR/.claude/agents/master.md" && \
+   grep -q 'Hybrid Mode' "$ROOT_DIR/.claude/agents/master.md" && \
+   grep -q '@session-budget-estimator' "$ROOT_DIR/CLAUDE.md" && \
+   grep -q '@session-budget-estimator' "$ROOT_DIR/AGENTS.md" && \
+   grep -q 'session-budget-estimator' "$ROOT_DIR/docs/SYSTEM_REFERENCE.md"; then
+  pass "session-budget estimation is wired into master, core briefings, and system reference"
+else
+  fail "session-budget estimation is not aligned across master, briefings, and system reference"
+fi
+
+if grep -q '@strategy-reviewer' "$ROOT_DIR/.claude/agents/master.md" && \
+   grep -q 'Automatic strategy-review trigger rules:' "$ROOT_DIR/.claude/agents/master.md" && \
+   grep -q '@strategy-reviewer' "$ROOT_DIR/CLAUDE.md" && \
+   grep -q '@strategy-reviewer' "$ROOT_DIR/AGENTS.md" && \
+   grep -q '@strategy-reviewer' "$ROOT_DIR/docs/SYSTEM_REFERENCE.md" && \
+   grep -q '@strategy-reviewer' "$ROOT_DIR/docs/TEAMS.md"; then
+  pass "strategy-review is wired into master, core briefings, and advisory docs"
+else
+  fail "strategy-review is not aligned across master, briefings, and advisory docs"
 fi
 
 if grep -q '## Private Local Context' "$ROOT_DIR/.claude/agents/master.md" && \

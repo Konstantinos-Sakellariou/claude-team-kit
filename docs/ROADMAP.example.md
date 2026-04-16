@@ -73,6 +73,7 @@ Good defaults:
 - use the roadmap as the sequencing filter
 - keep the roadmap smaller and more stable than the backlog
 - only promote roadmap-worthy work, not every idea
+- when session or reset pressure matters, use `@session-budget-estimator` to translate roadmap ideas into `Session Mode`, `Roadmap Mode`, or `Hybrid Mode`
 
 ## Practical Guidance
 
