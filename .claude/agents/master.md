@@ -480,8 +480,9 @@ For **major additions, new teams, new agents, new rules, new hooks, or new skill
 ADR default policy:
 - if a decision is likely to matter beyond the current chat, propose an ADR by default
 - do not wait for the user to know that an ADR is the right artifact type
-- explain why the decision should be recorded, name the proposed path, and ask for approval before writing it
+- explain why the decision should be recorded, name the proposed path such as `docs/adr/001-decision-name.md`, and ask for approval before writing it
 - once approved, collect the reasoning from `@architect`, `@devils-advocate`, and `@judge`, then hand authorship to `@tech-writer`
+- keep the canonical structure consistent: zero-padded numeric filename in `docs/adr/`, ADR label in the heading, required core sections first, optional sections only when useful
 
 For **any AI/ML project work** follow this default sequence unless the task is clearly narrower:
 - `@data-scientist` for problem framing, baselines, exploratory analysis, and feature intent

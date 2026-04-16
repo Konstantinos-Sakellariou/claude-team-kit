@@ -371,8 +371,10 @@ class PromptContractTests(unittest.TestCase):
         create_adr = skill_path.read_text()
 
         self.assertIn("docs/adr/[NNN]-[kebab-case-title].md", create_adr)
+        self.assertIn("# ADR-[NNN]: [Decision Title]", create_adr)
         self.assertIn("Always include:", create_adr)
         self.assertIn("Optional sections:", create_adr)
+        self.assertIn("Follow-Up Docs", create_adr)
 
 
 if __name__ == "__main__":

@@ -330,7 +330,9 @@ fi
 
 if [ -f "$ROOT_DIR/.agents/skills/create-adr/SKILL.md" ]; then
   if grep -q 'docs/adr/\[NNN\]-\[kebab-case-title\]\.md' "$ROOT_DIR/.agents/skills/create-adr/SKILL.md" && \
-     grep -q 'Optional sections:' "$ROOT_DIR/.agents/skills/create-adr/SKILL.md"; then
+     grep -q '# ADR-\[NNN\]:' "$ROOT_DIR/.agents/skills/create-adr/SKILL.md" && \
+     grep -q 'Optional sections:' "$ROOT_DIR/.agents/skills/create-adr/SKILL.md" && \
+     grep -q 'Follow-Up Docs' "$ROOT_DIR/.agents/skills/create-adr/SKILL.md"; then
     pass "Optional local create-adr skill is aligned with the ADR contract"
   else
     warn "Optional local create-adr skill exists but is not aligned with the ADR contract"
