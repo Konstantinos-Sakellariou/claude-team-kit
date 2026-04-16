@@ -7,6 +7,18 @@ Use `claude-team-kit` in two layers:
 
 The kit should stay generic. The project briefing should be concrete.
 
+## Optional Starter Packs
+
+If a copied repo already resembles a common product shape, start with the closest pack in `docs/STARTER_PACKS.md`.
+
+Current starter packs cover:
+- SaaS app
+- API service
+- AI/ML product
+- startup studio
+
+Use a pack to speed up briefing quality, not to avoid real customization.
+
 ## Keep Core Briefings Lean
 
 `CLAUDE.md` and `AGENTS.md` are high-frequency briefing files.

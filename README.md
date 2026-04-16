@@ -35,6 +35,8 @@ docs/ROADMAP.example.md
                     Starter for a local repo-specific roadmap
 docs/SELF_UPGRADE.md
                     Maintainer guide for evolving the kit safely
+docs/STARTER_PACKS.md
+                    Optional project-shape overlays for faster repo customization
 docs/SYSTEM_REFERENCE.md
                     Full feature inventory and connection map
 docs/VISION.example.md
@@ -160,6 +162,19 @@ This kit now treats roadmap and backlog as separate but connected surfaces:
 
 Use the roadmap to decide sequence and milestone fit.
 Use the backlog to capture concrete items and deferred work.
+
+## Starter Packs
+
+This kit now includes optional starter packs for common repo shapes.
+
+Use [`docs/STARTER_PACKS.md`](docs/STARTER_PACKS.md) when a copied repo clearly behaves like a:
+- SaaS app
+- API service
+- AI/ML product
+- startup studio
+
+The packs are not part of the runtime model.
+They are adaptation overlays that help bootstrap and customization converge faster.
 
 ## What This Repo Is
 

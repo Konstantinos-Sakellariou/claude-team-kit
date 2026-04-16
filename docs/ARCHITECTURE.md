@@ -56,6 +56,7 @@ Repo-level docs explain and package that implementation:
 - `docs/CONTEXT_EFFICIENCY.md`: how to keep context lean, high-signal, and cheaper to reuse across sessions
 - `docs/DOCUMENTATION_GOVERNANCE.md`: how to keep the repo fully documented without bloating the hot path
 - `docs/SELF_UPGRADE.md`: how maintainers should evolve the kit safely without drift or boundary mistakes
+- `docs/STARTER_PACKS.md`: optional project-shape overlays for faster adaptation into common product contexts
 - `docs/ROADMAP.md`: phased roadmap and milestone view for the repo
 - `docs/LOCAL_CONTEXT.md`: how the private local-context layer works and where the privacy boundary sits
 - `docs/SYSTEM_REFERENCE.md`: full feature inventory, connections, and navigation map

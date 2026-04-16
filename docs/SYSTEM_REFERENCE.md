@@ -15,6 +15,7 @@ Pair it with:
 - `docs/ROADMAP.example.md` for the tracked roadmap model
 - `docs/DOCUMENTATION_GOVERNANCE.md` for the rule that keeps this depth out of the hot path
 - `docs/SELF_UPGRADE.md` for the maintainer playbook on evolving the kit safely
+- `docs/STARTER_PACKS.md` for optional project-shape overlays
 
 ## Operating Layers
 
@@ -212,6 +213,7 @@ Start here depending on the need:
 - repo boundary and structure: `docs/ARCHITECTURE.md`
 - documentation policy: `docs/DOCUMENTATION_GOVERNANCE.md`
 - maintainer upgrade path: `docs/SELF_UPGRADE.md`
+- optional project-shape overlays: `docs/STARTER_PACKS.md`
 - bootstrap and initialization: `docs/BOOTSTRAP.md`
 - context efficiency: `docs/CONTEXT_EFFICIENCY.md`
 - private local context: `docs/LOCAL_CONTEXT.md`

@@ -19,6 +19,7 @@ Owner: Konstantinos Sakellariou
 - See `docs/DOCUMENTATION_GOVERNANCE.md` for anti-bloat documentation policy
 - See `docs/LOCAL_CONTEXT.md` for the private local context layer
 - See `docs/SELF_UPGRADE.md` for the maintainer guide on evolving the kit safely
+- See `docs/STARTER_PACKS.md` for optional project-shape overlays such as SaaS, API, AI/ML, and startup-studio repos
 - See `docs/SYSTEM_REFERENCE.md` for the full feature inventory and connection map
 - See `docs/PROJECT_CUSTOMIZATION.md` when adapting this kit to a real repo
 - Canonical implementation lives in `.claude/`
@@ -38,6 +39,7 @@ Owner: Konstantinos Sakellariou
 - Review context-efficiency guide: `sed -n '1,240p' docs/CONTEXT_EFFICIENCY.md`
 - Review private local context guide: `sed -n '1,240p' docs/LOCAL_CONTEXT.md`
 - Review self-upgrade guide: `sed -n '1,240p' docs/SELF_UPGRADE.md`
+- Review starter packs: `sed -n '1,240p' docs/STARTER_PACKS.md`
 - Inspect local context files: `find .claude/local-context -maxdepth 1 -type f 2>/dev/null | sort`
 - Review changes: `git diff --stat`
 - Inspect agents: `find .claude/agents -maxdepth 1 -type f | sort`
@@ -211,6 +213,7 @@ The hot-path agents to keep in mind here are:
 - The rules layer now includes dedicated governance for docs, artifacts, and context quality in addition to language or domain rules
 - `docs/DOCUMENTATION_GOVERNANCE.md` defines the anti-bloat documentation model; follow it before expanding the hot-path briefings
 - `docs/SELF_UPGRADE.md` is the maintainer playbook for extending the kit without drift, private-leakage mistakes, or hot-path bloat
+- `docs/STARTER_PACKS.md` provides optional overlays for common repo shapes without making the shared core overly specific
 - GitHub-bound code should follow the visible quality gate defined in `.claude/rules/github-quality-gate.md`
 - `docs/SYSTEM_REFERENCE.md` is the full feature and connection report; prefer linking to it over expanding `CLAUDE.md` or `AGENTS.md` inline
 - Team manifests live in `.claude/teams/`; they are a `@master` routing abstraction, not a Claude-native platform feature

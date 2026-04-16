@@ -42,6 +42,11 @@ check_file "docs/ARCHITECTURE.md" "docs/ARCHITECTURE.md exists"
 check_file "docs/DOCUMENTATION_GOVERNANCE.md" "docs/DOCUMENTATION_GOVERNANCE.md exists"
 check_file "docs/ROADMAP.example.md" "docs/ROADMAP.example.md exists"
 check_file "docs/SELF_UPGRADE.md" "docs/SELF_UPGRADE.md exists"
+check_file "docs/STARTER_PACKS.md" "docs/STARTER_PACKS.md exists"
+check_file "docs/starter-packs/saas-app.md" "docs/starter-packs/saas-app.md exists"
+check_file "docs/starter-packs/api-service.md" "docs/starter-packs/api-service.md exists"
+check_file "docs/starter-packs/ai-ml-product.md" "docs/starter-packs/ai-ml-product.md exists"
+check_file "docs/starter-packs/startup-studio.md" "docs/starter-packs/startup-studio.md exists"
 check_file "docs/SYSTEM_REFERENCE.md" "docs/SYSTEM_REFERENCE.md exists"
 check_file "docs/VISION.example.md" "docs/VISION.example.md exists"
 check_file "docs/BOOTSTRAP.md" "docs/BOOTSTRAP.md exists"
@@ -120,6 +125,9 @@ if grep -q "docs/VISION.example.md" "$ROOT_DIR/README.md" && \
    grep -q "docs/SELF_UPGRADE.md" "$ROOT_DIR/README.md" && \
    grep -q "docs/SELF_UPGRADE.md" "$ROOT_DIR/CLAUDE.md" && \
    grep -q "docs/SELF_UPGRADE.md" "$ROOT_DIR/AGENTS.md" && \
+   grep -q "docs/STARTER_PACKS.md" "$ROOT_DIR/README.md" && \
+   grep -q "docs/STARTER_PACKS.md" "$ROOT_DIR/CLAUDE.md" && \
+   grep -q "docs/STARTER_PACKS.md" "$ROOT_DIR/AGENTS.md" && \
    grep -q "@.claude/rules/documentation-governance.md" "$ROOT_DIR/CLAUDE.md" && \
    grep -q "@.claude/rules/documentation-governance.md" "$ROOT_DIR/AGENTS.md" && \
    grep -q "@.claude/rules/repo-cleanup.md" "$ROOT_DIR/CLAUDE.md" && \
@@ -130,9 +138,9 @@ if grep -q "docs/VISION.example.md" "$ROOT_DIR/README.md" && \
    grep -q "@.claude/rules/context-efficiency.md" "$ROOT_DIR/AGENTS.md" && \
    grep -q "@.claude/rules/github-quality-gate.md" "$ROOT_DIR/CLAUDE.md" && \
    grep -q "@.claude/rules/github-quality-gate.md" "$ROOT_DIR/AGENTS.md"; then
-  pass "README.md, CLAUDE.md, and AGENTS.md reference the vision and roadmap templates, self-upgrade guide, and governance docs"
+  pass "README.md, CLAUDE.md, and AGENTS.md reference the vision and roadmap templates, starter packs, self-upgrade guide, and governance docs"
 else
-  fail "README.md, CLAUDE.md, or AGENTS.md are missing the vision template link, roadmap template link, self-upgrade guide link, or one or more governance rule references"
+  fail "README.md, CLAUDE.md, or AGENTS.md are missing the vision template link, roadmap template link, starter-packs link, self-upgrade guide link, or one or more governance rule references"
 fi
 
 if grep -q "@.claude/rules/ml-workflow.md" "$ROOT_DIR/CLAUDE.md" && \
