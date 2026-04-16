@@ -145,6 +145,9 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn("docs/ROADMAP.example.md", readme)
         self.assertIn("docs/ROADMAP.example.md", claude)
         self.assertIn("docs/ROADMAP.example.md", agents)
+        self.assertIn("docs/SELF_UPGRADE.md", readme)
+        self.assertIn("docs/SELF_UPGRADE.md", claude)
+        self.assertIn("docs/SELF_UPGRADE.md", agents)
         self.assertIn("hot path lean", docs_governance)
         self.assertIn("full feature and connection map", system_reference)
         self.assertIn("@.claude/rules/documentation-governance.md", claude)
@@ -157,6 +160,25 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn("@.claude/rules/context-efficiency.md", agents)
         self.assertIn("documentation alignment", architecture)
         self.assertIn("artifact placement", architecture)
+
+    def test_self_upgrade_guide_is_visible_and_actionable(self) -> None:
+        guide = read("docs/SELF_UPGRADE.md")
+        readme = read("README.md")
+        claude = read("CLAUDE.md")
+        agents = read("AGENTS.md")
+        architecture = read("docs/ARCHITECTURE.md")
+        system_reference = read("docs/SYSTEM_REFERENCE.md")
+        docs_governance = read("docs/DOCUMENTATION_GOVERNANCE.md")
+
+        self.assertIn("## Surface Selection", guide)
+        self.assertIn("## Public vs Local Boundary", guide)
+        self.assertIn("## Validation Standard", guide)
+        self.assertIn("docs/SELF_UPGRADE.md", readme)
+        self.assertIn("docs/SELF_UPGRADE.md", claude)
+        self.assertIn("docs/SELF_UPGRADE.md", agents)
+        self.assertIn("docs/SELF_UPGRADE.md", architecture)
+        self.assertIn("docs/SELF_UPGRADE.md", system_reference)
+        self.assertIn("docs/SELF_UPGRADE.md", docs_governance)
 
     def test_doc_drift_hook_is_tracked_and_registered(self) -> None:
         settings = read(".claude/settings.json")

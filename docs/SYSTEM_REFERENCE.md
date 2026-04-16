@@ -14,6 +14,7 @@ Pair it with:
 - `docs/VISION.example.md` for the tracked vision model
 - `docs/ROADMAP.example.md` for the tracked roadmap model
 - `docs/DOCUMENTATION_GOVERNANCE.md` for the rule that keeps this depth out of the hot path
+- `docs/SELF_UPGRADE.md` for the maintainer playbook on evolving the kit safely
 
 ## Operating Layers
 
@@ -210,6 +211,7 @@ Start here depending on the need:
 - phased sequencing model: `docs/ROADMAP.example.md`
 - repo boundary and structure: `docs/ARCHITECTURE.md`
 - documentation policy: `docs/DOCUMENTATION_GOVERNANCE.md`
+- maintainer upgrade path: `docs/SELF_UPGRADE.md`
 - bootstrap and initialization: `docs/BOOTSTRAP.md`
 - context efficiency: `docs/CONTEXT_EFFICIENCY.md`
 - private local context: `docs/LOCAL_CONTEXT.md`

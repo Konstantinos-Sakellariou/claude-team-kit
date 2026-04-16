@@ -33,6 +33,8 @@ docs/DOCUMENTATION_GOVERNANCE.md
                     Anti-bloat documentation policy
 docs/ROADMAP.example.md
                     Starter for a local repo-specific roadmap
+docs/SELF_UPGRADE.md
+                    Maintainer guide for evolving the kit safely
 docs/SYSTEM_REFERENCE.md
                     Full feature inventory and connection map
 docs/VISION.example.md
@@ -134,6 +136,18 @@ When adding backlog items, plans, agents, teams, rules, hooks, or skills, we sho
 Use [`docs/VISION.example.md`](docs/VISION.example.md) as the public model for how a vision doc should work, and use local `docs/VISION.md` as the actual filter when a repo has one.
 
 Use [`docs/DOCUMENTATION_GOVERNANCE.md`](docs/DOCUMENTATION_GOVERNANCE.md) to keep the core briefings lean while the repo grows, and [`docs/SYSTEM_REFERENCE.md`](docs/SYSTEM_REFERENCE.md) when you need the full feature map instead of a hot-path summary.
+
+## Self-Upgrade
+
+This kit should be able to evolve itself without drifting or re-bloating.
+
+Use [`docs/SELF_UPGRADE.md`](docs/SELF_UPGRADE.md) when changing agents, teams, commands, skills, rules, hooks, artifact policy, or core workflow behavior.
+
+The short version is:
+- update the canonical implementation in `.claude/`
+- update only the right summary docs and focused docs
+- keep public vs local boundaries clean
+- run doctor and tests before calling the upgrade done
 
 ## Roadmap And Backlog
 

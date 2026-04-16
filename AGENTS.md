@@ -18,6 +18,7 @@ Owner: Konstantinos Sakellariou
 - See `docs/CONTEXT_EFFICIENCY.md` for context-efficiency, request-shaping, and large-input triage rules
 - See `docs/DOCUMENTATION_GOVERNANCE.md` for anti-bloat documentation policy
 - See `docs/LOCAL_CONTEXT.md` for the private local context layer
+- See `docs/SELF_UPGRADE.md` for the maintainer guide on evolving the kit safely
 - See `docs/SYSTEM_REFERENCE.md` for the full feature inventory and connection map
 - See `docs/PROJECT_CUSTOMIZATION.md` when adapting this kit to a real repo
 - Canonical implementation lives in `.claude/`
@@ -36,6 +37,7 @@ Owner: Konstantinos Sakellariou
 - Review local roadmap if present: `sed -n '1,240p' docs/ROADMAP.md 2>/dev/null`
 - Review context-efficiency guide: `sed -n '1,240p' docs/CONTEXT_EFFICIENCY.md`
 - Review private local context guide: `sed -n '1,240p' docs/LOCAL_CONTEXT.md`
+- Review self-upgrade guide: `sed -n '1,240p' docs/SELF_UPGRADE.md`
 - Inspect local context files: `find .claude/local-context -maxdepth 1 -type f 2>/dev/null | sort`
 - Review changes: `git diff --stat`
 - Inspect agents: `find .claude/agents -maxdepth 1 -type f | sort`
@@ -208,6 +210,7 @@ The hot-path agents to keep in mind here are:
 - local `docs/VISION.md` and `docs/ROADMAP.md` are optional private strategy surfaces and should stay out of git when they contain real operating direction
 - The rules layer now includes dedicated governance for docs, artifacts, and context quality in addition to language or domain rules
 - `docs/DOCUMENTATION_GOVERNANCE.md` defines the anti-bloat documentation model; follow it before expanding the hot-path briefings
+- `docs/SELF_UPGRADE.md` is the maintainer playbook for extending the kit without drift, private-leakage mistakes, or hot-path bloat
 - GitHub-bound code should follow the visible quality gate defined in `.claude/rules/github-quality-gate.md`
 - `docs/SYSTEM_REFERENCE.md` is the full feature and connection report; prefer linking to it over expanding `CLAUDE.md` or `AGENTS.md` inline
 - Team manifests live in `.claude/teams/`; they are a `@master` routing abstraction, not a Claude-native platform feature

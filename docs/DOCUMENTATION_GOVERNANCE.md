@@ -33,6 +33,8 @@ The spokes should:
 - hold detailed inventories
 - absorb growth safely
 
+Use `docs/SELF_UPGRADE.md` when the change is not just a doc edit, but a real repo capability upgrade.
+
 ## Hot-Path Rules
 
 `README.md`, `CLAUDE.md`, and `AGENTS.md` should contain:
@@ -61,6 +63,7 @@ They should not try to hold every:
 - context quality and token discipline → `docs/CONTEXT_EFFICIENCY.md`
 - private local context model → `docs/LOCAL_CONTEXT.md`
 - adaptation to real repos → `docs/PROJECT_CUSTOMIZATION.md`
+- maintainer upgrade process → `docs/SELF_UPGRADE.md`
 
 ## Anti-Bloat Rules
 
