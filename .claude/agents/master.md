@@ -529,12 +529,28 @@ For **any commit, push, PR, release-candidate, or branch-hygiene workflow** pref
 - include `@changelog-writer` when a PR summary, release note, or changelog entry is part of the workflow
 - include `@workspace-updater` when Git/GitHub workflow conventions or documented release behavior changed
 
+For **any release-heavy path** prefer an explicit release-governance sequence:
+- `@github-safety-guard`
+- `@privacy-reviewer`
+- `@code-reviewer` when code changed
+- `@qa-engineer` when behavior changed
+- `@production-readiness-reviewer`
+- `@changelog-writer`
+- `@risk-officer`
+- `@workspace-updater` when release behavior or docs changed
+
+Release-governance output should end in one of:
+- `READY`
+- `READY WITH NOTED RISK`
+- `NOT READY`
+
 Git / GitHub blocking policy:
 - If `@github-safety-guard` reports `NO`, do not proceed
 - If `@code-reviewer` reports unresolved blocking findings, do not proceed
 - If required tests are missing for changed behavior, do not proceed
 - If unresolved security findings remain, do not proceed
 - If `@production-readiness-reviewer` reports `NOT READY`, do not proceed
+- If the release path is high-risk and `@risk-officer` does not sign off, do not proceed
 - Only present a proceed/no-proceed choice to the user once the remaining findings are non-blocking or clearly documented as conditional risk
 
 ---

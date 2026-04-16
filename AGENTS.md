@@ -82,6 +82,9 @@ Owner: Konstantinos Sakellariou
 ## Security Rules
 @.claude/rules/security.md
 
+## Release Governance
+@.claude/rules/release-governance.md
+
 ## Testing Rules
 @.claude/rules/testing.md
 

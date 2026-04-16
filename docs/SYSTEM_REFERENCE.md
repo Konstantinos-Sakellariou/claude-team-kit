@@ -159,6 +159,7 @@ Important governance rules:
 - `artifact-governance.md`
 - `context-efficiency.md`
 - `github-quality-gate.md`
+- `release-governance.md`
 
 Other rules cover:
 - code quality

@@ -551,6 +551,7 @@ flowchart TD
 - `@privacy-reviewer` stays explicit for disclosure-sensitive changes
 - `@production-readiness-reviewer` is added when the path is merge-critical, migration-heavy, or release-heavy
 - `@risk-officer` becomes the decisive gate only when the flow is truly release-heavy
+- release-heavy paths should end in a visible `READY`, `READY WITH NOTED RISK`, or `NOT READY` summary
 - before substantial work, `@master` should ask whether the branch needs a quick sync check when remote drift is plausible
 - `@master` must surface the team, agents used, findings, and approval gate before any irreversible Git action
 

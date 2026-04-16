@@ -13,10 +13,11 @@ Run the Git / GitHub quality and release-readiness path explicitly.
 
 ## What It Should Do
 
-1. run the relevant safety and readiness checks
+1. run the relevant safety, privacy, quality, and operational-readiness checks
 2. surface blocking findings clearly
-3. produce a go / no-go style summary
+3. confirm changelog or release-note status
+4. produce a release-governance summary with `READY`, `READY WITH NOTED RISK`, or `NOT READY`
 
 ## Output
 
-- release or push-readiness report
+- release-governance report

@@ -59,6 +59,7 @@ check_file ".claude/rules/repo-cleanup.md" ".claude/rules/repo-cleanup.md exists
 check_file ".claude/rules/artifact-governance.md" ".claude/rules/artifact-governance.md exists"
 check_file ".claude/rules/context-efficiency.md" ".claude/rules/context-efficiency.md exists"
 check_file ".claude/rules/github-quality-gate.md" ".claude/rules/github-quality-gate.md exists"
+check_file ".claude/rules/release-governance.md" ".claude/rules/release-governance.md exists"
 check_file ".claude/rules/ml-workflow.md" ".claude/rules/ml-workflow.md exists"
 check_file ".claude/hooks/warn-doc-drift.sh" ".claude/hooks/warn-doc-drift.sh exists"
 
@@ -135,6 +136,14 @@ if grep -q "@.claude/rules/ml-workflow.md" "$ROOT_DIR/CLAUDE.md" && \
   pass "CLAUDE.md and AGENTS.md reference the AI/ML workflow rule"
 else
   fail "CLAUDE.md and AGENTS.md are not aligned on the AI/ML workflow rule"
+fi
+
+if grep -q "@.claude/rules/release-governance.md" "$ROOT_DIR/CLAUDE.md" && \
+   grep -q "@.claude/rules/release-governance.md" "$ROOT_DIR/AGENTS.md" && \
+   [ -f "$ROOT_DIR/docs/RELEASE_GOVERNANCE.md" ]; then
+  pass "CLAUDE.md, AGENTS.md, and docs track the release-governance layer"
+else
+  fail "Release-governance rule or docs are not aligned"
 fi
 
 if grep -q 'Every request goes through `@master`. Always\.' "$ROOT_DIR/README.md"; then

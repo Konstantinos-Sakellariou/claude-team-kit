@@ -74,6 +74,20 @@ Two repo-native skills now support this directly:
 - `context-audit` for auditing briefing quality, doc drift, and artifact placement
 - `triage-input` for compressing noisy logs, diffs, dumps, and large evidence into a smaller next step
 
+## Release Governance
+
+This kit also includes a stricter release-governance layer for release-heavy or merge-critical work.
+
+That flow strengthens the Git / GitHub team with:
+- safety review
+- privacy review
+- code and QA gates
+- production-readiness review
+- changelog / release-note coverage
+- final risk sign-off
+
+See [`docs/RELEASE_GOVERNANCE.md`](docs/RELEASE_GOVERNANCE.md) for the full model.
+
 ## How To Ask Well
 
 High-signal requests make the system both cheaper and better.

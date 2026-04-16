@@ -26,6 +26,7 @@ Default team for version-control hygiene, repository safety review, pull-request
 - push readiness
 - pull request preparation or creation
 - release candidate review
+- release-governance check
 - git hygiene or branch sync prompts
 - public/private disclosure review for outgoing repo changes
 
@@ -37,6 +38,7 @@ Default team for version-control hygiene, repository safety review, pull-request
 - run PR packaging when a pull request is being prepared
 - run production-readiness review for release-heavy or operationally risky changes
 - prepare changelog, PR narrative, or release notes when relevant
+- produce a visible ready / not-ready release-governance summary when the path is release-heavy
 - surface advisory or go/no-go guidance to the user
 - update core docs when workflow or release conventions changed
 
