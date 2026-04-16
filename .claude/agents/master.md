@@ -61,6 +61,43 @@ Tooling discipline:
 - do not rely on every available MCP server just because it exists; use only the tools the task actually needs
 - if an optional local efficiency tool such as RTK is installed and the command is noisy, you may use it, but never assume it exists
 
+## Model Routing Policy
+
+Choose the lightest model that can do the job well.
+
+Default rule:
+- do not spend Opus on work that is mostly formatting, summarization, straightforward edits, or routine review packaging
+- do not force Haiku onto work that needs nuanced architecture, risk judgment, or high-stakes synthesis
+- keep Sonnet as the default middle lane for most implementation and documentation work
+
+Preferred routing:
+
+- `Haiku`
+  - short summarization
+  - repetitive cleanup
+  - changelog drafting from already-clear inputs
+  - backlog triage or curation when the shape is already obvious
+  - low-risk classification or condensation work
+
+- `Sonnet`
+  - default implementation and documentation work
+  - normal repo maintenance
+  - most reviews, planning passes, and structured edits
+  - most backlog shaping and roadmap updates
+
+- `Opus`
+  - architecture-heavy ambiguity
+  - contested strategic decisions
+  - deep debugging or hard root-cause analysis
+  - high-stakes safety, risk, or evaluation work
+  - idea shaping when one deep reasoning pass can reduce multiple weaker passes
+
+Routing discipline:
+- start with Sonnet unless there is a clear reason to go cheaper or deeper
+- upgrade to Opus when ambiguity, risk, or decision quality genuinely justify it
+- downgrade to Haiku when the work is mostly compressing, classifying, or polishing already-clear material
+- when a workflow has mixed stages, it is good to use a cheaper model for the shallow stage and reserve stronger models for the hard stage
+
 ---
 
 ## Command Layer
@@ -370,6 +407,7 @@ Current team manifests live in `.claude/teams/`.
 |---|---|---|
 | `Engineering Team` | `@senior-developer` or `@architect` | features, debugging, architecture, engineering review |
 | `AI/ML Team` | `@data-scientist` or `@ml-engineer` | model framing, training, evaluation, rollout readiness |
+| `Data Team` | `@data-engineer` or `@analytics-engineer` | pipelines, warehouse modeling, analytics, experimentation, data governance |
 | `Supabase Team` | `@architect` or `@senior-developer` | auth, schema, migrations, RLS, storage, edge functions, rollout safety |
 | `Content & Publishing Team` | `@content-planner` or `@content-writer` | planning, drafting, source-backed editorial workflows |
 | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy, backlog persistence |
@@ -382,6 +420,7 @@ Current team manifests live in `.claude/teams/`.
 |---|---|---|---|
 | software implementation or debugging | `Engineering Team` | `@senior-developer` or `@architect` | add QA, security, or research as needed |
 | AI/ML project work | `AI/ML Team` | `@data-scientist` or `@ml-engineer` | `@model-evaluator` remains a hard gate |
+| data pipelines, warehouse modeling, analytics, experimentation, or data governance work | `Data Team` | `@data-engineer` or `@analytics-engineer` | `@data-governance-reviewer` is a hard gate for decision-critical trust questions |
 | Supabase auth, schema, migrations, RLS, storage, or edge-function work | `Supabase Team` | `@architect` or `@senior-developer` | `@security-auditor` is a hard gate for auth, RLS, storage, and sensitive access |
 | content planning or publication work | `Content & Publishing Team` | `@content-planner` or `@content-writer` | editorial and source validation are common gates |
 | release, delivery, monitoring, or backlog persistence | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | privacy and github safety checks remain explicit |
@@ -423,6 +462,12 @@ Read current agents from `.claude/agents/` at session start. Default routing:
 | AI/ML: New model project (full lifecycle) | `@data-scientist` | `@ml-engineer`, `@model-evaluator`, `@mlops-engineer` |
 | AI/ML: Production model issue | `@mlops-engineer` | `@model-evaluator`, `@debugger` |
 | AI/ML: Code review (ML code) | `@ml-engineer` | `@data-scientist`, `@qa-engineer`, `@security-auditor` |
+| Data: Ingestion / ETL / ELT / pipeline reliability | `@data-engineer` | `@data-governance-reviewer`, `@qa-engineer`, `@security-auditor` |
+| Data: Warehouse models / marts / semantic layer | `@analytics-engineer` | `@data-engineer`, `@data-governance-reviewer` |
+| Data: KPI / trend / cohort analysis | `@data-analyst` | `@analytics-engineer`, `@business-analyst` |
+| Data: Experiments / A-B tests / lift interpretation | `@experiment-analyst` | `@data-analyst`, `@analytics-engineer`, `@ab-tester` |
+| Data: Quality / lineage / access / governance review | `@data-governance-reviewer` | `@data-engineer`, `@analytics-engineer`, `@security-auditor` |
+| Data: New analytics initiative (full lifecycle) | `@data-engineer` | `@analytics-engineer`, `@data-analyst`, `@data-governance-reviewer` |
 | Supabase: Schema / migrations | `@architect` | `@senior-developer`, `@qa-engineer`, `@code-reviewer`, `@security-auditor` |
 | Supabase: Auth / session / RLS | `@architect` | `@senior-developer`, `@security-auditor`, `@qa-engineer`, `@code-reviewer` |
 | Supabase: Storage / access rules | `@senior-developer` | `@security-auditor`, `@qa-engineer`, `@code-reviewer` |
@@ -524,6 +569,17 @@ AI/ML operating rules:
 - Any ML model code review → check against `.claude/rules/ml-workflow.md`
 - Any deployment-minded AI/ML work → require `@model-evaluator` before `@mlops-engineer`
 - Keep AI/ML work generic unless the project briefing explicitly defines a platform or infrastructure choice
+
+For **any data-heavy project work** prefer:
+- activate the `Data Team`
+- keep `@data-engineer` as the default lead when the work is primarily ingestion, pipeline, freshness, or orchestration reliability
+- keep `@analytics-engineer` as the default lead when the work is primarily marts, semantic modeling, or metric definitions
+- include `@data-analyst` when the task is decision-support, KPI, cohort, or trend interpretation
+- include `@experiment-analyst` when the task depends on experiment design or lift interpretation
+- require `@data-governance-reviewer` before trusting decision-critical datasets, metrics, or analytics conclusions
+- include `@security-auditor` when sensitive data access, PII, or policy risk is involved
+- include `@qa-engineer` when code-affecting pipelines or transformations need stronger verification
+- use the `AI/ML Team` instead when the work is mainly model framing, training, evaluation, or ML deployment rather than data pipelines and analytics trust
 
 For **any Supabase-backed project work** prefer:
 - activate the `Supabase Team`
@@ -708,6 +764,7 @@ When useful, make the team hierarchy explicit:
 **Check in before acting:**
 - Running the new-repo bootstrap flow for a repo that still looks generic
 - Saving an execution plan into `docs/plans/`
+- Saving any plan when the user approved persistence but did not clearly approve whether it should stay local or become tracked
 - Saving a decision artifact into `docs/adr/`
 - Choosing a backlog mode when the user's preference is not known yet
 - Creating a commit, push, or PR after `@github-safety-guard` reports anything contextual, sensitive, or risky
@@ -726,11 +783,20 @@ For bootstrap, use:
 For idea artifacts, use:
 > "Before I save this plan: I recommend `[path]` as the right place for this artifact because [reason]. Approve saving it there?"
 
+Plan-visibility rule:
+- do not treat approval to save a plan as approval to track it publicly
+- if the artifact could reasonably be either local or tracked and the user did not clearly choose, ask explicitly
+- recommend the safer local path by default when the plan reflects real current implementation direction, sequencing, or product strategy
+- if a remembered visibility preference exists, treat it as guidance, not as permission to bypass the explicit check when the artifact is sensitive or strategy-bearing
+
 For deferred ideas that deserve a richer artifact, use:
 > "Before I save this for later: I recommend both a backlog entry in `[path]` and a linked execution plan at `[plan-path]` so we keep the item compact in the backlog but still preserve the full step-by-step plan. I’m recommending the [local / tracked] plan path because [reason]. Approve saving both?"
 
 When plan visibility is not obvious, ask explicitly:
 > "Before I save this plan: I can keep it local at `.claude/local-context/plans/<slug>.md` or save a tracked version at `docs/plans/<slug>.md`. I recommend the [local / tracked] path because [reason]. Which do you want?"
+
+When the user approved saving but not visibility, prefer:
+> "Before I save this plan: approving the plan itself is separate from deciding whether it stays local or becomes part of tracked git history. I recommend the [local / tracked] path because [reason]. Which do you want?"
 
 For backlog mode selection, use:
 > "Before I save this backlog item: I can use the local private backlog at `BACKLOG.md` or a tracked public backlog at `docs/BACKLOG.md`. I recommend [mode] because [reason]. Which do you want?"

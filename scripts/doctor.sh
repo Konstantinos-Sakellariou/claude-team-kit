@@ -180,7 +180,7 @@ else
   fail ".claude/teams directory is missing"
 fi
 
-for team in engineering-team ai-ml-team supabase-team content-publishing-team delivery-ops-team git-github-team advisory-review-team; do
+for team in engineering-team ai-ml-team data-team supabase-team content-publishing-team delivery-ops-team git-github-team advisory-review-team; do
   if [ -f "$ROOT_DIR/.claude/teams/${team}.md" ]; then
     pass "${team} manifest exists"
   else
@@ -217,6 +217,17 @@ if grep -q '## Context Efficiency And Scope Discipline' "$ROOT_DIR/.claude/agent
   pass "master agent prompt defines context-efficiency and scope-discipline rules"
 else
   fail "master agent prompt is missing context-efficiency and scope-discipline rules"
+fi
+
+if grep -q '## Model Routing Policy' "$ROOT_DIR/.claude/agents/master.md" && \
+   grep -q '`Haiku`' "$ROOT_DIR/.claude/agents/master.md" && \
+   grep -q '`Sonnet`' "$ROOT_DIR/.claude/agents/master.md" && \
+   grep -q '`Opus`' "$ROOT_DIR/.claude/agents/master.md" && \
+   grep -q '## Model Routing' "$ROOT_DIR/docs/CONTEXT_EFFICIENCY.md" && \
+   grep -q 'Haiku' "$ROOT_DIR/README.md"; then
+  pass "model-routing guidance is aligned across master, context docs, and README"
+else
+  fail "model-routing guidance is not aligned across master, context docs, and README"
 fi
 
 if grep -q '@session-budget-estimator' "$ROOT_DIR/.claude/agents/master.md" && \
@@ -309,6 +320,14 @@ else
 fi
 
 for agent in data-scientist ml-engineer model-evaluator mlops-engineer research-scientist; do
+  if [ -f "$ROOT_DIR/.claude/agents/${agent}.md" ]; then
+    pass "${agent} agent exists"
+  else
+    fail "${agent} agent is missing"
+  fi
+done
+
+for agent in data-engineer analytics-engineer data-analyst experiment-analyst data-governance-reviewer; do
   if [ -f "$ROOT_DIR/.claude/agents/${agent}.md" ]; then
     pass "${agent} agent exists"
   else
@@ -452,6 +471,19 @@ if [ -f "$ROOT_DIR/docs/SUPABASE_REFERENCE.md" ] && \
   pass "Supabase team docs and reference are aligned"
 else
   fail "Supabase team docs and reference are not aligned"
+fi
+
+if [ -f "$ROOT_DIR/docs/DATA_REFERENCE.md" ] && \
+   grep -q 'Data Team' "$ROOT_DIR/.claude/agents/master.md" && \
+   grep -q 'Data Team' "$ROOT_DIR/README.md" && \
+   grep -q 'Data Team' "$ROOT_DIR/CLAUDE.md" && \
+   grep -q 'Data Team' "$ROOT_DIR/AGENTS.md" && \
+   grep -q 'Data Team' "$ROOT_DIR/docs/TEAMS.md" && \
+   grep -q 'Workflow 11 — Data Team Flow' "$ROOT_DIR/docs/AGENT_WORKFLOWS.md" && \
+   grep -q 'If The Project Has A Real Data Stack' "$ROOT_DIR/docs/PROJECT_CUSTOMIZATION.md"; then
+  pass "Data Team docs and reference are aligned"
+else
+  fail "Data Team docs and reference are not aligned"
 fi
 
 if grep -q 'Teams are reusable orchestration bundles' "$ROOT_DIR/CLAUDE.md" && \

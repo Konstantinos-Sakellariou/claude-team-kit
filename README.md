@@ -1,8 +1,8 @@
 # claude-team-kit
 
 [![Validate Workspace Kit](https://img.shields.io/github/actions/workflow/status/Konstantinos-Sakellariou/claude-team-kit/validate.yml?branch=main&label=validate)](https://github.com/Konstantinos-Sakellariou/claude-team-kit/actions/workflows/validate.yml)
-![Agents](https://img.shields.io/badge/agents-43-0ea5e9)
-![Teams](https://img.shields.io/badge/teams-7-14b8a6)
+![Agents](https://img.shields.io/badge/agents-48-0ea5e9)
+![Teams](https://img.shields.io/badge/teams-8-14b8a6)
 ![Skills](https://img.shields.io/badge/skills-20-f97316)
 ![Local Context](https://img.shields.io/badge/local_context-supported-22c55e)
 
@@ -19,8 +19,8 @@ Use [`docs/VISION.example.md`](docs/VISION.example.md) and [`docs/ROADMAP.exampl
 
 ```text
 .claude/
-├── agents/          43 specialized agents across engineering, AI/ML, content, delivery, and advisory
-├── teams/           7 reusable team manifests that @master can activate for recurring workflows
+├── agents/          48 specialized agents across engineering, AI/ML, data, content, delivery, and advisory
+├── teams/           8 reusable team manifests that @master can activate for recurring workflows
 ├── skills/          20 reusable skills (code-review, fix-bug, business-case, create-pr, context-audit, triage-input, repo-cleanup...)
 ├── rules/           Modular rule files — docs, artifacts, context, Python, TypeScript, security, testing, git, performance, API design, AI/ML workflow
 ├── hooks/           Shell automations (auto-format, secret detection, file protection, doc-drift warning...)
@@ -61,6 +61,17 @@ That means:
 - use only the tools and MCP servers the task actually needs
 
 See [`docs/CONTEXT_EFFICIENCY.md`](docs/CONTEXT_EFFICIENCY.md) for the full guidance, including request-shaping, large-input triage, and optional RTK usage.
+
+This kit also now has an explicit model-routing stance:
+- `Haiku` for cheap summarization and repetitive low-risk condensation
+- `Sonnet` as the default for most implementation and docs work
+- `Opus` for architecture, contested decisions, deep debugging, and other genuinely heavy reasoning tasks
+
+Low-risk cheaper-by-default agents now include:
+- `@backlog-curator`
+- `@changelog-writer`
+- `@feedback-synthesizer`
+- `@delivery-monitor`
 
 ## GitHub Quality Gate
 
@@ -162,6 +173,11 @@ This kit now treats roadmap, backlog, and plans as separate but connected surfac
 - `docs/plans/` should stay mostly for public-safe examples and intentionally shareable references
 - `.claude/local-context/plans/` should hold real likely-next implementation plans when they expose current strategy or sequencing
 
+Important boundary:
+- approving a plan is not the same as approving a tracked public plan
+- when visibility is unclear, `@master` should ask whether the plan stays local or becomes tracked
+- the safer local path should be the default recommendation for real next-step implementation direction
+
 Use the roadmap to decide sequence and milestone fit.
 Use the backlog to capture concrete items and deferred work.
 
@@ -193,7 +209,7 @@ They are adaptation overlays that help bootstrap and customization converge fast
 ## What This Repo Is
 
 - A reusable workspace kit for agent-based development
-- A curated team of 43 agents with explicit collaboration patterns
+- A curated team of 48 agents with explicit collaboration patterns
 - A prompt and guardrail layer that can be dropped into another project
 
 ## What This Repo Is Not
@@ -224,6 +240,7 @@ flowchart TD
 
     MASTER --> ENG["⚙️ Engineering\n@architect\n@senior-developer\n@qa-engineer\n@security-auditor\n@debugger\n@performance-engineer\n@researcher\n@github-safety-guard"]
     MASTER --> ML["🤖 AI/ML\n@data-scientist\n@ml-engineer\n@model-evaluator\n@mlops-engineer\n@research-scientist"]
+    MASTER --> DATA["📊 Data\n@data-engineer\n@analytics-engineer\n@data-analyst\n@experiment-analyst\n@data-governance-reviewer"]
     MASTER --> SUPA["🟢 Supabase\n@architect\n@senior-developer\n@security-auditor\n@qa-engineer\n@code-reviewer\n@production-readiness-reviewer"]
 
     MASTER --> CONT["📝 Content & Publishing\n@topic-researcher\n@content-planner\n@content-writer\n@editorial-reviewer\n@source-verifier\n@tone-calibrator\n@backlog-curator\n@feedback-synthesizer"]
@@ -235,6 +252,7 @@ flowchart TD
 
     ENG --> SYNTH(["@master synthesises all reports"])
     ML --> SYNTH
+    DATA --> SYNTH
     SUPA --> SYNTH
     CONT --> SYNTH
     DELIV --> SYNTH
@@ -322,13 +340,14 @@ In short: teams help `@master` behave less like an improvised dispatcher and mor
 |---|---|---|
 | `Engineering Team` | `@senior-developer` or `@architect` | implementation, debugging, architecture, engineering review |
 | `AI/ML Team` | `@data-scientist` or `@ml-engineer` | model framing, training, evaluation, rollout readiness |
+| `Data Team` | `@data-engineer` or `@analytics-engineer` | pipelines, warehouse modeling, analytics, experimentation, data governance |
 | `Supabase Team` | `@architect` or `@senior-developer` | auth, schema, migrations, RLS, storage, edge functions, rollout safety |
 | `Content & Publishing Team` | `@content-planner` or `@content-writer` | planning, drafting, editorial validation |
 | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy, backlog persistence |
 | `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness, branch hygiene, repo-safety review |
 | `Advisory Review Team` | `@product-owner`, `@business-analyst`, or `@idea-executor` | planning, prioritization, decision support, strategic validation, and pushback on major additions |
 
-The canonical team definitions live in `.claude/teams/`. See [`docs/TEAMS.md`](docs/TEAMS.md) for the full model and operating rules, and [`docs/SUPABASE_REFERENCE.md`](docs/SUPABASE_REFERENCE.md) for the Supabase-specific reference.
+The canonical team definitions live in `.claude/teams/`. See [`docs/TEAMS.md`](docs/TEAMS.md) for the full model and operating rules, [`docs/SUPABASE_REFERENCE.md`](docs/SUPABASE_REFERENCE.md) for the Supabase-specific reference, and [`docs/DATA_REFERENCE.md`](docs/DATA_REFERENCE.md) for the data-domain reference.
 
 **Parallel vs sequential — `@master` decides:**
 
@@ -361,7 +380,7 @@ The canonical team definitions live in `.claude/teams/`. See [`docs/TEAMS.md`](d
 The full agent roster, system layers, connections, and navigation map now live in [`docs/SYSTEM_REFERENCE.md`](docs/SYSTEM_REFERENCE.md).
 
 Use that doc when you want:
-- the full 43-agent inventory
+- the full 48-agent inventory
 - the feature map across agents, teams, skills, rules, hooks, memory, and artifacts
 - a clearer picture of how the layers connect
 - a faster route into the right detailed documentation
@@ -380,6 +399,11 @@ These fire automatically — you don't need to ask:
 - AI/ML release readiness → `@model-evaluator` is the mandatory gate
 - AI/ML deployment or monitoring design → `@mlops-engineer` leads after evaluator sign-off
 - Novel AI/ML methods or benchmark questions → `@research-scientist` advises
+- Data pipeline or ingestion work → `@data-engineer` leads
+- Warehouse modeling or metrics-layer work → `@analytics-engineer` leads
+- KPI, cohort, or trend analysis → `@data-analyst` leads
+- Experimentation analysis → `@experiment-analyst` leads
+- Decision-critical data trust, lineage, or access review → `@data-governance-reviewer` is a hard gate
 - "Backlog this" or defer-for-later requests → `@backlog-updater` updates the chosen backlog and can link an approved plan
 - Significant idea discussions → `@idea-executor` shapes the idea into an execution plan
 - Roadmap reprioritization, “what next?”, or reset-limit concerns → `@session-budget-estimator` estimates likely session shape and model mix
@@ -471,11 +495,13 @@ The reusable skills still matter underneath that layer, including:
 
 ## Agent Groups at a Glance
 
-The 43 agents split into five specialist groups designed to cover any project type:
+The 48 agents split into six specialist groups designed to cover any project type:
 
 **Engineering** (13 agents) — builds and maintains software: architecture, implementation, testing, security, performance, debugging, GitHub quality gates, and release safety.
 
 **AI/ML** (5 agents) — covers model-centric work from exploratory analysis through training, evaluation, deployment readiness, and frontier-method assessment.
+
+**Data** (5 agents) — covers pipelines, warehouse modeling, business-ready metrics, experiment interpretation, and data trust/governance.
 
 **Content & Publishing** (8 agents) — runs any periodic publication workflow: research → planning → writing → review → tone → sourcing → feedback → backlog.
 

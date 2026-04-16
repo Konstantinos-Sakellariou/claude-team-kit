@@ -42,6 +42,7 @@ Pair it with:
 |---|---|---|---|---|
 | Engineering Team | `@senior-developer` or `@architect` | features, debugging, architecture | qa, security, performance, debugger | `docs/TEAMS.md` |
 | AI/ML Team | `@data-scientist` or `@ml-engineer` | model framing, training, evaluation, rollout | evaluator, mlops, research | `docs/TEAMS.md` |
+| Data Team | `@data-engineer` or `@analytics-engineer` | pipelines, warehouse modeling, analytics, experimentation, governance | data analyst, experiment analyst, governance, QA, security | `docs/TEAMS.md` |
 | Supabase Team | `@architect` or `@senior-developer` | auth, schema, migrations, RLS, storage, edge functions | security, QA, code review, production readiness | `docs/TEAMS.md` |
 | Content & Publishing Team | `@content-planner` or `@content-writer` | planning, drafting, editorial workflows | source, tone, review, feedback | `docs/TEAMS.md` |
 | Delivery & Ops Team | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, backlog persistence | privacy, changelog, experimentation | `docs/TEAMS.md` |
@@ -77,6 +78,16 @@ Pair it with:
 | `@model-evaluator` | Metrics, fairness, robustness, deployment-readiness gate |
 | `@mlops-engineer` | Rollout, monitoring, lifecycle, incident and rollback planning |
 | `@research-scientist` | Literature, benchmarks, frontier-method evaluation |
+
+### Data
+
+| Agent | Role |
+|---|---|
+| `@data-engineer` | Ingestion, pipelines, orchestration reliability, warehouse delivery |
+| `@analytics-engineer` | Marts, semantic layer, metrics definitions, analytics-ready modeling |
+| `@data-analyst` | KPI, trend, cohort, and exploratory decision support |
+| `@experiment-analyst` | A/B testing, lift interpretation, experiment design quality |
+| `@data-governance-reviewer` | Data trust, lineage, quality, access, and governance review |
 
 ### Content & Publishing
 
@@ -117,6 +128,19 @@ Pair it with:
 | `@judge` | Decision tiebreaking |
 | `@tech-writer` | Documentation and narrative structure |
 | `@idea-executor` | Idea-to-plan execution design |
+
+## Model Defaults
+
+The shared model stance is:
+- `Haiku` for cheap summarization, classification, and low-risk condensation
+- `Sonnet` for most implementation, maintenance, docs, and planning
+- `Opus` for architecture, contested decisions, deep debugging, and high-stakes gates
+
+Notable cheaper-by-default agents:
+- `@backlog-curator`
+- `@changelog-writer`
+- `@feedback-synthesizer`
+- `@delivery-monitor`
 
 ## Skills
 

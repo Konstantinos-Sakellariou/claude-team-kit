@@ -153,6 +153,42 @@ Examples where local CLI is often a good fit:
 - `find`
 - `jq`
 
+## Model Routing
+
+Model choice is part of efficiency.
+
+Recommended stance:
+- use the lightest model that can still do the work well
+- keep `Sonnet` as the default middle lane
+- use `Haiku` for cheap summarization, low-risk condensation, and repetitive polish
+- reserve `Opus` for genuinely heavy reasoning, ambiguity, or high-stakes judgment
+
+Prefer `Haiku` for:
+- changelog drafting from already-clear inputs
+- backlog curation when the shape is already obvious
+- feedback synthesis
+- delivery/output monitoring summaries
+- other low-risk classification or condensation work
+
+Prefer `Sonnet` for:
+- normal implementation
+- docs updates
+- tests
+- repo maintenance
+- most planning and review passes
+
+Prefer `Opus` for:
+- architecture-heavy ambiguity
+- contested strategic decisions
+- deep debugging
+- high-stakes risk, security, or evaluation work
+- idea shaping where one strong pass can remove multiple weaker passes
+
+If you are unsure:
+- start with `Sonnet`
+- move down to `Haiku` when the work is mostly compressing or polishing already-clear material
+- move up to `Opus` only when quality, ambiguity, or risk clearly justify it
+
 ## Optional RTK Usage
 
 If `rtk-ai/rtk` is installed locally, it can help reduce noisy shell output before it reaches the model.

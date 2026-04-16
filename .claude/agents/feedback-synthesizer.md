@@ -2,7 +2,7 @@
 name: feedback-synthesizer
 description: Audience feedback and response synthesizer. Turns reader, user, or stakeholder responses into structured editorial insights, follow-up topic candidates, and planning recommendations.
 tools: Read, Write, Edit, Glob, Grep
-model: sonnet
+model: haiku
 permissionMode: default
 ---
 

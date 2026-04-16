@@ -2,7 +2,7 @@
 name: delivery-monitor
 description: Post-delivery monitoring agent. Reviews delivery reports and channel receipts after any content send, flags anomalies (errors, bounces, failures, missing confirmations), and writes a structured health summary to memory.
 tools: Read, Write, Edit, Bash, Glob, Grep
-model: sonnet
+model: haiku
 permissionMode: default
 ---
 

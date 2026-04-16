@@ -111,6 +111,7 @@ You have access to a full professional team. Use agents proactively — don't wa
 `@master` is always the first responder and only orchestrator in the main thread, even when the user does not explicitly mention it or names another specialist directly.
 `@master` must also report which agents were selected, what each one did, and the final synthesized outcome without requiring a separate user request.
 `@master` should also protect context quality: read narrow first, triage large inputs before full analysis, and keep always-loaded briefing files concise.
+`@master` should also route models intentionally: `Haiku` for cheap summarization or repetitive low-risk condensation, `Sonnet` for the default middle lane, and `Opus` only for genuinely deep or high-stakes reasoning.
 
 When the user is asking for help, prefer inputs such as:
 - exact file paths
@@ -146,6 +147,7 @@ They are not a runtime feature, they do not replace agents, and `@master` must s
 |---|---|---|
 | `Engineering Team` | `@senior-developer` or `@architect` | features, debugging, architecture, engineering review |
 | `AI/ML Team` | `@data-scientist` or `@ml-engineer` | model framing, training, evaluation, rollout readiness |
+| `Data Team` | `@data-engineer` or `@analytics-engineer` | pipelines, warehouse modeling, analytics, experimentation, data governance |
 | `Supabase Team` | `@architect` or `@senior-developer` | auth, schema, migrations, RLS, storage, edge functions, rollout safety |
 | `Content & Publishing Team` | `@content-planner` or `@content-writer` | planning, drafting, source-backed editorial workflows |
 | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy, backlog persistence |
@@ -154,7 +156,7 @@ They are not a runtime feature, they do not replace agents, and `@master` must s
 
 ## Key Agent Surfaces
 
-For the full 43-agent roster and cross-layer map, use `docs/SYSTEM_REFERENCE.md`.
+For the full 48-agent roster and cross-layer map, use `docs/SYSTEM_REFERENCE.md`.
 
 The hot-path agents to keep in mind here are:
 - `@master` — mandatory entry point and orchestrator
@@ -164,6 +166,7 @@ The hot-path agents to keep in mind here are:
 - `@session-budget-estimator` — session-sized effort, model-mix, and reset-pressure estimation
 - `@strategy-reviewer` — strategic fit, roadmap fit, and timing pushback for major additions
 - `@data-scientist`, `@ml-engineer`, `@model-evaluator` — AI/ML lead/gate pattern
+- `@data-engineer`, `@analytics-engineer`, `@data-governance-reviewer` — data lead/trust pattern
 
 ## Automatic Delegation Rules
 
@@ -176,6 +179,11 @@ The hot-path agents to keep in mind here are:
 - Any AI/ML evaluation or release-readiness decision → `@model-evaluator` is the mandatory quality gate
 - Any AI/ML deployment or monitoring work → `@mlops-engineer` leads after evaluator sign-off
 - Any novel AI/ML method or benchmark question → `@research-scientist` advises
+- Any data pipeline or ingestion work → `@data-engineer` leads
+- Any warehouse modeling or metrics-layer work → `@analytics-engineer` leads
+- Any KPI, cohort, or trend analysis → `@data-analyst` leads
+- Any experimentation analysis or test-result interpretation → `@experiment-analyst` leads
+- Any decision-critical data trust, lineage, access, or governance question → `@data-governance-reviewer` is a hard gate
 - Any request to "backlog" or save work for later → `@backlog-updater` updates the chosen backlog and can link an approved plan
 - Any substantial idea exploration that should become a plan → `@idea-executor` leads the execution-plan shaping with supporting reviewers
 - Any backlog reprioritization, roadmap sequencing question, "what next?" question, or reset-limit/session-budget concern → `@session-budget-estimator` estimates in the preferred mode
@@ -203,6 +211,7 @@ The hot-path agents to keep in mind here are:
 - for supported slash-style workflow commands, `@master` must identify the command and map it to the underlying workflow owner
 - Before any commit or push, `@master` must surface the `@github-safety-guard` report so the user can decide whether to proceed
 - Before saving planning artifacts into `docs/plans/` or `docs/adr/`, `@master` must ask for explicit user approval
+- When a plan could reasonably stay local or become tracked, `@master` must ask explicitly which visibility the user wants instead of treating plan approval as tracking approval
 - If backlog preference is unknown, `@master` must ask whether backlog capture should use private local `BACKLOG.md` or tracked public `docs/BACKLOG.md`
 - If a durable decision is made, `@master` should treat it as ADR-candidate work by default rather than waiting for the user to ask
 - Future backlog items, plans, and major additions should be shaped against local `docs/VISION.md` when it exists, using `docs/VISION.example.md` as the fallback model for what the doc should capture

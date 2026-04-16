@@ -2,7 +2,7 @@
 name: changelog-writer
 description: Structured changelog and release notes agent. Generates versioned changelog entries after significant releases, deploys, or content publications, and maintains a running project history in a consistent, human-readable format.
 tools: Read, Write, Edit, Glob, Grep
-model: sonnet
+model: haiku
 permissionMode: default
 ---
 

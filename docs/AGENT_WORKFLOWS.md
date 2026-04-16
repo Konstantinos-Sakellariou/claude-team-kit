@@ -6,7 +6,7 @@ All work flows through `@master`. Every example below starts and ends there.
 
 These workflows are also the reason the kit now defines reusable teams: when the same multi-agent shape appears repeatedly, `@master` can activate a team instead of reconstructing the orchestration pattern from scratch each time.
 
-Ten workflows are documented here, each demonstrating different collaboration patterns:
+Eleven workflows are documented here, each demonstrating different collaboration patterns:
 
 1. **Engineering Pipeline** — parallel spikes, sequential implementation, gated quality stages
 2. **Content Publishing Pipeline** — research loop, human approval gate, parallel review, delivery feedback loop
@@ -18,6 +18,7 @@ Ten workflows are documented here, each demonstrating different collaboration pa
 8. **Private Local Context In Planning** — private-context lookup, safe planning support, tracked-doc boundary
 9. **Git / GitHub Team Flow** — commit/push safety, PR readiness, and release-governance orchestration
 10. **Supabase Team Flow** — schema/auth/RLS coordination with explicit security and rollout gates
+11. **Data Team Flow** — ingestion, metrics, analysis, and trust gates for decision-ready data work
 
 ---
 
@@ -300,17 +301,24 @@ flowchart TD
     DECISION -->|"Implement now"| PLAN_DONE
     DECISION -->|"Save for later"| APPROVAL
 
-    APPROVAL{"👤 Approve linked\n`docs/plans/<slug>.md`?"}
+    APPROVAL{"👤 Save richer plan\nfor later?"}
 
     APPROVAL -->|"Backlog only"| BACKLOG
-    APPROVAL -->|"Backlog + plan"| PLAN
+    APPROVAL -->|"Backlog + plan"| VISIBILITY
+
+    VISIBILITY{"👤 Local or tracked\nplan visibility?"}
+
+    VISIBILITY -->|"Local"| PLAN_LOCAL
+    VISIBILITY -->|"Tracked"| PLAN_TRACKED
 
     BACKLOG["@backlog-updater\nCreates or updates\nthe chosen backlog entry\nwith implementation context"]
 
-    PLAN["@backlog-updater + @tech-writer\nCreate or update linked\n`docs/plans/<slug>.md`\nand backlog row"]
+    PLAN_LOCAL["@backlog-updater + @tech-writer\nCreate or update linked\n`.claude/local-context/plans/<slug>.md`\nand backlog row"]
+    PLAN_TRACKED["@backlog-updater + @tech-writer\nCreate or update linked\n`docs/plans/<slug>.md`\nand backlog row"]
 
     BACKLOG --> PLAN_DONE
-    PLAN --> PLAN_DONE
+    PLAN_LOCAL --> PLAN_DONE
+    PLAN_TRACKED --> PLAN_DONE
 
     PLAN_DONE["@master returns:\nsummary\nagents used\nexecution report\nrisks\nnext step"]
 
@@ -324,6 +332,7 @@ flowchart TD
 - `@strategy-reviewer`, `@devils-advocate`, `@judge`, and `@architect` are strong default validators for non-trivial ideas
 - If the user wants to defer execution, `@backlog-updater` persists the idea in the chosen backlog
 - For substantial deferred work, the best default is often backlog entry plus linked plan, not backlog row alone
+- Approving a richer plan is separate from approving tracked visibility; `@master` should ask explicitly when that choice is not already clear
 - Even planning-only work still ends with `@workspace-updater` reviewing the core docs
 
 ---
@@ -599,6 +608,48 @@ flowchart TD
 - `@code-reviewer` stays part of code-affecting Supabase work
 - `@production-readiness-reviewer` is added when migrations, rollout, or environment risk are meaningful
 - the shared kit stays generic while the actual project-specific Supabase layout belongs in the copied repo briefing
+
+---
+
+## Workflow 11 — Data Team Flow
+
+**Example trigger:** *"Build a trustworthy warehouse mart for activation metrics, review the KPI definition, and tell me whether we can trust the current experiment readout."*
+
+**Patterns demonstrated:** reusable data-domain team activation, pipeline plus semantic modeling coordination, analysis handoff, mandatory governance gate.
+
+```mermaid
+flowchart TD
+    USER(["👤 Data request"])
+    USER --> MASTER
+
+    MASTER["@master\nActivates Data Team\nAnnounces lead, support,\nand trust gates"]
+
+    MASTER --> PIPE["@data-engineer\nShapes ingestion,\npipeline assumptions,\nand source reliability"]
+    PIPE --> MODEL["@analytics-engineer\nBuilds marts,\ngrain, and metrics logic"]
+    MODEL --> ANALYZE["@data-analyst\nInterprets KPI,\ncohort, or trend signal"]
+
+    ANALYZE --> EXP{"Experiment-specific\nquestion involved?"}
+    EXP -->|"Yes"| EXPA["@experiment-analyst\nChecks lift,\nguardrails, and\ninterpretation quality"]
+    EXP -->|"No"| GOV
+    EXPA --> GOV
+
+    GOV["@data-governance-reviewer\nChecks lineage,\nquality, access,\nand trust boundary"]
+    GOV --> SEC{"Sensitive data or\npolicy risk involved?"}
+    SEC -->|"Yes"| AUDIT["@security-auditor\nReviews access,\nprivacy, and exposure"]
+    SEC -->|"No"| REPORT
+    AUDIT --> REPORT
+
+    REPORT["@master synthesis\nSurfaces team used,\nwhat is trustworthy now,\nand what still needs work"]
+    REPORT --> WU["@workspace-updater\nRuns if briefing or workflow\ndocs need alignment"]
+    WU --> DONE(["✓ Data work reviewed"])
+```
+
+**Key points:**
+- `Data Team` is the reusable coordination layer for analytics, pipelines, and data-trust work
+- `@data-engineer` and `@analytics-engineer` establish the technical and semantic foundation first
+- `@data-analyst` and `@experiment-analyst` turn that foundation into decision-ready interpretation
+- `@data-governance-reviewer` is the trust gate before decision-critical conclusions are treated as safe
+- `@security-auditor` joins when sensitive data, access boundaries, or privacy risk matter
 
 ---
 

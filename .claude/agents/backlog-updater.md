@@ -83,6 +83,12 @@ When `@idea-executor` produced a meaningful execution plan and the user approved
 - create or update the approved plan path
 - set `Artifact / Plan` to that path
 
+Visibility rule:
+- do not assume that approval to save a plan also means approval to track it publicly
+- if `@master` has not confirmed local versus tracked visibility, do not create `docs/plans/<slug>.md`
+- prefer the safer local plan path until the visibility choice is explicit
+- only use `Pending approval` when `@master` explicitly wants the backlog row to show that the richer artifact still needs a final visibility decision
+
 Default path rule:
 - prefer `.claude/local-context/plans/<slug>.md` for real next-step implementation plans
 - use `docs/plans/<slug>.md` only when the user explicitly wants a tracked plan and the plan is safe and useful as a public-facing reference

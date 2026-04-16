@@ -24,17 +24,18 @@ Teams improve the workflow in a few practical ways:
 - **Clearer ownership:** every team has a lead agent, so it is easier to understand who is driving the work.
 - **Less prompt sprawl:** repeated collaboration patterns live in one place instead of being re-described ad hoc.
 - **Better user visibility:** `@master` can report the selected team, lead, supporting agents, and flow in a more readable way.
-- **Safer expansion:** future domain packs, such as a data team, can plug into the same structure instead of adding one-off routing rows forever.
+- **Safer expansion:** new domain packs can plug into the same structure instead of adding one-off routing rows forever.
 - **Backward compatibility:** single-agent routing still works; teams are only used when they genuinely help.
 
 ## Team Model
 
-This kit currently defines seven reusable teams:
+This kit currently defines eight reusable teams:
 
 | Team | Lead | Typical Scope |
 |---|---|---|
 | `Engineering Team` | `@senior-developer` or `@architect` | implementation, debugging, architecture, engineering review |
 | `AI/ML Team` | `@data-scientist` or `@ml-engineer` | model framing, training, evaluation, rollout readiness |
+| `Data Team` | `@data-engineer` or `@analytics-engineer` | pipelines, warehouse modeling, analytics, experimentation, data governance |
 | `Supabase Team` | `@architect` or `@senior-developer` | auth, schema, migrations, RLS, storage, edge functions, rollout safety |
 | `Content & Publishing Team` | `@content-planner` or `@content-writer` | content planning, drafting, editorial validation |
 | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy, backlog persistence |
@@ -73,6 +74,28 @@ Add when needed:
 - `@risk-officer`
 - `@debugger`
 - `@performance-engineer`
+
+## Data Team Notes
+
+The `Data Team` exists because data work is often neither generic engineering nor generic AI/ML.
+
+It usually combines:
+- ingestion and pipeline reliability
+- warehouse or mart modeling
+- metrics and semantic definitions
+- KPI or cohort analysis
+- experiment interpretation
+- quality, lineage, access, and governance review
+
+Default expectation for meaningful data-team flows:
+- `@data-engineer` or `@analytics-engineer`
+- `@data-governance-reviewer`
+
+Add when needed:
+- `@data-analyst`
+- `@experiment-analyst`
+- `@qa-engineer`
+- `@security-auditor`
 
 ## Git / GitHub Team Notes
 

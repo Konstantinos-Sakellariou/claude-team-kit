@@ -105,6 +105,22 @@ Good project-specific Supabase briefings usually add:
 
 The shared `Supabase Team` should know how to route this class of work, but the copied repo still needs to describe its real files, constraints, and rollout risks.
 
+## If The Project Has A Real Data Stack
+
+Use the shared `Data Team` when the repo has meaningful:
+- ingestion or ELT / ETL pipelines
+- warehouse or mart modeling
+- KPI and analytics reporting
+- experimentation or growth measurement
+- data-quality, lineage, or governance concerns
+
+Make the copied repo-specific briefings explicit about:
+- the warehouse or storage platform
+- transformation tooling and scheduling
+- metric ownership and reporting surfaces
+- sensitivity or compliance constraints
+- which data sources are authoritative versus derived
+
 ## Bootstrap For New Repos
 
 When this kit is copied into a repo that still has generic template docs, `@master` should run a lightweight bootstrap flow before major work starts.

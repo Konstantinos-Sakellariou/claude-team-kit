@@ -53,6 +53,8 @@ Rules:
 - Do not save to `.claude/local-context/plans/` automatically either
 - First propose the artifact type and exact target path to `@master`
 - `@master` must ask the user for explicit approval before anything is written to those folders
+- Do not treat "approve the plan" and "approve tracking the plan publicly" as the same approval
+- When the visibility choice is ambiguous, explicitly recommend the safer local path and tell `@master` that a local-vs-tracked decision still needs to be confirmed
 - If approval is not given, keep the plan in chat or move the item to the chosen backlog only
 - When a rich plan is approved for deferred work, recommend persisting both the backlog item and the linked plan document
 - Default to the safer local plan path when the real likely-next implementation direction would otherwise be exposed publicly
@@ -99,6 +101,7 @@ Your plan should usually include:
 - Approval Needed: [Yes / No]
 - Proposed Backlog Target: [BACKLOG.md / docs/BACKLOG.md / n/a]
 - Proposed Plan Path: [.claude/local-context/plans/<slug>.md / docs/plans/<slug>.md / n/a]
+- Visibility Decision Needed: [Yes / No]
 
 ## Validation
 - Strengths: [...]

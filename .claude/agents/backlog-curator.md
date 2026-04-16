@@ -2,7 +2,7 @@
 name: backlog-curator
 description: Content or feature backlog manager. Scores, de-duplicates, and prioritises backlog items for planning cycles using recency, audience relevance, and novelty signals. Surfaces the strongest candidates and recommends what to archive or drop.
 tools: Read, Write, Edit, Glob, Grep
-model: sonnet
+model: haiku
 permissionMode: default
 ---
 
