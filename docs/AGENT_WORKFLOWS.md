@@ -6,7 +6,7 @@ All work flows through `@master`. Every example below starts and ends there.
 
 These workflows are also the reason the kit now defines reusable teams: when the same multi-agent shape appears repeatedly, `@master` can activate a team instead of reconstructing the orchestration pattern from scratch each time.
 
-Nine workflows are documented here, each demonstrating different collaboration patterns:
+Ten workflows are documented here, each demonstrating different collaboration patterns:
 
 1. **Engineering Pipeline** — parallel spikes, sequential implementation, gated quality stages
 2. **Content Publishing Pipeline** — research loop, human approval gate, parallel review, delivery feedback loop
@@ -17,6 +17,7 @@ Nine workflows are documented here, each demonstrating different collaboration p
 7. **New Repo Bootstrap** — adaptive discovery, temporary assumptions, initial briefing alignment
 8. **Private Local Context In Planning** — private-context lookup, safe planning support, tracked-doc boundary
 9. **Git / GitHub Team Flow** — commit/push safety, PR readiness, and release-governance orchestration
+10. **Supabase Team Flow** — schema/auth/RLS coordination with explicit security and rollout gates
 
 ---
 
@@ -551,6 +552,50 @@ flowchart TD
 - `@production-readiness-reviewer` is added when the path is merge-critical, migration-heavy, or release-heavy
 - `@risk-officer` becomes the decisive gate only when the flow is truly release-heavy
 - `@master` must surface the team, agents used, findings, and approval gate before any irreversible Git action
+
+---
+
+## Workflow 10 — Supabase Team Flow
+
+**Example trigger:** *"Add Supabase auth with RLS-protected organizations and prepare the migration safely."*
+
+**Patterns demonstrated:** reusable domain-team activation, schema plus auth coordination, mandatory security gate, optional production-readiness gate.
+
+```mermaid
+flowchart TD
+    USER(["👤 Supabase request"])
+    USER --> MASTER
+
+    MASTER["@master\nActivates Supabase Team\nAnnounces lead, support,\nand required gates"]
+
+    MASTER --> DESIGN["@architect\nShapes schema, auth,\nand RLS boundaries"]
+    DESIGN --> BUILD["@senior-developer\nImplements migration,\npolicies, and integration code"]
+
+    BUILD --> REVIEW
+
+    subgraph REVIEW ["⚡ Parallel — Review and readiness"]
+        direction LR
+        SEC["@security-auditor\nReviews auth, RLS,\nstorage, and access risk"]
+        QA["@qa-engineer\nCovers behavior,\nedge cases, and regressions"]
+        CODE["@code-reviewer\nChecks quality,\nstandards, and maintainability"]
+    end
+
+    REVIEW --> GATE{"Migration-heavy or\nrelease-risk path?"}
+    GATE -->|"Yes"| PROD["@production-readiness-reviewer\nChecks rollback,\nenv, rollout, and safety"]
+    GATE -->|"No"| REPORT
+    PROD --> REPORT
+
+    REPORT["@master synthesis\nSurfaces team used,\nfindings, blockers,\nand next step"]
+    REPORT --> WU["@workspace-updater\nRuns if briefing or workflow\ndocs need alignment"]
+    WU --> DONE(["✓ Supabase work reviewed"])
+```
+
+**Key points:**
+- `Supabase Team` is the reusable coordination layer for Supabase-backed product work
+- `@security-auditor` is mandatory for auth, RLS, storage, and sensitive access changes
+- `@code-reviewer` stays part of code-affecting Supabase work
+- `@production-readiness-reviewer` is added when migrations, rollout, or environment risk are meaningful
+- the shared kit stays generic while the actual project-specific Supabase layout belongs in the copied repo briefing
 
 ---
 

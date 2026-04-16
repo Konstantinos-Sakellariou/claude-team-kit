@@ -155,7 +155,7 @@ else
   fail ".claude/teams directory is missing"
 fi
 
-for team in engineering-team ai-ml-team content-publishing-team delivery-ops-team git-github-team advisory-review-team; do
+for team in engineering-team ai-ml-team supabase-team content-publishing-team delivery-ops-team git-github-team advisory-review-team; do
   if [ -f "$ROOT_DIR/.claude/teams/${team}.md" ]; then
     pass "${team} manifest exists"
   else
@@ -389,6 +389,19 @@ if grep -q '## What Teams Mean' "$ROOT_DIR/README.md" && \
   pass "README.md documents the reusable team system"
 else
   fail "README.md does not document the reusable team system"
+fi
+
+if [ -f "$ROOT_DIR/docs/SUPABASE_REFERENCE.md" ] && \
+   grep -q 'Supabase Team' "$ROOT_DIR/README.md" && \
+   grep -q 'Supabase Team' "$ROOT_DIR/CLAUDE.md" && \
+   grep -q 'Supabase Team' "$ROOT_DIR/AGENTS.md" && \
+   grep -q 'Supabase Team' "$ROOT_DIR/docs/TEAMS.md" && \
+   grep -q 'Workflow 10 — Supabase Team Flow' "$ROOT_DIR/docs/AGENT_WORKFLOWS.md" && \
+   grep -q 'Supabase domain-pack reference' "$ROOT_DIR/docs/SYSTEM_REFERENCE.md" && \
+   grep -q 'If The Project Uses Supabase' "$ROOT_DIR/docs/PROJECT_CUSTOMIZATION.md"; then
+  pass "Supabase team docs and reference are aligned"
+else
+  fail "Supabase team docs and reference are not aligned"
 fi
 
 if grep -q 'Teams are reusable orchestration bundles' "$ROOT_DIR/CLAUDE.md" && \

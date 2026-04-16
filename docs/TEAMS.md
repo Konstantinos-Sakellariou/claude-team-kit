@@ -29,12 +29,13 @@ Teams improve the workflow in a few practical ways:
 
 ## Team Model
 
-This kit currently defines six reusable teams:
+This kit currently defines seven reusable teams:
 
 | Team | Lead | Typical Scope |
 |---|---|---|
 | `Engineering Team` | `@senior-developer` or `@architect` | implementation, debugging, architecture, engineering review |
 | `AI/ML Team` | `@data-scientist` or `@ml-engineer` | model framing, training, evaluation, rollout readiness |
+| `Supabase Team` | `@architect` or `@senior-developer` | auth, schema, migrations, RLS, storage, edge functions, rollout safety |
 | `Content & Publishing Team` | `@content-planner` or `@content-writer` | content planning, drafting, editorial validation |
 | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy, backlog persistence |
 | `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness, branch hygiene, repo-safety review |
@@ -48,6 +49,30 @@ The canonical team manifests live in `.claude/teams/`.
 - Teams are visible in the report, but the actual agents used must still be named.
 - Teams can be combined when needed, for example `Engineering Team` plus `Advisory Review Team`, or `Git / GitHub Team` plus `Delivery & Ops Team` for release-heavy workflows.
 - Final synthesis always stays with `@master`.
+
+## Supabase Team Notes
+
+The `Supabase Team` exists because Supabase work is rarely just "database work."
+
+It usually combines:
+- schema and migrations
+- auth and session behavior
+- row-level security
+- storage access
+- edge functions or backend integration
+- rollout and release risk
+
+Default expectation for meaningful Supabase flows:
+- `@architect` or `@senior-developer`
+- `@security-auditor`
+- `@qa-engineer`
+- `@code-reviewer`
+
+Add when needed:
+- `@production-readiness-reviewer`
+- `@risk-officer`
+- `@debugger`
+- `@performance-engineer`
 
 ## Git / GitHub Team Notes
 

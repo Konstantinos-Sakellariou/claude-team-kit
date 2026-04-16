@@ -78,6 +78,21 @@ Keep the boundary clean:
 - local context stores private working truth
 - if a tracked doc would benefit from private material, `@master` should ask before moving it there
 
+## If The Project Uses Supabase
+
+Keep the shared kit generic, but make the copied repo concrete.
+
+Good project-specific Supabase briefings usually add:
+- where the `supabase/` folder lives
+- migration and seed workflow
+- auth provider choices and session assumptions
+- row-level security strategy
+- storage bucket model
+- edge-function responsibilities
+- environment boundaries for project URL, anon key, and privileged server-side usage
+
+The shared `Supabase Team` should know how to route this class of work, but the copied repo still needs to describe its real files, constraints, and rollout risks.
+
 ## Bootstrap For New Repos
 
 When this kit is copied into a repo that still has generic template docs, `@master` should run a lightweight bootstrap flow before major work starts.

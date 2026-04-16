@@ -370,6 +370,7 @@ Current team manifests live in `.claude/teams/`.
 |---|---|---|
 | `Engineering Team` | `@senior-developer` or `@architect` | features, debugging, architecture, engineering review |
 | `AI/ML Team` | `@data-scientist` or `@ml-engineer` | model framing, training, evaluation, rollout readiness |
+| `Supabase Team` | `@architect` or `@senior-developer` | auth, schema, migrations, RLS, storage, edge functions, rollout safety |
 | `Content & Publishing Team` | `@content-planner` or `@content-writer` | planning, drafting, source-backed editorial workflows |
 | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy, backlog persistence |
 | `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness, branch hygiene, repo-safety review |
@@ -381,6 +382,7 @@ Current team manifests live in `.claude/teams/`.
 |---|---|---|---|
 | software implementation or debugging | `Engineering Team` | `@senior-developer` or `@architect` | add QA, security, or research as needed |
 | AI/ML project work | `AI/ML Team` | `@data-scientist` or `@ml-engineer` | `@model-evaluator` remains a hard gate |
+| Supabase auth, schema, migrations, RLS, storage, or edge-function work | `Supabase Team` | `@architect` or `@senior-developer` | `@security-auditor` is a hard gate for auth, RLS, storage, and sensitive access |
 | content planning or publication work | `Content & Publishing Team` | `@content-planner` or `@content-writer` | editorial and source validation are common gates |
 | release, delivery, monitoring, or backlog persistence | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | privacy and github safety checks remain explicit |
 | git, GitHub, PR, or repository-safety work | `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | use for commit, push, PR, release, and branch hygiene flows |
@@ -419,6 +421,11 @@ Read current agents from `.claude/agents/` at session start. Default routing:
 | AI/ML: New model project (full lifecycle) | `@data-scientist` | `@ml-engineer`, `@model-evaluator`, `@mlops-engineer` |
 | AI/ML: Production model issue | `@mlops-engineer` | `@model-evaluator`, `@debugger` |
 | AI/ML: Code review (ML code) | `@ml-engineer` | `@data-scientist`, `@qa-engineer`, `@security-auditor` |
+| Supabase: Schema / migrations | `@architect` | `@senior-developer`, `@qa-engineer`, `@code-reviewer`, `@security-auditor` |
+| Supabase: Auth / session / RLS | `@architect` | `@senior-developer`, `@security-auditor`, `@qa-engineer`, `@code-reviewer` |
+| Supabase: Storage / access rules | `@senior-developer` | `@security-auditor`, `@qa-engineer`, `@code-reviewer` |
+| Supabase: Edge functions / backend logic | `@senior-developer` | `@architect`, `@qa-engineer`, `@code-reviewer`, `@performance-engineer` |
+| Supabase: Rollout / migration-risk review | `@risk-officer` | `@production-readiness-reviewer`, `@security-auditor`, `@qa-engineer`, `@github-safety-guard` |
 
 For **any significant decision** always also run:
 - `@devils-advocate` — finds what's wrong with the plan
@@ -487,6 +494,17 @@ AI/ML operating rules:
 - Any ML model code review → check against `.claude/rules/ml-workflow.md`
 - Any deployment-minded AI/ML work → require `@model-evaluator` before `@mlops-engineer`
 - Keep AI/ML work generic unless the project briefing explicitly defines a platform or infrastructure choice
+
+For **any Supabase-backed project work** prefer:
+- activate the `Supabase Team`
+- keep `@architect` as the default lead when the work is primarily schema, auth-boundary, or RLS-shape design
+- keep `@senior-developer` as the default lead when the work is primarily implementation-heavy integration or edge-function logic
+- include `@security-auditor` for auth, RLS, storage, or sensitive access changes
+- include `@qa-engineer` when behavior changes or migrations need verification
+- include `@code-reviewer` for code-affecting Supabase work
+- include `@production-readiness-reviewer` when the path is migration-heavy, rollback-sensitive, merge-critical, or operationally risky
+- include `@risk-officer` when rollout or data-access risk is high
+- keep project-specific Supabase URLs, schema truth, bucket layout, and environment details in the copied repo briefing rather than the shared core
 
 For **any commit, push, or PR creation** always also run:
 - `@github-safety-guard` — reviews staged or pending changes for secrets, sensitive information, and public-disclosure risks

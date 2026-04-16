@@ -202,6 +202,29 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn("Git / GitHub Team", agents)
         self.assertIn("Git / GitHub Team", teams_doc)
 
+    def test_supabase_team_is_defined_and_visible(self) -> None:
+        team = read(".claude/teams/supabase-team.md")
+        master = read(".claude/agents/master.md")
+        readme = read("README.md")
+        claude = read("CLAUDE.md")
+        agents = read("AGENTS.md")
+        teams_doc = read("docs/TEAMS.md")
+        workflows = read("docs/AGENT_WORKFLOWS.md")
+        customization = read("docs/PROJECT_CUSTOMIZATION.md")
+        reference = read("docs/SUPABASE_REFERENCE.md")
+
+        self.assertIn("# Supabase Team", team)
+        self.assertIn("@security-auditor", team)
+        self.assertIn("Supabase Team", master)
+        self.assertIn("Supabase auth, schema, migrations, RLS, storage, or edge-function work", master)
+        self.assertIn("Supabase Team", readme)
+        self.assertIn("Supabase Team", claude)
+        self.assertIn("Supabase Team", agents)
+        self.assertIn("Supabase Team", teams_doc)
+        self.assertIn("Workflow 10 — Supabase Team Flow", workflows)
+        self.assertIn("If The Project Uses Supabase", customization)
+        self.assertIn("What Supabase Is", reference)
+
     def test_github_quality_gate_agents_and_rule_are_visible(self) -> None:
         code_reviewer = read(".claude/agents/code-reviewer.md")
         pr_operator = read(".claude/agents/pr-operator.md")

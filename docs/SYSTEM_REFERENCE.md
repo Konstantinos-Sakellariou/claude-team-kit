@@ -40,6 +40,7 @@ Pair it with:
 |---|---|---|---|---|
 | Engineering Team | `@senior-developer` or `@architect` | features, debugging, architecture | qa, security, performance, debugger | `docs/TEAMS.md` |
 | AI/ML Team | `@data-scientist` or `@ml-engineer` | model framing, training, evaluation, rollout | evaluator, mlops, research | `docs/TEAMS.md` |
+| Supabase Team | `@architect` or `@senior-developer` | auth, schema, migrations, RLS, storage, edge functions | security, QA, code review, production readiness | `docs/TEAMS.md` |
 | Content & Publishing Team | `@content-planner` or `@content-writer` | planning, drafting, editorial workflows | source, tone, review, feedback | `docs/TEAMS.md` |
 | Delivery & Ops Team | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, backlog persistence | privacy, changelog, experimentation | `docs/TEAMS.md` |
 | Git / GitHub Team | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness | code review, PR packaging, production readiness | `docs/TEAMS.md` |
@@ -212,6 +213,7 @@ Start here depending on the need:
 - context efficiency: `docs/CONTEXT_EFFICIENCY.md`
 - private local context: `docs/LOCAL_CONTEXT.md`
 - team model: `docs/TEAMS.md`
+- Supabase domain-pack reference: `docs/SUPABASE_REFERENCE.md`
 - workflow examples: `docs/AGENT_WORKFLOWS.md`
 - repo adaptation: `docs/PROJECT_CUSTOMIZATION.md`
 
