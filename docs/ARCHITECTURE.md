@@ -79,7 +79,7 @@ The intended operating flow is:
 6. Specialist agents contribute in parallel or sequence
 7. `@master` synthesizes the result
 8. Durable decisions are proposed as ADRs by default when they should outlive the chat
-9. `@workspace-updater` reviews and aligns the core docs after significant changes
+9. `@workspace-updater` runs as the final doc-impact gate after significant changes and aligns docs only when needed
 
 This repo currently enforces that model through prompts, settings, hooks, and validation checks rather than through an external execution engine.
 
@@ -97,7 +97,7 @@ ADR ownership in that model is:
 - `@architect`: owns the technical substance
 - `@devils-advocate` and `@judge`: pressure-test the reasoning
 - `@tech-writer`: writes the final ADR once approved
-- `@workspace-updater`: aligns `README.md`, `CLAUDE.md`, and `AGENTS.md` afterward
+- `@workspace-updater`: assesses doc impact, then aligns `README.md`, `CLAUDE.md`, and `AGENTS.md` only when the work actually changed them
 
 The core documentation files in that loop are:
 - `CLAUDE.md`

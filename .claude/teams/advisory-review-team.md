@@ -14,6 +14,7 @@ Default team for scope, decision-making, business, product, UX, risk, and strate
 
 - `@project-manager`
 - `@customer-advocate`
+- `@vision-partner`
 - `@strategy-reviewer`
 - `@session-budget-estimator`
 - `@devils-advocate`
@@ -23,6 +24,7 @@ Default team for scope, decision-making, business, product, UX, risk, and strate
 
 ## Typical Triggers
 
+- collaborative next-move generation
 - idea shaping
 - product or business evaluation
 - prioritization decisions
@@ -32,6 +34,7 @@ Default team for scope, decision-making, business, product, UX, risk, and strate
 
 ## Default Flow
 
+- generate strong options when the direction is still open
 - frame the decision
 - test strategic fit and timing
 - test practical session pressure when needed

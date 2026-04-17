@@ -47,7 +47,7 @@ Pair it with:
 | Content & Publishing Team | `@content-planner` or `@content-writer` | planning, drafting, editorial workflows | source, tone, review, feedback | `docs/TEAMS.md` |
 | Delivery & Ops Team | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, backlog persistence | privacy, changelog, experimentation | `docs/TEAMS.md` |
 | Git / GitHub Team | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness | code review, PR packaging, production readiness | `docs/TEAMS.md` |
-| Advisory Review Team | `@product-owner`, `@business-analyst`, or `@idea-executor` | planning, prioritization, strategic validation | customer, strategy review, judge, devil's advocate, session-budget estimation, tech writer | `docs/TEAMS.md` |
+| Advisory Review Team | `@product-owner`, `@business-analyst`, `@idea-executor`, or `@vision-partner` | planning, prioritization, strategic validation, collaborative direction-shaping | customer, strategy review, judge, devil's advocate, session-budget estimation, tech writer | `docs/TEAMS.md` |
 
 ## Agent Inventory
 
@@ -67,7 +67,7 @@ Pair it with:
 | `@pr-operator` | Pull-request readiness and reviewer-facing packaging |
 | `@production-readiness-reviewer` | Merge/release-readiness for config, rollout, and operational safety |
 | `@performance-engineer` | Profiling and performance optimization |
-| `@workspace-updater` | Final documentation alignment step |
+| `@workspace-updater` | Final doc-impact gate and targeted documentation alignment step |
 
 ### AI/ML
 
@@ -122,6 +122,7 @@ Pair it with:
 | `@business-analyst` | Requirements, ROI, business framing |
 | `@customer-advocate` | User and reader experience |
 | `@strategy-reviewer` | Vision fit, roadmap fit, leverage, timing, and strategic pushback |
+| `@vision-partner` | Collaborative next-move generation and vision/roadmap/backlog connection |
 | `@devils-advocate` | Challenge assumptions |
 | `@session-budget-estimator` | Session-sized effort, model-mix, and reset-pressure estimation |
 | `@risk-officer` | Release and operational risk review |
@@ -257,5 +258,5 @@ The intended usage flow is:
 2. Let `@master` pick agents or teams
 3. Save durable work in the right artifact location
 4. Use local context for private operating detail
-5. Let `@workspace-updater` keep the hot-path docs aligned
+5. Let `@workspace-updater` keep the hot-path docs aligned through adaptive doc-impact checks, not automatic full rewrites
 6. Keep the hot path lean and push detail into linked docs like this one

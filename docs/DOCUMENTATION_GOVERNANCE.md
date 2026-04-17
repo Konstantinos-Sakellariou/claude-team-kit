@@ -105,6 +105,12 @@ This repo reinforces documentation governance through:
 - `doctor.sh`
 - prompt-contract tests
 
+`@workspace-updater` should be treated as an adaptive doc-impact gate:
+- always check whether the work changed the documentation surface
+- only perform a full or targeted sync when it is actually warranted
+- allow grouped deferral when repeated micro-updates would create churn
+- surface deferred drift clearly before commit, push, release, or handoff
+
 ## Practical Standard
 
 The repo should feel:

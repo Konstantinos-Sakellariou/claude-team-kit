@@ -19,7 +19,7 @@ Use [`docs/VISION.example.md`](docs/VISION.example.md) and [`docs/ROADMAP.exampl
 
 ```text
 .claude/
-├── agents/          48 specialized agents across engineering, AI/ML, data, content, delivery, and advisory
+├── agents/          49 specialized agents across engineering, AI/ML, data, content, delivery, and advisory
 ├── teams/           8 reusable team manifests that @master can activate for recurring workflows
 ├── skills/          20 reusable skills (code-review, fix-bug, business-case, create-pr, context-audit, triage-input, repo-cleanup...)
 ├── rules/           Modular rule files — docs, artifacts, context, Python, TypeScript, security, testing, git, performance, API design, AI/ML workflow
@@ -207,6 +207,11 @@ When the main question is strategic fit rather than capacity, use `@strategy-rev
 - explicit pushback when an addition costs more than it adds
 - a narrower or better-timed alternative when the underlying idea is directionally useful
 
+When the main question is collaborative direction-shaping rather than critique or estimation, use `@vision-partner`:
+- generate a small set of strong next-move options grounded in current repo state
+- connect backlog, roadmap, and vision into a clearer recommendation
+- pair well with `@strategy-reviewer` for pushback and `@session-budget-estimator` for feasibility
+
 ## Starter Packs
 
 This kit now includes optional starter packs for common repo shapes.
@@ -250,7 +255,7 @@ flowchart TD
     USER(["👤 Your request"])
     USER --> MASTER
 
-    MASTER["@master\n1. Receives every request\n2. Maps the full scope\n3. Announces the plan\n4. Dispatches agents\n5. Synthesises reports\n6. Resolves conflicts\n7. Signs off on completion\n8. Always ends with @workspace-updater"]
+    MASTER["@master\n1. Receives every request\n2. Maps the full scope\n3. Announces the plan\n4. Dispatches agents\n5. Synthesises reports\n6. Resolves conflicts\n7. Signs off on completion\n8. Always ends with @workspace-updater doc-impact gate"]
 
     MASTER --> ENG["⚙️ Engineering\n@architect\n@senior-developer\n@qa-engineer\n@security-auditor\n@debugger\n@performance-engineer\n@researcher\n@github-safety-guard"]
     MASTER --> ML["🤖 AI/ML\n@data-scientist\n@ml-engineer\n@model-evaluator\n@mlops-engineer\n@research-scientist"]
@@ -262,7 +267,7 @@ flowchart TD
     MASTER --> DELIV["🚀 Delivery & Ops\n@delivery-orchestrator\n@delivery-monitor\n@privacy-reviewer\n@changelog-writer\n@ab-tester\n@backlog-updater"]
     MASTER --> GIT["🔐 Git / GitHub\n@github-safety-guard\n@code-reviewer\n@pr-operator\n@production-readiness-reviewer\n@privacy-reviewer\n@changelog-writer"]
 
-    MASTER --> ADV["🧠 Advisory\n@business-analyst\n@product-owner\n@project-manager\n@customer-advocate\n@strategy-reviewer\n@devils-advocate\n@risk-officer\n@judge\n@tech-writer\n@idea-executor\n@session-budget-estimator"]
+    MASTER --> ADV["🧠 Advisory\n@business-analyst\n@product-owner\n@project-manager\n@customer-advocate\n@vision-partner\n@strategy-reviewer\n@devils-advocate\n@risk-officer\n@judge\n@tech-writer\n@idea-executor\n@session-budget-estimator"]
 
     ENG --> SYNTH(["@master synthesises all reports"])
     ML --> SYNTH
@@ -273,7 +278,7 @@ flowchart TD
     GIT --> SYNTH
     ADV --> SYNTH
 
-    SYNTH --> WU["@workspace-updater\nreviews CLAUDE.md + AGENTS.md + README.md\nfinal step, always"]
+    SYNTH --> WU["@workspace-updater\nchecks doc impact first\nupdates only if needed\nfinal step, always"]
     WU --> DONE(["✓ Done"])
 ```
 
@@ -284,10 +289,10 @@ RECEIVE → ANALYSE scope → PLAN pipeline → ANNOUNCE plan to user
   → DISPATCH agents (parallel where independent, sequential where dependent)
   → COLLECT all reports → SYNTHESISE findings → RESOLVE conflicts
   → DECIDE: more work needed? → loop | user decision needed? → surface it | done? → sign off
-  → TRIGGER @workspace-updater → COMPLETE
+  → TRIGGER @workspace-updater doc-impact gate → COMPLETE
 ```
 
-`@workspace-updater` runs automatically as the last step after significant work. It reviews the core docs (`CLAUDE.md`, `AGENTS.md`, and `README.md`) even when no edits are ultimately required.
+`@workspace-updater` runs automatically as the last step after significant work, but as a final doc-impact gate first, not as an automatic full rewrite. It checks whether the core docs (`CLAUDE.md`, `AGENTS.md`, and `README.md`) were actually affected, performs a targeted sync only when needed, and can intentionally defer broader doc drift until a better sync point.
 
 ## New Repo Bootstrap
 
@@ -359,7 +364,7 @@ In short: teams help `@master` behave less like an improvised dispatcher and mor
 | `Content & Publishing Team` | `@content-planner` or `@content-writer` | planning, drafting, editorial validation |
 | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy, backlog persistence |
 | `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness, branch hygiene, repo-safety review |
-| `Advisory Review Team` | `@product-owner`, `@business-analyst`, or `@idea-executor` | planning, prioritization, decision support, strategic validation, and pushback on major additions |
+| `Advisory Review Team` | `@product-owner`, `@business-analyst`, `@idea-executor`, or `@vision-partner` | planning, prioritization, decision support, strategic validation, pushback on major additions, and collaborative next-move generation |
 
 The canonical team definitions live in `.claude/teams/`. See [`docs/TEAMS.md`](docs/TEAMS.md) for the full model and operating rules, [`docs/SUPABASE_REFERENCE.md`](docs/SUPABASE_REFERENCE.md) for the Supabase-specific reference, and [`docs/DATA_REFERENCE.md`](docs/DATA_REFERENCE.md) for the data-domain reference.
 
@@ -394,7 +399,7 @@ The canonical team definitions live in `.claude/teams/`. See [`docs/TEAMS.md`](d
 The full agent roster, system layers, connections, and navigation map now live in [`docs/SYSTEM_REFERENCE.md`](docs/SYSTEM_REFERENCE.md).
 
 Use that doc when you want:
-- the full 48-agent inventory
+- the full 49-agent inventory
 - the feature map across agents, teams, skills, rules, hooks, memory, and artifacts
 - a clearer picture of how the layers connect
 - a faster route into the right detailed documentation
@@ -422,6 +427,7 @@ These fire automatically — you don't need to ask:
 - Significant idea discussions → `@idea-executor` shapes the idea into an execution plan
 - Roadmap reprioritization, “what next?”, or reset-limit concerns → `@session-budget-estimator` estimates likely session shape and model mix
 - Major additions to the core → `@strategy-reviewer` checks vision fit, roadmap fit, leverage, and timing before we treat them as good next work
+- Open-ended ideation or “think with me” direction work → `@vision-partner` generates grounded next-move options before critique or execution planning
 - Durable architecture, policy, workflow, or repo-structure decisions → `@master` proposes an ADR by default
 - Strategic, startup, customer, or company-sensitive work → `@master` consults `.claude/local-context/` first when it exists
 - Content ready to publish → `@editorial-reviewer` must pass it first
@@ -431,7 +437,7 @@ These fire automatically — you don't need to ask:
 - Before any merge-critical or release-heavy GitHub flow → `@production-readiness-reviewer` must pass it
 - Before any commit or push → `@github-safety-guard` reviews staged or pending changes and `@master` surfaces the findings
 - Before major release → `@risk-officer` final sign-off
-- After any significant task → `@workspace-updater` runs last and reviews the core docs automatically
+- After any significant task → `@workspace-updater` runs last as the final doc-impact gate and updates docs only when needed
 
 ## Default Reporting
 
@@ -509,7 +515,7 @@ The reusable skills still matter underneath that layer, including:
 
 ## Agent Groups at a Glance
 
-The 48 agents split into six specialist groups designed to cover any project type:
+The 49 agents split into six specialist groups designed to cover any project type:
 
 **Engineering** (13 agents) — builds and maintains software: architecture, implementation, testing, security, performance, debugging, GitHub quality gates, and release safety.
 
@@ -601,4 +607,4 @@ If backlog preference is not known yet, `@master` should ask whether the project
 | `docs/PROJECT_CUSTOMIZATION.md` | How to adapt the generic kit to a concrete repo |
 | `docs/AGENT_WORKFLOWS.md` | Detailed workflow diagrams with parallel/sequential/gated patterns |
 
-`README.md`, `CLAUDE.md`, and `AGENTS.md` must stay in sync. Update them together whenever the agent roster, workflow, commands, or project structure changes. `@workspace-updater` handles this automatically after major tasks — or call it explicitly after manual changes.
+`README.md`, `CLAUDE.md`, and `AGENTS.md` must stay in sync. Update them together whenever the agent roster, workflow, commands, or project structure changes. `@workspace-updater` now handles this as an adaptive doc-impact gate after major tasks — or call `/sync-docs` explicitly after manual changes or when drift was deferred on purpose.

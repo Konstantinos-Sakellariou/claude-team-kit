@@ -156,13 +156,14 @@ They are not a runtime feature, they do not replace agents, and `@master` must s
 
 ## Key Agent Surfaces
 
-For the full 48-agent roster and cross-layer map, use `docs/SYSTEM_REFERENCE.md`.
+For the full 49-agent roster and cross-layer map, use `docs/SYSTEM_REFERENCE.md`.
 
 The hot-path agents to keep in mind here are:
 - `@master` — mandatory entry point and orchestrator
-- `@workspace-updater` — mandatory final documentation-alignment step
+- `@workspace-updater` — mandatory final doc-impact gate and targeted documentation-alignment step
 - `@github-safety-guard`, `@code-reviewer`, `@production-readiness-reviewer` — GitHub quality gates
 - `@backlog-updater` and `@idea-executor` — deferred work and plan persistence
+- `@vision-partner` — collaborative direction-shaping and next-move generation across vision, roadmap, and backlog
 - `@session-budget-estimator` — session-sized effort, model-mix, and reset-pressure estimation
 - `@strategy-reviewer` — strategic fit, roadmap fit, and timing pushback for major additions
 - `@data-scientist`, `@ml-engineer`, `@model-evaluator` — AI/ML lead/gate pattern
@@ -187,6 +188,7 @@ The hot-path agents to keep in mind here are:
 - Any request to "backlog" or save work for later → `@backlog-updater` updates the chosen backlog and can link an approved plan
 - Any substantial idea exploration that should become a plan → `@idea-executor` leads the execution-plan shaping with supporting reviewers
 - Any backlog reprioritization, roadmap sequencing question, "what next?" question, or reset-limit/session-budget concern → `@session-budget-estimator` estimates in the preferred mode
+- Any open-ended "think with me", "what directions are strongest?", or vision/roadmap/backlog connection question → `@vision-partner` generates grounded next-move options before critique or execution planning
 - Any new major capability, team, agent, rule, hook, skill, command, backlog item, or roadmap change with meaningful scope/cost implications → `@strategy-reviewer` checks strategic fit before we treat it as a strong next move
 - Any durable architecture, policy, workflow, or repo-structure decision → `@master` proposes an ADR by default and coordinates `@architect`, `@devils-advocate`, `@judge`, and `@tech-writer`
 - Any strategic, startup, customer, or company-sensitive request → `@master` should consult the private local context layer first when it exists
@@ -198,7 +200,7 @@ The hot-path agents to keep in mind here are:
 - Before any commit or push → `@github-safety-guard` reviews the outgoing changes and `@master` presents the findings to the user
 - Before any public release or push → `@privacy-reviewer` runs the mandatory scan
 - Before any major release → `@risk-officer` does a final sign-off
-- After any significant task → `@workspace-updater` runs last and reviews CLAUDE.md, AGENTS.md, and README.md automatically
+- After any significant task → `@workspace-updater` runs last as the final doc-impact gate and syncs docs only when needed
 
 ## Default Reporting Rules
 
@@ -241,7 +243,7 @@ The hot-path agents to keep in mind here are:
 - The kit includes a generic AI/ML specialist layer; keep platform-specific ML guidance in project briefings, not in the shared core
 - Real projects should move concrete architecture, routes, deployment notes, and gotchas into `CLAUDE.md` and `AGENTS.md`
 - Project-specific sync workflows belong in narrow extensions to `@master` and `@workspace-updater`, not in the generic core loop
-- `@master` must remain the only top-level orchestrator, and `@workspace-updater` must remain the mandatory final step for the core docs
+- `@master` must remain the only top-level orchestrator, and `@workspace-updater` must remain the mandatory final doc-impact gate for the core docs
 - `@master` must make orchestration visible in the chat by default: selected agents, actions taken, and final report
 - `BACKLOG.md` is the private local backlog; start it from `BACKLOG.example.md` and do not rely on chat history alone
 - `docs/BACKLOG.md` is the optional public tracked backlog; start it from `docs/BACKLOG.example.md` when a repo wants visible backlog history

@@ -116,7 +116,13 @@ Add when needed:
 
 ## Advisory Review Team Notes
 
-The `Advisory Review Team` is where idea quality, strategy fit, and sequencing quality come together.
+The `Advisory Review Team` is where idea quality, strategy fit, sequencing quality, and collaborative next-move generation come together.
+
+Add `@vision-partner` when the question is:
+- what we should do next
+- which directions are strongest before critique starts
+- how backlog, roadmap, and vision should connect more coherently
+- where current repo capabilities suggest a stronger adjacent move
 
 Use it for:
 - backlog shaping

@@ -2,7 +2,7 @@
 
 All work flows through `@master`. Every example below starts and ends there.
 
-`@master` receives the request, maps the full scope, announces the plan to the user before executing, dispatches agents (in parallel or sequentially depending on dependencies), synthesises their reports, resolves conflicts, and — once the user confirms — triggers `@workspace-updater` as the mandatory final step.
+`@master` receives the request, maps the full scope, announces the plan to the user before executing, dispatches agents (in parallel or sequentially depending on dependencies), synthesises their reports, resolves conflicts, and — once the user confirms — triggers `@workspace-updater` as the mandatory final doc-impact gate.
 
 These workflows are also the reason the kit now defines reusable teams: when the same multi-agent shape appears repeatedly, `@master` can activate a team instead of reconstructing the orchestration pattern from scratch each time.
 
@@ -11,7 +11,7 @@ Twelve workflows are documented here, each demonstrating different collaboration
 1. **Engineering Pipeline** — parallel spikes, sequential implementation, gated quality stages
 2. **Content Publishing Pipeline** — research loop, human approval gate, parallel review, delivery feedback loop
 3. **Full Project Launch** — dual parallel tracks (engineering + content) converging at a shared release gate
-4. **Idea To Execution Planning** — idea shaping, strategic-fit review, adversarial validation, phased plan, optional backlog capture
+4. **Idea To Execution Planning** — ideation, strategic-fit review, adversarial validation, phased plan, optional backlog capture
 5. **Decision To ADR** — durable-decision detection, validation, approval gate, ADR authorship, documentation alignment
 6. **AI/ML Delivery Pipeline** — model framing, training, mandatory evaluation gate, operational rollout
 7. **New Repo Bootstrap** — adaptive discovery, temporary assumptions, initial briefing alignment
@@ -279,7 +279,9 @@ flowchart TD
 
     MASTER["@master\nReceives the idea\nDefines planning goal\nAnnounces the agent plan"]
 
-    MASTER --> IDEA
+    MASTER --> VISION
+    VISION["@vision-partner\nGenerates strong options\nConnects backlog, roadmap,\nand vision into next moves"]
+    VISION --> IDEA
 
     IDEA["@idea-executor\nClarifies the concept\nDrafts execution path\nCreates flow graph\nWrites step-by-step guidance"]
 
@@ -328,13 +330,14 @@ flowchart TD
 ```
 
 **Key points:**
-- `@idea-executor` is the primary planning specialist, not the top-level coordinator
+- `@vision-partner` is the collaborative ideation layer when the user needs stronger option generation before planning
+- `@idea-executor` is the primary planning specialist once a direction is strong enough to shape
 - `@master` still owns the thread, announces the selected agents, and synthesizes the result
 - `@strategy-reviewer`, `@devils-advocate`, `@judge`, and `@architect` are strong default validators for non-trivial ideas
 - If the user wants to defer execution, `@backlog-updater` persists the idea in the chosen backlog
 - For substantial deferred work, the best default is often backlog entry plus linked plan, not backlog row alone
 - Approving a richer plan is separate from approving tracked visibility; `@master` should ask explicitly when that choice is not already clear
-- Even planning-only work still ends with `@workspace-updater` reviewing the core docs
+- Even planning-only work still ends with `@workspace-updater` checking doc impact, though that does not always mean a full sync is warranted
 
 ---
 
