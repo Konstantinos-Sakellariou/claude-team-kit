@@ -148,7 +148,7 @@ Current skills live in `.claude/skills/`.
 
 High-value examples:
 - `context-audit`: audit briefing quality, drift, and artifact placement
-- `triage-input`: compress noisy logs, diffs, dumps, or evidence
+- `triage-input`: compress noisy logs, diffs, dumps, or evidence and recommend the best narrow handoff
 - `repo-cleanup`: classify copied-kit leftovers into keep/customize/delete once the repo is truly project-specific
 - `code-review`, `fix-bug`, `write-tests`, `write-docs`, `research`, `create-pr`
 

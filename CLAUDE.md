@@ -227,6 +227,8 @@ The hot-path agents to keep in mind here are:
 - local `docs/VISION.md` and `docs/ROADMAP.md` are optional private strategy surfaces and should stay out of git when they contain real operating direction
 - The rules layer now includes dedicated governance for docs, artifacts, and context quality in addition to language or domain rules
 - `docs/DOCUMENTATION_GOVERNANCE.md` defines the anti-bloat documentation model; follow it before expanding the hot-path briefings
+- large noisy inputs should follow the default triage workflow in `docs/CONTEXT_EFFICIENCY.md`: classify, sample, summarize, then route narrowly
+- noisy domain-heavy tasks should prefer specialist-first routing instead of broad main-thread analysis when the right owner is already clear
 - `docs/SELF_UPGRADE.md` is the maintainer playbook for extending the kit without drift, private-leakage mistakes, or hot-path bloat
 - `docs/STARTER_PACKS.md` provides optional overlays for common repo shapes without making the shared core overly specific
 - GitHub-bound code should follow the visible quality gate defined in `.claude/rules/github-quality-gate.md`

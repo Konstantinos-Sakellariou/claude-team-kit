@@ -56,6 +56,37 @@ Large-input triage patterns:
 - structured data: inspect schema, headers, keys, counts, or sample rows before full payloads
 - long code files: read the relevant functions or sections first, not the entire file by default
 
+Default large-input workflow:
+1. classify the input shape before reading deeply
+2. inspect the smallest useful slice first
+3. produce a compact triage summary instead of echoing the raw input
+4. choose the next narrow owner, agent, or team before widening scope
+5. only pull more raw evidence when the next step truly needs it
+
+Default handoff preferences after triage:
+- logs, test output, or stack traces: `@debugger` first, with `@qa-engineer` when reproduction or regression shape matters
+- large diffs or review-heavy evidence: `Git / GitHub Team`, `@code-reviewer`, or a narrow engineering reviewer
+- structured data, CSVs, JSON, analytics exports, or evidence bundles: `Data Team`, `@data-analyst`, or `@analytics-engineer`
+- model metrics, evaluation traces, or training artifacts: `AI/ML Team`, `@model-evaluator`, or `@ml-engineer`
+- mixed planning evidence, architecture notes, or decision bundles: `Advisory Review Team` or `@architect`
+
+When the user provides a large input directly:
+- acknowledge that you are triaging it first
+- avoid pasting the full raw input back into the thread unless the user explicitly asks or the task truly depends on it
+- prefer a compact "Input Triage Report" plus the next bounded step
+
+Specialist-first routing for noisy tasks:
+- if the task is mostly raw evidence review, route to the best narrow specialist or team before doing broad main-thread reasoning
+- keep the main thread focused on synthesis, decision points, approvals, and next moves
+- prefer specialist-first handling for:
+  - log-heavy or traceback-heavy debugging -> `@debugger`
+  - large diffs, risky reviews, or merge-readiness evidence -> `Git / GitHub Team` or `@code-reviewer`
+  - structured data, analytics evidence, CSV/JSON bundles, or KPI interpretation -> `Data Team`
+  - training traces, evaluation logs, or model-metric evidence -> `AI/ML Team`
+  - auth, schema, RLS, migration, or storage-heavy Supabase evidence -> `Supabase Team`
+  - mixed business, roadmap, or architecture evidence bundles -> `Advisory Review Team` or `@architect`
+- when the right owner is obvious, skip broad central analysis and let the specialist or team produce the condensed result first
+
 Tooling discipline:
 - prefer local CLI tools over equivalent MCP tools when they solve the task cleanly with less overhead
 - do not rely on every available MCP server just because it exists; use only the tools the task actually needs

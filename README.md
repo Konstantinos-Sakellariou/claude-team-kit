@@ -57,6 +57,7 @@ That means:
 - keep always-loaded briefing files high-signal
 - prefer narrow reads before broad repo sweeps
 - triage large logs, diffs, and dumps before handing raw output to the model
+- use a default large-input workflow: classify, sample, summarize, then hand off narrowly
 - prefer durable artifacts over repeating long chat recaps
 - use only the tools and MCP servers the task actually needs
 
@@ -88,6 +89,19 @@ See [`@.claude/rules/github-quality-gate.md`](.claude/rules/github-quality-gate.
 Two repo-native skills now support this directly:
 - `context-audit` for auditing briefing quality, doc drift, and artifact placement
 - `triage-input` for compressing noisy logs, diffs, dumps, and large evidence into a smaller next step
+
+When the input is especially noisy, the expected pattern is:
+- triage first
+- summarize the signal
+- route to the best narrow owner
+- only widen into raw input if the next step truly needs it
+
+For domain-heavy noisy work, the default should also be specialist-first:
+- debugger for failure evidence
+- Git / GitHub review path for risky diffs
+- Data Team for analytics or data evidence
+- AI/ML Team for model traces or eval bundles
+- Supabase Team for auth/schema/RLS/storage-heavy evidence
 
 ## Release Governance
 

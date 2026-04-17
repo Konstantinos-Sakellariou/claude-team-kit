@@ -79,6 +79,13 @@ When the input is especially noisy, the `triage-input` skill is a good fit befor
 
 Do not dump massive raw inputs into the main reasoning loop unless necessary.
 
+Default workflow:
+1. classify the input type before reading deeply
+2. inspect the smallest useful slice first
+3. extract a compact high-signal summary
+4. hand off to the smallest next owner, file set, or team
+5. only widen to more raw input if the next step truly needs it
+
 Preferred first-pass patterns:
 
 ### Logs
@@ -114,6 +121,54 @@ git diff --name-only
 
 - read the relevant functions, classes, or sections first
 - only widen if the local context is not enough
+
+## Default Large-Input Workflow
+
+When a task arrives with especially noisy evidence, the kit should follow one default shape:
+
+1. identify whether the evidence is logs, diffs, test output, structured data, a long file, or a mixed bundle
+2. inspect a small slice first instead of reading the full raw input
+3. return an `Input Triage Report` that captures only the signal needed for the next step
+4. route the next step to the best narrow owner
+5. widen only if the next owner cannot proceed without more raw evidence
+
+Good default handoffs:
+- logs, stack traces, and failing test output -> `@debugger` first, with `@qa-engineer` when reproduction shape matters
+- large diffs or review-heavy evidence -> `@code-reviewer`, `Git / GitHub Team`, or a narrow engineering reviewer
+- CSV, JSON, analytics exports, or evidence bundles -> `Data Team`, `@data-analyst`, or `@analytics-engineer`
+- training traces, eval outputs, and model metrics -> `AI/ML Team`, `@model-evaluator`, or `@ml-engineer`
+- mixed planning bundles or decision-heavy evidence -> `Advisory Review Team` or `@architect`
+
+The important discipline is:
+- summarize before solving
+- route before broadening
+- keep the raw evidence available, but do not flood the main thread with it by default
+
+## Specialist-First Routing For Noisy Tasks
+
+When the input is not only large but also domain-heavy, the best next move is usually not more central analysis in the main thread.
+
+Preferred default:
+- triage the evidence
+- route it into the best narrow specialist or team
+- bring back the condensed findings and decision surface
+
+Good defaults:
+- debugging logs, stack traces, and failing test bundles -> `@debugger`
+- risky diffs, review-heavy code, and merge-readiness evidence -> `Git / GitHub Team` or `@code-reviewer`
+- CSV, JSON, metrics exports, or KPI evidence -> `Data Team`
+- training logs, model metrics, or evaluation bundles -> `AI/ML Team`
+- auth, RLS, schema, migration, or storage evidence -> `Supabase Team`
+- mixed planning or decision bundles -> `Advisory Review Team` or `@architect`
+
+The main thread should stay for:
+- synthesis
+- user-facing recommendations
+- tradeoffs
+- approvals
+- next-step decisions
+
+That keeps long sessions leaner and usually improves quality too, because the first deep read happens in the right domain context.
 
 ## Prefer Artifacts Over Recap
 

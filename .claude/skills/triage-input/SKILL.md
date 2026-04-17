@@ -14,6 +14,9 @@ Reduce a large or noisy input into the minimum high-signal summary needed for th
 
 ## Triage Workflow
 
+### Step 0: Decide whether full triage is needed
+Use this skill by default when the input is large enough, noisy enough, or mixed enough that deeper reasoning would otherwise waste context.
+
 ### Step 1: Identify the input type
 Classify the input before reading deeply:
 - logs
@@ -46,6 +49,14 @@ Hand off to the smallest next investigation target:
 - specific logs
 - specific diff hunks
 - specific agents or teams if relevant
+
+### Step 5: Suggest the best owner for the next step
+Common handoff patterns:
+- logs / test failures / tracebacks -> `@debugger` or `@qa-engineer`
+- large diffs / risky code review -> `@code-reviewer` or `Git / GitHub Team`
+- structured data / analytics evidence -> `Data Team`, `@data-analyst`, or `@analytics-engineer`
+- ML evaluation artifacts / training traces -> `AI/ML Team`, `@model-evaluator`, or `@ml-engineer`
+- mixed planning or architecture bundles -> `Advisory Review Team` or `@architect`
 
 ## Output Format
 

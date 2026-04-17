@@ -123,8 +123,42 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn("docs/CONTEXT_EFFICIENCY.md", agents)
         self.assertIn("## Read Narrow First", context)
         self.assertIn("## Triage Large Inputs First", context)
+        self.assertIn("## Default Large-Input Workflow", context)
         self.assertIn("## MCP And Tool Hygiene", context)
         self.assertIn("## Model Routing", context)
+
+    def test_large_input_triage_workflow_is_explicit(self) -> None:
+        master = read(".claude/agents/master.md")
+        command = read(".claude/commands/triage-input.md")
+        skill = read(".claude/skills/triage-input/SKILL.md")
+        readme = read("README.md")
+        workflows = read("docs/AGENT_WORKFLOWS.md")
+
+        self.assertIn("Default large-input workflow:", master)
+        self.assertIn("Default handoff preferences after triage:", master)
+        self.assertIn('compact "Input Triage Report"', master)
+        self.assertIn("classify the input shape and size before reading deeply", command)
+        self.assertIn("suggested handoff", command)
+        self.assertIn("Step 0: Decide whether full triage is needed", skill)
+        self.assertIn("Step 5: Suggest the best owner for the next step", skill)
+        self.assertIn("default large-input workflow", readme)
+        self.assertIn("Workflow 12 — Large-Input Triage Flow", workflows)
+
+    def test_noisy_task_routing_prefers_specialists(self) -> None:
+        master = read(".claude/agents/master.md")
+        context = read("docs/CONTEXT_EFFICIENCY.md")
+        readme = read("README.md")
+        claude = read("CLAUDE.md")
+        agents = read("AGENTS.md")
+
+        self.assertIn("Specialist-first routing for noisy tasks:", master)
+        self.assertIn("log-heavy or traceback-heavy debugging", master)
+        self.assertIn("structured data, analytics evidence", master)
+        self.assertIn("## Specialist-First Routing For Noisy Tasks", context)
+        self.assertIn("Data Team", context)
+        self.assertIn("specialist-first", readme)
+        self.assertIn("specialist-first routing", claude)
+        self.assertIn("specialist-first routing", agents)
 
     def test_model_routing_policy_is_visible_and_specific(self) -> None:
         master = read(".claude/agents/master.md")

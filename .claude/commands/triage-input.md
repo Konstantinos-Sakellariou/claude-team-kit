@@ -12,11 +12,13 @@ Preprocess large or noisy input before deeper reasoning.
 
 ## What It Should Do
 
-1. inspect the input shape
-2. extract the strongest signals first
-3. recommend the next bounded step
+1. classify the input shape and size before reading deeply
+2. inspect the smallest useful slice first
+3. extract the strongest signals first
+4. recommend the next bounded step and the best next owner
 
 ## Output
 
 - triage summary
 - narrowed next step
+- suggested handoff

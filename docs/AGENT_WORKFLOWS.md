@@ -6,7 +6,7 @@ All work flows through `@master`. Every example below starts and ends there.
 
 These workflows are also the reason the kit now defines reusable teams: when the same multi-agent shape appears repeatedly, `@master` can activate a team instead of reconstructing the orchestration pattern from scratch each time.
 
-Eleven workflows are documented here, each demonstrating different collaboration patterns:
+Twelve workflows are documented here, each demonstrating different collaboration patterns:
 
 1. **Engineering Pipeline** — parallel spikes, sequential implementation, gated quality stages
 2. **Content Publishing Pipeline** — research loop, human approval gate, parallel review, delivery feedback loop
@@ -19,6 +19,7 @@ Eleven workflows are documented here, each demonstrating different collaboration
 9. **Git / GitHub Team Flow** — commit/push safety, PR readiness, and release-governance orchestration
 10. **Supabase Team Flow** — schema/auth/RLS coordination with explicit security and rollout gates
 11. **Data Team Flow** — ingestion, metrics, analysis, and trust gates for decision-ready data work
+12. **Large-Input Triage Flow** — classify noisy evidence, summarize the signal, and hand off narrowly before deeper work
 
 ---
 
@@ -650,6 +651,47 @@ flowchart TD
 - `@data-analyst` and `@experiment-analyst` turn that foundation into decision-ready interpretation
 - `@data-governance-reviewer` is the trust gate before decision-critical conclusions are treated as safe
 - `@security-auditor` joins when sensitive data, access boundaries, or privacy risk matter
+
+---
+
+## Workflow 12 — Large-Input Triage Flow
+
+**Example trigger:** *"Here is a giant failing log bundle and a big diff. Tell me what matters first before we burn the session."*
+
+**Patterns demonstrated:** classify-before-reading, high-signal summarization, narrow handoff, raw-evidence discipline.
+
+```mermaid
+flowchart TD
+    USER(["👤 Large noisy input"])
+    USER --> MASTER
+
+    MASTER["@master\nIdentifies large-input case\nAnnounces triage-first plan"]
+    MASTER --> TRIAGE["`triage-input` skill\nClassifies input\nSamples smallest useful slice\nExtracts signal"]
+
+    TRIAGE --> TYPE{"What kind of\ninput is this?"}
+
+    TYPE -->|"Logs / test failures"| DBG["@debugger\nInvestigates failure hotspot"]
+    TYPE -->|"Large diff / risky review"| REVIEW["@code-reviewer or\nGit / GitHub Team\nReviews narrow risky surface"]
+    TYPE -->|"Structured data / analytics"| DATA["@data-analyst or\nData Team\nChecks schema, signal,\nand trust"]
+    TYPE -->|"ML metrics / traces"| ML["@model-evaluator or\nAI/ML Team\nChecks quality signal"]
+    TYPE -->|"Mixed planning evidence"| ADV["@architect or\nAdvisory Review Team\nShapes decision surface"]
+
+    DBG --> REPORT
+    REVIEW --> REPORT
+    DATA --> REPORT
+    ML --> REPORT
+    ADV --> REPORT
+
+    REPORT["@master synthesis\nReturns Input Triage Report,\nselected owner,\nand next bounded step"]
+    REPORT --> WU["@workspace-updater\nRuns only if docs or workflow\nartifacts truly changed"]
+    WU --> DONE(["✓ Noisy task narrowed"])
+```
+
+**Key points:**
+- the first goal is not to solve everything; it is to reduce the input to the smallest useful next step
+- `@master` should avoid echoing large raw inputs back into the main thread when a compact triage report is enough
+- the best next owner depends on the evidence type, not just the original user phrasing
+- full raw evidence stays available, but the workflow should only widen into it when the next step truly needs it
 
 ---
 
