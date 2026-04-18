@@ -1,7 +1,7 @@
 # claude-team-kit
 
 [![Validate Workspace Kit](https://img.shields.io/github/actions/workflow/status/Konstantinos-Sakellariou/claude-team-kit/validate.yml?branch=main&label=validate)](https://github.com/Konstantinos-Sakellariou/claude-team-kit/actions/workflows/validate.yml)
-![Agents](https://img.shields.io/badge/agents-48-0ea5e9)
+![Agents](https://img.shields.io/badge/agents-49-0ea5e9)
 ![Teams](https://img.shields.io/badge/teams-8-14b8a6)
 ![Skills](https://img.shields.io/badge/skills-20-f97316)
 ![Local Context](https://img.shields.io/badge/local_context-supported-22c55e)
@@ -10,10 +10,51 @@
 
 A production-ready workspace kit for Claude-style coding tools. It gives any repo a professional AI team through agent prompts, skills, rules, hooks, and persistent memory.
 
-This repo is a team-definition layer, not a standalone orchestration runtime. It focuses on reusable workspace structure and operating conventions rather than tmux workers, background daemons, or execution HUDs.
+It is designed to be copied into a real repo, customized quickly, and then used through one orchestrator: `@master`.
 
 This kit supports a local vision and roadmap model.
 Use [`docs/VISION.example.md`](docs/VISION.example.md) and [`docs/ROADMAP.example.md`](docs/ROADMAP.example.md) as tracked starters, and keep real `docs/VISION.md` / `docs/ROADMAP.md` local when they contain private strategy or sequencing.
+
+## Quick Start
+
+If you want the easiest possible start:
+
+1. Copy or template this repo into your project.
+2. Run the setup and validation commands.
+3. Start with `@master` and describe what you want to build, even if the repo is still underdefined.
+4. Let the kit guide bootstrap, backlog, and local-context decisions as needed.
+
+```bash
+./scripts/setup.sh
+./scripts/doctor.sh
+python3 -m unittest discover -s tests -v
+```
+
+Good first prompts:
+- `@master help me bootstrap this repo for a SaaS app`
+- `@master turn this into a Supabase product workspace`
+- `@master review this repo and tell me the best next 3 moves`
+
+You do not need to know the full agent roster to get started. The normal entrypoint is still:
+
+**Every request goes through `@master`. Always.**
+
+## How Orchestration Works
+
+You never call specialist agents directly. You talk to `@master`, and it decides who runs, in what order, and whether things happen in parallel or sequentially — then synthesises everything back into one coherent response.
+
+By default, `@master` also reports which teams and agents were selected, what each one did, and the outcome of the orchestration run. If no delegation was needed, `@master` should say that explicitly instead of silently skipping the report.
+
+For all tasks, `@master` should at least report:
+- whether delegation happened
+- which teams or agents ran, or that `@master` handled it alone
+- what happened
+- what comes next
+
+For significant work, the report should also make clear:
+- which team was primary, if a team was used
+- who led that team
+- why that team was activated
 
 ## What's Inside
 
@@ -49,6 +90,8 @@ scripts/             Setup and validation helpers
 .env.example         Optional local environment template
 ```
 
+The full feature and connection map lives in [`docs/SYSTEM_REFERENCE.md`](docs/SYSTEM_REFERENCE.md).
+
 ## Context Efficiency
 
 This kit should stay efficient as well as capable.
@@ -77,31 +120,21 @@ Low-risk cheaper-by-default agents now include:
 ## GitHub Quality Gate
 
 This kit now treats GitHub-bound code as a high-standard surface.
-
 For code-affecting commit, push, and PR flows, the default expectation is:
 - safety review
 - code review
 - test adequacy review
 - production-readiness review when the change is risky enough
 
-See [`@.claude/rules/github-quality-gate.md`](.claude/rules/github-quality-gate.md) for the canonical gate.
+`@master` should also ask for a quick sync check or pull before substantial collaborative work when the branch may be stale.
+
+See [`@.claude/rules/github-quality-gate.md`](.claude/rules/github-quality-gate.md), [`docs/RELEASE_GOVERNANCE.md`](docs/RELEASE_GOVERNANCE.md), and [`docs/TEAMS.md`](docs/TEAMS.md) for the full gate and team flow.
 
 Two repo-native skills now support this directly:
 - `context-audit` for auditing briefing quality, doc drift, and artifact placement
 - `triage-input` for compressing noisy logs, diffs, dumps, and large evidence into a smaller next step
 
-When the input is especially noisy, the expected pattern is:
-- triage first
-- summarize the signal
-- route to the best narrow owner
-- only widen into raw input if the next step truly needs it
-
-For domain-heavy noisy work, the default should also be specialist-first:
-- debugger for failure evidence
-- Git / GitHub review path for risky diffs
-- Data Team for analytics or data evidence
-- AI/ML Team for model traces or eval bundles
-- Supabase Team for auth/schema/RLS/storage-heavy evidence
+When the input is especially noisy, the expected pattern is still specialist-first: triage, summarize the signal, then route narrowly instead of widening immediately.
 
 ## Release Governance
 
@@ -119,9 +152,7 @@ See [`docs/RELEASE_GOVERNANCE.md`](docs/RELEASE_GOVERNANCE.md) for the full mode
 
 ## How To Ask Well
 
-High-signal requests make the system both cheaper and better.
-
-Best inputs usually include:
+High-signal requests make the system both cheaper and better. Best inputs usually include:
 - exact file paths when you know them
 - exact errors or failing commands when you have them
 - what outcome you want
@@ -137,19 +168,27 @@ Lower-signal requests are still okay, but they usually cost more context:
 - "fix bugs everywhere"
 - "read this huge log and tell me what happened" without narrowing
 
-If your request starts broad, `@master` should help narrow it before doing a large sweep.
+If your request starts broad, `@master` should help narrow it before doing a large sweep. See [`docs/CONTEXT_EFFICIENCY.md`](docs/CONTEXT_EFFICIENCY.md) for the full request-shaping guidance.
 
-## Quick Start
+## New Repo Bootstrap
 
-1. Use this repo as a template or copy it into your project root
-2. Run `./scripts/setup.sh`
-3. Fill in `.claude/settings.local.json` and/or `.env` with your `GITHUB_TOKEN`
-4. Use the generated local `BACKLOG.md` for private planning and deferred work, or create `docs/BACKLOG.md` from `docs/BACKLOG.example.md` if you want a public tracked backlog
-5. Add any sensitive startup, customer, or strategy notes to `.claude/local-context/` and keep that folder local-only
-6. Edit `CLAUDE.md` for the target project you want the kit to describe
-7. Run `./scripts/doctor.sh`
-8. Run a cleanup pass once the repo is clearly customized enough to prune generic leftovers
-9. Start a Claude session and address `@master`
+When this kit is copied into a repo other than `claude-team-kit`, `@master` should check whether the project briefing still looks generic before major work starts.
+
+If it does, `@master` should switch into a guided initialization style:
+- ask in small rounds
+- accept partial answers
+- offer candidate answers when the user is unsure
+- stop as soon as the repo briefing is strong enough for normal work
+
+See [`docs/BOOTSTRAP.md`](docs/BOOTSTRAP.md) for the full bootstrap model.
+
+## Private Local Context
+
+Some repos need a second context layer that should help agents locally but should not become part of tracked repo history.
+
+Use `.claude/local-context/` for private startup, customer, company, or strategy notes. Use `.claude/local-context/HANDOFF.md` when a session stops mid-stream and another model or tool needs a compact resume artifact.
+
+See [`docs/LOCAL_CONTEXT.md`](docs/LOCAL_CONTEXT.md) for the full model and privacy boundary.
 
 ## Vision Alignment
 
@@ -163,18 +202,6 @@ When adding backlog items, plans, agents, teams, rules, hooks, or skills, we sho
 Use [`docs/VISION.example.md`](docs/VISION.example.md) as the public model for how a vision doc should work, and use local `docs/VISION.md` as the actual filter when a repo has one.
 
 Use [`docs/DOCUMENTATION_GOVERNANCE.md`](docs/DOCUMENTATION_GOVERNANCE.md) to keep the core briefings lean while the repo grows, and [`docs/SYSTEM_REFERENCE.md`](docs/SYSTEM_REFERENCE.md) when you need the full feature map instead of a hot-path summary.
-
-## Self-Upgrade
-
-This kit should be able to evolve itself without drifting or re-bloating.
-
-Use [`docs/SELF_UPGRADE.md`](docs/SELF_UPGRADE.md) when changing agents, teams, commands, skills, rules, hooks, artifact policy, or core workflow behavior.
-
-The short version is:
-- update the canonical implementation in `.claude/`
-- update only the right summary docs and focused docs
-- keep public vs local boundaries clean
-- run doctor and tests before calling the upgrade done
 
 ## Roadmap And Backlog
 
@@ -227,30 +254,7 @@ Use [`docs/STARTER_PACKS.md`](docs/STARTER_PACKS.md) when a copied repo clearly 
 The packs are not part of the runtime model.
 They are adaptation overlays that help bootstrap and customization converge faster.
 
-## What This Repo Is
-
-- A reusable workspace kit for agent-based development
-- A curated team of 48 agents with explicit collaboration patterns
-- A prompt and guardrail layer that can be dropped into another project
-
-## What This Repo Is Not
-
-- A standalone orchestration daemon
-- A CLI worker runtime
-- A token analytics platform
-- A replacement for execution engines such as OMC
-
----
-
-## How Orchestration Works
-
-**Every request goes through `@master`. Always.**
-
-You never call specialist agents directly. You talk to `@master`, and it decides who runs, in what order, and whether things happen in parallel or sequentially — then synthesises everything back into one coherent response.
-
-Even if a user does not explicitly mention `@master`, or names a specialist directly, `@master` remains the first and only orchestrator in the main thread.
-
-By default, `@master` also reports which teams and agents were selected, what each one did, and the outcome of the orchestration run. If no delegation was needed, `@master` should say that explicitly instead of silently skipping the report.
+## Team Overview
 
 ```mermaid
 flowchart TD
@@ -296,77 +300,22 @@ RECEIVE → ANALYSE scope → PLAN pipeline → ANNOUNCE plan to user
 
 `@workspace-updater` runs automatically as the last step after significant work, but as a final doc-impact gate first, not as an automatic full rewrite. It checks whether the core docs (`CLAUDE.md`, `AGENTS.md`, and `README.md`) were actually affected, performs a targeted sync only when needed, and can intentionally defer broader doc drift until a better sync point.
 
-## New Repo Bootstrap
-
-When this kit is copied into a repo other than `claude-team-kit`, `@master` should check whether the project briefing still looks generic before major work starts.
-
-If the repo docs still look template-like, `@master` should pause briefly, ask a short structured set of questions, accept partial answers, make clearly labeled temporary assumptions when needed, and then improve the core docs before work continues.
-
-This is intentionally flexible. Users will not always know their exact stack, runtime, or architecture yet, so `@master` should help discover the project shape rather than rigidly interrogating them.
-
-When the repo is especially underdefined, `@master` should switch into a guided initialization style:
-- ask in small rounds instead of one giant questionnaire
-- help the user with candidate answers when they are unsure
-- keep confirmed facts and temporary assumptions clearly separated
-- stop as soon as the briefing is strong enough for normal work
-
-See [`docs/BOOTSTRAP.md`](docs/BOOTSTRAP.md) for the full bootstrap model.
-
-## Private Local Context
-
-Some repos need a second context layer that should help agents locally but should not become part of tracked repo history.
-
-For that, this kit supports a private local context folder at `.claude/local-context/`.
-
-Use it for:
-- private startup or company notes
-- customer or stakeholder context
-- pricing, GTM, fundraising, or investor framing
-- unreleased roadmap items
-- sensitive constraints that should guide planning without being pushed publicly
-
-`@master` should consult this layer when work is strategic, planning-heavy, customer-sensitive, or company-specific.
-
-The privacy rule is simple:
-- local context may guide the work
-- local context must not be copied into tracked docs automatically
-- if a tracked file would benefit from that private information, `@master` should ask first
-
-See [`docs/LOCAL_CONTEXT.md`](docs/LOCAL_CONTEXT.md) for the full model and boundary rules.
-
 ## What Teams Mean
 
-Teams are reusable orchestration bundles that `@master` can activate when a request matches a recurring collaboration pattern.
-
-They are not a Claude-native runtime feature and they do not replace agents. They are a coordination layer inside this kit that helps `@master` route work more consistently.
-
-When a team is used, `@master` still reports the real agents that ran. The team simply gives `@master` a stable default lead, supporting cast, and execution shape for that class of work.
-
-## Why Teams Help
-
-Operating this way gives Claude-style tools a few practical advantages:
-
-- more consistent routing for repeated request types
-- clearer ownership because each team has a lead
-- less orchestration drift across similar tasks
-- better user visibility into why a set of agents was chosen
-- easier future expansion when new domain packs are added
-- full backward compatibility with single-agent handling for narrow requests
-
-In short: teams help `@master` behave less like an improvised dispatcher and more like a repeatable operating system for AI collaboration.
+Teams are reusable orchestration bundles that `@master` can activate for recurring workflows. They keep routing consistent without hiding the actual specialists that ran.
 
 ## Available Teams
 
-| Team | Lead | What it helps with |
-|---|---|---|
-| `Engineering Team` | `@senior-developer` or `@architect` | implementation, debugging, architecture, engineering review |
-| `AI/ML Team` | `@data-scientist` or `@ml-engineer` | model framing, training, evaluation, rollout readiness |
-| `Data Team` | `@data-engineer` or `@analytics-engineer` | pipelines, warehouse modeling, analytics, experimentation, data governance |
-| `Supabase Team` | `@architect` or `@senior-developer` | auth, schema, migrations, RLS, storage, edge functions, rollout safety |
-| `Content & Publishing Team` | `@content-planner` or `@content-writer` | planning, drafting, editorial validation |
-| `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy, backlog persistence |
-| `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness, branch hygiene, repo-safety review |
-| `Advisory Review Team` | `@product-owner`, `@business-analyst`, `@idea-executor`, or `@vision-partner` | planning, prioritization, decision support, strategic validation, pushback on major additions, and collaborative next-move generation |
+| Team | Typical Use |
+|---|---|
+| `Engineering Team` | implementation, debugging, architecture, engineering review |
+| `AI/ML Team` | model framing, training, evaluation, rollout readiness |
+| `Data Team` | pipelines, warehouse modeling, analytics, experimentation, data governance |
+| `Supabase Team` | auth, schema, migrations, RLS, storage, edge functions, rollout safety |
+| `Content & Publishing Team` | planning, drafting, editorial review, source-backed publishing |
+| `Delivery & Ops Team` | release, delivery, monitoring, privacy, backlog persistence |
+| `Git / GitHub Team` | commit, push, PR, release readiness, branch hygiene, repo-safety review |
+| `Advisory Review Team` | planning, prioritization, strategy, business, and next-move support |
 
 The canonical team definitions live in `.claude/teams/`. See [`docs/TEAMS.md`](docs/TEAMS.md) for the full model and operating rules, [`docs/SUPABASE_REFERENCE.md`](docs/SUPABASE_REFERENCE.md) for the Supabase-specific reference, and [`docs/DATA_REFERENCE.md`](docs/DATA_REFERENCE.md) for the data-domain reference.
 
@@ -394,73 +343,7 @@ The canonical team definitions live in `.claude/teams/`. See [`docs/TEAMS.md`](d
 
 **See full workflow diagrams** with all collaboration patterns (parallel stages, gated reviews, feedback loops, dual-track launches, and idea-to-plan execution) in [`docs/AGENT_WORKFLOWS.md`](docs/AGENT_WORKFLOWS.md).
 
----
-
-## Team And Feature Inventory
-
-The full agent roster, system layers, connections, and navigation map now live in [`docs/SYSTEM_REFERENCE.md`](docs/SYSTEM_REFERENCE.md).
-
-Use that doc when you want:
-- the full 49-agent inventory
-- the feature map across agents, teams, skills, rules, hooks, memory, and artifacts
-- a clearer picture of how the layers connect
-- a faster route into the right detailed documentation
-
----
-
-## Automatic Delegation Rules
-
-These fire automatically — you don't need to ask:
-
-- Secrets / auth / credentials touched → `@security-auditor` reviews first
-- New feature or script → `@qa-engineer` writes the test plan
-- Architectural decision → `@architect` weighs in
-- AI/ML exploratory or feature work → `@data-scientist` leads
-- AI/ML model training or pipeline implementation → `@ml-engineer` leads
-- AI/ML release readiness → `@model-evaluator` is the mandatory gate
-- AI/ML deployment or monitoring design → `@mlops-engineer` leads after evaluator sign-off
-- Novel AI/ML methods or benchmark questions → `@research-scientist` advises
-- Data pipeline or ingestion work → `@data-engineer` leads
-- Warehouse modeling or metrics-layer work → `@analytics-engineer` leads
-- KPI, cohort, or trend analysis → `@data-analyst` leads
-- Experimentation analysis → `@experiment-analyst` leads
-- Decision-critical data trust, lineage, or access review → `@data-governance-reviewer` is a hard gate
-- "Backlog this" or defer-for-later requests → `@backlog-updater` updates the chosen backlog and can link an approved plan
-- Significant idea discussions → `@idea-executor` shapes the idea into an execution plan
-- Roadmap reprioritization, “what next?”, or reset-limit concerns → `@session-budget-estimator` estimates likely session shape and model mix
-- Major additions to the core → `@strategy-reviewer` checks vision fit, roadmap fit, leverage, and timing before we treat them as good next work
-- Open-ended ideation or “think with me” direction work → `@vision-partner` generates grounded next-move options before critique or execution planning
-- Durable architecture, policy, workflow, or repo-structure decisions → `@master` proposes an ADR by default
-- Strategic, startup, customer, or company-sensitive work → `@master` consults `.claude/local-context/` first when it exists
-- Content ready to publish → `@editorial-reviewer` must pass it first
-- Before substantial work in a collaborative git repo → `@master` should ask whether a quick sync check or pull is needed if the branch may be stale
-- Before any public release or push → `@privacy-reviewer` runs mandatory scan
-- Before any code-affecting commit, push, or PR → `@github-safety-guard`, `@code-reviewer`, and `@qa-engineer` review the change
-- Before any merge-critical or release-heavy GitHub flow → `@production-readiness-reviewer` must pass it
-- Before any commit or push → `@github-safety-guard` reviews staged or pending changes and `@master` surfaces the findings
-- Before major release → `@risk-officer` final sign-off
-- After any significant task → `@workspace-updater` runs last as the final doc-impact gate and updates docs only when needed
-
-## Default Reporting
-
-For all tasks, `@master` should at least report:
-
-- whether delegation happened
-- which teams or agents ran, or that `@master` handled it alone
-- what happened
-- what comes next
-
-For significant work, `@master` should upgrade that into a fuller execution report with:
-
-- which team was primary, if a team was used
-- who led that team
-- why that team was activated
-- which agents were selected
-- what each agent owned
-- what happened during execution
-- the synthesized outcome, conflicts, and blockers
-
-This reporting is part of the default orchestration behavior, not an optional extra and not something the user should need to request explicitly.
+Detailed automatic delegation rules, routing policy, and the full agent roster live in [`CLAUDE.md`](CLAUDE.md), [`AGENTS.md`](AGENTS.md), and [`docs/SYSTEM_REFERENCE.md`](docs/SYSTEM_REFERENCE.md).
 
 ## ADR Decision Flow
 
@@ -473,8 +356,6 @@ ADRs are not special-case paperwork. They are the default traceability mechanism
 - `@workspace-updater` then aligns the rest of the repo docs
 
 `@master` must still ask for explicit approval before writing anything into `docs/adr/`.
-
----
 
 ## Workflow Commands
 
@@ -513,25 +394,17 @@ The reusable skills still matter underneath that layer, including:
 - `retrospective`
 - `repo-cleanup`
 
----
+## Self-Upgrade
 
-## Agent Groups at a Glance
+This kit should be able to evolve itself without drifting or re-bloating.
 
-The 49 agents split into six specialist groups designed to cover any project type:
+Use [`docs/SELF_UPGRADE.md`](docs/SELF_UPGRADE.md) when changing agents, teams, commands, skills, rules, hooks, artifact policy, or core workflow behavior.
 
-**Engineering** (13 agents) — builds and maintains software: architecture, implementation, testing, security, performance, debugging, GitHub quality gates, and release safety.
-
-**AI/ML** (5 agents) — covers model-centric work from exploratory analysis through training, evaluation, deployment readiness, and frontier-method assessment.
-
-**Data** (5 agents) — covers pipelines, warehouse modeling, business-ready metrics, experiment interpretation, and data trust/governance.
-
-**Content & Publishing** (8 agents) — runs any periodic publication workflow: research → planning → writing → review → tone → sourcing → feedback → backlog.
-
-**Delivery & Ops** (6 agents) — operates the release and distribution pipeline: delivery, monitoring, privacy, changelog, experimentation, and backlog persistence.
-
-**Advisory** (11 agents) — provides strategic and decision-making support: product, project, business, UX, strategic-fit review, session-budget estimation, devil's advocate, risk, judgement, docs, and idea-to-plan execution shaping.
-
----
+The short version is:
+- update the canonical implementation in `.claude/`
+- update only the right summary docs and focused docs
+- keep public vs local boundaries clean
+- run doctor and tests before calling the upgrade done
 
 ## Setup and Validation
 
@@ -547,6 +420,15 @@ The 49 agents split into six specialist groups designed to cover any project typ
 - `docs/TEAMS.md` explains the reusable team abstraction and how `@master` uses it
 - `docs/PROJECT_CUSTOMIZATION.md` shows how to turn the generic kit into a real project briefing
 - `repo-cleanup` is the direct cleanup skill for pruning or customizing copied-kit leftovers safely
+
+## Where To Go Next
+
+- full feature inventory and agent/team map: [`docs/SYSTEM_REFERENCE.md`](docs/SYSTEM_REFERENCE.md)
+- reusable team model: [`docs/TEAMS.md`](docs/TEAMS.md)
+- orchestration examples and workflow diagrams: [`docs/AGENT_WORKFLOWS.md`](docs/AGENT_WORKFLOWS.md)
+- architecture and repo boundary: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
+- adaptation into a real repo: [`docs/PROJECT_CUSTOMIZATION.md`](docs/PROJECT_CUSTOMIZATION.md)
+- documentation policy and anti-bloat rules: [`docs/DOCUMENTATION_GOVERNANCE.md`](docs/DOCUMENTATION_GOVERNANCE.md)
 
 ## Customizing for Real Projects
 

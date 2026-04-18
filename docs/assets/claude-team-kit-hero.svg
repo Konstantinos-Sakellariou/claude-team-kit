@@ -1,42 +1,62 @@
-<svg width="1200" height="460" viewBox="0 0 1200 460" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="1200" height="430" viewBox="0 0 1200 430" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="460" gradientUnits="userSpaceOnUse">
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="430" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#EFF6FF"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="642" y1="56" x2="1090" y2="356" gradientUnits="userSpaceOnUse">
       <stop stop-color="#0F172A"/>
       <stop offset="1" stop-color="#111827"/>
     </linearGradient>
-    <linearGradient id="card" x1="180" y1="70" x2="1020" y2="390" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#111827"/>
-      <stop offset="1" stop-color="#1F2937"/>
-    </linearGradient>
+    <filter id="shadow" x="0" y="0" width="1200" height="430" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#0F172A" flood-opacity="0.12"/>
+    </filter>
   </defs>
 
-  <rect width="1200" height="460" rx="28" fill="url(#bg)"/>
-  <circle cx="1072" cy="92" r="88" fill="#0EA5E9" fill-opacity="0.12"/>
-  <circle cx="140" cy="360" r="120" fill="#14B8A6" fill-opacity="0.10"/>
-  <rect x="88" y="58" width="1024" height="344" rx="28" fill="url(#card)" stroke="#334155" stroke-width="2"/>
+  <rect width="1200" height="430" rx="28" fill="url(#bg)"/>
+  <circle cx="1085" cy="70" r="96" fill="#38BDF8" fill-opacity="0.14"/>
+  <circle cx="120" cy="352" r="108" fill="#14B8A6" fill-opacity="0.12"/>
 
-  <rect x="126" y="98" width="178" height="36" rx="18" fill="#0B1220" stroke="#334155"/>
-  <text x="155" y="121" fill="#93C5FD" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="18" font-weight="700">workspace kit</text>
+  <g filter="url(#shadow)">
+    <rect x="54" y="42" width="1092" height="346" rx="30" fill="#FFFFFF"/>
+  </g>
 
-  <text x="126" y="184" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="54" font-weight="800">claude-team-kit</text>
-  <text x="126" y="228" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="24">Reusable agents, teams, skills, hooks, and memory</text>
-  <text x="126" y="262" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="24">for Claude-style coding workflows across projects.</text>
+  <rect x="94" y="78" width="154" height="34" rx="17" fill="#E0F2FE"/>
+  <text x="121" y="100" fill="#0369A1" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="17" font-weight="700">workspace kit</text>
 
-  <rect x="126" y="304" width="164" height="42" rx="21" fill="#0EA5E9"/>
-  <text x="154" y="331" fill="#E0F2FE" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="18" font-weight="700">@master orchestrated</text>
+  <text x="94" y="164" fill="#0F172A" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="52" font-weight="800">claude-team-kit</text>
+  <text x="94" y="208" fill="#334155" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="23">Copy it into a repo, start with `@master`, and let the kit route</text>
+  <text x="94" y="239" fill="#334155" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="23">teams, skills, rules, hooks, memory, and local context for you.</text>
 
-  <rect x="690" y="112" width="330" height="238" rx="24" fill="#0B1220" stroke="#334155"/>
-  <text x="726" y="154" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="26" font-weight="800">Operational Layers</text>
+  <rect x="94" y="282" width="190" height="42" rx="21" fill="#0EA5E9"/>
+  <text x="120" y="309" fill="#E0F2FE" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="18" font-weight="700">start with @master</text>
 
-  <rect x="726" y="182" width="258" height="34" rx="17" fill="#172554"/>
-  <text x="748" y="204" fill="#BFDBFE" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="16" font-weight="700">Agents + Teams</text>
+  <rect x="642" y="56" width="448" height="300" rx="28" fill="url(#panel)"/>
+  <text x="678" y="100" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="26" font-weight="800">Operational Layers</text>
 
-  <rect x="726" y="226" width="258" height="34" rx="17" fill="#0F3D3E"/>
-  <text x="748" y="248" fill="#99F6E4" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="16" font-weight="700">Skills + Rules</text>
+  <rect x="678" y="126" width="164" height="42" rx="21" fill="#082F49"/>
+  <text x="706" y="153" fill="#BAE6FD" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="17" font-weight="700">Your request</text>
 
-  <rect x="726" y="270" width="258" height="34" rx="17" fill="#4A1D1F"/>
-  <text x="748" y="292" fill="#FECACA" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="16" font-weight="700">Hooks + Guardrails</text>
+  <path d="M760 168V196" stroke="#38BDF8" stroke-width="4" stroke-linecap="round"/>
+  <rect x="678" y="196" width="164" height="48" rx="24" fill="#0F766E"/>
+  <text x="718" y="226" fill="#CCFBF1" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="18" font-weight="800">@master</text>
 
-  <rect x="726" y="314" width="258" height="34" rx="17" fill="#3F2B11"/>
-  <text x="748" y="336" fill="#FDE68A" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="16" font-weight="700">Artifacts + Memory</text>
+  <path d="M760 244V272" stroke="#2DD4BF" stroke-width="4" stroke-linecap="round"/>
+  <rect x="678" y="272" width="164" height="56" rx="22" fill="#172554"/>
+  <text x="699" y="298" fill="#DBEAFE" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="15" font-weight="700">Teams + Agents</text>
+  <text x="699" y="318" fill="#BFDBFE" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="14">engineering, data, AI/ML,</text>
+  <text x="699" y="336" fill="#BFDBFE" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="14">delivery, advisory, GitHub</text>
+
+  <rect x="870" y="126" width="184" height="52" rx="22" fill="#1E293B"/>
+  <text x="895" y="149" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="16" font-weight="700">Skills + Rules</text>
+  <text x="895" y="168" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="14">reuse workflows and guardrails</text>
+
+  <rect x="870" y="192" width="184" height="52" rx="22" fill="#1E293B"/>
+  <text x="895" y="215" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="16" font-weight="700">Hooks + Safety</text>
+  <text x="895" y="234" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="14">drift, secrets, tracked artifacts</text>
+
+  <rect x="870" y="258" width="184" height="70" rx="22" fill="#1E293B"/>
+  <text x="895" y="281" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="16" font-weight="700">Artifacts + Memory</text>
+  <text x="895" y="300" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="14">backlog, roadmap, handoff,</text>
+  <text x="895" y="318" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="14">local context, agent memory</text>
 </svg>
