@@ -30,13 +30,13 @@ The canonical implementation lives under `.claude/`.
 - `.claude/skills/`: reusable task skills
 - `.claude/commands/`: thin workflow entrypoints interpreted by `@master`
 - `.claude/rules/`: standing engineering and governance rules
-- `.claude/hooks/`: safety, formatting, and drift-warning shell hooks
+- `.claude/hooks/`: safety, formatting, drift-warning shell hooks, and tracked-artifact warning shell hooks
 - `.claude/agent-memory/`: persistent per-agent memory
 - `.claude/local-context/`: optional local-only business, customer, and strategy context
 - `.claude/settings.json`: default Claude workspace settings
 - `BACKLOG.example.md`: tracked starter for the private local backlog file
 - `docs/BACKLOG.example.md`: tracked starter for an optional public backlog
-- `docs/plans/`: approved execution-plan artifacts
+- `docs/plans/`: approved public-safe example plans and shareable implementation references
 - `docs/adr/`: approved architecture and policy decisions
 
 The shared kit can include reusable domain-specialist packs when they stay generic. The built-in AI/ML layer is one example: it adds specialist prompts and rules without forcing any project-specific platform or lifecycle.

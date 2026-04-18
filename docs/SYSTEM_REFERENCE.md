@@ -211,6 +211,7 @@ Important hooks include:
 - protected-file checks
 - SQL safety checks
 - doc-drift warning
+- tracked-artifact warning
 
 Hooks should reinforce hygiene, not replace judgment.
 
@@ -226,6 +227,7 @@ Hooks should reinforce hygiene, not replace judgment.
 | `docs/plans/` | approved public-safe example plans and shareable implementation references |
 | `.claude/local-context/plans/` | local private strategy and roadmap plans |
 | `.claude/local-context/estimation-log.md` | local private estimate-versus-actual history and mode preference |
+| `.claude/local-context/HANDOFF.md` | local private continuity artifact for unfinished sessions and tool/model handoff |
 | `docs/adr/` | approved architecture/policy decisions |
 | `.claude/local-context/` | private local context |
 | `README.md` | public-facing summary |

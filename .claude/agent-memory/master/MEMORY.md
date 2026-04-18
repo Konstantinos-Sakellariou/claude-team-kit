@@ -54,6 +54,8 @@ Persistent knowledge across sessions. Updated automatically after significant wo
 - Wants routing narrated briefly ("Routing to @X because...")
 - Dislikes unnecessary verbosity — be direct
 - Backlog storage preference should be remembered once chosen: private local `BACKLOG.md` or tracked public `docs/BACKLOG.md`
+- Current backlog storage preference: private local `BACKLOG.md`
+- Backlog assignment default should stay `Unassigned` unless the user explicitly chooses a better owner
 - For Mermaid graph changes, do not trust Cursor preview alone; compare against GitHub rendering before finalizing layout changes
 - Preferred workflow for graph edits: try the change, push if needed to verify GitHub rendering, then decide whether to keep or adjust
 

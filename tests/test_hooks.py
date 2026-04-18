@@ -193,5 +193,58 @@ class WarnDocDriftHookTests(unittest.TestCase):
             self.assertIn("core briefings", result.stderr)
 
 
+class WarnTrackedArtifactHookTests(unittest.TestCase):
+    def test_warns_for_tracked_public_backlog(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            repo = Path(tmpdir)
+            docs = repo / "docs"
+            docs.mkdir()
+            backlog = docs / "BACKLOG.md"
+            backlog.write_text("# backlog\n")
+
+            result = run_hook(
+                "warn-tracked-artifact.sh",
+                {"tool_input": {"file_path": str(backlog)}},
+                env={"CLAUDE_PROJECT_DIR": str(repo)},
+            )
+
+            self.assertEqual(result.returncode, 0)
+            self.assertIn("TRACKED ARTIFACT CHECK", result.stderr)
+            self.assertIn("docs/BACKLOG.md", result.stderr)
+
+    def test_warns_for_tracked_plan_or_adr(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            repo = Path(tmpdir)
+            plans = repo / "docs" / "plans"
+            plans.mkdir(parents=True)
+            plan = plans / "future-work.md"
+            plan.write_text("# plan\n")
+
+            result = run_hook(
+                "warn-tracked-artifact.sh",
+                {"tool_input": {"file_path": str(plan)}},
+                env={"CLAUDE_PROJECT_DIR": str(repo)},
+            )
+
+            self.assertEqual(result.returncode, 0)
+            self.assertIn("TRACKED ARTIFACT CHECK", result.stderr)
+            self.assertIn(".claude/local-context/plans/", result.stderr)
+
+    def test_stays_quiet_for_local_backlog(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            repo = Path(tmpdir)
+            backlog = repo / "BACKLOG.md"
+            backlog.write_text("# backlog\n")
+
+            result = run_hook(
+                "warn-tracked-artifact.sh",
+                {"tool_input": {"file_path": str(backlog)}},
+                env={"CLAUDE_PROJECT_DIR": str(repo)},
+            )
+
+            self.assertEqual(result.returncode, 0)
+            self.assertEqual(result.stderr, "")
+
+
 if __name__ == "__main__":
     unittest.main()

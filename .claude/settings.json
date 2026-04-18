@@ -36,6 +36,10 @@
           {
             "type": "command",
             "command": "\"${CLAUDE_PROJECT_DIR}\"/.claude/hooks/warn-doc-drift.sh"
+          },
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PROJECT_DIR}\"/.claude/hooks/warn-tracked-artifact.sh"
           }
         ]
       }

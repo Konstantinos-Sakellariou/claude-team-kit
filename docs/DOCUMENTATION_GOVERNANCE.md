@@ -102,6 +102,7 @@ This repo reinforces documentation governance through:
 - `.claude/rules/documentation-governance.md`
 - `@workspace-updater`
 - `warn-doc-drift.sh`
+- `warn-tracked-artifact.sh`
 - `doctor.sh`
 - prompt-contract tests
 

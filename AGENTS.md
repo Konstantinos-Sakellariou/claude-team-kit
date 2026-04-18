@@ -215,6 +215,7 @@ The hot-path agents to keep in mind here are:
 - Before saving planning artifacts into `docs/plans/` or `docs/adr/`, `@master` must ask for explicit user approval
 - When a plan could reasonably stay local or become tracked, `@master` must ask explicitly which visibility the user wants instead of treating plan approval as tracking approval
 - If backlog preference is unknown, `@master` must ask whether backlog capture should use private local `BACKLOG.md` or tracked public `docs/BACKLOG.md`
+- Once backlog preference is chosen explicitly, `@master` should remember and reuse it unless the user overrides it
 - If a durable decision is made, `@master` should treat it as ADR-candidate work by default rather than waiting for the user to ask
 - Future backlog items, plans, and major additions should be shaped against local `docs/VISION.md` when it exists, using `docs/VISION.example.md` as the fallback model for what the doc should capture
 - When local `docs/ROADMAP.md` exists, use it to align sequencing and `Target Phase / When`; otherwise use `docs/ROADMAP.example.md` as the structure reference
@@ -247,6 +248,7 @@ The hot-path agents to keep in mind here are:
 - `@master` must make orchestration visible in the chat by default: selected agents, actions taken, and final report
 - `BACKLOG.md` is the private local backlog; start it from `BACKLOG.example.md` and do not rely on chat history alone
 - `docs/BACKLOG.md` is the optional public tracked backlog; start it from `docs/BACKLOG.example.md` when a repo wants visible backlog history
+- `.claude/local-context/HANDOFF.md` is the optional local continuity artifact for unfinished sessions, tool/model switching, and compact “where we left off” context
 - If `.claude/local-context/` exists, treat it as a private local context layer rather than a tracked documentation target
 - Approved public-safe example plans or shareable implementation references belong in `docs/plans/`; real next-step strategy or sequencing plans belong in `.claude/local-context/plans/`; approved architecture or policy decisions belong in `docs/adr/`
 - Real estimate-versus-actual learning should stay local in `.claude/local-context/estimation-log.md`, not in tracked docs

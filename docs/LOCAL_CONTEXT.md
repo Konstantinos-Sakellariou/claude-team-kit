@@ -27,6 +27,7 @@ The setup script can scaffold these starter files:
 - `.claude/local-context/project-private.md`
 - `.claude/local-context/customers.md`
 - `.claude/local-context/constraints.md`
+- `.claude/local-context/HANDOFF.md`
 
 When a plan should stay private, keep it under:
 - `.claude/local-context/plans/`
@@ -37,6 +38,13 @@ Examples:
 - strategy-bearing horizon plans
 
 Use only the files you actually need.
+
+`HANDOFF.md` is the best fit when:
+- a substantial session is ending mid-stream
+- another model or tool will likely pick up the work next
+- the repo needs a compact local “where we left off” bridge without rewriting stable docs
+
+Keep the handoff short, operational, and local-only.
 
 ## How `@master` Should Use It
 

@@ -558,6 +558,13 @@ Backlog mode rules:
 - If it is unknown and backlog capture is needed, ask the user which mode they want
 - You may make a recommendation based on repo context, but the user decides
 - Do not change the user's remembered backlog preference unless they explicitly choose a different mode
+- Before backlog capture, you may consult `.claude/agent-memory/backlog-updater/MEMORY.md` for the latest explicit backlog-mode preference when it exists
+- If the remembered preference and the current request obviously conflict, surface the tension instead of forcing the old default silently
+
+Backlog assignment rules:
+- default new backlog rows to `Unassigned` unless the user explicitly chose a better owner or assignment convention
+- if a remembered assignment convention exists, you may use it for new entries unless the user overrides it
+- do not infer a named owner just because one seems likely from the conversation
 
 For **any substantial idea discussion that should turn into a plan** prefer:
 - `@idea-executor` — converts the idea into a structured execution path

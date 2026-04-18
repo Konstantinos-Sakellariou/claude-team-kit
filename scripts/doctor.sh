@@ -68,6 +68,8 @@ check_file ".claude/rules/github-quality-gate.md" ".claude/rules/github-quality-
 check_file ".claude/rules/release-governance.md" ".claude/rules/release-governance.md exists"
 check_file ".claude/rules/ml-workflow.md" ".claude/rules/ml-workflow.md exists"
 check_file ".claude/hooks/warn-doc-drift.sh" ".claude/hooks/warn-doc-drift.sh exists"
+check_file ".claude/hooks/warn-tracked-artifact.sh" ".claude/hooks/warn-tracked-artifact.sh exists"
+check_file ".claude/agent-memory/backlog-updater/MEMORY.md" ".claude/agent-memory/backlog-updater/MEMORY.md exists"
 check_file ".claude/agents/session-budget-estimator.md" ".claude/agents/session-budget-estimator.md exists"
 check_file ".claude/agent-memory/session-budget-estimator/MEMORY.md" ".claude/agent-memory/session-budget-estimator/MEMORY.md exists"
 check_file ".claude/agents/strategy-reviewer.md" ".claude/agents/strategy-reviewer.md exists"
@@ -104,6 +106,12 @@ if grep -q 'warn-doc-drift.sh' "$ROOT_DIR/.claude/settings.json"; then
   pass ".claude/settings.json registers the doc-drift warning hook"
 else
   fail ".claude/settings.json does not register the doc-drift warning hook"
+fi
+
+if grep -q 'warn-tracked-artifact.sh' "$ROOT_DIR/.claude/settings.json"; then
+  pass ".claude/settings.json registers the tracked-artifact warning hook"
+else
+  fail ".claude/settings.json does not register the tracked-artifact warning hook"
 fi
 
 if grep -q "@.Codex/rules/" "$ROOT_DIR/AGENTS.md"; then

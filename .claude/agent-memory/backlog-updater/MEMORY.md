@@ -1,9 +1,8 @@
-# Backlog Updater Memory
+# backlog-updater Memory
 
-Remember:
-- recurring backlog themes
-- naming patterns for entries
-- duplicate ideas that should merge instead of splitting
-- the user's preferred backlog mode once chosen
-- common assignment patterns or default owners
-- which backlog items already have linked plan artifacts
+Track durable backlog-management preferences and safe defaults such as:
+- preferred backlog mode: `Private backlog` or `Public backlog`
+- default assignment convention when the user has an explicit preference
+- repeated repo-specific guidance about when tracked backlog wording should stay more public-safe
+
+Keep private planning detail, strategy, and sensitive context in `.claude/local-context/` instead of tracked memory.

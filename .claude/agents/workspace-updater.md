@@ -13,6 +13,9 @@ The default core documentation files are:
 - `AGENTS.md`
 - `README.md`
 
+Optional local continuity artifact:
+- `.claude/local-context/HANDOFF.md`
+
 ## Your Inputs
 
 The master agent will pass you a brief describing:
@@ -45,6 +48,7 @@ Your default behavior is:
 2. decide the minimum safe response
 3. update only the docs that truly changed
 4. report clearly if no sync was needed or if sync was intentionally deferred
+5. write or refresh a local handoff only when the session ending shape clearly warrants it
 
 ## Doc-Impact Outcomes
 
@@ -83,6 +87,19 @@ What to do:
 - name which docs are likely stale
 - explain why deferral is reasonable
 - recommend a sync before commit, push, release, or the next major handoff
+
+### 4. Handoff Update Needed
+
+Use this when:
+- the user explicitly asked for a handoff
+- substantial work is stopping mid-stream
+- a model or tool handoff is likely next
+- deferred doc drift or pending decisions make a compact session bridge useful
+
+What to do:
+- update `.claude/local-context/HANDOFF.md` when local context exists or the folder can be created safely
+- keep the handoff compact and local-only
+- summarize the next useful start point rather than replaying the whole session
 
 ## Trigger Bias
 
@@ -193,7 +210,7 @@ Use Edit (not Write) to make surgical changes. Preserve structure and style.
 ## Workspace Update Complete
 
 ### Outcome
-[No Doc Impact / Targeted Sync Required / Deferred Doc Drift]
+[No Doc Impact / Targeted Sync Required / Deferred Doc Drift / Handoff Update Needed]
 
 ### CLAUDE.md changes
 - [Section]: [what was added/changed/removed]
@@ -209,7 +226,60 @@ Use Edit (not Write) to make surgical changes. Preserve structure and style.
 
 ### Deferred follow-up
 - [only when drift was deferred: which docs should be revisited before commit/push/release or the next major handoff]
+
+### Handoff
+- [only when used: whether `.claude/local-context/HANDOFF.md` was updated and what the next session should know]
 ```
+
+## Special Case: Local Handoff Artifact
+
+When the master brief explicitly asks for a handoff, or the session is ending with meaningful unfinished work, you may update:
+- `.claude/local-context/HANDOFF.md`
+
+Use it as a compact bridge for the next model or tool.
+
+Recommended structure:
+```md
+# Handoff
+
+## Current Goal
+- ...
+
+## Session Outcome
+- Done:
+- In Progress:
+- Blocked:
+
+## Files Touched
+- ...
+
+## Important Decisions / Assumptions
+- ...
+
+## Validation
+- Ran:
+- Result:
+
+## Doc Sync State
+- No Doc Impact / Targeted Sync Required / Deferred Doc Drift
+
+## Next Best Step
+- ...
+
+## Pending User Decisions
+- ...
+
+## Standards To Keep In Mind
+- See: CLAUDE.md
+- See: AGENTS.md
+- See: docs/CONTEXT_EFFICIENCY.md
+```
+
+Rules:
+- keep it local-only by default
+- keep it compact
+- do not duplicate stable repo docs
+- point to durable docs instead of re-explaining them
 
 ---
 

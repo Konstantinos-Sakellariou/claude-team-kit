@@ -23,7 +23,7 @@ Use [`docs/VISION.example.md`](docs/VISION.example.md) and [`docs/ROADMAP.exampl
 ├── teams/           8 reusable team manifests that @master can activate for recurring workflows
 ├── skills/          20 reusable skills (code-review, fix-bug, business-case, create-pr, context-audit, triage-input, repo-cleanup...)
 ├── rules/           Modular rule files — docs, artifacts, context, Python, TypeScript, security, testing, git, performance, API design, AI/ML workflow
-├── hooks/           Shell automations (auto-format, secret detection, file protection, doc-drift warning...)
+├── hooks/           Shell automations (auto-format, secret detection, file protection, doc-drift warning, tracked-artifact warning...)
 ├── agent-memory/    Persistent per-agent memory (grows over time)
 └── local-context/   Optional local-only business, customer, and strategy context
 BACKLOG.example.md   Starter for the private local backlog file
@@ -186,6 +186,8 @@ This kit now treats roadmap, backlog, and plans as separate but connected surfac
 - `docs/BACKLOG.md` is the optional tracked public backlog for repos that want visible backlog history
 - `docs/plans/` should stay mostly for public-safe examples and intentionally shareable references
 - `.claude/local-context/plans/` should hold real likely-next implementation plans when they expose current strategy or sequencing
+- once backlog mode is chosen explicitly, `@master` and `@backlog-updater` should remember it and reuse it unless the user overrides it
+- `.claude/local-context/HANDOFF.md` is the local-only continuity artifact for unfinished sessions, cross-model/tool handoff, or compact next-step context
 
 Important boundary:
 - approving a plan is not the same as approving a tracked public plan
@@ -581,6 +583,7 @@ If backlog preference is not known yet, `@master` should ask whether the project
 - Use `BACKLOG.example.md` as the tracked starter and `BACKLOG.md` as the local ignored registry for deferred work and captured ideas
 - Use `docs/BACKLOG.example.md` if you want a tracked public backlog at `docs/BACKLOG.md`
 - Use `.claude/local-context/` for sensitive local-only startup, customer, or strategy context
+- Use `.claude/local-context/HANDOFF.md` as the compact local resume artifact when work stops mid-stream or another model/tool needs continuity
 - Use `docs/PROJECT_CUSTOMIZATION.md` when adapting the kit to a specific repository
 - Add project-specific rules with `@.claude/rules/your-rule.md` in `CLAUDE.md`
 - Create new agents in `.claude/agents/` — copy any existing file and update the frontmatter and instructions

@@ -126,6 +126,44 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn(".claude/local-context/", local_context)
         self.assertIn(".claude/local-context/", gitignore)
 
+    def test_backlog_preference_memory_is_tracked_and_visible(self) -> None:
+        master = read(".claude/agents/master.md")
+        updater = read(".claude/agents/backlog-updater.md")
+        memory = read(".claude/agent-memory/backlog-updater/MEMORY.md")
+        readme = read("README.md")
+        claude = read("CLAUDE.md")
+        agents = read("AGENTS.md")
+
+        self.assertIn(".claude/agent-memory/backlog-updater/MEMORY.md", master)
+        self.assertIn("Backlog assignment rules:", master)
+        self.assertIn("read `.claude/agent-memory/backlog-updater/MEMORY.md`", updater)
+        self.assertIn("default assignment convention", memory)
+        self.assertIn("reuse it unless the user overrides it", claude)
+        self.assertIn("reuse it unless the user overrides it", agents)
+        self.assertIn("reuse it unless the user overrides it", readme)
+
+    def test_handoff_artifact_and_tracked_visibility_warning_are_visible(self) -> None:
+        updater = read(".claude/agents/workspace-updater.md")
+        settings = read(".claude/settings.json")
+        local_context = read("docs/LOCAL_CONTEXT.md")
+        readme = read("README.md")
+        claude = read("CLAUDE.md")
+        agents = read("AGENTS.md")
+        system_reference = read("docs/SYSTEM_REFERENCE.md")
+        architecture = read("docs/ARCHITECTURE.md")
+        docs_governance = read("docs/DOCUMENTATION_GOVERNANCE.md")
+
+        self.assertIn("Handoff Update Needed", updater)
+        self.assertIn("## Special Case: Local Handoff Artifact", updater)
+        self.assertIn("warn-tracked-artifact.sh", settings)
+        self.assertIn(".claude/local-context/HANDOFF.md", local_context)
+        self.assertIn(".claude/local-context/HANDOFF.md", readme)
+        self.assertIn(".claude/local-context/HANDOFF.md", claude)
+        self.assertIn(".claude/local-context/HANDOFF.md", agents)
+        self.assertIn(".claude/local-context/HANDOFF.md", system_reference)
+        self.assertIn("tracked-artifact warning shell hooks", architecture)
+        self.assertIn("warn-tracked-artifact.sh", docs_governance)
+
     def test_context_efficiency_guidance_is_aligned(self) -> None:
         master = read(".claude/agents/master.md")
         readme = read("README.md")
