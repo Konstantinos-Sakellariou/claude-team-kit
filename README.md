@@ -1,8 +1,8 @@
 # claude-team-kit
 
 [![Validate Workspace Kit](https://img.shields.io/github/actions/workflow/status/Konstantinos-Sakellariou/claude-team-kit/validate.yml?branch=main&label=validate)](https://github.com/Konstantinos-Sakellariou/claude-team-kit/actions/workflows/validate.yml)
-![Agents](https://img.shields.io/badge/agents-49-0ea5e9)
-![Teams](https://img.shields.io/badge/teams-8-14b8a6)
+![Agents](https://img.shields.io/badge/agents-53-0ea5e9)
+![Teams](https://img.shields.io/badge/teams-9-14b8a6)
 ![Skills](https://img.shields.io/badge/skills-20-f97316)
 ![Local Context](https://img.shields.io/badge/local_context-supported-22c55e)
 
@@ -60,8 +60,8 @@ For significant work, the report should also make clear:
 
 ```text
 .claude/
-├── agents/          49 specialized agents across engineering, AI/ML, data, content, delivery, and advisory
-├── teams/           8 reusable team manifests that @master can activate for recurring workflows
+├── agents/          53 specialized agents across engineering, AI/ML, data, design, content, delivery, and advisory
+├── teams/           9 reusable team manifests that @master can activate for recurring workflows
 ├── skills/          20 reusable skills (code-review, fix-bug, business-case, create-pr, context-audit, triage-input, repo-cleanup...)
 ├── rules/           Modular rule files — docs, artifacts, context, Python, TypeScript, security, testing, git, performance, API design, AI/ML workflow
 ├── hooks/           Shell automations (auto-format, secret detection, file protection, doc-drift warning, tracked-artifact warning...)
@@ -267,6 +267,7 @@ flowchart TD
     MASTER --> ML["🤖 AI/ML\n@data-scientist\n@ml-engineer\n@model-evaluator\n@mlops-engineer\n@research-scientist"]
     MASTER --> DATA["📊 Data\n@data-engineer\n@analytics-engineer\n@data-analyst\n@experiment-analyst\n@data-governance-reviewer"]
     MASTER --> SUPA["🟢 Supabase\n@architect\n@senior-developer\n@security-auditor\n@qa-engineer\n@code-reviewer\n@production-readiness-reviewer"]
+    MASTER --> DESIGN["🎨 Design\n@product-designer\n@ui-designer\n@brand-designer\n@design-systems-architect\n@customer-advocate"]
 
     MASTER --> CONT["📝 Content & Publishing\n@topic-researcher\n@content-planner\n@content-writer\n@editorial-reviewer\n@source-verifier\n@tone-calibrator\n@backlog-curator\n@feedback-synthesizer"]
 
@@ -279,6 +280,7 @@ flowchart TD
     ML --> SYNTH
     DATA --> SYNTH
     SUPA --> SYNTH
+    DESIGN --> SYNTH
     CONT --> SYNTH
     DELIV --> SYNTH
     GIT --> SYNTH
@@ -312,12 +314,13 @@ Teams are reusable orchestration bundles that `@master` can activate for recurri
 | `AI/ML Team` | model framing, training, evaluation, rollout readiness |
 | `Data Team` | pipelines, warehouse modeling, analytics, experimentation, data governance |
 | `Supabase Team` | auth, schema, migrations, RLS, storage, edge functions, rollout safety |
+| `Design Team` | product UX, UI layout, design-system consistency, brand-sensitive presentation work |
 | `Content & Publishing Team` | planning, drafting, editorial review, source-backed publishing |
 | `Delivery & Ops Team` | release, delivery, monitoring, privacy, backlog persistence |
 | `Git / GitHub Team` | commit, push, PR, release readiness, branch hygiene, repo-safety review |
 | `Advisory Review Team` | planning, prioritization, strategy, business, and next-move support |
 
-The canonical team definitions live in `.claude/teams/`. See [`docs/TEAMS.md`](docs/TEAMS.md) for the full model and operating rules, [`docs/SUPABASE_REFERENCE.md`](docs/SUPABASE_REFERENCE.md) for the Supabase-specific reference, and [`docs/DATA_REFERENCE.md`](docs/DATA_REFERENCE.md) for the data-domain reference.
+The canonical team definitions live in `.claude/teams/`. See [`docs/TEAMS.md`](docs/TEAMS.md) for the full model and operating rules, [`docs/SUPABASE_REFERENCE.md`](docs/SUPABASE_REFERENCE.md) for the Supabase-specific reference, [`docs/DATA_REFERENCE.md`](docs/DATA_REFERENCE.md) for the data-domain reference, and [`docs/DESIGN_REFERENCE.md`](docs/DESIGN_REFERENCE.md) for the design-domain reference.
 
 **Parallel vs sequential — `@master` decides:**
 

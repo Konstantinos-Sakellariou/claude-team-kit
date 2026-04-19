@@ -440,6 +440,7 @@ Current team manifests live in `.claude/teams/`.
 | `AI/ML Team` | `@data-scientist` or `@ml-engineer` | model framing, training, evaluation, rollout readiness |
 | `Data Team` | `@data-engineer` or `@analytics-engineer` | pipelines, warehouse modeling, analytics, experimentation, data governance |
 | `Supabase Team` | `@architect` or `@senior-developer` | auth, schema, migrations, RLS, storage, edge functions, rollout safety |
+| `Design Team` | `@product-designer` or `@brand-designer` | product UX, UI layout, design-system consistency, brand-sensitive presentation work |
 | `Content & Publishing Team` | `@content-planner` or `@content-writer` | planning, drafting, source-backed editorial workflows |
 | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy, backlog persistence |
 | `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness, branch hygiene, repo-safety review |
@@ -453,6 +454,7 @@ Current team manifests live in `.claude/teams/`.
 | AI/ML project work | `AI/ML Team` | `@data-scientist` or `@ml-engineer` | `@model-evaluator` remains a hard gate |
 | data pipelines, warehouse modeling, analytics, experimentation, or data governance work | `Data Team` | `@data-engineer` or `@analytics-engineer` | `@data-governance-reviewer` is a hard gate for decision-critical trust questions |
 | Supabase auth, schema, migrations, RLS, storage, or edge-function work | `Supabase Team` | `@architect` or `@senior-developer` | `@security-auditor` is a hard gate for auth, RLS, storage, and sensitive access |
+| product UX, UI layout, design-system, brand, or presentation-heavy surface work | `Design Team` | `@product-designer` or `@brand-designer` | combine with `Engineering Team` when implementation-heavy frontend work is part of the same request |
 | content planning or publication work | `Content & Publishing Team` | `@content-planner` or `@content-writer` | editorial and source validation are common gates |
 | release, delivery, monitoring, or backlog persistence | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | privacy and github safety checks remain explicit |
 | git, GitHub, PR, or repository-safety work | `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | use for commit, push, PR, release, and branch hygiene flows |
@@ -505,6 +507,11 @@ Read current agents from `.claude/agents/` at session start. Default routing:
 | Supabase: Storage / access rules | `@senior-developer` | `@security-auditor`, `@qa-engineer`, `@code-reviewer` |
 | Supabase: Edge functions / backend logic | `@senior-developer` | `@architect`, `@qa-engineer`, `@code-reviewer`, `@performance-engineer` |
 | Supabase: Rollout / migration-risk review | `@risk-officer` | `@production-readiness-reviewer`, `@security-auditor`, `@qa-engineer`, `@github-safety-guard` |
+| Design: Product UX / onboarding / app flow direction | `@product-designer` | `@customer-advocate`, `@product-owner`, `@ui-designer` |
+| Design: UI layout / hierarchy / responsive polish | `@ui-designer` | `@product-designer`, `@design-systems-architect` |
+| Design: Brand / hero / visual-identity direction | `@brand-designer` | `@ui-designer`, `@product-designer`, `@tone-calibrator` |
+| Design: Shared component / token / system consistency | `@design-systems-architect` | `@ui-designer`, `@product-designer`, `@senior-developer` |
+| Design: Full product-surface or brand-heavy design pass | `@product-designer` or `@brand-designer` | `@ui-designer`, `@design-systems-architect`, `@customer-advocate`, `@product-owner` |
 
 For **any significant decision** always also run:
 - `@devils-advocate` — finds what's wrong with the plan
@@ -626,6 +633,16 @@ For **any data-heavy project work** prefer:
 - include `@security-auditor` when sensitive data access, PII, or policy risk is involved
 - include `@qa-engineer` when code-affecting pipelines or transformations need stronger verification
 - use the `AI/ML Team` instead when the work is mainly model framing, training, evaluation, or ML deployment rather than data pipelines and analytics trust
+
+For **any design-heavy product, UI, or brand work** prefer:
+- activate the `Design Team`
+- keep `@product-designer` as the default lead when the work is mainly app flows, onboarding, information architecture, or product-surface UX
+- keep `@brand-designer` as the default lead when the work is mainly hero sections, marketing surfaces, README visuals, or broader brand direction
+- include `@ui-designer` when layout hierarchy, spacing, component composition, or responsive structure need a dedicated pass
+- include `@design-systems-architect` when a repeated pattern, shared component rule, or reusable visual token is being introduced
+- include `@customer-advocate` when the main risk is user confusion, trust loss, or onboarding friction
+- combine with the `Engineering Team` when implementation-heavy frontend work is part of the same request instead of treating design as isolated from build reality
+- keep repo-specific design briefs, tokens, and brand directions in the copied repo briefing or local context rather than inflating the shared core
 
 For **any Supabase-backed project work** prefer:
 - activate the `Supabase Team`

@@ -6,7 +6,7 @@ All work flows through `@master`. Every example below starts and ends there.
 
 These workflows are also the reason the kit now defines reusable teams: when the same multi-agent shape appears repeatedly, `@master` can activate a team instead of reconstructing the orchestration pattern from scratch each time.
 
-Twelve workflows are documented here, each demonstrating different collaboration patterns:
+Thirteen workflows are documented here, each demonstrating different collaboration patterns:
 
 1. **Engineering Pipeline** — parallel spikes, sequential implementation, gated quality stages
 2. **Content Publishing Pipeline** — research loop, human approval gate, parallel review, delivery feedback loop
@@ -20,6 +20,7 @@ Twelve workflows are documented here, each demonstrating different collaboration
 10. **Supabase Team Flow** — schema/auth/RLS coordination with explicit security and rollout gates
 11. **Data Team Flow** — ingestion, metrics, analysis, and trust gates for decision-ready data work
 12. **Large-Input Triage Flow** — classify noisy evidence, summarize the signal, and hand off narrowly before deeper work
+13. **Design Team Flow** — UX, UI, system-consistency, and brand-direction coordination for product or presentation surfaces
 
 ---
 
@@ -695,6 +696,49 @@ flowchart TD
 - `@master` should avoid echoing large raw inputs back into the main thread when a compact triage report is enough
 - the best next owner depends on the evidence type, not just the original user phrasing
 - full raw evidence stays available, but the workflow should only widen into it when the next step truly needs it
+
+---
+
+## Workflow 13 — Design Team Flow
+
+**Example trigger:** *"Rework this onboarding flow, tighten the dashboard hierarchy, and make the product surface feel more credible without losing simplicity."*
+
+**Patterns demonstrated:** reusable design-team activation, UX plus visual coordination, optional system guidance, trust-sensitive surface review.
+
+```mermaid
+flowchart TD
+    USER(["👤 Design-heavy request"])
+    USER --> MASTER
+
+    MASTER["@master\nActivates Design Team\nAnnounces lead, support,\nand design-review gates"]
+
+    MASTER --> FLOW["@product-designer\nClarifies user goal,\nflow, and structure"]
+    FLOW --> UI["@ui-designer\nImproves hierarchy,\nlayout, and component\ncomposition"]
+
+    UI --> BRAND{"Brand-sensitive or\npresentation-critical\nsurface involved?"}
+    BRAND -->|"Yes"| VIS["@brand-designer\nTightens visual language,\ntrust, and presentation"]
+    BRAND -->|"No"| SYSTEM
+    VIS --> SYSTEM
+
+    SYSTEM{"Shared pattern or\nreusable rule involved?"}
+    SYSTEM -->|"Yes"| DS["@design-systems-architect\nChecks tokens,\ncomponents, and\nreusable consistency"]
+    SYSTEM -->|"No"| USERFIT
+    DS --> USERFIT
+
+    USERFIT["@customer-advocate\nChecks trust,\nclarity, and user friction"]
+    USERFIT --> REPORT
+
+    REPORT["@master synthesis\nSurfaces team used,\ndesign direction,\nand follow-up build steps"]
+    REPORT --> WU["@workspace-updater\nRuns if docs or reusable\nworkflow guidance changed"]
+    WU --> DONE(["✓ Design direction clarified"])
+```
+
+**Key points:**
+- `Design Team` is the reusable coordination layer for UX, UI, design-system, and brand-sensitive visual work
+- `@product-designer` establishes the product-surface goal and flow first
+- `@ui-designer` turns that into clearer hierarchy and layout choices
+- `@brand-designer` joins when trust, identity, or presentation quality materially affect the outcome
+- `@design-systems-architect` prevents repeated UI decisions from drifting into inconsistent one-offs
 
 ---
 

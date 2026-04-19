@@ -29,7 +29,7 @@ Teams improve the workflow in a few practical ways:
 
 ## Team Model
 
-This kit currently defines eight reusable teams:
+This kit currently defines nine reusable teams:
 
 | Team | Lead | Typical Scope |
 |---|---|---|
@@ -37,6 +37,7 @@ This kit currently defines eight reusable teams:
 | `AI/ML Team` | `@data-scientist` or `@ml-engineer` | model framing, training, evaluation, rollout readiness |
 | `Data Team` | `@data-engineer` or `@analytics-engineer` | pipelines, warehouse modeling, analytics, experimentation, data governance |
 | `Supabase Team` | `@architect` or `@senior-developer` | auth, schema, migrations, RLS, storage, edge functions, rollout safety |
+| `Design Team` | `@product-designer` or `@brand-designer` | product UX, UI layout, design systems, and brand-sensitive presentation work |
 | `Content & Publishing Team` | `@content-planner` or `@content-writer` | content planning, drafting, editorial validation |
 | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy, backlog persistence |
 | `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness, branch hygiene, repo-safety review |
@@ -96,6 +97,27 @@ Add when needed:
 - `@experiment-analyst`
 - `@qa-engineer`
 - `@security-auditor`
+
+## Design Team Notes
+
+The `Design Team` exists because design-heavy work is not just product strategy and not yet implementation.
+
+It usually combines:
+- user flow and information architecture
+- app or dashboard layout direction
+- visual hierarchy and interface polish
+- reusable component or token consistency
+- brand-sensitive presentation surfaces such as heroes, marketing sections, and README visuals
+
+Default expectation for meaningful design-team flows:
+- `@product-designer` or `@brand-designer`
+- `@ui-designer`
+
+Add when needed:
+- `@design-systems-architect`
+- `@customer-advocate`
+- `@product-owner`
+- `@tech-writer`
 
 ## Git / GitHub Team Notes
 

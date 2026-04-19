@@ -55,6 +55,7 @@ check_file "docs/LOCAL_CONTEXT.md" "docs/LOCAL_CONTEXT.md exists"
 check_file "docs/TEAMS.md" "docs/TEAMS.md exists"
 check_file "docs/AGENT_WORKFLOWS.md" "docs/AGENT_WORKFLOWS.md exists"
 check_file "docs/PROJECT_CUSTOMIZATION.md" "docs/PROJECT_CUSTOMIZATION.md exists"
+check_file "docs/DESIGN_REFERENCE.md" "docs/DESIGN_REFERENCE.md exists"
 check_file "docs/plans/example-execution-plan.md" "docs/plans/example-execution-plan.md exists"
 check_file "docs/adr/README.md" "docs/adr/README.md exists"
 check_file ".claude/settings.json" ".claude/settings.json exists"
@@ -74,6 +75,14 @@ check_file ".claude/agents/session-budget-estimator.md" ".claude/agents/session-
 check_file ".claude/agent-memory/session-budget-estimator/MEMORY.md" ".claude/agent-memory/session-budget-estimator/MEMORY.md exists"
 check_file ".claude/agents/strategy-reviewer.md" ".claude/agents/strategy-reviewer.md exists"
 check_file ".claude/agent-memory/strategy-reviewer/MEMORY.md" ".claude/agent-memory/strategy-reviewer/MEMORY.md exists"
+check_file ".claude/agents/product-designer.md" ".claude/agents/product-designer.md exists"
+check_file ".claude/agent-memory/product-designer/MEMORY.md" ".claude/agent-memory/product-designer/MEMORY.md exists"
+check_file ".claude/agents/ui-designer.md" ".claude/agents/ui-designer.md exists"
+check_file ".claude/agent-memory/ui-designer/MEMORY.md" ".claude/agent-memory/ui-designer/MEMORY.md exists"
+check_file ".claude/agents/brand-designer.md" ".claude/agents/brand-designer.md exists"
+check_file ".claude/agent-memory/brand-designer/MEMORY.md" ".claude/agent-memory/brand-designer/MEMORY.md exists"
+check_file ".claude/agents/design-systems-architect.md" ".claude/agents/design-systems-architect.md exists"
+check_file ".claude/agent-memory/design-systems-architect/MEMORY.md" ".claude/agent-memory/design-systems-architect/MEMORY.md exists"
 
 if [ -d "$ROOT_DIR/.claude/commands" ]; then
   pass ".claude/commands exists"
@@ -188,7 +197,7 @@ else
   fail ".claude/teams directory is missing"
 fi
 
-for team in engineering-team ai-ml-team data-team supabase-team content-publishing-team delivery-ops-team git-github-team advisory-review-team; do
+for team in engineering-team ai-ml-team data-team supabase-team design-team content-publishing-team delivery-ops-team git-github-team advisory-review-team; do
   if [ -f "$ROOT_DIR/.claude/teams/${team}.md" ]; then
     pass "${team} manifest exists"
   else

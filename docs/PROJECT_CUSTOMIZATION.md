@@ -121,6 +121,25 @@ Make the copied repo-specific briefings explicit about:
 - sensitivity or compliance constraints
 - which data sources are authoritative versus derived
 
+## If The Project Has Real Design Surfaces
+
+If the copied repo has meaningful product UX, app layouts, dashboard surfaces, marketing pages, onboarding, or brand-sensitive presentation work:
+
+- make the real design surfaces explicit in `CLAUDE.md` and `AGENTS.md`
+- name the important screens, flows, or page types
+- describe whether the repo has:
+  - a shared component library
+  - design tokens
+  - a formal brand direction
+  - a design brief or style guide
+- note whether design work is mostly:
+  - product UX
+  - marketing / brand
+  - dashboard / app layout
+  - reusable system work
+
+The shared `Design Team` should know how to route this class of work, but the copied repo still needs to describe its real design constraints, surfaces, and implementation boundary.
+
 ## Bootstrap For New Repos
 
 When this kit is copied into a repo that still has generic template docs, `@master` should run a lightweight bootstrap flow before major work starts.

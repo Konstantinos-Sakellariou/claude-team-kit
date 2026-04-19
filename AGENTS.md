@@ -149,6 +149,7 @@ They are not a runtime feature, they do not replace agents, and `@master` must s
 | `AI/ML Team` | `@data-scientist` or `@ml-engineer` | model framing, training, evaluation, rollout readiness |
 | `Data Team` | `@data-engineer` or `@analytics-engineer` | pipelines, warehouse modeling, analytics, experimentation, data governance |
 | `Supabase Team` | `@architect` or `@senior-developer` | auth, schema, migrations, RLS, storage, edge functions, rollout safety |
+| `Design Team` | `@product-designer` or `@brand-designer` | product UX, UI layout, design-system consistency, brand-sensitive presentation work |
 | `Content & Publishing Team` | `@content-planner` or `@content-writer` | planning, drafting, source-backed editorial workflows |
 | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy, backlog persistence |
 | `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness, branch hygiene, repo-safety review |
@@ -156,7 +157,7 @@ They are not a runtime feature, they do not replace agents, and `@master` must s
 
 ## Key Agent Surfaces
 
-For the full 49-agent roster and cross-layer map, use `docs/SYSTEM_REFERENCE.md`.
+For the full 53-agent roster and cross-layer map, use `docs/SYSTEM_REFERENCE.md`.
 
 The hot-path agents to keep in mind here are:
 - `@master` — mandatory entry point and orchestrator
@@ -168,6 +169,7 @@ The hot-path agents to keep in mind here are:
 - `@strategy-reviewer` — strategic fit, roadmap fit, and timing pushback for major additions
 - `@data-scientist`, `@ml-engineer`, `@model-evaluator` — AI/ML lead/gate pattern
 - `@data-engineer`, `@analytics-engineer`, `@data-governance-reviewer` — data lead/trust pattern
+- `@product-designer`, `@brand-designer`, `@design-systems-architect` — design lead/system/brand pattern
 
 ## Automatic Delegation Rules
 
@@ -185,6 +187,7 @@ The hot-path agents to keep in mind here are:
 - Any KPI, cohort, or trend analysis → `@data-analyst` leads
 - Any experimentation analysis or test-result interpretation → `@experiment-analyst` leads
 - Any decision-critical data trust, lineage, access, or governance question → `@data-governance-reviewer` is a hard gate
+- Any app-flow, onboarding, layout, brand, or UI-system work → `@product-designer`, `@brand-designer`, or `Design Team` should lead
 - Any request to "backlog" or save work for later → `@backlog-updater` updates the chosen backlog and can link an approved plan
 - Any substantial idea exploration that should become a plan → `@idea-executor` leads the execution-plan shaping with supporting reviewers
 - Any backlog reprioritization, roadmap sequencing question, "what next?" question, or reset-limit/session-budget concern → `@session-budget-estimator` estimates in the preferred mode

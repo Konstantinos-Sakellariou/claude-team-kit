@@ -44,6 +44,7 @@ Pair it with:
 | AI/ML Team | `@data-scientist` or `@ml-engineer` | model framing, training, evaluation, rollout | evaluator, mlops, research | `docs/TEAMS.md` |
 | Data Team | `@data-engineer` or `@analytics-engineer` | pipelines, warehouse modeling, analytics, experimentation, governance | data analyst, experiment analyst, governance, QA, security | `docs/TEAMS.md` |
 | Supabase Team | `@architect` or `@senior-developer` | auth, schema, migrations, RLS, storage, edge functions | security, QA, code review, production readiness | `docs/TEAMS.md` |
+| Design Team | `@product-designer` or `@brand-designer` | product UX, UI layout, design systems, brand-sensitive presentation | UI designer, design-systems architect, customer advocate, product owner | `docs/TEAMS.md` |
 | Content & Publishing Team | `@content-planner` or `@content-writer` | planning, drafting, editorial workflows | source, tone, review, feedback | `docs/TEAMS.md` |
 | Delivery & Ops Team | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, backlog persistence | privacy, changelog, experimentation | `docs/TEAMS.md` |
 | Git / GitHub Team | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness | code review, PR packaging, production readiness | `docs/TEAMS.md` |
@@ -88,6 +89,15 @@ Pair it with:
 | `@data-analyst` | KPI, trend, cohort, and exploratory decision support |
 | `@experiment-analyst` | A/B testing, lift interpretation, experiment design quality |
 | `@data-governance-reviewer` | Data trust, lineage, quality, access, and governance review |
+
+### Design
+
+| Agent | Role |
+|---|---|
+| `@product-designer` | UX flows, information architecture, onboarding, and product-surface direction |
+| `@ui-designer` | Layout, hierarchy, spacing, and interface polish |
+| `@brand-designer` | Brand language, heroes, marketing surfaces, and visual credibility |
+| `@design-systems-architect` | Reusable UI patterns, tokens, and shared visual consistency |
 
 ### Content & Publishing
 
@@ -249,6 +259,7 @@ Start here depending on the need:
 - private local context: `docs/LOCAL_CONTEXT.md`
 - team model: `docs/TEAMS.md`
 - Supabase domain-pack reference: `docs/SUPABASE_REFERENCE.md`
+- design-domain reference: `docs/DESIGN_REFERENCE.md`
 - workflow examples: `docs/AGENT_WORKFLOWS.md`
 - repo adaptation: `docs/PROJECT_CUSTOMIZATION.md`
 
