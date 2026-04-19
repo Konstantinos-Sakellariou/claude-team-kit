@@ -104,7 +104,7 @@ That means:
 - prefer durable artifacts over repeating long chat recaps
 - use only the tools and MCP servers the task actually needs
 
-See [`docs/CONTEXT_EFFICIENCY.md`](docs/CONTEXT_EFFICIENCY.md) for the full guidance, including request-shaping, large-input triage, and optional RTK usage.
+See [`docs/CONTEXT_EFFICIENCY.md`](docs/CONTEXT_EFFICIENCY.md) for the full guidance, including request-shaping, large-input triage, and optional RTK usage. If you want the dedicated optional integration path, use [`docs/RTK_INTEGRATION.md`](docs/RTK_INTEGRATION.md).
 
 This kit also now has an explicit model-routing stance:
 - `Haiku` for cheap summarization and repetitive low-risk condensation

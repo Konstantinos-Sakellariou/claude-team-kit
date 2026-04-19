@@ -16,6 +16,7 @@ Owner: Konstantinos Sakellariou
 - See `docs/ROADMAP.example.md` for the tracked roadmap template and `docs/ROADMAP.md` for the optional local repo-specific version
 - See `docs/BOOTSTRAP.md` for the new-repo bootstrap flow
 - See `docs/CONTEXT_EFFICIENCY.md` for context-efficiency, request-shaping, and large-input triage rules
+- See `docs/RTK_INTEGRATION.md` for the optional RTK local-efficiency integration path
 - See `docs/DOCUMENTATION_GOVERNANCE.md` for anti-bloat documentation policy
 - See `docs/LOCAL_CONTEXT.md` for the private local context layer
 - See `docs/SELF_UPGRADE.md` for the maintainer guide on evolving the kit safely
@@ -142,18 +143,17 @@ Teams are reusable orchestration bundles that `@master` can activate for recurri
 They are not a runtime feature, they do not replace agents, and `@master` must still report the actual agents used whenever a team is activated.
 
 ## Available Teams
-
 | Team | Lead | Typical Use |
 |---|---|---|
-| `Engineering Team` | `@senior-developer` or `@architect` | features, debugging, architecture, engineering review |
-| `AI/ML Team` | `@data-scientist` or `@ml-engineer` | model framing, training, evaluation, rollout readiness |
-| `Data Team` | `@data-engineer` or `@analytics-engineer` | pipelines, warehouse modeling, analytics, experimentation, data governance |
-| `Supabase Team` | `@architect` or `@senior-developer` | auth, schema, migrations, RLS, storage, edge functions, rollout safety |
-| `Design Team` | `@product-designer` or `@brand-designer` | product UX, UI layout, design-system consistency, brand-sensitive presentation work |
-| `Content & Publishing Team` | `@content-planner` or `@content-writer` | planning, drafting, source-backed editorial workflows |
-| `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy, backlog persistence |
-| `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness, branch hygiene, repo-safety review |
-| `Advisory Review Team` | `@product-owner`, `@business-analyst`, or `@idea-executor` | planning, prioritization, business, UX, risk, contested decisions, strategy-fit review |
+| `Engineering Team` | `@senior-developer` or `@architect` | features, debugging, architecture |
+| `AI/ML Team` | `@data-scientist` or `@ml-engineer` | model framing, training, evaluation |
+| `Data Team` | `@data-engineer` or `@analytics-engineer` | pipelines, analytics, experimentation, governance |
+| `Supabase Team` | `@architect` or `@senior-developer` | auth, schema, migrations, RLS, storage |
+| `Design Team` | `@product-designer` or `@brand-designer` | UX, UI layout, design systems, brand work |
+| `Content & Publishing Team` | `@content-planner` or `@content-writer` | planning, drafting, editorial workflows |
+| `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy |
+| `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness |
+| `Advisory Review Team` | `@product-owner`, `@business-analyst`, or `@idea-executor` | planning, prioritization, strategy-fit review |
 
 ## Key Agent Surfaces
 
@@ -173,36 +173,25 @@ The hot-path agents to keep in mind here are:
 
 ## Automatic Delegation Rules
 
-- Any secret / credentials / auth touched → `@security-auditor` reviews it first
-- Any new feature or script → `@qa-engineer` writes the test plan
-- Any architectural decision → `@architect` weighs in
-- Any performance-sensitive path → `@performance-engineer` reviews it
-- Any AI/ML exploratory or feature work → `@data-scientist` leads
-- Any AI/ML model training or pipeline implementation → `@ml-engineer` leads
-- Any AI/ML evaluation or release-readiness decision → `@model-evaluator` is the mandatory quality gate
-- Any AI/ML deployment or monitoring work → `@mlops-engineer` leads after evaluator sign-off
+- Any secret / credentials / auth touched → `@security-auditor` reviews it first; any new feature or script → `@qa-engineer` writes the test plan
+- Any architectural decision → `@architect` weighs in; any performance-sensitive path → `@performance-engineer` reviews it
+- Any AI/ML exploratory or feature work → `@data-scientist` leads; any AI/ML model training or pipeline implementation → `@ml-engineer` leads
+- Any AI/ML evaluation or release-readiness decision → `@model-evaluator` is the mandatory quality gate; any AI/ML deployment or monitoring work → `@mlops-engineer` leads after evaluator sign-off
 - Any novel AI/ML method or benchmark question → `@research-scientist` advises
-- Any data pipeline or ingestion work → `@data-engineer` leads
-- Any warehouse modeling or metrics-layer work → `@analytics-engineer` leads
-- Any KPI, cohort, or trend analysis → `@data-analyst` leads
-- Any experimentation analysis or test-result interpretation → `@experiment-analyst` leads
+- Any data pipeline or ingestion work → `@data-engineer` leads; any warehouse modeling or metrics-layer work → `@analytics-engineer` leads
+- Any KPI, cohort, or trend analysis → `@data-analyst` leads; any experimentation analysis or test-result interpretation → `@experiment-analyst` leads
 - Any decision-critical data trust, lineage, access, or governance question → `@data-governance-reviewer` is a hard gate
 - Any app-flow, onboarding, layout, brand, or UI-system work → `@product-designer`, `@brand-designer`, or `Design Team` should lead
-- Any request to "backlog" or save work for later → `@backlog-updater` updates the chosen backlog and can link an approved plan
-- Any substantial idea exploration that should become a plan → `@idea-executor` leads the execution-plan shaping with supporting reviewers
+- Any request to "backlog" or save work for later → `@backlog-updater` updates the chosen backlog and can link an approved plan; any substantial idea exploration that should become a plan → `@idea-executor` leads the execution-plan shaping with supporting reviewers
 - Any backlog reprioritization, roadmap sequencing question, "what next?" question, or reset-limit/session-budget concern → `@session-budget-estimator` estimates in the preferred mode
 - Any open-ended "think with me", "what directions are strongest?", or vision/roadmap/backlog connection question → `@vision-partner` generates grounded next-move options before critique or execution planning
 - Any new major capability, team, agent, rule, hook, skill, command, backlog item, or roadmap change with meaningful scope/cost implications → `@strategy-reviewer` checks strategic fit before we treat it as a strong next move
 - Any durable architecture, policy, workflow, or repo-structure decision → `@master` proposes an ADR by default and coordinates `@architect`, `@devils-advocate`, `@judge`, and `@tech-writer`
-- Any strategic, startup, customer, or company-sensitive request → `@master` should consult the private local context layer first when it exists
-- Any content ready to publish → `@editorial-reviewer` must pass it first
+- Any strategic, startup, customer, or company-sensitive request → `@master` should consult the private local context layer first when it exists; any content ready to publish → `@editorial-reviewer` must pass it first
 - Before substantial work in a collaborative git repo → `@master` should ask whether a quick sync check or pull is needed if the branch may be stale
-- Before any code-affecting commit, push, or PR → `@github-safety-guard`, `@code-reviewer`, and `@qa-engineer` review the change
-- Before merge-critical or release-heavy GitHub work → `@production-readiness-reviewer` is a required gate
-- Before any PR packaging flow → `@pr-operator` improves reviewer context and PR quality
-- Before any commit or push → `@github-safety-guard` reviews the outgoing changes and `@master` presents the findings to the user
-- Before any public release or push → `@privacy-reviewer` runs the mandatory scan
-- Before any major release → `@risk-officer` does a final sign-off
+- Before any code-affecting commit, push, or PR → `@github-safety-guard`, `@code-reviewer`, and `@qa-engineer` review the change; before merge-critical or release-heavy GitHub work → `@production-readiness-reviewer` is a required gate
+- Before any PR packaging flow → `@pr-operator` improves reviewer context and PR quality; before any commit or push → `@github-safety-guard` reviews the outgoing changes and `@master` presents the findings to the user
+- Before any public release or push → `@privacy-reviewer` runs the mandatory scan; before any major release → `@risk-officer` does a final sign-off
 - After any significant task → `@workspace-updater` runs last as the final doc-impact gate and syncs docs only when needed
 
 ## Default Reporting Rules
@@ -227,34 +216,20 @@ The hot-path agents to keep in mind here are:
 ---
 
 # Important Notes
-- This repo is a workspace kit, not a runtime orchestration engine
-- The canonical implementation lives in `.claude/`; repo docs must describe that implementation accurately
-- `docs/VISION.example.md` and `docs/ROADMAP.example.md` are tracked starters for local strategy docs
-- local `docs/VISION.md` and `docs/ROADMAP.md` are optional private strategy surfaces and should stay out of git when they contain real operating direction
-- The rules layer now includes dedicated governance for docs, artifacts, and context quality in addition to language or domain rules
-- `docs/DOCUMENTATION_GOVERNANCE.md` defines the anti-bloat documentation model; follow it before expanding the hot-path briefings
-- large noisy inputs should follow the default triage workflow in `docs/CONTEXT_EFFICIENCY.md`: classify, sample, summarize, then route narrowly
-- noisy domain-heavy tasks should prefer specialist-first routing instead of broad main-thread analysis when the right owner is already clear
-- `docs/SELF_UPGRADE.md` is the maintainer playbook for extending the kit without drift, private-leakage mistakes, or hot-path bloat
-- `docs/STARTER_PACKS.md` provides optional overlays for common repo shapes without making the shared core overly specific
-- GitHub-bound code should follow the visible quality gate defined in `.claude/rules/github-quality-gate.md`
-- `docs/SYSTEM_REFERENCE.md` is the full feature and connection report; prefer linking to it over expanding `CLAUDE.md` or `AGENTS.md` inline
-- Team manifests live in `.claude/teams/`; they are a `@master` routing abstraction, not a Claude-native platform feature
-- Command definitions live in `.claude/commands/`; they are thin workflow entrypoints interpreted by `@master`, not a second orchestration system
-- New repos should go through the adaptive bootstrap flow before major work if the project briefings still look generic
-- `CLAUDE.md` and `AGENTS.md` are loaded often; keep them high-signal and move deep detail into linked docs when possible
-- The private local context layer lives in `.claude/local-context/`; keep it local-only and use it for sensitive business or customer notes
-- The kit includes a generic AI/ML specialist layer; keep platform-specific ML guidance in project briefings, not in the shared core
-- Real projects should move concrete architecture, routes, deployment notes, and gotchas into `CLAUDE.md` and `AGENTS.md`
-- Project-specific sync workflows belong in narrow extensions to `@master` and `@workspace-updater`, not in the generic core loop
-- `@master` must remain the only top-level orchestrator, and `@workspace-updater` must remain the mandatory final doc-impact gate for the core docs
-- `@master` must make orchestration visible in the chat by default: selected agents, actions taken, and final report
-- `BACKLOG.md` is the private local backlog; start it from `BACKLOG.example.md` and do not rely on chat history alone
-- `docs/BACKLOG.md` is the optional public tracked backlog; start it from `docs/BACKLOG.example.md` when a repo wants visible backlog history
-- `.claude/local-context/HANDOFF.md` is the optional local continuity artifact for unfinished sessions, tool/model switching, and compact “where we left off” context
-- If `.claude/local-context/` exists, treat it as a private local context layer rather than a tracked documentation target
+- This repo is a workspace kit, not a runtime orchestration engine, and the canonical implementation lives in `.claude/`; repo docs must describe that implementation accurately
+- `docs/VISION.example.md` and `docs/ROADMAP.example.md` are tracked starters for local strategy docs; local `docs/VISION.md` and `docs/ROADMAP.md` are optional private strategy surfaces and should stay out of git when they contain real operating direction
+- The rules layer now includes dedicated governance for docs, artifacts, and context quality in addition to language or domain rules; `docs/DOCUMENTATION_GOVERNANCE.md` defines the anti-bloat documentation model
+- Large noisy inputs should follow the default triage workflow in `docs/CONTEXT_EFFICIENCY.md`: classify, sample, summarize, then route narrowly; noisy domain-heavy tasks should prefer specialist-first routing instead of broad main-thread analysis when the right owner is already clear
+- `docs/SELF_UPGRADE.md` is the maintainer playbook for extending the kit without drift, private-leakage mistakes, or hot-path bloat; `docs/STARTER_PACKS.md` provides optional overlays for common repo shapes without making the shared core overly specific
+- GitHub-bound code should follow the visible quality gate defined in `.claude/rules/github-quality-gate.md`; `docs/SYSTEM_REFERENCE.md` is the full feature and connection report; prefer linking to it over expanding `CLAUDE.md` or `AGENTS.md` inline
+- Team manifests live in `.claude/teams/`; they are a `@master` routing abstraction, not a Claude-native platform feature; command definitions live in `.claude/commands/`; they are thin workflow entrypoints interpreted by `@master`, not a second orchestration system
+- New repos should go through the adaptive bootstrap flow before major work if the project briefings still look generic; `CLAUDE.md` and `AGENTS.md` are loaded often, so keep them high-signal and move deep detail into linked docs when possible
+- The private local context layer lives in `.claude/local-context/`; keep it local-only and use it for sensitive business or customer notes; if `.claude/local-context/` exists, treat it as a private local context layer rather than a tracked documentation target
+- The kit includes a generic AI/ML specialist layer; keep platform-specific ML guidance in project briefings, not in the shared core; real projects should move concrete architecture, routes, deployment notes, and gotchas into `CLAUDE.md` and `AGENTS.md`
+- Project-specific sync workflows belong in narrow extensions to `@master` and `@workspace-updater`, not in the generic core loop; `@master` must remain the only top-level orchestrator, and `@workspace-updater` must remain the mandatory final doc-impact gate for the core docs
+- `@master` must make orchestration visible in the chat by default: selected agents, actions taken, and final report; `@tech-writer` is the primary ADR author once `@master` receives explicit approval to save the record
+- `BACKLOG.md` is the private local backlog; start it from `BACKLOG.example.md` and do not rely on chat history alone; `docs/BACKLOG.md` is the optional public tracked backlog; start it from `docs/BACKLOG.example.md` when a repo wants visible backlog history
+- `.claude/local-context/HANDOFF.md` is the optional local continuity artifact for unfinished sessions, tool/model switching, and compact “where we left off” context; real estimate-versus-actual learning should stay local in `.claude/local-context/estimation-log.md`, not in tracked docs
 - Approved public-safe example plans or shareable implementation references belong in `docs/plans/`; real next-step strategy or sequencing plans belong in `.claude/local-context/plans/`; approved architecture or policy decisions belong in `docs/adr/`
-- Real estimate-versus-actual learning should stay local in `.claude/local-context/estimation-log.md`, not in tracked docs
 - For substantial deferred ideas, prefer a backlog entry plus a linked plan rather than a backlog row alone, and default to `.claude/local-context/plans/` unless the user explicitly wants the plan tracked and it is safe to publish
-- `@tech-writer` is the primary ADR author once `@master` receives explicit approval to save the record
 - `README.md`, `CLAUDE.md`, and `AGENTS.md` must stay in sync when workflow, commands, or structure change

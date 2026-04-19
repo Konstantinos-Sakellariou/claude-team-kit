@@ -254,6 +254,7 @@ Start here depending on the need:
 - documentation policy: `docs/DOCUMENTATION_GOVERNANCE.md`
 - maintainer upgrade path: `docs/SELF_UPGRADE.md`
 - optional project-shape overlays: `docs/STARTER_PACKS.md`
+- optional RTK efficiency layer: `docs/RTK_INTEGRATION.md`
 - bootstrap and initialization: `docs/BOOTSTRAP.md`
 - context efficiency: `docs/CONTEXT_EFFICIENCY.md`
 - private local context: `docs/LOCAL_CONTEXT.md`

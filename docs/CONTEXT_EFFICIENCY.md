@@ -261,6 +261,8 @@ Recommended stance:
 - not a required dependency of the kit
 - usually not necessary for standard CI pipelines
 
+See [`docs/RTK_INTEGRATION.md`](docs/RTK_INTEGRATION.md) for the dedicated integration guide, correct project/source warning, installation references, and the rule for when RTK is worth using versus when raw output is still better.
+
 ## Practical Checklist
 
 Before doing a broad exploration, ask:

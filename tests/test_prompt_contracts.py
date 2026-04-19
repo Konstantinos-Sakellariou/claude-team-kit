@@ -170,6 +170,7 @@ class PromptContractTests(unittest.TestCase):
         claude = read("CLAUDE.md")
         agents = read("AGENTS.md")
         context = read("docs/CONTEXT_EFFICIENCY.md")
+        rtk = read("docs/RTK_INTEGRATION.md")
 
         self.assertIn("## Context Efficiency And Scope Discipline", master)
         self.assertIn("read narrow first", master)
@@ -178,13 +179,20 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn("## Context Efficiency", readme)
         self.assertIn("explicit model-routing stance", readme)
         self.assertIn("docs/CONTEXT_EFFICIENCY.md", readme)
+        self.assertIn("docs/RTK_INTEGRATION.md", readme)
         self.assertIn("docs/CONTEXT_EFFICIENCY.md", claude)
+        self.assertIn("docs/RTK_INTEGRATION.md", claude)
         self.assertIn("docs/CONTEXT_EFFICIENCY.md", agents)
+        self.assertIn("docs/RTK_INTEGRATION.md", agents)
         self.assertIn("## Read Narrow First", context)
         self.assertIn("## Triage Large Inputs First", context)
         self.assertIn("## Default Large-Input Workflow", context)
         self.assertIn("## MCP And Tool Hygiene", context)
         self.assertIn("## Model Routing", context)
+        self.assertIn("## Optional RTK Usage", context)
+        self.assertIn("rtk-ai/rtk", rtk)
+        self.assertIn("## Why It Stays Optional", rtk)
+        self.assertIn("## Installation", rtk)
 
     def test_large_input_triage_workflow_is_explicit(self) -> None:
         master = read(".claude/agents/master.md")
