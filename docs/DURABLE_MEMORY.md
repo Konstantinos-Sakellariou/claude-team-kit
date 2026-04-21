@@ -39,6 +39,35 @@ Avoid:
 | Handoff | Session-bridge memory | `.claude/local-context/HANDOFF.md` | local only | where work stopped and what the next model should know |
 | Estimation log | Practical learning memory | `.claude/local-context/estimation-log.md` | local only | estimate-versus-actual history and mode preferences |
 
+## Memory Flow
+
+```mermaid
+flowchart TD
+    CHAT["Live chat work"] --> MASTER["@master"]
+    MASTER --> BACKLOG["Backlog<br/>deferred work"]
+    MASTER --> PLAN["Plans<br/>execution detail"]
+    MASTER --> ADR["ADRs<br/>durable decisions"]
+    MASTER --> MEMORY["Agent memory<br/>reusable heuristics"]
+    MASTER --> LOCAL["Local context<br/>private operating truth"]
+    MASTER --> HANDOFF["HANDOFF.md<br/>session bridge"]
+    MASTER --> EST["Estimation log<br/>local learning"]
+
+    BACKLOG --> PLAN
+    PLAN --> ADR
+    LOCAL --> PLAN
+    LOCAL --> HANDOFF
+    MEMORY --> MASTER
+    ADR --> MASTER
+    PLAN --> MASTER
+    BACKLOG --> MASTER
+```
+
+This is the operating picture:
+- chat starts the work
+- `@master` routes it into the right durable artifact
+- tracked artifacts preserve reusable or approved truth
+- local artifacts preserve sensitive or short-lived truth
+
 ## Retrieval Model
 
 The retrieval rule should stay narrow and intentional.
@@ -55,6 +84,18 @@ Examples:
 - private founder or product question -> read only the relevant local-context file
 - repeated role-specific judgment -> read the agent's own `MEMORY.md`
 - unfinished session -> read `HANDOFF.md` before pulling broad context back in
+
+## Example Use
+
+Example: a founder asks, "What should we do next for this product repo?"
+
+The preferred read order is:
+1. local `docs/ROADMAP.md` for sequencing
+2. `BACKLOG.md` for concrete open work
+3. relevant local POC or company notes in `.claude/local-context/`
+4. agent memory only when reusable heuristics from a role actually matter
+
+That keeps current private reality in the right place instead of overloading tracked memory with active strategy.
 
 ## Tracked Versus Local
 

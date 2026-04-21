@@ -18,6 +18,29 @@ In this repo, graph/repo intelligence means an optional way to understand relati
 
 This is a relationship layer, not a replacement for grep, docs, or `@master`.
 
+## Relationship View
+
+```mermaid
+flowchart TD
+    CAP["Capability or question"] --> TEAM["Teams"]
+    CAP --> WF["Workflows"]
+    CAP --> DOC["Docs"]
+    CAP --> BL["Backlog items"]
+    CAP --> PLAN["Plans"]
+    CAP --> ADR["ADRs"]
+    CAP --> LOCAL["Local context"]
+
+    TEAM --> DOC
+    WF --> DOC
+    BL --> PLAN
+    PLAN --> ADR
+    LOCAL --> PLAN
+    DOC --> WF
+```
+
+The graph idea is not "store everything in a graph first."
+It is "make relationships between the existing artifacts easier to navigate."
+
 ## Why It Might Add Value
 
 An optional graph/repo-intelligence layer could help with:
@@ -54,6 +77,14 @@ Out of scope for the core:
 - a required indexing daemon
 - replacing existing docs with opaque generated graphs
 - pretending this layer is necessary for small repos
+
+## Example Questions
+
+Good graph/repo-intelligence questions would be:
+- which docs and workflows connect to the `Executive Team`?
+- what should I read before changing backlog or roadmap behavior?
+- what artifacts are likely stale if we change bootstrap?
+- which local versus tracked artifacts belong to the same operating surface?
 
 ## Connection To The Current Kit
 
@@ -107,3 +138,15 @@ Reach for graph/repo intelligence only when it clearly improves:
 - future productization
 
 If those gains are not clear, keep it out of the core.
+
+## Example First Experiment
+
+A sensible first experiment would be:
+- no database
+- no daemon
+- no required dependency
+
+Just a small optional relationship index that can answer:
+- what artifacts connect to this topic?
+- what should `@master` read first?
+- what likely needs review when this area changes?
