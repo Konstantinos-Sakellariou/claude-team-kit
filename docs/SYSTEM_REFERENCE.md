@@ -275,6 +275,7 @@ Start here depending on the need:
 - team model: `docs/TEAMS.md`
 - Supabase domain-pack reference: `docs/SUPABASE_REFERENCE.md`
 - Supabase foundation pack: `docs/solution-packs/supabase-foundation.md`
+- GitHub and CI/CD foundation pack: `docs/solution-packs/github-cicd-foundation.md`
 - design-domain reference: `docs/DESIGN_REFERENCE.md`
 - workflow examples: `docs/AGENT_WORKFLOWS.md`
 - repo adaptation: `docs/PROJECT_CUSTOMIZATION.md`

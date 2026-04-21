@@ -10,5 +10,6 @@ These packs are:
 
 Current pack:
 - [`Supabase Application Foundation`](supabase-foundation.md)
+ - [`GitHub And CI/CD Foundation`](github-cicd-foundation.md)
 
 Use `docs/SOLUTION_PACKS.md` for the contract and boundaries that all packs should follow.

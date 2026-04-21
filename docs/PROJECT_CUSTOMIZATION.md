@@ -36,8 +36,9 @@ The intended first foundations are:
 
 Use solution packs to accelerate setup, not to avoid business-specific customization.
 
-The first concrete pack is:
+The first concrete packs are:
 - `docs/solution-packs/supabase-foundation.md`
+- `docs/solution-packs/github-cicd-foundation.md`
 
 ## Keep Core Briefings Lean
 

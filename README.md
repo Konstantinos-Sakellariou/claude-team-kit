@@ -310,8 +310,9 @@ The first intended pack wave is:
 - GitHub + CI/CD foundation
 - Vercel deployment foundation
 
-The first concrete pack is now:
+The first concrete packs are now:
 - [`Supabase Application Foundation`](docs/solution-packs/supabase-foundation.md)
+- [`GitHub And CI/CD Foundation`](docs/solution-packs/github-cicd-foundation.md)
 
 ## Team Overview
 

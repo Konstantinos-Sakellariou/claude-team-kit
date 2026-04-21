@@ -103,7 +103,7 @@ If a pack needs sensitive implementation detail, keep the sequencing or private 
 The strongest first candidates are:
 
 1. [`Supabase application foundation`](solution-packs/supabase-foundation.md)
-2. `GitHub + CI/CD foundation`
+2. [`GitHub + CI/CD foundation`](solution-packs/github-cicd-foundation.md)
 3. `Vercel deployment foundation`
 
 Why these first:
@@ -154,6 +154,7 @@ the kit should say:
 - `docs/STARTER_PACKS.md`
 - `docs/solution-packs/README.md`
 - `docs/solution-packs/supabase-foundation.md`
+- `docs/solution-packs/github-cicd-foundation.md`
 - `docs/PROJECT_CUSTOMIZATION.md`
 - `docs/SYSTEM_REFERENCE.md`
 - `docs/LOCAL_CONTEXT.md`
