@@ -299,6 +299,7 @@ Use the private local context layer at `.claude/local-context/` for information 
 - unreleased roadmap details
 - internal constraints, politics, or commercial sensitivities
 - draft positioning, investor, founder, or go-to-market context
+- private proof-of-concept or core-product incubation notes that should guide local decisions without becoming public kit truth
 
 How to use it:
 - read it when the task is strategic, product-facing, planning-heavy, customer-sensitive, or startup/company-specific
@@ -310,6 +311,7 @@ Privacy boundary:
 - never copy private local-context details into tracked files automatically
 - if a tracked file would benefit from material currently stored only in local context, ask the user explicitly before moving or summarizing it there
 - if the repo is public or intended to become public, lean conservative and keep local-context material local unless the user clearly approves disclosure
+- treat private POC or core-product thinking as local operating input to `@master`, not as tracked repo scope, unless the user explicitly chooses to promote a safe summary
 
 When bootstrap runs in a new repo:
 - ask whether the repo wants the private local context layer
@@ -441,6 +443,7 @@ Current team manifests live in `.claude/teams/`.
 | `Data Team` | `@data-engineer` or `@analytics-engineer` | pipelines, warehouse modeling, analytics, experimentation, data governance |
 | `Supabase Team` | `@architect` or `@senior-developer` | auth, schema, migrations, RLS, storage, edge functions, rollout safety |
 | `Design Team` | `@product-designer` or `@brand-designer` | product UX, UI layout, design-system consistency, brand-sensitive presentation work |
+| `Executive Team` | `@product-owner`, `@business-analyst`, or `@vision-partner` | executive/org-model architecture, company-operating structure, function-team boundaries, public/private operating decisions |
 | `Content & Publishing Team` | `@content-planner` or `@content-writer` | planning, drafting, source-backed editorial workflows |
 | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy, backlog persistence |
 | `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness, branch hygiene, repo-safety review |
@@ -455,6 +458,7 @@ Current team manifests live in `.claude/teams/`.
 | data pipelines, warehouse modeling, analytics, experimentation, or data governance work | `Data Team` | `@data-engineer` or `@analytics-engineer` | `@data-governance-reviewer` is a hard gate for decision-critical trust questions |
 | Supabase auth, schema, migrations, RLS, storage, or edge-function work | `Supabase Team` | `@architect` or `@senior-developer` | `@security-auditor` is a hard gate for auth, RLS, storage, and sensitive access |
 | product UX, UI layout, design-system, brand, or presentation-heavy surface work | `Design Team` | `@product-designer` or `@brand-designer` | combine with `Engineering Team` when implementation-heavy frontend work is part of the same request |
+| executive/org-model architecture, company-operating structure, or public-kit vs private-product boundary work | `Executive Team` | `@product-owner`, `@business-analyst`, or `@vision-partner` | use when the main question is how the company-like operating model should be shaped without leaking private incubation detail |
 | content planning or publication work | `Content & Publishing Team` | `@content-planner` or `@content-writer` | editorial and source validation are common gates |
 | release, delivery, monitoring, or backlog persistence | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | privacy and github safety checks remain explicit |
 | git, GitHub, PR, or repository-safety work | `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | use for commit, push, PR, release, and branch hygiene flows |
@@ -476,6 +480,7 @@ Read current agents from `.claude/agents/` at session start. Default routing:
 | Session budget / reset-limit / model-capacity estimate | `@session-budget-estimator` | `@project-manager`, `@idea-executor`, `@business-analyst` |
 | Collaborative next-move generation / vision-backlog-roadmap connection | `@vision-partner` | `@strategy-reviewer`, `@session-budget-estimator`, `@product-owner`, `@business-analyst` |
 | Strategic fit / roadmap fit / portfolio pushback | `@strategy-reviewer` | `@business-analyst`, `@product-owner`, `@session-budget-estimator`, `@judge` |
+| Executive/org-model/company-operating design | `@product-owner` | `@business-analyst`, `@vision-partner`, `@strategy-reviewer`, `@project-manager`, `@risk-officer` |
 | Idea exploration to execution plan | `@idea-executor` | `@devils-advocate`, `@judge`, `@architect` |
 | ADR-worthy decision / durable trade-off | `@architect` | `@devils-advocate`, `@judge`, `@tech-writer` |
 | New feature evaluation | `@product-owner` | `@business-analyst`, `@devils-advocate` |

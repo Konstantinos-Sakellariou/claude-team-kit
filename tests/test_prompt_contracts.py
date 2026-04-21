@@ -595,6 +595,31 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn("What The Design Team Is", reference)
         self.assertIn("### Design", system_reference)
 
+    def test_executive_team_is_defined_and_visible(self) -> None:
+        team = read(".claude/teams/executive-team.md")
+        master = read(".claude/agents/master.md")
+        readme = read("README.md")
+        claude = read("CLAUDE.md")
+        agents = read("AGENTS.md")
+        teams_doc = read("docs/TEAMS.md")
+        workflows = read("docs/AGENT_WORKFLOWS.md")
+        architecture = read("docs/ARCHITECTURE.md")
+        local_context = read("docs/LOCAL_CONTEXT.md")
+        system_reference = read("docs/SYSTEM_REFERENCE.md")
+
+        self.assertIn("# Executive Team", team)
+        self.assertIn("@strategy-reviewer", team)
+        self.assertIn("Executive Team", master)
+        self.assertIn("public-kit vs private-product boundary work", master)
+        self.assertIn("Executive Team", readme)
+        self.assertIn("Executive Team", claude)
+        self.assertIn("Executive Team", agents)
+        self.assertIn("Executive Team", teams_doc)
+        self.assertIn("Workflow 14 — Executive Team Flow", workflows)
+        self.assertIn("Private product incubation or proof-of-concept work can live alongside that kit", architecture)
+        self.assertIn("private proof-of-concept or core-product incubation notes", local_context)
+        self.assertIn(".claude/local-context/proof-of-concept/", system_reference)
+
     def test_github_quality_gate_agents_and_rule_are_visible(self) -> None:
         code_reviewer = read(".claude/agents/code-reviewer.md")
         pr_operator = read(".claude/agents/pr-operator.md")

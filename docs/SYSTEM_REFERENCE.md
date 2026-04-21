@@ -45,6 +45,7 @@ Pair it with:
 | Data Team | `@data-engineer` or `@analytics-engineer` | pipelines, warehouse modeling, analytics, experimentation, governance | data analyst, experiment analyst, governance, QA, security | `docs/TEAMS.md` |
 | Supabase Team | `@architect` or `@senior-developer` | auth, schema, migrations, RLS, storage, edge functions | security, QA, code review, production readiness | `docs/TEAMS.md` |
 | Design Team | `@product-designer` or `@brand-designer` | product UX, UI layout, design systems, brand-sensitive presentation | UI designer, design-systems architect, customer advocate, product owner | `docs/TEAMS.md` |
+| Executive Team | `@product-owner`, `@business-analyst`, or `@vision-partner` | executive/org-model architecture, company-operating structure, portfolio shaping, public/private operating boundaries | strategy review, project manager, risk, session-budget estimation, tech writer | `docs/TEAMS.md` |
 | Content & Publishing Team | `@content-planner` or `@content-writer` | planning, drafting, editorial workflows | source, tone, review, feedback | `docs/TEAMS.md` |
 | Delivery & Ops Team | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, backlog persistence | privacy, changelog, experimentation | `docs/TEAMS.md` |
 | Git / GitHub Team | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness | code review, PR packaging, production readiness | `docs/TEAMS.md` |
@@ -238,6 +239,7 @@ Hooks should reinforce hygiene, not replace judgment.
 | `.claude/local-context/plans/` | local private strategy and roadmap plans |
 | `.claude/local-context/estimation-log.md` | local private estimate-versus-actual history and mode preference |
 | `.claude/local-context/HANDOFF.md` | local private continuity artifact for unfinished sessions and tool/model handoff |
+| `.claude/local-context/proof-of-concept/` | local private POC or core-product incubation material that can inform `@master` without becoming tracked kit truth |
 | `docs/adr/` | approved architecture/policy decisions |
 | `.claude/local-context/` | private local context |
 | `README.md` | public-facing summary |
@@ -272,5 +274,6 @@ The intended usage flow is:
 2. Let `@master` pick agents or teams
 3. Save durable work in the right artifact location
 4. Use local context for private operating detail
-5. Let `@workspace-updater` keep the hot-path docs aligned through adaptive doc-impact checks, not automatic full rewrites
-6. Keep the hot path lean and push detail into linked docs like this one
+5. Keep private POC or core-product incubation in local context unless the user explicitly promotes a safe summary
+6. Let `@workspace-updater` keep the hot-path docs aligned through adaptive doc-impact checks, not automatic full rewrites
+7. Keep the hot path lean and push detail into linked docs like this one

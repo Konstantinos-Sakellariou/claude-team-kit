@@ -29,7 +29,7 @@ Teams improve the workflow in a few practical ways:
 
 ## Team Model
 
-This kit currently defines nine reusable teams:
+This kit currently defines ten reusable teams:
 
 | Team | Lead | Typical Scope |
 |---|---|---|
@@ -38,6 +38,7 @@ This kit currently defines nine reusable teams:
 | `Data Team` | `@data-engineer` or `@analytics-engineer` | pipelines, warehouse modeling, analytics, experimentation, data governance |
 | `Supabase Team` | `@architect` or `@senior-developer` | auth, schema, migrations, RLS, storage, edge functions, rollout safety |
 | `Design Team` | `@product-designer` or `@brand-designer` | product UX, UI layout, design systems, and brand-sensitive presentation work |
+| `Executive Team` | `@product-owner`, `@business-analyst`, or `@vision-partner` | executive/org-model architecture, company-operating structure, portfolio-shaping, and public/private operating-boundary decisions |
 | `Content & Publishing Team` | `@content-planner` or `@content-writer` | content planning, drafting, editorial validation |
 | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy, backlog persistence |
 | `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness, branch hygiene, repo-safety review |
@@ -117,6 +118,28 @@ Add when needed:
 - `@design-systems-architect`
 - `@customer-advocate`
 - `@product-owner`
+- `@tech-writer`
+
+## Executive Team Notes
+
+The `Executive Team` exists because some questions are bigger than product scope but still smaller than "invent a whole company in chat."
+
+It usually combines:
+- executive or function-team boundaries
+- company-operating structure
+- public reusable kit architecture versus private product incubation
+- sequencing and leverage trade-offs across horizons
+- ownership and escalation clarity before more workflow layers are added
+
+Default expectation for meaningful executive-team flows:
+- `@product-owner`, `@business-analyst`, or `@vision-partner`
+- `@strategy-reviewer`
+
+Add when needed:
+- `@project-manager`
+- `@risk-officer`
+- `@session-budget-estimator`
+- `@idea-executor`
 - `@tech-writer`
 
 ## Git / GitHub Team Notes

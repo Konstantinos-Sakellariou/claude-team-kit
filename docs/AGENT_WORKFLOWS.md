@@ -6,7 +6,7 @@ All work flows through `@master`. Every example below starts and ends there.
 
 These workflows are also the reason the kit now defines reusable teams: when the same multi-agent shape appears repeatedly, `@master` can activate a team instead of reconstructing the orchestration pattern from scratch each time.
 
-Thirteen workflows are documented here, each demonstrating different collaboration patterns:
+Fourteen workflows are documented here, each demonstrating different collaboration patterns:
 
 1. **Engineering Pipeline** — parallel spikes, sequential implementation, gated quality stages
 2. **Content Publishing Pipeline** — research loop, human approval gate, parallel review, delivery feedback loop
@@ -21,6 +21,7 @@ Thirteen workflows are documented here, each demonstrating different collaborati
 11. **Data Team Flow** — ingestion, metrics, analysis, and trust gates for decision-ready data work
 12. **Large-Input Triage Flow** — classify noisy evidence, summarize the signal, and hand off narrowly before deeper work
 13. **Design Team Flow** — UX, UI, system-consistency, and brand-direction coordination for product or presentation surfaces
+14. **Executive Team Flow** — org-model shaping, public/private boundary decisions, and company-operating structure design
 
 ---
 
@@ -739,6 +740,42 @@ flowchart TD
 - `@ui-designer` turns that into clearer hierarchy and layout choices
 - `@brand-designer` joins when trust, identity, or presentation quality materially affect the outcome
 - `@design-systems-architect` prevents repeated UI decisions from drifting into inconsistent one-offs
+
+---
+
+## Workflow 14 — Executive Team Flow
+
+**Example trigger:** *"Shape the executive/function-team model for this kit, decide what stays public versus local, and recommend the strongest next operating layer without leaking the private product work."*
+
+**Patterns demonstrated:** reusable executive-team activation, public-versus-private boundary handling, strategic-fit review, bounded operating-model synthesis.
+
+```mermaid
+flowchart TD
+    USER(["👤 Executive or org-model request"])
+    USER --> MASTER
+
+    MASTER["@master\nActivates Executive Team\nChecks local context when relevant\nAnnounces boundary-safe plan"]
+
+    MASTER --> VP["@vision-partner\nGenerates strong operating-model options\nwithout assuming they all belong in public docs"]
+    VP --> BA["@business-analyst\nFrames leverage,\nownership, and operating trade-offs"]
+    BA --> FIT["@strategy-reviewer\nTests strategic fit,\nscope pressure, and timing"]
+
+    FIT --> COST{"Session pressure or\nsequencing risk involved?"}
+    COST -->|"Yes"| BUDGET["@session-budget-estimator\nChecks size,\nsplitting, and feasible next step"]
+    COST -->|"No"| RISK
+    BUDGET --> RISK
+
+    RISK["@risk-officer\nChecks private/public boundary,\nescalation clarity,\nand downside risk"]
+    RISK --> REPORT["@master synthesis\nSeparates public kit truth\nfrom private local operating truth\nand recommends the next layer"]
+    REPORT --> WU["@workspace-updater\nRuns only if tracked docs or\nsafe architecture guidance changed"]
+    WU --> DONE(["✓ Executive layer clarified"])
+```
+
+**Key points:**
+- `Executive Team` is the reusable coordination layer for executive/org-model and company-operating questions
+- `@master` can consult local context for private product incubation or POC material, but should keep the tracked result limited to safe reusable architecture unless the user explicitly approves more
+- `@vision-partner` opens the option space, `@business-analyst` and `@strategy-reviewer` tighten it, and `@risk-officer` protects the boundary
+- the output should make clear what belongs in the public kit and what should remain local operating context
 
 ---
 

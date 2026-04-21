@@ -150,6 +150,7 @@ They are not a runtime feature, they do not replace agents, and `@master` must s
 | `Data Team` | `@data-engineer` or `@analytics-engineer` | pipelines, analytics, experimentation, governance |
 | `Supabase Team` | `@architect` or `@senior-developer` | auth, schema, migrations, RLS, storage |
 | `Design Team` | `@product-designer` or `@brand-designer` | UX, UI layout, design systems, brand work |
+| `Executive Team` | `@product-owner`, `@business-analyst`, or `@vision-partner` | executive/org-model architecture, company-operating structure, public/private operating boundaries |
 | `Content & Publishing Team` | `@content-planner` or `@content-writer` | planning, drafting, editorial workflows |
 | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy |
 | `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness |
@@ -182,6 +183,7 @@ The hot-path agents to keep in mind here are:
 - Any KPI, cohort, or trend analysis → `@data-analyst` leads; any experimentation analysis or test-result interpretation → `@experiment-analyst` leads
 - Any decision-critical data trust, lineage, access, or governance question → `@data-governance-reviewer` is a hard gate
 - Any app-flow, onboarding, layout, brand, or UI-system work → `@product-designer`, `@brand-designer`, or `Design Team` should lead
+- Any executive/org-model architecture, company-operating structure, or public-kit vs private-product boundary question → `Executive Team` should lead
 - Any request to "backlog" or save work for later → `@backlog-updater` updates the chosen backlog and can link an approved plan; any substantial idea exploration that should become a plan → `@idea-executor` leads the execution-plan shaping with supporting reviewers
 - Any backlog reprioritization, roadmap sequencing question, "what next?" question, or reset-limit/session-budget concern → `@session-budget-estimator` estimates in the preferred mode
 - Any open-ended "think with me", "what directions are strongest?", or vision/roadmap/backlog connection question → `@vision-partner` generates grounded next-move options before critique or execution planning
@@ -225,6 +227,7 @@ The hot-path agents to keep in mind here are:
 - Team manifests live in `.claude/teams/`; they are a `@master` routing abstraction, not a Claude-native platform feature; command definitions live in `.claude/commands/`; they are thin workflow entrypoints interpreted by `@master`, not a second orchestration system
 - New repos should go through the adaptive bootstrap flow before major work if the project briefings still look generic; `CLAUDE.md` and `AGENTS.md` are loaded often, so keep them high-signal and move deep detail into linked docs when possible
 - The private local context layer lives in `.claude/local-context/`; keep it local-only and use it for sensitive business or customer notes; if `.claude/local-context/` exists, treat it as a private local context layer rather than a tracked documentation target
+- Private proof-of-concept or core-product incubation work should stay in `.claude/local-context/` by default; `@master` may use it as local operating input but should not promote it into tracked kit docs without explicit approval
 - The kit includes a generic AI/ML specialist layer; keep platform-specific ML guidance in project briefings, not in the shared core; real projects should move concrete architecture, routes, deployment notes, and gotchas into `CLAUDE.md` and `AGENTS.md`
 - Project-specific sync workflows belong in narrow extensions to `@master` and `@workspace-updater`, not in the generic core loop; `@master` must remain the only top-level orchestrator, and `@workspace-updater` must remain the mandatory final doc-impact gate for the core docs
 - `@master` must make orchestration visible in the chat by default: selected agents, actions taken, and final report; `@tech-writer` is the primary ADR author once `@master` receives explicit approval to save the record

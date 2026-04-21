@@ -21,6 +21,8 @@ This repository does not provide:
 
 Instead, it provides the configuration and prompting layer that can be dropped into another project or used as a template repository.
 
+Private product incubation or proof-of-concept work can live alongside that kit, but it belongs in local-only context rather than in the tracked public architecture by default.
+
 ## Canonical Sources
 
 The canonical implementation lives under `.claude/`.
@@ -74,18 +76,21 @@ The intended operating flow is:
 1. A user enters through `@master`
 2. In a new repo, `@master` may first run a bootstrap flow if the briefing still looks generic
 3. When relevant, `@master` may also read `.claude/local-context/` for local-only private context
-4. `@master` plans the work
-5. `@master` decides whether the work is best handled by a single agent, one team, or multiple teams
-6. Specialist agents contribute in parallel or sequence
-7. `@master` synthesizes the result
-8. Durable decisions are proposed as ADRs by default when they should outlive the chat
-9. `@workspace-updater` runs as the final doc-impact gate after significant changes and aligns docs only when needed
+4. `@master` separates reusable public kit truth from private local operating truth
+5. `@master` plans the work
+6. `@master` decides whether the work is best handled by a single agent, one team, or multiple teams
+7. Specialist agents contribute in parallel or sequence
+8. `@master` synthesizes the result
+9. Durable decisions are proposed as ADRs by default when they should outlive the chat
+10. `@workspace-updater` runs as the final doc-impact gate after significant changes and aligns docs only when needed
 
 This repo currently enforces that model through prompts, settings, hooks, and validation checks rather than through an external execution engine.
 
 Agents are the atomic specialists in that model.
 
 Teams are the reusable collaboration bundles around them.
+
+The new `Executive Team` sits in that same abstraction layer: it does not make the repo a runtime company simulator, but it gives `@master` a reusable way to reason about executive/org-model and public/private operating-boundary questions.
 
 That means:
 - agents do the actual work
@@ -130,4 +135,5 @@ When the kit is copied into a real repo, the adaptation work should happen in th
 - shell hooks rely on common local tools such as `python3`, `black`, `isort`, and `prettier`
 - local secrets belong in `.claude/settings.local.json` or environment variables, never tracked files
 - local private business and customer context belongs in `.claude/local-context/`, never tracked files by default
+- local private proof-of-concept or core-product incubation belongs in `.claude/local-context/`, never in tracked kit docs by default
 - `CLAUDE.md` and `AGENTS.md` should stay concise because they are high-frequency briefing files

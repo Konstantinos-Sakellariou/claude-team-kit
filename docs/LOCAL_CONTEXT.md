@@ -11,6 +11,7 @@ This folder is local-only and should stay gitignored.
 Good candidates:
 - private startup or company context
 - customer or stakeholder notes
+- private proof-of-concept or core-product incubation notes
 - pricing, fundraising, GTM, or investor framing
 - unreleased roadmap details
 - private phase plans or company-operating plans
@@ -36,6 +37,7 @@ Examples:
 - private roadmap execution notes
 - company-building phase plans
 - strategy-bearing horizon plans
+- proof-of-concept offer shaping or product incubation work
 
 Use only the files you actually need.
 
@@ -80,6 +82,10 @@ During new-repo bootstrap, `@master` should ask whether the repo wants a private
 That lets a team establish two different context surfaces early:
 - tracked repo context in `CLAUDE.md`, `AGENTS.md`, and `README.md`
 - local-only sensitive context in `.claude/local-context/`
+
+That same split is how `@master` should handle a public reusable kit alongside a private core-product direction:
+- tracked docs describe reusable kit truth
+- local context carries private product, POC, or company-operating detail unless the user explicitly approves promotion
 
 The same rule applies to plans:
 - public-safe example plans or intentionally shareable implementation references can live in `docs/plans/`

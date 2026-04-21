@@ -2,7 +2,7 @@
 
 [![Validate Workspace Kit](https://img.shields.io/github/actions/workflow/status/Konstantinos-Sakellariou/claude-team-kit/validate.yml?branch=main&label=validate)](https://github.com/Konstantinos-Sakellariou/claude-team-kit/actions/workflows/validate.yml)
 ![Agents](https://img.shields.io/badge/agents-53-0ea5e9)
-![Teams](https://img.shields.io/badge/teams-9-14b8a6)
+![Teams](https://img.shields.io/badge/teams-10-14b8a6)
 ![Skills](https://img.shields.io/badge/skills-20-f97316)
 ![Local Context](https://img.shields.io/badge/local_context-supported-22c55e)
 
@@ -61,7 +61,7 @@ For significant work, the report should also make clear:
 ```text
 .claude/
 ├── agents/          53 specialized agents across engineering, AI/ML, data, design, content, delivery, and advisory
-├── teams/           9 reusable team manifests that @master can activate for recurring workflows
+├── teams/           10 reusable team manifests that @master can activate for recurring workflows
 ├── skills/          20 reusable skills (code-review, fix-bug, business-case, create-pr, context-audit, triage-input, repo-cleanup...)
 ├── rules/           Modular rule files — docs, artifacts, context, Python, TypeScript, security, testing, git, performance, API design, AI/ML workflow
 ├── hooks/           Shell automations (auto-format, secret detection, file protection, doc-drift warning, tracked-artifact warning...)
@@ -188,6 +188,8 @@ Some repos need a second context layer that should help agents locally but shoul
 
 Use `.claude/local-context/` for private startup, customer, company, or strategy notes. Use `.claude/local-context/HANDOFF.md` when a session stops mid-stream and another model or tool needs a compact resume artifact.
 
+That same local layer is also the right place for private proof-of-concept or core-product incubation work. `@master` can use it as local decision support, but the tracked repo should keep publishing only reusable kit-safe truth unless you explicitly approve a public summary.
+
 See [`docs/LOCAL_CONTEXT.md`](docs/LOCAL_CONTEXT.md) for the full model and privacy boundary.
 
 ## Vision Alignment
@@ -268,6 +270,7 @@ flowchart TD
     MASTER --> DATA["📊 Data\n@data-engineer\n@analytics-engineer\n@data-analyst\n@experiment-analyst\n@data-governance-reviewer"]
     MASTER --> SUPA["🟢 Supabase\n@architect\n@senior-developer\n@security-auditor\n@qa-engineer\n@code-reviewer\n@production-readiness-reviewer"]
     MASTER --> DESIGN["🎨 Design\n@product-designer\n@ui-designer\n@brand-designer\n@design-systems-architect\n@customer-advocate"]
+    MASTER --> EXEC["🏛️ Executive\n@product-owner\n@business-analyst\n@vision-partner\n@strategy-reviewer\n@project-manager\n@risk-officer\n@session-budget-estimator"]
 
     MASTER --> CONT["📝 Content & Publishing\n@topic-researcher\n@content-planner\n@content-writer\n@editorial-reviewer\n@source-verifier\n@tone-calibrator\n@backlog-curator\n@feedback-synthesizer"]
 
@@ -281,6 +284,7 @@ flowchart TD
     DATA --> SYNTH
     SUPA --> SYNTH
     DESIGN --> SYNTH
+    EXEC --> SYNTH
     CONT --> SYNTH
     DELIV --> SYNTH
     GIT --> SYNTH
@@ -315,6 +319,7 @@ Teams are reusable orchestration bundles that `@master` can activate for recurri
 | `Data Team` | pipelines, warehouse modeling, analytics, experimentation, data governance |
 | `Supabase Team` | auth, schema, migrations, RLS, storage, edge functions, rollout safety |
 | `Design Team` | product UX, UI layout, design-system consistency, brand-sensitive presentation work |
+| `Executive Team` | executive/org-model architecture, company-operating structure, and public/private operating-boundary work |
 | `Content & Publishing Team` | planning, drafting, editorial review, source-backed publishing |
 | `Delivery & Ops Team` | release, delivery, monitoring, privacy, backlog persistence |
 | `Git / GitHub Team` | commit, push, PR, release readiness, branch hygiene, repo-safety review |
