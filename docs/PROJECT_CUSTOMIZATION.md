@@ -156,6 +156,12 @@ That bootstrap should:
 
 The goal is not perfect upfront certainty. The goal is enough real context that future agent work stops making obvious mistakes.
 
+If the repo is really a founder workspace, product studio, or early digital-service setup, bootstrap can extend into a company-building workflow:
+- shape product and customer context
+- clarify the first operating loop
+- decide what belongs in tracked briefings versus local-only context
+- recommend which teams and workflows should become reliable first
+
 ## Automatic Delegation Should Be Domain-Specific
 
 The default kit rules are intentionally broad. Real projects should tighten them.

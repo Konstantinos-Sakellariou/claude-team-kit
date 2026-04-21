@@ -6,7 +6,7 @@ All work flows through `@master`. Every example below starts and ends there.
 
 These workflows are also the reason the kit now defines reusable teams: when the same multi-agent shape appears repeatedly, `@master` can activate a team instead of reconstructing the orchestration pattern from scratch each time.
 
-Fourteen workflows are documented here, each demonstrating different collaboration patterns:
+Fifteen workflows are documented here, each demonstrating different collaboration patterns:
 
 1. **Engineering Pipeline** — parallel spikes, sequential implementation, gated quality stages
 2. **Content Publishing Pipeline** — research loop, human approval gate, parallel review, delivery feedback loop
@@ -22,6 +22,7 @@ Fourteen workflows are documented here, each demonstrating different collaborati
 12. **Large-Input Triage Flow** — classify noisy evidence, summarize the signal, and hand off narrowly before deeper work
 13. **Design Team Flow** — UX, UI, system-consistency, and brand-direction coordination for product or presentation surfaces
 14. **Executive Team Flow** — org-model shaping, public/private boundary decisions, and company-operating structure design
+15. **Company-Building Workflow** — founder-mode bootstrap that shapes product, customer, operating model, and private/public context together
 
 ---
 
@@ -776,6 +777,44 @@ flowchart TD
 - `@master` can consult local context for private product incubation or POC material, but should keep the tracked result limited to safe reusable architecture unless the user explicitly approves more
 - `@vision-partner` opens the option space, `@business-analyst` and `@strategy-reviewer` tighten it, and `@risk-officer` protects the boundary
 - the output should make clear what belongs in the public kit and what should remain local operating context
+
+---
+
+## Workflow 15 — Company-Building Workflow
+
+**Example trigger:** *"We are starting from a rough product idea. Help us shape the repo, the product direction, and the first operating workflow without leaking our private strategy."*
+
+**Patterns demonstrated:** founder-mode bootstrap, small-round guided initialization, public/private separation, initial team/workflow recommendation.
+
+```mermaid
+flowchart TD
+    USER(["👤 Founder-style new repo request"])
+    USER --> MASTER
+
+    MASTER["@master\nDetects bootstrap plus founder/company-building case\nAnnounces small-round company-building flow"]
+
+    MASTER --> ROUND1["@vision-partner\nClarifies product idea,\ncustomer, and problem"]
+    ROUND1 --> ROUND2["@business-analyst\nFrames offer shape,\noperating model,\nand leverage"]
+    ROUND2 --> ROUND3["@product-owner\nDefines first reliable workflow,\ninitial scope,\nand team needs"]
+
+    ROUND3 --> BOUNDARY{"Sensitive product or\ncompany detail involved?"}
+    BOUNDARY -->|"Yes"| LOCAL[".claude/local-context/\nStores private strategy,\nPOC, and operating detail"]
+    BOUNDARY -->|"No"| TRACKED["CLAUDE.md / AGENTS.md / README.md\nCapture safe repo-operating truth"]
+    LOCAL --> FIT
+    TRACKED --> FIT
+
+    FIT["@strategy-reviewer\nChecks fit, timing,\nand whether the workflow\nis still bounded enough"]
+    FIT --> REPORT["@master synthesis\nReturns the product/customer shape,\nfirst operating loop,\nand recommended teams/workflows"]
+    REPORT --> WU["@workspace-updater\nAligns tracked docs only where\nsafe public operating truth changed"]
+    WU --> DONE(["✓ Company-building workspace clarified"])
+```
+
+**Key points:**
+- this is still a bootstrap-style workflow, not a giant startup wizard
+- the first goal is a reliable operating workspace, not a complete company plan
+- tracked docs should capture safe product and repo-operating truth
+- sensitive founder, offer, POC, pricing, GTM, or company-operating details should default to local context
+- the workflow should end with a concrete first loop, not just abstract strategy
 
 ---
 

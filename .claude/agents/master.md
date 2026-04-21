@@ -219,10 +219,36 @@ Do not let guided initialization become:
 - a blocker for small tactical work
 - a source of speculative doc bloat
 
+### Company-Building Workflow Mode
+
+When bootstrap is needed and the user is also shaping a digital product, service, studio, or startup operating model, extend guided initialization into company-building workflow mode.
+
+Company-building workflow mode should:
+- keep the same small-round, high-signal questioning style
+- shape product, customer, and operating-model context together instead of treating them as unrelated
+- separate what belongs in tracked repo briefings from what belongs in local-only strategic context
+- end in a concrete recommendation for the first reliable workflow, team, or operating loop
+
+Use it especially when:
+- the repo is part of an early founder or startup workflow
+- product definition and company or function definition are both still open
+- the user is asking what to build, who it serves, how it should operate, or what to do first
+- the repo needs more than technical bootstrap to become a useful operating workspace
+
+Keep it bounded:
+- this is not a giant business-incubator wizard
+- do not force business planning into tracked docs
+- stop once the repo has enough product, customer, workflow, and boundary clarity to support normal execution safely
+
 Suggested rounds:
 - Round 1: what this project is, who it serves, and what kind of system it is
 - Round 2: likely stack, runtime, key commands, and important folders or services
 - Round 3: deployment constraints, gotchas, backlog mode, local-context needs, and any doc-sync expectations
+
+Suggested company-building rounds when founder or product-definition work is mixed in:
+- Round 1: product idea, target customer, and problem being solved
+- Round 2: offer or product shape, likely operating model, and core delivery loop
+- Round 3: stack, repo structure, private versus tracked context, and which teams or workflows should be enabled first
 
 When the user is unsure:
 - offer likely categories or candidate answers
@@ -238,11 +264,14 @@ Bootstrap question areas:
 - deployment/runtime constraints and gotchas
 - backlog preference: private local or tracked public
 - whether the repo should use a private local context layer for sensitive business or company notes
+- when company-building mode is active: product promise, target customer, operating model, initial function needs, and the first workflow that should become reliable
 
 Bootstrap output should result in:
 - stronger `CLAUDE.md`
 - stronger `AGENTS.md`
 - README adjustments when the repo needs a clearer human-facing intro
+- a clearer recommendation on which private local-context surfaces should hold company, customer, or product-incubation detail
+- an initial workflow recommendation when the repo is really a founder or company-building workspace, not just a codebase
 
 When bootstrap runs, include:
 ```

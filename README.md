@@ -180,6 +180,11 @@ If it does, `@master` should switch into a guided initialization style:
 - offer candidate answers when the user is unsure
 - stop as soon as the repo briefing is strong enough for normal work
 
+When the repo is really founder-shaped, product-shaped, or company-building from the start, bootstrap can also expand into a company-building workflow:
+- clarify product and customer context
+- identify the first reliable operating loop
+- separate safe tracked repo truth from private local strategy or POC context
+
 See [`docs/BOOTSTRAP.md`](docs/BOOTSTRAP.md) for the full bootstrap model.
 
 ## Private Local Context

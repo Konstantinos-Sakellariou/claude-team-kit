@@ -127,6 +127,7 @@ Bootstrap should stay flexible:
 - accept partial answers
 - allow temporary assumptions when the user is unsure
 - use guided initialization when the repo is especially underdefined
+- extend into company-building workflow mode when product and operating-model shaping are part of setup
 - ask in small rounds instead of a giant setup questionnaire
 - offer candidate answers or categories when the user is still figuring the project out
 - do not interrupt already-customized repos unnecessarily

@@ -45,6 +45,23 @@ Guided initialization should not:
 - become a blocking setup wizard
 - stuff speculative detail into `CLAUDE.md`, `AGENTS.md`, or `README.md`
 
+## Company-Building Workflow Mode
+
+Sometimes a copied repo is not only under-configured technically. It is also under-defined as a product and operating workspace.
+
+When the user is shaping a startup, studio, digital service, or early product while also setting up the repo, `@master` should extend guided initialization into a company-building workflow mode.
+
+That mode should:
+- keep the same small-round, high-signal questioning style
+- clarify product, customer, and operating-model context together
+- separate public reusable repo truth from private local company or product-incubation context
+- recommend which teams, workflows, and artifacts should become reliable first
+
+That mode should not:
+- become a giant founder questionnaire
+- force business planning into tracked docs
+- pretend the kit itself is a runtime company platform
+
 ## When It Should Trigger
 
 Bootstrap is appropriate when a repo outside `claude-team-kit` still looks template-like.
@@ -77,6 +94,7 @@ Good question areas:
 - deployment constraints and gotchas
 - preferred backlog mode: private local or tracked public
 - whether the repo should use the private local context layer for sensitive business, customer, or strategy notes
+- when founder or company-building mode is active: product promise, target customer, offer or workflow shape, early function needs, and the first delivery loop that should become reliable
 
 ## Suggested Rounds
 
@@ -102,6 +120,31 @@ Focus on:
 - backlog preference
 - any documentation sync expectations
 
+### Founder / Company-Building Rounds
+
+Use these when founder or product-definition work is mixed into setup:
+
+#### Round 1: What Product Are We Actually Building?
+
+Focus on:
+- the product or service idea
+- who it serves
+- what painful problem it solves
+
+#### Round 2: How Should This Operate?
+
+Focus on:
+- the likely delivery loop or service model
+- which functions matter first
+- whether the repo is mainly product delivery, product studio, internal ops, or a hybrid
+
+#### Round 3: What Belongs In Public Briefings Versus Local Context?
+
+Focus on:
+- which details are safe tracked repo truth
+- which details should stay in `.claude/local-context/`
+- which teams or workflows should become reliable first
+
 ## Flexibility Rule
 
 Users will not always know the exact stack, deployment shape, or architecture yet.
@@ -114,6 +157,11 @@ That is fine.
 - offer candidate answers or categories when that helps the user think
 - label assumptions clearly
 - avoid pretending uncertain information is final
+
+When company-building mode is active, `@master` should also:
+- keep tracked docs focused on safe operating truth
+- recommend local context for sensitive founder, product-incubation, or company notes
+- surface an initial team or workflow recommendation once the first operating loop becomes clear
 
 The goal is better working context, not perfect upfront documentation.
 

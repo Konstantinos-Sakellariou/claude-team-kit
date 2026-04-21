@@ -189,6 +189,8 @@ Current command set:
 - `/triage-input`
 - `/context-audit`
 
+Bootstrap can also expand into a company-building workflow when the repo is founder-shaped and the problem is not only technical setup but product and operating-model definition.
+
 ## Rules
 
 Rules live in `.claude/rules/`.
@@ -258,6 +260,7 @@ Start here depending on the need:
 - optional project-shape overlays: `docs/STARTER_PACKS.md`
 - optional RTK efficiency layer: `docs/RTK_INTEGRATION.md`
 - bootstrap and initialization: `docs/BOOTSTRAP.md`
+- company-building workflow model: `docs/BOOTSTRAP.md` and `docs/AGENT_WORKFLOWS.md`
 - context efficiency: `docs/CONTEXT_EFFICIENCY.md`
 - private local context: `docs/LOCAL_CONTEXT.md`
 - team model: `docs/TEAMS.md`
