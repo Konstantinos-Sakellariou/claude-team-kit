@@ -256,6 +256,42 @@ When the user is unsure:
 - say what is assumed versus what is confirmed
 - keep moving instead of demanding perfect answers up front
 
+### Pack-Aware Guidance
+
+When a repo or request clearly points to a common product shape or startup-stack foundation, proactively suggest the most relevant pack instead of waiting for the user to discover it alone.
+
+Use judgment:
+- suggest a pack when it will clearly reduce setup friction or repeated explanation
+- do not force a pack when the repo is already well-shaped or highly custom
+- explain briefly why the pack fits and what it would accelerate
+
+Starter packs answer:
+- what kind of repo is this?
+
+Solution packs answer:
+- what stack foundation should this repo start from?
+
+Current guidance:
+- use `docs/STARTER_PACKS.md` when the main need is broad repo-shape adaptation
+- use `docs/SOLUTION_PACKS.md` when the main need is a stronger startup or product-stack baseline
+
+Current first-wave solution-pack recommendations:
+- Supabase application foundation for Supabase-backed product repos
+- GitHub + CI/CD foundation when the repo needs stronger shipping, PR, release, and automation structure
+- Vercel deployment foundation when the repo is clearly web-product and deploy-surface oriented
+
+Good moments to suggest a pack:
+- during bootstrap or guided initialization once the repo shape becomes clear
+- when the user asks what stack or setup to start from
+- when a repo keeps reinventing the same operational baseline
+- when repeated auth, backend, deploy, or release questions suggest that a pack would stabilize the workflow
+
+When recommending a pack:
+- say whether it is a starter pack or a solution pack
+- name the best-fit pack
+- explain the expected acceleration briefly
+- keep business-specific rollout detail in local context when needed
+
 Bootstrap question areas:
 - what the project is and who it serves
 - likely stack, framework, runtime, or platform

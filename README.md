@@ -294,6 +294,25 @@ Use [`docs/STARTER_PACKS.md`](docs/STARTER_PACKS.md) when a copied repo clearly 
 The packs are not part of the runtime model.
 They are adaptation overlays that help bootstrap and customization converge faster.
 
+## Solution Packs
+
+This kit can also grow into optional solution packs for common startup and product foundations.
+
+Use [`docs/SOLUTION_PACKS.md`](docs/SOLUTION_PACKS.md) for the public-safe contract:
+- starter packs shape the repo type
+- solution packs shape the stack foundation
+- integration adapters handle provider-specific wiring where needed
+
+`@master` should recommend the most relevant pack when a repo or request clearly matches one.
+
+The first intended pack wave is:
+- Supabase application foundation
+- GitHub + CI/CD foundation
+- Vercel deployment foundation
+
+The first concrete pack is now:
+- [`Supabase Application Foundation`](docs/solution-packs/supabase-foundation.md)
+
 ## Team Overview
 
 ```mermaid

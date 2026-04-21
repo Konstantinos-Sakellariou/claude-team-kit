@@ -19,6 +19,26 @@ Current starter packs cover:
 
 Use a pack to speed up briefing quality, not to avoid real customization.
 
+## Optional Solution Packs
+
+If the repo needs a stronger stack foundation, use `docs/SOLUTION_PACKS.md`.
+
+Starter packs help answer:
+- what kind of repo is this?
+
+Solution packs help answer:
+- what stack foundation should this repo start from?
+
+The intended first foundations are:
+- Supabase application foundation
+- GitHub + CI/CD foundation
+- Vercel deployment foundation
+
+Use solution packs to accelerate setup, not to avoid business-specific customization.
+
+The first concrete pack is:
+- `docs/solution-packs/supabase-foundation.md`
+
 ## Keep Core Briefings Lean
 
 `CLAUDE.md` and `AGENTS.md` are high-frequency briefing files.
@@ -105,6 +125,11 @@ Good project-specific Supabase briefings usually add:
 
 The shared `Supabase Team` should know how to route this class of work, but the copied repo still needs to describe its real files, constraints, and rollout risks.
 
+If the repo wants a stronger out-of-the-box Supabase baseline first, start with:
+- `docs/solution-packs/supabase-foundation.md`
+
+Then customize the copied repo's real Supabase surface and business rules on top.
+
 ## If The Project Has A Real Data Stack
 
 Use the shared `Data Team` when the repo has meaningful:
@@ -175,6 +200,11 @@ For larger repos, it may also decide whether an optional graph/repo-intelligence
 - future app-backed exploration
 
 But keep that layer optional unless the repo clearly benefits from it.
+
+Bootstrap may also decide whether the repo wants a stronger solution-pack foundation:
+- use only a starter pack when the repo shape is enough
+- add a solution pack when the stack itself needs a stronger operating baseline
+- keep business-specific rollout detail local when the pack setup reveals private operating choices
 
 ## Automatic Delegation Should Be Domain-Specific
 

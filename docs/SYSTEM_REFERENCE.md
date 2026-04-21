@@ -16,6 +16,7 @@ Pair it with:
 - `docs/DOCUMENTATION_GOVERNANCE.md` for the rule that keeps this depth out of the hot path
 - `docs/SELF_UPGRADE.md` for the maintainer playbook on evolving the kit safely
 - `docs/STARTER_PACKS.md` for optional project-shape overlays
+- `docs/SOLUTION_PACKS.md` for the optional startup-stack and product-foundation pack contract
 
 ## Operating Layers
 
@@ -32,6 +33,8 @@ Pair it with:
 | Local Context | Private local-only company or strategy context | `.claude/local-context/` | Use for sensitive notes that should not be tracked | master, backlog, planning |
 | Durable Memory Model | Cross-layer continuity architecture | `docs/DURABLE_MEMORY.md` | Use to understand how agent memory, backlog, plans, ADRs, and local context fit together | agent memory, backlog, ADRs, local context, handoff |
 | Graph / Repo Intelligence | Optional relationship layer across repo artifacts | `docs/GRAPH_INTELLIGENCE.md` | Use to understand the optional graph/repo-intelligence boundary and future fit | durable memory, workflows, context-audit, future product surfaces |
+| Solution Packs | Optional stack-foundation layer for common product setups | `docs/SOLUTION_PACKS.md` | Use to understand how startup-stack and product-foundation packs should stay modular and composable | starter packs, customization, teams, future integration adapters |
+| Solution Pack Library | Concrete reusable pack examples | `docs/solution-packs/` | Use when a repo wants a stronger operational foundation than a starter pack alone provides | solution packs, customization, domain teams |
 | Backlog | Durable deferred-work registry | `BACKLOG.md` or `docs/BACKLOG.md` | Save ideas for later through `@backlog-updater` | plans, vision, local context |
 | Roadmap | Optional local phased sequencing and milestone view, with a tracked template | `docs/ROADMAP.md` and `docs/ROADMAP.example.md` | Use for phase planning and roadmap-level priorities | vision, backlog, plans |
 | Plans | Rich execution artifacts for approved work | `docs/plans/` and `.claude/local-context/plans/` | Save only with approval, defaulting to local for real next-step plans and using tracked plans only for public-safe examples or shareable references | backlog, idea-executor, local context |
@@ -260,6 +263,8 @@ Start here depending on the need:
 - documentation policy: `docs/DOCUMENTATION_GOVERNANCE.md`
 - maintainer upgrade path: `docs/SELF_UPGRADE.md`
 - optional project-shape overlays: `docs/STARTER_PACKS.md`
+- optional startup-stack foundations: `docs/SOLUTION_PACKS.md`
+- concrete reusable pack examples: `docs/solution-packs/README.md`
 - optional RTK efficiency layer: `docs/RTK_INTEGRATION.md`
 - bootstrap and initialization: `docs/BOOTSTRAP.md`
 - company-building workflow model: `docs/BOOTSTRAP.md` and `docs/AGENT_WORKFLOWS.md`
@@ -269,6 +274,7 @@ Start here depending on the need:
 - private local context: `docs/LOCAL_CONTEXT.md`
 - team model: `docs/TEAMS.md`
 - Supabase domain-pack reference: `docs/SUPABASE_REFERENCE.md`
+- Supabase foundation pack: `docs/solution-packs/supabase-foundation.md`
 - design-domain reference: `docs/DESIGN_REFERENCE.md`
 - workflow examples: `docs/AGENT_WORKFLOWS.md`
 - repo adaptation: `docs/PROJECT_CUSTOMIZATION.md`

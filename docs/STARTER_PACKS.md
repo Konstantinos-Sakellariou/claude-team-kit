@@ -33,6 +33,22 @@ The intended flow is:
 
 Starter packs should accelerate customization, not replace it.
 
+## How They Relate To Solution Packs
+
+Starter packs and solution packs solve different problems.
+
+Use starter packs to answer:
+- what kind of repo is this?
+
+Use solution packs to answer:
+- what stack foundation should this repo start from?
+
+Examples:
+- `Startup Studio` starter pack -> broad operating shape
+- `Supabase application foundation` solution pack -> concrete stack foundation
+
+See `docs/SOLUTION_PACKS.md` for the pack-contract layer.
+
 ## Available Packs
 
 | Pack | Best For | Main Focus |
@@ -74,6 +90,7 @@ If a repo spans multiple shapes, start with the primary operating model and then
 ## Related Docs
 
 - `docs/PROJECT_CUSTOMIZATION.md`
+- `docs/SOLUTION_PACKS.md`
 - `docs/BOOTSTRAP.md`
 - `docs/LOCAL_CONTEXT.md`
 - `docs/SYSTEM_REFERENCE.md`
