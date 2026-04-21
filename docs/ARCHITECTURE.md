@@ -56,6 +56,8 @@ Repo-level docs explain and package that implementation:
 - `AGENTS.md`: repo briefing for Codex-style tools that read AGENTS files
 - `docs/BOOTSTRAP.md`: how new repos should be initialized when the kit is copied elsewhere
 - `docs/CONTEXT_EFFICIENCY.md`: how to keep context lean, high-signal, and cheaper to reuse across sessions
+- `docs/DURABLE_MEMORY.md`: how memory layers, privacy boundaries, and retrieval expectations fit together
+- `docs/GRAPH_INTELLIGENCE.md`: how an optional relationship/intelligence layer could later sit on top of the current artifact model
 - `docs/DOCUMENTATION_GOVERNANCE.md`: how to keep the repo fully documented without bloating the hot path
 - `docs/SELF_UPGRADE.md`: how maintainers should evolve the kit safely without drift or boundary mistakes
 - `docs/STARTER_PACKS.md`: optional project-shape overlays for faster adaptation into common product contexts
@@ -91,6 +93,16 @@ Agents are the atomic specialists in that model.
 Teams are the reusable collaboration bundles around them.
 
 The new `Executive Team` sits in that same abstraction layer: it does not make the repo a runtime company simulator, but it gives `@master` a reusable way to reason about executive/org-model and public/private operating-boundary questions.
+
+The durable-memory layer follows the same boundary:
+- tracked memory for reusable heuristics and approved durable records
+- local memory for current private operating truth
+- artifact-based continuity before any heavier platform move
+
+The same applies to graph/repo intelligence:
+- relationship-first, not runtime-first
+- optional, not mandatory
+- built on top of artifact clarity, not instead of it
 
 That means:
 - agents do the actual work

@@ -15,6 +15,12 @@ It is designed to be copied into a real repo, customized quickly, and then used 
 This kit supports a local vision and roadmap model.
 Use [`docs/VISION.example.md`](docs/VISION.example.md) and [`docs/ROADMAP.example.md`](docs/ROADMAP.example.md) as tracked starters, and keep real `docs/VISION.md` / `docs/ROADMAP.md` local when they contain private strategy or sequencing.
 
+It also now has an explicit durable-memory model.
+Use [`docs/DURABLE_MEMORY.md`](docs/DURABLE_MEMORY.md) for the tracked public architecture, and keep repo-specific product, POC, and operating reality in `.claude/local-context/`.
+
+There is also now a public-safe optional graph/repo-intelligence model.
+Use [`docs/GRAPH_INTELLIGENCE.md`](docs/GRAPH_INTELLIGENCE.md) for the architecture and rollout boundary, while keeping any future index or intelligence tooling optional.
+
 ## Quick Start
 
 If you want the easiest possible start:
@@ -91,6 +97,33 @@ scripts/             Setup and validation helpers
 ```
 
 The full feature and connection map lives in [`docs/SYSTEM_REFERENCE.md`](docs/SYSTEM_REFERENCE.md).
+
+## Durable Memory
+
+This kit treats memory as an architecture layer, not just a side effect of long chats.
+
+The model is intentionally split:
+- tracked agent memory for reusable heuristics
+- backlog, plans, and ADRs for durable work and decisions
+- local context for private current reality
+- handoff and estimation logs for local session continuity
+
+The important boundary is:
+- public tracked memory explains reusable kit truth
+- local memory carries private product, customer, roadmap, and POC truth
+
+See [`docs/DURABLE_MEMORY.md`](docs/DURABLE_MEMORY.md) for the full architecture.
+
+## Graph Intelligence
+
+This kit now has an explicit stance on graph/repo intelligence:
+- potentially valuable
+- especially useful for larger artifact sets and future productization
+- optional by design
+
+The intended use is a relationship layer across docs, plans, ADRs, workflows, teams, and local context, not a mandatory graph database in the core.
+
+See [`docs/GRAPH_INTELLIGENCE.md`](docs/GRAPH_INTELLIGENCE.md) for the full model.
 
 ## Context Efficiency
 
@@ -429,6 +462,8 @@ The short version is:
 - `docs/BOOTSTRAP.md` explains how `@master` should initialize a new repo briefing when this kit is copied elsewhere
 - `docs/CONTEXT_EFFICIENCY.md` explains how to keep briefing files lean, requests high-signal, and large inputs under control
 - `docs/LOCAL_CONTEXT.md` explains the private local context layer and its privacy boundary
+- `docs/DURABLE_MEMORY.md` explains how agent memory, backlog, plans, ADRs, local context, and handoff artifacts fit together
+- `docs/GRAPH_INTELLIGENCE.md` explains the optional graph/repo-intelligence layer and where it may fit later
 - `docs/SYSTEM_REFERENCE.md` gives the full feature inventory, system connections, and navigation map
 - `docs/TEAMS.md` explains the reusable team abstraction and how `@master` uses it
 - `docs/PROJECT_CUSTOMIZATION.md` shows how to turn the generic kit into a real project briefing
@@ -500,6 +535,8 @@ If backlog preference is not known yet, `@master` should ask whether the project
 | `docs/CONTEXT_EFFICIENCY.md` | Context-quality rules, request-shaping, and large-input triage guidance |
 | `docs/DOCUMENTATION_GOVERNANCE.md` | Hot-path summary policy, linkback rules, and anti-bloat documentation guidance |
 | `docs/LOCAL_CONTEXT.md` | Private local-context model for sensitive company, customer, and strategy notes |
+| `docs/DURABLE_MEMORY.md` | Durable-memory architecture, retrieval model, privacy boundary, and future expansion path |
+| `docs/GRAPH_INTELLIGENCE.md` | Optional graph/repo-intelligence architecture, scope boundary, and rollout path |
 | `docs/SYSTEM_REFERENCE.md` | Full feature inventory, connections, and usage/navigation map |
 | `docs/TEAMS.md` | Team abstraction, reusable manifests, and team operating rules |
 | `docs/PROJECT_CUSTOMIZATION.md` | How to adapt the generic kit to a concrete repo |

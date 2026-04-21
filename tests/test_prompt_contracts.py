@@ -126,6 +126,48 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn(".claude/local-context/", local_context)
         self.assertIn(".claude/local-context/", gitignore)
 
+    def test_durable_memory_architecture_is_tracked_and_visible(self) -> None:
+        memory_doc = read("docs/DURABLE_MEMORY.md")
+        readme = read("README.md")
+        claude = read("CLAUDE.md")
+        agents = read("AGENTS.md")
+        architecture = read("docs/ARCHITECTURE.md")
+        local_context = read("docs/LOCAL_CONTEXT.md")
+        customization = read("docs/PROJECT_CUSTOMIZATION.md")
+        system_reference = read("docs/SYSTEM_REFERENCE.md")
+
+        self.assertIn("# Durable Memory", memory_doc)
+        self.assertIn("## Memory Layers", memory_doc)
+        self.assertIn("## Retrieval Model", memory_doc)
+        self.assertIn("## Tracked Versus Local", memory_doc)
+        self.assertIn("## How We Actually Achieve Durability", memory_doc)
+        self.assertIn("docs/DURABLE_MEMORY.md", readme)
+        self.assertIn("docs/DURABLE_MEMORY.md", claude)
+        self.assertIn("docs/DURABLE_MEMORY.md", agents)
+        self.assertIn("docs/DURABLE_MEMORY.md", architecture)
+        self.assertIn("docs/DURABLE_MEMORY.md", local_context)
+        self.assertIn("memory split", customization)
+        self.assertIn("Durable Memory Model", system_reference)
+
+    def test_graph_repo_intelligence_is_tracked_and_visible(self) -> None:
+        graph_doc = read("docs/GRAPH_INTELLIGENCE.md")
+        readme = read("README.md")
+        claude = read("CLAUDE.md")
+        agents = read("AGENTS.md")
+        architecture = read("docs/ARCHITECTURE.md")
+        customization = read("docs/PROJECT_CUSTOMIZATION.md")
+        system_reference = read("docs/SYSTEM_REFERENCE.md")
+
+        self.assertIn("# Graph And Repo Intelligence", graph_doc)
+        self.assertIn("## Why It Must Stay Optional", graph_doc)
+        self.assertIn("## Suggested Rollout", graph_doc)
+        self.assertIn("docs/GRAPH_INTELLIGENCE.md", readme)
+        self.assertIn("docs/GRAPH_INTELLIGENCE.md", claude)
+        self.assertIn("docs/GRAPH_INTELLIGENCE.md", agents)
+        self.assertIn("docs/GRAPH_INTELLIGENCE.md", architecture)
+        self.assertIn("graph/repo-intelligence layer", customization)
+        self.assertIn("Graph / Repo Intelligence", system_reference)
+
     def test_backlog_preference_memory_is_tracked_and_visible(self) -> None:
         master = read(".claude/agents/master.md")
         updater = read(".claude/agents/backlog-updater.md")

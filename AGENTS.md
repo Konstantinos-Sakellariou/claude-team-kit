@@ -19,6 +19,8 @@ Owner: Konstantinos Sakellariou
 - See `docs/RTK_INTEGRATION.md` for the optional RTK local-efficiency integration path
 - See `docs/DOCUMENTATION_GOVERNANCE.md` for anti-bloat documentation policy
 - See `docs/LOCAL_CONTEXT.md` for the private local context layer
+- See `docs/DURABLE_MEMORY.md` for the durable-memory architecture and tracked-vs-local memory split
+- See `docs/GRAPH_INTELLIGENCE.md` for the optional graph/repo-intelligence layer and rollout boundary
 - See `docs/SELF_UPGRADE.md` for the maintainer guide on evolving the kit safely
 - See `docs/STARTER_PACKS.md` for optional project-shape overlays such as SaaS, API, AI/ML, and startup-studio repos
 - See `docs/SYSTEM_REFERENCE.md` for the full feature inventory and connection map
@@ -40,6 +42,8 @@ Owner: Konstantinos Sakellariou
 - Review local estimation log if present: `sed -n '1,240p' .claude/local-context/estimation-log.md 2>/dev/null`
 - Review context-efficiency guide: `sed -n '1,240p' docs/CONTEXT_EFFICIENCY.md`
 - Review private local context guide: `sed -n '1,240p' docs/LOCAL_CONTEXT.md`
+- Review durable-memory guide: `sed -n '1,240p' docs/DURABLE_MEMORY.md`
+- Review graph/repo-intelligence guide: `sed -n '1,240p' docs/GRAPH_INTELLIGENCE.md`
 - Review self-upgrade guide: `sed -n '1,240p' docs/SELF_UPGRADE.md`
 - Review starter packs: `sed -n '1,240p' docs/STARTER_PACKS.md`
 - Inspect local context files: `find .claude/local-context -maxdepth 1 -type f 2>/dev/null | sort`
@@ -228,6 +232,8 @@ The hot-path agents to keep in mind here are:
 - Team manifests live in `.claude/teams/`; they are a `@master` routing abstraction, not a Claude-native platform feature; command definitions live in `.claude/commands/`; they are thin workflow entrypoints interpreted by `@master`, not a second orchestration system
 - New repos should go through the adaptive bootstrap flow before major work if the project briefings still look generic; `CLAUDE.md` and `AGENTS.md` are loaded often, so keep them high-signal and move deep detail into linked docs when possible
 - The private local context layer lives in `.claude/local-context/`; keep it local-only and use it for sensitive business or customer notes; if `.claude/local-context/` exists, treat it as a private local context layer rather than a tracked documentation target
+- `docs/DURABLE_MEMORY.md` defines how agent memory, backlog, plans, ADRs, local context, handoff, and estimation logs should interconnect without turning the kit into a memory platform
+- `docs/GRAPH_INTELLIGENCE.md` defines the optional relationship/intelligence layer that may later sit on top of the current artifact model without becoming a required core dependency
 - Private proof-of-concept or core-product incubation work should stay in `.claude/local-context/` by default; `@master` may use it as local operating input but should not promote it into tracked kit docs without explicit approval
 - The kit includes a generic AI/ML specialist layer; keep platform-specific ML guidance in project briefings, not in the shared core; real projects should move concrete architecture, routes, deployment notes, and gotchas into `CLAUDE.md` and `AGENTS.md`
 - Project-specific sync workflows belong in narrow extensions to `@master` and `@workspace-updater`, not in the generic core loop; `@master` must remain the only top-level orchestrator, and `@workspace-updater` must remain the mandatory final doc-impact gate for the core docs

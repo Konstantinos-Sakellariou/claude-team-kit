@@ -20,6 +20,7 @@ Good candidates:
 
 Keep tracked docs for safe operational truth.
 Keep local context for private working truth.
+Use [`docs/DURABLE_MEMORY.md`](docs/DURABLE_MEMORY.md) when you need the full cross-layer memory model.
 
 ## Suggested Files
 

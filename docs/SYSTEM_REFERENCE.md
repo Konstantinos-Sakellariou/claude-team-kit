@@ -30,6 +30,8 @@ Pair it with:
 | Hooks | Lightweight automation and hygiene reinforcement | `.claude/hooks/` | Fire through workspace settings | rules, doctor, tests |
 | Memory | Persistent per-agent memory | `.claude/agent-memory/` | Read and update through the agent lifecycle | agents, local context |
 | Local Context | Private local-only company or strategy context | `.claude/local-context/` | Use for sensitive notes that should not be tracked | master, backlog, planning |
+| Durable Memory Model | Cross-layer continuity architecture | `docs/DURABLE_MEMORY.md` | Use to understand how agent memory, backlog, plans, ADRs, and local context fit together | agent memory, backlog, ADRs, local context, handoff |
+| Graph / Repo Intelligence | Optional relationship layer across repo artifacts | `docs/GRAPH_INTELLIGENCE.md` | Use to understand the optional graph/repo-intelligence boundary and future fit | durable memory, workflows, context-audit, future product surfaces |
 | Backlog | Durable deferred-work registry | `BACKLOG.md` or `docs/BACKLOG.md` | Save ideas for later through `@backlog-updater` | plans, vision, local context |
 | Roadmap | Optional local phased sequencing and milestone view, with a tracked template | `docs/ROADMAP.md` and `docs/ROADMAP.example.md` | Use for phase planning and roadmap-level priorities | vision, backlog, plans |
 | Plans | Rich execution artifacts for approved work | `docs/plans/` and `.claude/local-context/plans/` | Save only with approval, defaulting to local for real next-step plans and using tracked plans only for public-safe examples or shareable references | backlog, idea-executor, local context |
@@ -262,6 +264,8 @@ Start here depending on the need:
 - bootstrap and initialization: `docs/BOOTSTRAP.md`
 - company-building workflow model: `docs/BOOTSTRAP.md` and `docs/AGENT_WORKFLOWS.md`
 - context efficiency: `docs/CONTEXT_EFFICIENCY.md`
+- durable memory architecture: `docs/DURABLE_MEMORY.md`
+- graph and repo intelligence: `docs/GRAPH_INTELLIGENCE.md`
 - private local context: `docs/LOCAL_CONTEXT.md`
 - team model: `docs/TEAMS.md`
 - Supabase domain-pack reference: `docs/SUPABASE_REFERENCE.md`

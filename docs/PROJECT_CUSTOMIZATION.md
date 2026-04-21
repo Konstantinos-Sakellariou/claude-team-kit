@@ -162,6 +162,20 @@ If the repo is really a founder workspace, product studio, or early digital-serv
 - decide what belongs in tracked briefings versus local-only context
 - recommend which teams and workflows should become reliable first
 
+That same adaptation pass should also decide the memory split:
+- what reusable heuristics belong in tracked agent memory
+- what should live in backlog, plans, or ADRs
+- what current private reality should stay in `.claude/local-context/`
+- whether the repo will actively use `HANDOFF.md` and the local estimation log
+
+For larger repos, it may also decide whether an optional graph/repo-intelligence layer would help:
+- onboarding
+- impact analysis
+- context-audit quality
+- future app-backed exploration
+
+But keep that layer optional unless the repo clearly benefits from it.
+
 ## Automatic Delegation Should Be Domain-Specific
 
 The default kit rules are intentionally broad. Real projects should tighten them.
