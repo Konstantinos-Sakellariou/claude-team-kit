@@ -92,3 +92,8 @@ The same rule applies to plans:
 - public-safe example plans or intentionally shareable implementation references can live in `docs/plans/`
 - private strategy or roadmap plans should stay in `.claude/local-context/plans/`
 - when a plan reflects the repo's real likely-next work, prefer the local plan path unless the user explicitly wants it tracked
+
+The same boundary must hold for any future app surface:
+- the app may help surface or organize private local context
+- it must not silently promote that context into tracked repo artifacts
+- MCP-connected systems should inherit the same local-versus-tracked discipline rather than bypassing it

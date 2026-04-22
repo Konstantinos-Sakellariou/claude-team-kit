@@ -227,6 +227,33 @@ The first reusable design-pack library lives in:
 
 Use those packs as starting points, then move the real repo's actual brand and interface decisions into `DESIGN.md`, `CLAUDE.md`, or local context as appropriate.
 
+## Future App Surface And MCP Boundary
+
+If the copied repo later wants a real app surface or company-connected workflows, use `docs/APP_SURFACE_AND_MCP.md` first.
+
+That boundary should stay:
+- repo-first for canonical configuration and durable artifacts
+- app-second for interactive workflows
+- local-first for sensitive company, customer, and operating truth
+
+Do not let a future app surface become an excuse to skip:
+- clear repo briefings
+- durable ADRs
+- backlog and roadmap discipline
+- local/private context hygiene
+
+## Optional Artifacts Companion Layer
+
+If the repo would benefit from a more visual or interactive explainer layer, use `docs/ARTIFACTS.md`.
+
+Good uses:
+- team maps
+- pack choosers
+- bootstrap explainers
+- system-reference visualizers
+
+Keep the actual repo truth in tracked docs and keep any private operating detail local.
+
 ## Automatic Delegation Should Be Domain-Specific
 
 The default kit rules are intentionally broad. Real projects should tighten them.

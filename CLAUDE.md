@@ -21,6 +21,9 @@ Owner: Konstantinos Sakellariou
 - See `docs/LOCAL_CONTEXT.md` for the private local context layer
 - See `docs/DURABLE_MEMORY.md` for the durable-memory architecture and tracked-vs-local memory split
 - See `docs/GRAPH_INTELLIGENCE.md` for the optional graph/repo-intelligence layer and rollout boundary
+- See `docs/APP_SURFACE_AND_MCP.md` for the future app-surface boundary and MCP-connected systems model
+- See `docs/ARTIFACTS.md` for the optional Artifacts companion-layer stance
+- See `docs/AGENT_SDK_USER_INPUT.md` for the optional future Agent SDK user-input compatibility layer
 - See `docs/SELF_UPGRADE.md` for the maintainer guide on evolving the kit safely
 - See `docs/STARTER_PACKS.md` for optional project-shape overlays such as SaaS, API, AI/ML, and startup-studio repos
 - See `docs/SOLUTION_PACKS.md` for the optional startup-stack and product-foundation pack contract
@@ -46,6 +49,9 @@ Owner: Konstantinos Sakellariou
 - Review private local context guide: `sed -n '1,240p' docs/LOCAL_CONTEXT.md`
 - Review durable-memory guide: `sed -n '1,240p' docs/DURABLE_MEMORY.md`
 - Review graph/repo-intelligence guide: `sed -n '1,240p' docs/GRAPH_INTELLIGENCE.md`
+- Review app-surface and MCP guide: `sed -n '1,240p' docs/APP_SURFACE_AND_MCP.md`
+- Review Artifacts companion-layer guide: `sed -n '1,240p' docs/ARTIFACTS.md`
+- Review Agent SDK user-input guide: `sed -n '1,240p' docs/AGENT_SDK_USER_INPUT.md`
 - Review self-upgrade guide: `sed -n '1,240p' docs/SELF_UPGRADE.md`
 - Review starter packs: `sed -n '1,240p' docs/STARTER_PACKS.md`
 - Review solution packs: `sed -n '1,240p' docs/SOLUTION_PACKS.md`

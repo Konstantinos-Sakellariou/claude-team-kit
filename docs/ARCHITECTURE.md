@@ -58,6 +58,7 @@ Repo-level docs explain and package that implementation:
 - `docs/CONTEXT_EFFICIENCY.md`: how to keep context lean, high-signal, and cheaper to reuse across sessions
 - `docs/DURABLE_MEMORY.md`: how memory layers, privacy boundaries, and retrieval expectations fit together
 - `docs/GRAPH_INTELLIGENCE.md`: how an optional relationship/intelligence layer could later sit on top of the current artifact model
+- `docs/APP_SURFACE_AND_MCP.md`: how a future app surface could sit on top of the repo model and where MCP-connected systems would fit
 - `docs/DOCUMENTATION_GOVERNANCE.md`: how to keep the repo fully documented without bloating the hot path
 - `docs/SELF_UPGRADE.md`: how maintainers should evolve the kit safely without drift or boundary mistakes
 - `docs/STARTER_PACKS.md`: optional project-shape overlays for faster adaptation into common product contexts
@@ -103,6 +104,12 @@ The same applies to graph/repo intelligence:
 - relationship-first, not runtime-first
 - optional, not mandatory
 - built on top of artifact clarity, not instead of it
+
+The same should hold for any future app surface:
+- repo-first, not app-first
+- interactive layer on top, not a replacement for durable repo artifacts
+- MCP-connected systems only where they materially improve a real operator workflow
+- local/private operating truth stays protected even if a future app helps surface it
 
 That means:
 - agents do the actual work

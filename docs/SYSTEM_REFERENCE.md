@@ -18,6 +18,9 @@ Pair it with:
 - `docs/STARTER_PACKS.md` for optional project-shape overlays
 - `docs/SOLUTION_PACKS.md` for the optional startup-stack and product-foundation pack contract
 - `docs/DESIGN_PACKS.md` for the optional design-pack and `DESIGN.md` workflow contract
+- `docs/APP_SURFACE_AND_MCP.md` for the future product-surface boundary and MCP-connected systems model
+- `docs/ARTIFACTS.md` for the optional Artifacts companion-layer stance
+- `docs/AGENT_SDK_USER_INPUT.md` for the optional future Agent SDK user-input compatibility layer
 
 ## Operating Layers
 
@@ -34,6 +37,9 @@ Pair it with:
 | Local Context | Private local-only company or strategy context | `.claude/local-context/` | Use for sensitive notes that should not be tracked | master, backlog, planning |
 | Durable Memory Model | Cross-layer continuity architecture | `docs/DURABLE_MEMORY.md` | Use to understand how agent memory, backlog, plans, ADRs, and local context fit together | agent memory, backlog, ADRs, local context, handoff |
 | Graph / Repo Intelligence | Optional relationship layer across repo artifacts | `docs/GRAPH_INTELLIGENCE.md` | Use to understand the optional graph/repo-intelligence boundary and future fit | durable memory, workflows, context-audit, future product surfaces |
+| App Surface And MCP Systems | Future product-surface and connector boundary | `docs/APP_SURFACE_AND_MCP.md` | Use to understand what should stay repo-native, what could become app-native later, and where MCP-connected systems fit safely | durable memory, graph intelligence, local context, future productization |
+| Artifacts Companion Layer | Optional presentation and onboarding layer | `docs/ARTIFACTS.md` | Use to understand how Artifacts can help explain or demo the kit without replacing tracked docs | onboarding, app surface, starter packs, system reference |
+| Agent SDK User Input | Future structured-question and approval compatibility layer | `docs/AGENT_SDK_USER_INPUT.md` | Use to understand how future host-side user-input handling could improve bootstrap and approval flows without changing the current core boundary | app surface, bootstrap, approvals, future SDK hosts |
 | Solution Packs | Optional stack-foundation layer for common product setups | `docs/SOLUTION_PACKS.md` | Use to understand how startup-stack and product-foundation packs should stay modular and composable | starter packs, customization, teams, future integration adapters |
 | Solution Pack Library | Concrete reusable pack examples | `docs/solution-packs/` | Use when a repo wants a stronger operational foundation than a starter pack alone provides | solution packs, customization, domain teams |
 | Design Packs | Optional visual and brand-foundation layer | `docs/DESIGN_PACKS.md` | Use to understand how reusable visual-system starting points and optional `DESIGN.md` artifacts should fit the kit | Design Team, customization, future design-pack library |

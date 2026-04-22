@@ -21,6 +21,15 @@ Use [`docs/DURABLE_MEMORY.md`](docs/DURABLE_MEMORY.md) for the tracked public ar
 There is also now a public-safe optional graph/repo-intelligence model.
 Use [`docs/GRAPH_INTELLIGENCE.md`](docs/GRAPH_INTELLIGENCE.md) for the architecture and rollout boundary, while keeping any future index or intelligence tooling optional.
 
+There is also now a public-safe future app-surface boundary.
+Use [`docs/APP_SURFACE_AND_MCP.md`](docs/APP_SURFACE_AND_MCP.md) to understand what should stay repo-native, what could later become app-native, and how MCP-connected systems should fit without weakening the private operating boundary.
+
+There is also now a public-safe Artifacts stance.
+Use [`docs/ARTIFACTS.md`](docs/ARTIFACTS.md) for how Artifacts can support onboarding and explanation without replacing the repo as the source of truth.
+
+There is also now a public-safe Agent SDK user-input stance.
+Use [`docs/AGENT_SDK_USER_INPUT.md`](docs/AGENT_SDK_USER_INPUT.md) for how future structured-question and approval flows could fit a host app without pretending the current repo already supports them.
+
 ## Quick Start
 
 If you want the easiest possible start:
@@ -124,6 +133,33 @@ This kit now has an explicit stance on graph/repo intelligence:
 The intended use is a relationship layer across docs, plans, ADRs, workflows, teams, and local context, not a mandatory graph database in the core.
 
 See [`docs/GRAPH_INTELLIGENCE.md`](docs/GRAPH_INTELLIGENCE.md) for the full model.
+
+## App Surface And MCP Systems
+
+This kit now also defines the future product boundary explicitly:
+- the repo remains the canonical configuration and durable-artifact layer
+- any later app surface should be an interactive operating layer on top, not a replacement for the repo model
+- MCP-connected systems should be added only when they materially improve a real operator workflow
+
+See [`docs/APP_SURFACE_AND_MCP.md`](docs/APP_SURFACE_AND_MCP.md) for the boundary, first candidate workflows, and privacy rules.
+
+## Artifacts Companion Layer
+
+This kit now also defines a safe stance on Claude Artifacts:
+- Artifacts are optional companion surfaces
+- they are useful for explainers, selectors, demos, and onboarding
+- they should not replace tracked docs or private local context
+
+See [`docs/ARTIFACTS.md`](docs/ARTIFACTS.md) for the boundary and best first use cases.
+
+## Agent SDK User Input
+
+This kit now also defines a safe stance on future Agent SDK user-input integration:
+- useful for structured questions and approval-heavy workflows
+- a strong fit for bootstrap, planning, and release checkpoints
+- not something the markdown-only core should claim to support natively today
+
+See [`docs/AGENT_SDK_USER_INPUT.md`](docs/AGENT_SDK_USER_INPUT.md) for the compatibility boundary.
 
 ## Context Efficiency
 
