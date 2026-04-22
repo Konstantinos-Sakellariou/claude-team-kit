@@ -39,6 +39,7 @@ Use solution packs to accelerate setup, not to avoid business-specific customiza
 The first concrete packs are:
 - `docs/solution-packs/supabase-foundation.md`
 - `docs/solution-packs/github-cicd-foundation.md`
+- `docs/solution-packs/vercel-foundation.md`
 
 ## Keep Core Briefings Lean
 
@@ -206,6 +207,25 @@ Bootstrap may also decide whether the repo wants a stronger solution-pack founda
 - use only a starter pack when the repo shape is enough
 - add a solution pack when the stack itself needs a stronger operating baseline
 - keep business-specific rollout detail local when the pack setup reveals private operating choices
+
+## Optional Design Packs
+
+If the repo needs a stronger visual or brand starting point, use `docs/DESIGN_PACKS.md`.
+
+Design packs help answer:
+- what visual foundation should this repo start from?
+
+An optional `DESIGN.md` can help when the repo needs a compact design brief for:
+- product UX
+- marketing or brand surfaces
+- reusable design-system guidance
+
+Use design packs to accelerate visual consistency, not to avoid product-specific design judgment.
+
+The first reusable design-pack library lives in:
+- `docs/design-packs/README.md`
+
+Use those packs as starting points, then move the real repo's actual brand and interface decisions into `DESIGN.md`, `CLAUDE.md`, or local context as appropriate.
 
 ## Automatic Delegation Should Be Domain-Specific
 

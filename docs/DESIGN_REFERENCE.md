@@ -73,3 +73,21 @@ A good design-team pass should leave:
 
 The immediate repo-specific follow-up after adding the team is:
 - re-check the README hero and broader brand/layout quality with the new design capability in place
+
+## Design Team And Design Packs
+
+The `Design Team` owns the judgment layer.
+
+Design packs are the reusable starting layer that can help the team begin from:
+- a stronger visual direction
+- a reusable brand/system baseline
+- an optional `DESIGN.md` brief when that artifact is helpful
+
+Use the team for decisions.
+Use design packs for stronger defaults.
+
+The first reusable design-pack library now covers:
+- clean SaaS product
+- startup studio / founder service
+- premium service / advisory
+- technical console / dashboard

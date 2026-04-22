@@ -164,6 +164,9 @@ If the command is unknown:
 User guidance:
 - if the request is too broad, help narrow it rather than exploding scope immediately
 - if a better result depends on exact paths, exact errors, or expected output, ask for that briefly or make a bounded first pass and state the assumption
+- when a pre-made guide, pack, command, or workflow already fits, tell the user clearly and use it instead of making them rediscover the path from scratch
+- when the user needs operational help, prefer clear step-by-step guidance over vague advice
+- when you can complete a meaningful step directly through the coding window or available tools, offer that help explicitly and proceed when the user has already made the goal clear
 
 ---
 
@@ -271,23 +274,35 @@ Starter packs answer:
 Solution packs answer:
 - what stack foundation should this repo start from?
 
+Design packs answer:
+- what visual or brand foundation should this repo start from?
+
 Current guidance:
 - use `docs/STARTER_PACKS.md` when the main need is broad repo-shape adaptation
 - use `docs/SOLUTION_PACKS.md` when the main need is a stronger startup or product-stack baseline
+- use `docs/DESIGN_PACKS.md` when the main need is a stronger visual, brand, or design-system starting point
 
 Current first-wave solution-pack recommendations:
 - Supabase application foundation for Supabase-backed product repos
 - GitHub + CI/CD foundation when the repo needs stronger shipping, PR, release, and automation structure
 - Vercel deployment foundation when the repo is clearly web-product and deploy-surface oriented
 
+Current first-wave design-pack recommendations:
+- Clean SaaS product when the repo needs a trustworthy product-led visual baseline
+- Startup studio / founder service when the repo needs a warmer strategic-service posture
+- Premium service / advisory when the repo needs a calm, higher-trust brand surface
+- Technical console / dashboard when the repo needs denser operator-facing UI guidance
+
 Good moments to suggest a pack:
 - during bootstrap or guided initialization once the repo shape becomes clear
 - when the user asks what stack or setup to start from
 - when a repo keeps reinventing the same operational baseline
 - when repeated auth, backend, deploy, or release questions suggest that a pack would stabilize the workflow
+- when repeated hero, layout, onboarding, or visual-system questions suggest that a reusable design starting point would help
 
 When recommending a pack:
 - say whether it is a starter pack or a solution pack
+- say when it is a design pack instead
 - name the best-fit pack
 - explain the expected acceleration briefly
 - keep business-specific rollout detail in local context when needed

@@ -24,6 +24,7 @@ Owner: Konstantinos Sakellariou
 - See `docs/SELF_UPGRADE.md` for the maintainer guide on evolving the kit safely
 - See `docs/STARTER_PACKS.md` for optional project-shape overlays such as SaaS, API, AI/ML, and startup-studio repos
 - See `docs/SOLUTION_PACKS.md` for the optional startup-stack and product-foundation pack contract
+- See `docs/DESIGN_PACKS.md` for the optional design-pack and `DESIGN.md` workflow contract
 - See `docs/SYSTEM_REFERENCE.md` for the full feature inventory and connection map
 - See `docs/PROJECT_CUSTOMIZATION.md` when adapting this kit to a real repo
 - Canonical implementation lives in `.claude/`
@@ -48,6 +49,7 @@ Owner: Konstantinos Sakellariou
 - Review self-upgrade guide: `sed -n '1,240p' docs/SELF_UPGRADE.md`
 - Review starter packs: `sed -n '1,240p' docs/STARTER_PACKS.md`
 - Review solution packs: `sed -n '1,240p' docs/SOLUTION_PACKS.md`
+- Review design packs: `sed -n '1,240p' docs/DESIGN_PACKS.md`
 - Inspect local context files: `find .claude/local-context -maxdepth 1 -type f 2>/dev/null | sort`
 - Review changes: `git diff --stat`
 - Inspect agents: `find .claude/agents -maxdepth 1 -type f | sort`

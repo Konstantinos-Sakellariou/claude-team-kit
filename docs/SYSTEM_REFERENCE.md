@@ -17,6 +17,7 @@ Pair it with:
 - `docs/SELF_UPGRADE.md` for the maintainer playbook on evolving the kit safely
 - `docs/STARTER_PACKS.md` for optional project-shape overlays
 - `docs/SOLUTION_PACKS.md` for the optional startup-stack and product-foundation pack contract
+- `docs/DESIGN_PACKS.md` for the optional design-pack and `DESIGN.md` workflow contract
 
 ## Operating Layers
 
@@ -35,6 +36,8 @@ Pair it with:
 | Graph / Repo Intelligence | Optional relationship layer across repo artifacts | `docs/GRAPH_INTELLIGENCE.md` | Use to understand the optional graph/repo-intelligence boundary and future fit | durable memory, workflows, context-audit, future product surfaces |
 | Solution Packs | Optional stack-foundation layer for common product setups | `docs/SOLUTION_PACKS.md` | Use to understand how startup-stack and product-foundation packs should stay modular and composable | starter packs, customization, teams, future integration adapters |
 | Solution Pack Library | Concrete reusable pack examples | `docs/solution-packs/` | Use when a repo wants a stronger operational foundation than a starter pack alone provides | solution packs, customization, domain teams |
+| Design Packs | Optional visual and brand-foundation layer | `docs/DESIGN_PACKS.md` | Use to understand how reusable visual-system starting points and optional `DESIGN.md` artifacts should fit the kit | Design Team, customization, future design-pack library |
+| Design Pack Library | Concrete reusable visual and brand starting points | `docs/design-packs/` | Use when a repo wants a stronger design baseline than a blank page or ad hoc direction provides | design packs, Design Team, customization |
 | Backlog | Durable deferred-work registry | `BACKLOG.md` or `docs/BACKLOG.md` | Save ideas for later through `@backlog-updater` | plans, vision, local context |
 | Roadmap | Optional local phased sequencing and milestone view, with a tracked template | `docs/ROADMAP.md` and `docs/ROADMAP.example.md` | Use for phase planning and roadmap-level priorities | vision, backlog, plans |
 | Plans | Rich execution artifacts for approved work | `docs/plans/` and `.claude/local-context/plans/` | Save only with approval, defaulting to local for real next-step plans and using tracked plans only for public-safe examples or shareable references | backlog, idea-executor, local context |
@@ -264,6 +267,8 @@ Start here depending on the need:
 - maintainer upgrade path: `docs/SELF_UPGRADE.md`
 - optional project-shape overlays: `docs/STARTER_PACKS.md`
 - optional startup-stack foundations: `docs/SOLUTION_PACKS.md`
+- optional visual and brand foundations: `docs/DESIGN_PACKS.md`
+- future reusable design-pack library: `docs/design-packs/README.md`
 - concrete reusable pack examples: `docs/solution-packs/README.md`
 - optional RTK efficiency layer: `docs/RTK_INTEGRATION.md`
 - bootstrap and initialization: `docs/BOOTSTRAP.md`
@@ -276,7 +281,9 @@ Start here depending on the need:
 - Supabase domain-pack reference: `docs/SUPABASE_REFERENCE.md`
 - Supabase foundation pack: `docs/solution-packs/supabase-foundation.md`
 - GitHub and CI/CD foundation pack: `docs/solution-packs/github-cicd-foundation.md`
+- Vercel deployment foundation pack: `docs/solution-packs/vercel-foundation.md`
 - design-domain reference: `docs/DESIGN_REFERENCE.md`
+- design-pack contract: `docs/DESIGN_PACKS.md`
 - workflow examples: `docs/AGENT_WORKFLOWS.md`
 - repo adaptation: `docs/PROJECT_CUSTOMIZATION.md`
 

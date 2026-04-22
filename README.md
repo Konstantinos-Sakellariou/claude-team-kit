@@ -313,6 +313,26 @@ The first intended pack wave is:
 The first concrete packs are now:
 - [`Supabase Application Foundation`](docs/solution-packs/supabase-foundation.md)
 - [`GitHub And CI/CD Foundation`](docs/solution-packs/github-cicd-foundation.md)
+- [`Vercel Deployment Foundation`](docs/solution-packs/vercel-foundation.md)
+
+## Design Packs
+
+This kit can also grow into optional design packs for visual, brand, and design-system foundations.
+
+Use [`docs/DESIGN_PACKS.md`](docs/DESIGN_PACKS.md) for the contract:
+- starter packs shape the repo type
+- solution packs shape the stack foundation
+- design packs shape the visual foundation
+
+`@master` should recommend the most relevant design pack when a repo or request clearly matches one.
+
+`DESIGN.md` is supported as an optional compact design brief, not a required core artifact.
+
+The first reusable design-pack library now includes:
+- [`Clean SaaS Product`](docs/design-packs/clean-saas.md)
+- [`Startup Studio / Founder Service`](docs/design-packs/startup-studio.md)
+- [`Premium Service / Advisory`](docs/design-packs/premium-service.md)
+- [`Technical Console / Dashboard`](docs/design-packs/technical-console.md)
 
 ## Team Overview
 

@@ -104,7 +104,7 @@ The strongest first candidates are:
 
 1. [`Supabase application foundation`](solution-packs/supabase-foundation.md)
 2. [`GitHub + CI/CD foundation`](solution-packs/github-cicd-foundation.md)
-3. `Vercel deployment foundation`
+3. [`Vercel deployment foundation`](solution-packs/vercel-foundation.md)
 
 Why these first:
 - they match the current startup-stack direction strongly
@@ -118,7 +118,7 @@ Later categories may include:
 - service packs such as Stripe, PostHog, Sentry, Resend, Clerk, Upstash, or Pinecone
 - design packs for visual and brand-system starting points
 
-Those should come later, after the pack contract proves itself.
+Those should stay modular, with design packs now defined separately in `docs/DESIGN_PACKS.md`.
 
 ## MCP And Credentials Guidance
 
@@ -155,6 +155,7 @@ the kit should say:
 - `docs/solution-packs/README.md`
 - `docs/solution-packs/supabase-foundation.md`
 - `docs/solution-packs/github-cicd-foundation.md`
+- `docs/solution-packs/vercel-foundation.md`
 - `docs/PROJECT_CUSTOMIZATION.md`
 - `docs/SYSTEM_REFERENCE.md`
 - `docs/LOCAL_CONTEXT.md`
