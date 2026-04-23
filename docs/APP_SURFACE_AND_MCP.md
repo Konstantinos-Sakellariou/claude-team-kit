@@ -71,9 +71,15 @@ The strongest first app flows are:
 2. Review current operating state
 - backlog
 - roadmap
+- vision or strategy direction when present
 - handoff
 - recent decisions
 - current next move
+
+That review surface should likely feel more like:
+- a calm dashboard home
+- timeline and current-state visibility
+- easier movement between “what matters now” and “what connects to it”
 
 3. Navigate related artifacts
 - see which docs, packs, plans, or ADRs connect to a workflow
@@ -81,6 +87,7 @@ The strongest first app flows are:
 
 4. Guided workflow entry
 - bootstrap a repo
+- run a guided intake or onboarding flow
 - shape an idea into a plan
 - run release-readiness checks
 - inspect doc-impact or handoff state
@@ -153,6 +160,12 @@ The clean mental model is:
 - repo = canonical operating system and durable artifact layer
 - app = interactive operating surface
 - MCP = optional connected system layer
+
+If the app grows into a richer operator surface, the best first home screen is likely:
+- backlog, roadmap, vision, and handoff visibility
+- current recommended next step
+- guided entry into the right workflow
+- optional usage or system-status visibility when a hosted runtime exists
 
 That keeps the repo useful on its own, while still leaving room for a future product that feels easier, richer, and more operator-friendly.
 

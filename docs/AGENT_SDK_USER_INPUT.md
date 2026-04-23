@@ -53,6 +53,11 @@ The strongest future use cases are:
 - clarifying a preferred mode or workflow
 - reducing ambiguity for non-expert users
 
+4. Guided intake or onboarding flows
+- collecting a few strong signals before choosing a path
+- producing a concise summary instead of a raw transcript
+- routing a user toward the right workflow, pack, or next step
+
 ## What The Core Repo Should Do Today
 
 The core repo should:
@@ -80,6 +85,8 @@ Good pattern:
 - clear choices
 - low ambiguity
 - explicit approval moments
+- one strong question at a time when the user is still orienting
+- structured summaries that can feed later workflow steps
 
 ## Relationship To The App Surface
 
@@ -89,6 +96,14 @@ The intended progression is:
 - prompts stay usable in plain chat today
 - the repo defines clear approval and question points
 - a future SDK/app host can later render those more cleanly through structured UI
+
+One especially strong future use case is a guided intake or onboarding experience:
+- ask a short sequence of high-signal questions
+- reduce ambiguity before the main workflow begins
+- create a compact structured summary
+- route the user into the most appropriate next path
+
+That pattern stays compatible with the current markdown-first model because the same logic can still be expressed as prompt-driven questioning today.
 
 That makes this a compatibility target for:
 - future product surfaces
