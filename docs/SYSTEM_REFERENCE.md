@@ -38,7 +38,7 @@ Pair it with:
 | Durable Memory Model | Cross-layer continuity architecture | `docs/DURABLE_MEMORY.md` | Use to understand how agent memory, backlog, plans, ADRs, and local context fit together | agent memory, backlog, ADRs, local context, handoff |
 | Graph / Repo Intelligence | Optional relationship layer across repo artifacts | `docs/GRAPH_INTELLIGENCE.md` | Use to understand the optional graph/repo-intelligence boundary and future fit | durable memory, workflows, context-audit, future product surfaces |
 | App Surface And MCP Systems | Future product-surface and connector boundary | `docs/APP_SURFACE_AND_MCP.md` | Use to understand what should stay repo-native, what could become app-native later, and where MCP-connected systems fit safely | durable memory, graph intelligence, local context, future productization |
-| Artifacts Companion Layer | Optional presentation and onboarding layer | `docs/ARTIFACTS.md` | Use to understand how Artifacts can help explain or demo the kit without replacing tracked docs | onboarding, app surface, starter packs, system reference |
+| Artifacts Companion Layer | Optional presentation and onboarding layer | `docs/ARTIFACTS.md` | Use to understand how Artifacts can help explain, demo, or package proof-friendly views of the kit without replacing tracked docs | onboarding, app surface, starter packs, system reference |
 | Agent SDK User Input | Future structured-question and approval compatibility layer | `docs/AGENT_SDK_USER_INPUT.md` | Use to understand how future host-side user-input handling could improve bootstrap and approval flows without changing the current core boundary | app surface, bootstrap, approvals, future SDK hosts |
 | Solution Packs | Optional stack-foundation layer for common product setups | `docs/SOLUTION_PACKS.md` | Use to understand how startup-stack and product-foundation packs should stay modular and composable | starter packs, customization, teams, future integration adapters |
 | Solution Pack Library | Concrete reusable pack examples | `docs/solution-packs/` | Use when a repo wants a stronger operational foundation than a starter pack alone provides | solution packs, customization, domain teams |
@@ -195,6 +195,7 @@ They are best for:
 
 Current command set:
 - `/bootstrap-repo`
+- `/customize-repo`
 - `/save-backlog`
 - `/plan-idea`
 - `/write-adr`

@@ -7,6 +7,29 @@ Use `claude-team-kit` in two layers:
 
 The kit should stay generic. The project briefing should be concrete.
 
+For real projects, it is often helpful to think in one more precise split:
+
+- `core kit layer`
+  - reusable agents, teams, rules, hooks, skills, packs, and generic guidance
+- `repo-specific overlay`
+  - project facts, project workflows, project commands, project-specific specialists, project-specific local context
+
+The goal is not to create two unrelated systems.
+The goal is to let one reusable system become project-specific on top.
+
+## Bootstrap Versus Customization
+
+Use `bootstrap` when the repo still looks like a copied template.
+
+Use `customization` when the repo already exists, but still needs more project-specific shaping.
+
+Good shorthand:
+- bootstrap = get out of template mode
+- customization = get into project mode
+
+The `/bootstrap-repo` command should be used when the repo still lacks a real identity.
+The `/customize-repo` command should be used when the repo has a direction, but the operating layer still needs to catch up.
+
 ## Optional Starter Packs
 
 If a copied repo already resembles a common product shape, start with the closest pack in `docs/STARTER_PACKS.md`.
@@ -70,6 +93,16 @@ When you drop this kit into a real repo, update `CLAUDE.md` and `AGENTS.md` with
 - real commands for dev, tests, lint, build, and deploy
 - environment variables and secret-handling expectations
 - repo-specific gotchas that would cause bad agent decisions if omitted
+
+Then, only if the repo truly needs them, extend the overlay into:
+- repo-specific commands
+- repo-specific agents
+- repo-specific teams
+- repo-specific local-context structure
+- repo-specific hooks or automation expectations
+
+Do not add those just because they are possible.
+Add them when the real project workflow benefits from them repeatedly.
 
 ## What Good Project Briefings Usually Include
 
@@ -183,6 +216,16 @@ That bootstrap should:
 
 The goal is not perfect upfront certainty. The goal is enough real context that future agent work stops making obvious mistakes.
 
+During bootstrap or customization, `@master` should follow:
+- `Listen`
+- `Summarize`
+- `Deepen`
+
+That means:
+- listen carefully to what the user and repo already reveal
+- summarize the understood project shape briefly
+- deepen only where missing information is still blocking safe high-quality work
+
 If the repo is really a founder workspace, product studio, or early digital-service setup, bootstrap can extend into a company-building workflow:
 - shape product and customer context
 - clarify the first operating loop
@@ -207,6 +250,29 @@ Bootstrap may also decide whether the repo wants a stronger solution-pack founda
 - use only a starter pack when the repo shape is enough
 - add a solution pack when the stack itself needs a stronger operating baseline
 - keep business-specific rollout detail local when the pack setup reveals private operating choices
+
+## What Repo-Specific Overlay Usually Means
+
+The overlay usually includes:
+- repo-specific `README.md`
+- repo-specific `CLAUDE.md`
+- repo-specific `AGENTS.md`
+- real architecture constraints
+- real commands
+- real deployment notes
+- real local/private context
+
+It may also include:
+- project-specific commands
+- project-specific skills
+- project-specific specialists
+- project-specific team triggers
+
+The overlay should answer:
+- what this project actually is
+- how it is supposed to work
+- what agents should not get wrong
+- which generic kit defaults need stronger local rules
 
 ## Optional Design Packs
 

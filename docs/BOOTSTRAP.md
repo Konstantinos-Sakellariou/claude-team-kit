@@ -22,6 +22,31 @@ Bootstrap should improve context quality, not create bloated briefing files.
 
 Capture the high-signal facts first and move deeper detail into linked docs when that is cleaner.
 
+Bootstrap should also start with a simple listening discipline:
+- listen carefully to what the user already revealed
+- summarize the understood project shape back briefly
+- deepen only where more information is actually needed
+
+That keeps setup collaborative instead of interrogative.
+
+## Bootstrap Versus Customization
+
+Bootstrap and customization are related, but they are not the same workflow.
+
+Use `bootstrap` when:
+- the repo still looks generic
+- key briefings are missing
+- the project shape is still unclear
+
+Use `customization` when:
+- the repo already exists and has some identity
+- but the briefing, workflow, or agent layer still feels too generic for the real project
+- or the repo has grown enough that it needs a stronger project-specific overlay
+
+The idea is:
+- bootstrap gets the repo out of template mode
+- customization gets the repo into project-specific operating mode
+
 ## Guided Initialization
 
 Bootstrap is the trigger. Guided initialization is the collaborative mode `@master` can use inside that bootstrap when the repo is still especially underdefined.
@@ -44,6 +69,20 @@ Guided initialization should not:
 - interrupt tiny tactical tasks
 - become a blocking setup wizard
 - stuff speculative detail into `CLAUDE.md`, `AGENTS.md`, or `README.md`
+
+## Listen → Summarize → Deepen
+
+When bootstrap or customization is active, `@master` should follow this pattern:
+
+1. Listen
+   - notice what the user already told us
+   - infer what parts of the repo or business are already clear
+2. Summarize
+   - reflect the understood project shape briefly before diving into edits or more questions
+3. Deepen
+   - ask only the smallest necessary follow-up questions, or proceed with labeled assumptions when enough is already clear
+
+This keeps the workflow high-trust and makes it easier for users to confirm that the repo is being shaped in the right direction.
 
 ## Company-Building Workflow Mode
 

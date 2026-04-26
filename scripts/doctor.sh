@@ -107,7 +107,7 @@ else
   fail ".claude/commands directory is missing"
 fi
 
-for command in bootstrap-repo save-backlog plan-idea write-adr release-check sync-docs triage-input context-audit; do
+for command in bootstrap-repo customize-repo save-backlog plan-idea write-adr release-check sync-docs triage-input context-audit; do
   if [ -f "$ROOT_DIR/.claude/commands/${command}.md" ]; then
     pass "${command} command exists"
   else

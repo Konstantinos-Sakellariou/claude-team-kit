@@ -45,6 +45,7 @@ class PromptContractTests(unittest.TestCase):
 
         for path in [
             ".claude/commands/bootstrap-repo.md",
+            ".claude/commands/customize-repo.md",
             ".claude/commands/save-backlog.md",
             ".claude/commands/plan-idea.md",
             ".claude/commands/write-adr.md",
@@ -57,6 +58,7 @@ class PromptContractTests(unittest.TestCase):
 
         self.assertIn("## Command Layer", master)
         self.assertIn("/bootstrap-repo", master)
+        self.assertIn("/customize-repo", master)
         self.assertIn("Workflow Commands", readme)
         self.assertIn("Inspect command layer", claude)
         self.assertIn("Inspect command layer", agents)
@@ -69,6 +71,8 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn("## New Repo Bootstrap", master)
         self.assertIn("Do not trigger bootstrap when:", master)
         self.assertIn("Treat bootstrap as needed when", master)
+        self.assertIn("## Repo Customization Mode", master)
+        self.assertIn("Listen → Summarize → Deepen", master)
         self.assertIn("### Guided Initialization Mode", master)
         self.assertIn("ask in small rounds, not one giant questionnaire", master)
         self.assertIn("offer likely categories or candidate answers", master)
@@ -76,6 +80,22 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn("Bootstrap question areas:", master)
         self.assertIn("make a reasonable temporary assumption and label it clearly", master)
         self.assertIn("Before I proceed: this repo still looks under-configured", master)
+
+    def test_bootstrap_and_customization_docs_are_aligned(self) -> None:
+        master = read(".claude/agents/master.md")
+        bootstrap = read("docs/BOOTSTRAP.md")
+        customization = read("docs/PROJECT_CUSTOMIZATION.md")
+        readme = read("README.md")
+        architecture = read("docs/ARCHITECTURE.md")
+
+        self.assertIn("/customize-repo", readme)
+        self.assertIn("Bootstrap Versus Customization", bootstrap)
+        self.assertIn("Listen → Summarize → Deepen", bootstrap)
+        self.assertIn("core kit layer", customization)
+        self.assertIn("repo-specific overlay", customization)
+        self.assertIn("/customize-repo", customization)
+        self.assertIn("repo-specific overlay", architecture)
+        self.assertIn("## Repo Customization Mode", master)
 
     def test_workspace_updater_understands_bootstrap_follow_up(self) -> None:
         updater = read(".claude/agents/workspace-updater.md")

@@ -27,12 +27,14 @@ Artifacts are a strong fit for:
 - visual maps
 - guided selectors
 - demo prototypes
+- presentation-grade proof views
 - onboarding-friendly views of complex repo structure
 
 That makes them useful for:
 - showing how the team system works
 - helping users choose a starter pack or solution pack
 - explaining the bootstrap flow visually
+- packaging screenshots, flows, and before/after evidence into a cleaner explainer surface
 - presenting the operating layers more clearly than static markdown alone
 
 ## What Artifacts Should Not Replace
@@ -64,6 +66,10 @@ The safest first uses are:
 
 4. System-reference visualizer
 - present repo layers and connections more interactively than a long markdown page
+
+5. Demo and proof companion
+- present reusable screenshots, flow snapshots, and before/after evidence in a cleaner view
+- keep the durable source material in repo files, then use Artifacts as the presentation layer
 
 ## Relationship To The App Surface
 

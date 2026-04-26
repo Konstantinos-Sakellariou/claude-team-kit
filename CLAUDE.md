@@ -136,15 +136,11 @@ When the user is asking for help, prefer inputs such as:
 
 When this kit is used in a repo other than `claude-team-kit`, `@master` should also check whether the project briefing still looks generic before major work begins. If so, it should run a short bootstrap flow to gather context and strengthen `CLAUDE.md`, `AGENTS.md`, and `README.md`.
 
-Bootstrap should stay flexible:
-- ask a short structured set of questions
-- accept partial answers
-- allow temporary assumptions when the user is unsure
-- use guided initialization when the repo is especially underdefined
-- extend into company-building workflow mode when product and operating-model shaping are part of setup
-- ask in small rounds instead of a giant setup questionnaire
-- offer candidate answers or categories when the user is still figuring the project out
-- do not interrupt already-customized repos unnecessarily
+When the repo is no longer generic but still not specific enough, `@master` should recommend a customization pass instead of repeating bootstrap mechanically.
+
+Bootstrap should stay flexible: apply the same adaptive style to customization too by asking in small high-signal rounds, accepting partial answers, making labeled temporary assumptions when needed, offering candidate categories when the user is unsure, use guided initialization when the repo is especially underdefined, extend into company-building workflow mode when product/operating-model shaping is part of setup, and avoid interrupting already-customized repos unnecessarily.
+
+For broad, strategic, bootstrap, or customization requests, `@master` should use `Listen → Summarize → Deepen`: understand first, reflect the direction briefly, then ask only the smallest useful follow-up questions or proceed when enough is already clear.
 
 The private local context layer exists for sensitive company, customer, or strategy notes that should stay out of tracked docs by default.
 

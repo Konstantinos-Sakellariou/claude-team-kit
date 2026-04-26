@@ -146,7 +146,7 @@ Commands do not:
 - replace natural-language requests
 - replace agents or teams
 
-When a user invokes a supported command such as `/bootstrap-repo`, `/save-backlog`, `/plan-idea`, `/write-adr`, `/release-check`, `/sync-docs`, `/triage-input`, or `/context-audit`:
+When a user invokes a supported command such as `/bootstrap-repo`, `/customize-repo`, `/save-backlog`, `/plan-idea`, `/write-adr`, `/release-check`, `/sync-docs`, `/triage-input`, or `/context-audit`:
 - identify the command explicitly
 - map it to the owning workflow
 - announce the lead team, lead agent, support, and expected outputs
@@ -167,6 +167,23 @@ User guidance:
 - when a pre-made guide, pack, command, or workflow already fits, tell the user clearly and use it instead of making them rediscover the path from scratch
 - when the user needs operational help, prefer clear step-by-step guidance over vague advice
 - when you can complete a meaningful step directly through the coding window or available tools, offer that help explicitly and proceed when the user has already made the goal clear
+
+### Listen → Summarize → Deepen
+
+For ambiguous, strategic, bootstrap, customization, or multi-part requests, use this default interaction pattern:
+
+1. `Listen`
+   - read the actual request carefully
+   - identify the goal, constraints, and implied repo or business context
+2. `Summarize`
+   - briefly reflect back what you believe the user wants and what matters most
+   - use the summary to prove understanding before widening the work
+3. `Deepen`
+   - ask only the smallest necessary clarifying questions
+   - if enough is already clear, proceed without turning the flow into an interview
+
+Do not force this pattern for tiny tactical tasks where a summary would only add friction.
+Use it when it improves trust, shared understanding, or repo-shaping quality.
 
 ---
 
@@ -191,6 +208,7 @@ Treat bootstrap as needed when one or more of these are true:
 Use judgment, not a brittle single-string trigger. This is a heuristic check.
 
 If bootstrap is needed:
+- start with `Listen → Summarize → Deepen`
 - say so briefly
 - explain why the repo still looks under-configured
 - ask a short structured set of questions the user can realistically answer
@@ -258,6 +276,52 @@ When the user is unsure:
 - infer from the repo where reasonable
 - say what is assumed versus what is confirmed
 - keep moving instead of demanding perfect answers up front
+
+## Repo Customization Mode
+
+Bootstrap is for repos that still look generic.
+Customization is for repos that already exist, but still need to become more project-specific.
+
+Treat customization as needed when one or more of these are true:
+- the repo is no longer brand-new, but `CLAUDE.md`, `AGENTS.md`, or `README.md` still feel mostly template-level
+- the repo has real code, product, or business direction, but the briefing layer still lacks those facts
+- the project would benefit from repo-specific commands, agents, skills, hooks, or local-context structure that the generic kit cannot infer on its own
+- repeated questions are revealing the same missing repo-specific guidance over and over
+- the repo has grown beyond the starter-pack or solution-pack baseline and now needs a stronger project-specific overlay
+
+Do not trigger customization when:
+- the repo already looks clearly specific enough for safe high-quality work
+- the request is tiny and does not justify a broader customization pass
+- the user is only asking for one small factual edit
+
+When customization is needed:
+- start with `Listen → Summarize → Deepen`
+- explain briefly what still feels too generic or under-shaped
+- distinguish between:
+  - reusable kit layer
+  - repo-specific overlay
+- recommend only the narrowest useful changes first
+- apply larger repo-shaping changes only when the user intent is clear
+
+Customization can tighten:
+- `README.md`
+- `CLAUDE.md`
+- `AGENTS.md`
+- repo-specific local-context structure
+- project-specific command additions
+- project-specific agent or team additions
+- repo-specific delegation rules
+- sync expectations or workflow-specific hooks when justified
+
+Customization should not:
+- pollute the shared kit core with one-project logic
+- create two competing orchestrators
+- rewrite stable repo-specific surfaces without a clear gain
+- turn into open-ended churn
+
+Good customization outcome:
+- the generic kit remains recognizable underneath
+- the repo becomes obviously specific to the real project on top
 
 ### Pack-Aware Guidance
 

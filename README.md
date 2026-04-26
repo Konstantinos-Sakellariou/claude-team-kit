@@ -47,6 +47,7 @@ python3 -m unittest discover -s tests -v
 
 Good first prompts:
 - `@master help me bootstrap this repo for a SaaS app`
+- `@master customize this repo for the actual product we are building`
 - `@master turn this into a Supabase product workspace`
 - `@master review this repo and tell me the best next 3 moves`
 
@@ -59,6 +60,13 @@ You do not need to know the full agent roster to get started. The normal entrypo
 You never call specialist agents directly. You talk to `@master`, and it decides who runs, in what order, and whether things happen in parallel or sequentially — then synthesises everything back into one coherent response.
 
 By default, `@master` also reports which teams and agents were selected, what each one did, and the outcome of the orchestration run. If no delegation was needed, `@master` should say that explicitly instead of silently skipping the report.
+
+When the request is broad, strategic, or repo-shaping, `@master` should also use a simple listening pattern:
+- `Listen`
+- `Summarize`
+- `Deepen`
+
+That means understanding first, reflecting the intent back briefly, and only then widening the work or asking follow-up questions.
 
 For all tasks, `@master` should at least report:
 - whether delegation happened
@@ -255,6 +263,23 @@ When the repo is really founder-shaped, product-shaped, or company-building from
 - separate safe tracked repo truth from private local strategy or POC context
 
 See [`docs/BOOTSTRAP.md`](docs/BOOTSTRAP.md) for the full bootstrap model.
+
+## Repo Customization
+
+Bootstrap is not the whole story.
+
+Some repos are no longer generic, but still not specific enough.
+That is where repo customization should start.
+
+Customization means:
+- keep the shared kit layer reusable
+- tighten the repo-specific overlay
+- improve the actual project briefings, commands, local-context structure, and specialist routing where the generic defaults are no longer enough
+
+Use [`docs/PROJECT_CUSTOMIZATION.md`](docs/PROJECT_CUSTOMIZATION.md) for the full model, including:
+- bootstrap vs customization
+- core kit layer vs repo-specific overlay
+- when `@master` should recommend `/customize-repo`
 
 ## Private Local Context
 
@@ -488,6 +513,7 @@ They do not bypass `@master`; they simply help users trigger repeatable multi-st
 
 Current command set:
 - `/bootstrap-repo`
+- `/customize-repo`
 - `/save-backlog`
 - `/plan-idea`
 - `/write-adr`

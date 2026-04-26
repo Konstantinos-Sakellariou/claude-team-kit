@@ -55,6 +55,7 @@ Repo-level docs explain and package that implementation:
 - `CLAUDE.md`: repo briefing for Claude-compatible tools
 - `AGENTS.md`: repo briefing for Codex-style tools that read AGENTS files
 - `docs/BOOTSTRAP.md`: how new repos should be initialized when the kit is copied elsewhere
+- `docs/PROJECT_CUSTOMIZATION.md`: how the copied repo should move from generic kit to project-specific overlay
 - `docs/CONTEXT_EFFICIENCY.md`: how to keep context lean, high-signal, and cheaper to reuse across sessions
 - `docs/DURABLE_MEMORY.md`: how memory layers, privacy boundaries, and retrieval expectations fit together
 - `docs/GRAPH_INTELLIGENCE.md`: how an optional relationship/intelligence layer could later sit on top of the current artifact model
@@ -78,14 +79,15 @@ The intended operating flow is:
 
 1. A user enters through `@master`
 2. In a new repo, `@master` may first run a bootstrap flow if the briefing still looks generic
-3. When relevant, `@master` may also read `.claude/local-context/` for local-only private context
-4. `@master` separates reusable public kit truth from private local operating truth
-5. `@master` plans the work
-6. `@master` decides whether the work is best handled by a single agent, one team, or multiple teams
-7. Specialist agents contribute in parallel or sequence
-8. `@master` synthesizes the result
-9. Durable decisions are proposed as ADRs by default when they should outlive the chat
-10. `@workspace-updater` runs as the final doc-impact gate after significant changes and aligns docs only when needed
+3. After bootstrap, `@master` may later run a customization flow when the repo needs a stronger project-specific overlay
+4. When relevant, `@master` may also read `.claude/local-context/` for local-only private context
+5. `@master` separates reusable public kit truth from private local operating truth
+6. `@master` plans the work
+7. `@master` decides whether the work is best handled by a single agent, one team, or multiple teams
+8. Specialist agents contribute in parallel or sequence
+9. `@master` synthesizes the result
+10. Durable decisions are proposed as ADRs by default when they should outlive the chat
+11. `@workspace-updater` runs as the final doc-impact gate after significant changes and aligns docs only when needed
 
 This repo currently enforces that model through prompts, settings, hooks, and validation checks rather than through an external execution engine.
 
@@ -147,6 +149,13 @@ When the kit is copied into a real repo, the adaptation work should happen in th
 2. Add repo-specific gotchas and delegation rules
 3. Define any project-specific documentation sync targets
 4. Extend `@master` and `@workspace-updater` only if the repo has repeated sync workflows
+
+The cleanest mental model is:
+- shared kit core
+- repo-specific overlay
+
+Bootstrap establishes the first safe overlay.
+Customization makes that overlay stronger as the repo becomes more concrete.
 
 ## Known Constraints
 
