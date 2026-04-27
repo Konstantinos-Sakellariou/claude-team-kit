@@ -258,6 +258,29 @@ The overlay usually includes:
 - repo-specific `CLAUDE.md`
 - repo-specific `AGENTS.md`
 - real architecture constraints
+
+## Cross-Tool Adaptation
+
+Customization and portability are related, but they are not the same thing.
+
+Customize first:
+- what repo is this?
+- what is the real stack?
+- what are the real workflows?
+
+Adapt to a host second:
+- which tool is the team actually using?
+- which repo surfaces does that tool read well?
+- what should stay manual versus mapped?
+
+Use `docs/CROSS_TOOL_PORTABILITY.md` for that second layer.
+
+The important boundary is:
+- shared kit core stays canonical
+- repo overlay becomes project-specific
+- tool-specific adaptation stays thin and optional
+
+Do not build host-specific exports before the repo itself is already well customized.
 - real commands
 - real deployment notes
 - real local/private context

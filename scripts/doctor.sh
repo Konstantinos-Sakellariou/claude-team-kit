@@ -67,6 +67,8 @@ check_file "docs/GRAPH_INTELLIGENCE.md" "docs/GRAPH_INTELLIGENCE.md exists"
 check_file "docs/APP_SURFACE_AND_MCP.md" "docs/APP_SURFACE_AND_MCP.md exists"
 check_file "docs/ARTIFACTS.md" "docs/ARTIFACTS.md exists"
 check_file "docs/AGENT_SDK_USER_INPUT.md" "docs/AGENT_SDK_USER_INPUT.md exists"
+check_file "docs/CROSS_TOOL_PORTABILITY.md" "docs/CROSS_TOOL_PORTABILITY.md exists"
+check_file "docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md" "docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md exists"
 check_file "docs/RTK_INTEGRATION.md" "docs/RTK_INTEGRATION.md exists"
 check_file "docs/LOCAL_CONTEXT.md" "docs/LOCAL_CONTEXT.md exists"
 check_file "docs/TEAMS.md" "docs/TEAMS.md exists"
@@ -172,6 +174,9 @@ if grep -q "docs/VISION.example.md" "$ROOT_DIR/README.md" && \
    grep -q "docs/DESIGN_PACKS.md" "$ROOT_DIR/README.md" && \
    grep -q "docs/DESIGN_PACKS.md" "$ROOT_DIR/CLAUDE.md" && \
    grep -q "docs/DESIGN_PACKS.md" "$ROOT_DIR/AGENTS.md" && \
+   grep -q "docs/CROSS_TOOL_PORTABILITY.md" "$ROOT_DIR/README.md" && \
+   grep -q "docs/CROSS_TOOL_PORTABILITY.md" "$ROOT_DIR/CLAUDE.md" && \
+   grep -q "docs/CROSS_TOOL_PORTABILITY.md" "$ROOT_DIR/AGENTS.md" && \
    grep -q "@.claude/rules/documentation-governance.md" "$ROOT_DIR/CLAUDE.md" && \
    grep -q "@.claude/rules/documentation-governance.md" "$ROOT_DIR/AGENTS.md" && \
    grep -q "@.claude/rules/repo-cleanup.md" "$ROOT_DIR/CLAUDE.md" && \
@@ -182,9 +187,9 @@ if grep -q "docs/VISION.example.md" "$ROOT_DIR/README.md" && \
    grep -q "@.claude/rules/context-efficiency.md" "$ROOT_DIR/AGENTS.md" && \
    grep -q "@.claude/rules/github-quality-gate.md" "$ROOT_DIR/CLAUDE.md" && \
    grep -q "@.claude/rules/github-quality-gate.md" "$ROOT_DIR/AGENTS.md"; then
-  pass "README.md, CLAUDE.md, and AGENTS.md reference the vision and roadmap templates, starter packs, solution packs, design packs, self-upgrade guide, and governance docs"
+  pass "README.md, CLAUDE.md, and AGENTS.md reference the vision and roadmap templates, starter packs, solution packs, design packs, cross-tool portability guide, self-upgrade guide, and governance docs"
 else
-  fail "README.md, CLAUDE.md, or AGENTS.md are missing the vision template link, roadmap template link, starter-packs link, solution-packs link, design-packs link, self-upgrade guide link, or one or more governance rule references"
+  fail "README.md, CLAUDE.md, or AGENTS.md are missing the vision template link, roadmap template link, starter-packs link, solution-packs link, design-packs link, cross-tool portability link, self-upgrade guide link, or one or more governance rule references"
 fi
 
 if grep -q "@.claude/rules/ml-workflow.md" "$ROOT_DIR/CLAUDE.md" && \
@@ -433,19 +438,6 @@ if grep -q 'Optional ADR sections:' "$ROOT_DIR/docs/adr/README.md" && \
   pass "Tracked ADR guidance defines optional sections consistently"
 else
   fail "Tracked ADR guidance is missing the optional section contract"
-fi
-
-if [ -f "$ROOT_DIR/.agents/skills/create-adr/SKILL.md" ]; then
-  if grep -q 'docs/adr/\[NNN\]-\[kebab-case-title\]\.md' "$ROOT_DIR/.agents/skills/create-adr/SKILL.md" && \
-     grep -q '# ADR-\[NNN\]:' "$ROOT_DIR/.agents/skills/create-adr/SKILL.md" && \
-     grep -q 'Optional sections:' "$ROOT_DIR/.agents/skills/create-adr/SKILL.md" && \
-     grep -q 'Follow-Up Docs' "$ROOT_DIR/.agents/skills/create-adr/SKILL.md"; then
-    pass "Optional local create-adr skill is aligned with the ADR contract"
-  else
-    warn "Optional local create-adr skill exists but is not aligned with the ADR contract"
-  fi
-else
-  warn "Optional local create-adr skill is not present in this checkout"
 fi
 
 if grep -q 'Do not save to `docs/plans/` or `docs/adr/` automatically' "$ROOT_DIR/.claude/agents/idea-executor.md" && \

@@ -18,6 +18,14 @@ In this repo, graph/repo intelligence means an optional way to understand relati
 
 This is a relationship layer, not a replacement for grep, docs, or `@master`.
 
+It is also not the same thing as a broader code-intelligence layer.
+
+In this repo, keep the distinction clear:
+- graph/repo intelligence = artifact relationships and structural navigation
+- code intelligence = search, symbols, dependencies, code-aware retrieval, and deeper implementation understanding
+
+That broader code-intelligence question belongs to a separate optional track.
+
 ## Relationship View
 
 ```mermaid
@@ -64,6 +72,20 @@ It should stay optional because:
 - graph tooling can add setup cost, indexing complexity, and failure modes
 - the repo should not depend on a heavy intelligence substrate before the value is proven
 
+## When This Layer Is Worth It
+
+Reach for this layer only when at least one of these is true:
+- the repo has enough docs, plans, ADRs, or workflows that simple reading order is no longer obvious
+- `@master` or `context-audit` would benefit from knowing what artifacts connect before reading deeply
+- impact analysis across workflow, documentation, and governance artifacts is becoming repetitive
+- an app-backed or interactive exploration surface is starting to make sense
+
+Do not reach for it when:
+- the repo is still small
+- grep, docs, and the current feature map are enough
+- the value is really about code search or symbols rather than artifact relationships
+- the integration would add more maintenance than understanding
+
 ## First-Principles Scope
 
 Good first-scope questions:
@@ -100,6 +122,32 @@ Potential future connection points:
 - bootstrap for faster repo discovery
 - future product/app surfaces for interactive exploration
 
+## Relationship Layer Versus Code-Intelligence Layer
+
+This repo now treats these as related but separate optional tracks.
+
+Graph/repo intelligence should answer questions like:
+- what artifacts connect to this operating surface?
+- what should be read together?
+- what likely becomes stale when this area changes?
+
+Optional code intelligence should answer questions like:
+- where is this symbol or concept implemented?
+- what files depend on this module?
+- what code paths relate to this behavior?
+- what search or retrieval layer would help with larger repos?
+
+That separation matters because the relationship layer can stay lighter:
+- docs-first
+- artifact-first
+- optional helper or export later
+
+The code-intelligence layer, if it comes later, can evaluate:
+- search indexes
+- symbol graphs
+- dependency extraction
+- retrieval-oriented tooling
+
 ## Suggested Rollout
 
 ### Phase 1: Relationship Model
@@ -118,6 +166,11 @@ Decide whether the best fit is:
 - docs-only guidance
 - a local optional helper
 - a future product/app capability
+
+For this repo, the current recommendation is:
+- docs-first now
+- optional lightweight helper later only if relationship questions become repetitive
+- no indexing daemon or required backend in the shared core
 
 ### Phase 3: Small Experiment
 
@@ -138,6 +191,10 @@ Reach for graph/repo intelligence only when it clearly improves:
 - future productization
 
 If those gains are not clear, keep it out of the core.
+
+Treat this as the relationship-layer track.
+
+If the real need turns out to be code search, symbol understanding, or retrieval against implementation detail, route that into the separate optional code-intelligence track instead of stretching this layer until it means everything.
 
 ## Example First Experiment
 

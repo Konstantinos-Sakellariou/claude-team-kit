@@ -68,7 +68,7 @@ Should turn the current documentation guidance into reusable standing rules:
 Should cover:
 - tracked vs local-only file boundaries
 - local context and secret handling
-- optional `.agents/` cleanup direction
+- legacy local skill-shadow cleanup direction
 - generated/noisy file expectations
 
 ## Files To Update When Implemented

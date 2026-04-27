@@ -184,10 +184,13 @@ class PromptContractTests(unittest.TestCase):
 
         self.assertIn("# Graph And Repo Intelligence", graph_doc)
         self.assertIn("## Why It Must Stay Optional", graph_doc)
+        self.assertIn("## When This Layer Is Worth It", graph_doc)
+        self.assertIn("## Relationship Layer Versus Code-Intelligence Layer", graph_doc)
         self.assertIn("## Suggested Rollout", graph_doc)
         self.assertIn("## Relationship View", graph_doc)
         self.assertIn("```mermaid", graph_doc)
         self.assertIn("## Example Questions", graph_doc)
+        self.assertIn("graph/repo intelligence = artifact relationships", readme)
         self.assertIn("docs/GRAPH_INTELLIGENCE.md", readme)
         self.assertIn("docs/GRAPH_INTELLIGENCE.md", claude)
         self.assertIn("docs/GRAPH_INTELLIGENCE.md", agents)
@@ -255,6 +258,44 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn("docs/AGENT_SDK_USER_INPUT.md", agents)
         self.assertIn("structured SDK-backed user-input handling", app_surface)
         self.assertIn("Agent SDK User Input", system_reference)
+
+    def test_cross_tool_portability_is_tracked_and_visible(self) -> None:
+        portability = read("docs/CROSS_TOOL_PORTABILITY.md")
+        readme = read("README.md")
+        claude = read("CLAUDE.md")
+        agents = read("AGENTS.md")
+        architecture = read("docs/ARCHITECTURE.md")
+        customization = read("docs/PROJECT_CUSTOMIZATION.md")
+        system_reference = read("docs/SYSTEM_REFERENCE.md")
+
+        self.assertIn("# Cross-Tool Portability", portability)
+        self.assertIn("## Portability Tiers", portability)
+        self.assertIn("## What Maps Cleanly", portability)
+        self.assertIn("## Repo Customization Versus Tool Adaptation", portability)
+        self.assertIn("## When A Helper Script Is Justified", portability)
+        self.assertIn("docs/CROSS_TOOL_PORTABILITY.md", readme)
+        self.assertIn("docs/CROSS_TOOL_PORTABILITY.md", claude)
+        self.assertIn("docs/CROSS_TOOL_PORTABILITY.md", agents)
+        self.assertIn("docs/CROSS_TOOL_PORTABILITY.md", architecture)
+        self.assertIn("docs/CROSS_TOOL_PORTABILITY.md", customization)
+        self.assertIn("Cross-Tool Portability", system_reference)
+
+    def test_portability_and_intelligence_overview_is_tracked_and_visible(self) -> None:
+        overview = read("docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md")
+        readme = read("README.md")
+        claude = read("CLAUDE.md")
+        agents = read("AGENTS.md")
+        system_reference = read("docs/SYSTEM_REFERENCE.md")
+
+        self.assertIn("# Portability And Intelligence Overview", overview)
+        self.assertIn("## 1. Canonical Surface Cleanup", overview)
+        self.assertIn("## 2. Cross-Tool Portability", overview)
+        self.assertIn("## 3. Graph / Repo Intelligence Boundary", overview)
+        self.assertIn("```mermaid", overview)
+        self.assertIn("docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md", readme)
+        self.assertIn("docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md", claude)
+        self.assertIn("docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md", agents)
+        self.assertIn("docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md", system_reference)
 
     def test_backlog_preference_memory_is_tracked_and_visible(self) -> None:
         master = read(".claude/agents/master.md")
@@ -1006,20 +1047,6 @@ class PromptContractTests(unittest.TestCase):
 
         self.assertIn("Optional ADR sections:", adr_readme)
         self.assertIn("Include when useful:", tech_writer)
-
-    def test_optional_local_create_adr_skill_aligns_when_present(self) -> None:
-        skill_path = ROOT / ".agents" / "skills" / "create-adr" / "SKILL.md"
-
-        if not skill_path.exists():
-            self.skipTest("Optional local create-adr skill is not present in this checkout")
-
-        create_adr = skill_path.read_text()
-
-        self.assertIn("docs/adr/[NNN]-[kebab-case-title].md", create_adr)
-        self.assertIn("# ADR-[NNN]: [Decision Title]", create_adr)
-        self.assertIn("Always include:", create_adr)
-        self.assertIn("Optional sections:", create_adr)
-        self.assertIn("Follow-Up Docs", create_adr)
 
 
 if __name__ == "__main__":

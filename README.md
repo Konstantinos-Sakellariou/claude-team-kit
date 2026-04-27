@@ -30,6 +30,11 @@ Use [`docs/ARTIFACTS.md`](docs/ARTIFACTS.md) for how Artifacts can support onboa
 There is also now a public-safe Agent SDK user-input stance.
 Use [`docs/AGENT_SDK_USER_INPUT.md`](docs/AGENT_SDK_USER_INPUT.md) for how future structured-question and approval flows could fit a host app without pretending the current repo already supports them.
 
+There is also now a public-safe cross-tool portability stance.
+Use [`docs/CROSS_TOOL_PORTABILITY.md`](docs/CROSS_TOOL_PORTABILITY.md) for how the kit should adapt across hosts without splitting the canonical core or rushing into brittle export tooling.
+
+If you want the big-picture explanation of the recent boundary cleanup, portability model, and graph-versus-code-intelligence split, use [`docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md`](docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md).
+
 ## Quick Start
 
 If you want the easiest possible start:
@@ -140,6 +145,10 @@ This kit now has an explicit stance on graph/repo intelligence:
 
 The intended use is a relationship layer across docs, plans, ADRs, workflows, teams, and local context, not a mandatory graph database in the core.
 
+It should also stay distinct from any later code-intelligence layer:
+- graph/repo intelligence = artifact relationships
+- code intelligence = code-aware search, symbols, dependencies, and retrieval
+
 See [`docs/GRAPH_INTELLIGENCE.md`](docs/GRAPH_INTELLIGENCE.md) for the full model.
 
 ## App Surface And MCP Systems
@@ -168,6 +177,15 @@ This kit now also defines a safe stance on future Agent SDK user-input integrati
 - not something the markdown-only core should claim to support natively today
 
 See [`docs/AGENT_SDK_USER_INPUT.md`](docs/AGENT_SDK_USER_INPUT.md) for the compatibility boundary.
+
+## Cross-Tool Portability
+
+This kit now also defines a safe stance on portability across coding hosts:
+- `.claude/` remains the canonical shared core
+- repo customization and tool adaptation are separate jobs
+- portability should start with guidance and a clear adapter contract, not tool-chasing
+
+See [`docs/CROSS_TOOL_PORTABILITY.md`](docs/CROSS_TOOL_PORTABILITY.md) for the model.
 
 ## Context Efficiency
 

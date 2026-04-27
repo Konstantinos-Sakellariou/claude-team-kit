@@ -24,6 +24,8 @@ Owner: Konstantinos Sakellariou
 - See `docs/APP_SURFACE_AND_MCP.md` for the future app-surface boundary and MCP-connected systems model
 - See `docs/ARTIFACTS.md` for the optional Artifacts companion-layer stance
 - See `docs/AGENT_SDK_USER_INPUT.md` for the optional future Agent SDK user-input compatibility layer
+- See `docs/CROSS_TOOL_PORTABILITY.md` for the optional cross-tool portability and adapter-boundary model
+- See `docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md` for the high-level explanation of the canonical-surface cleanup, portability model, and relationship-layer boundary
 - See `docs/SELF_UPGRADE.md` for the maintainer guide on evolving the kit safely
 - See `docs/STARTER_PACKS.md` for optional project-shape overlays such as SaaS, API, AI/ML, and startup-studio repos
 - See `docs/SOLUTION_PACKS.md` for the optional startup-stack and product-foundation pack contract

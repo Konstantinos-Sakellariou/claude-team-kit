@@ -43,6 +43,8 @@ The canonical implementation lives under `.claude/`.
 
 The shared kit can include reusable domain-specialist packs when they stay generic. The built-in AI/ML layer is one example: it adds specialist prompts and rules without forcing any project-specific platform or lifecycle.
 
+If a local `.agents/` folder still exists in a checkout, treat it as legacy local compatibility or archive material, not as part of the canonical repo model.
+
 The rules layer now covers more than language or code quality concerns. It also carries reusable governance for:
 - documentation alignment
 - copied-repo cleanup
@@ -60,6 +62,7 @@ Repo-level docs explain and package that implementation:
 - `docs/DURABLE_MEMORY.md`: how memory layers, privacy boundaries, and retrieval expectations fit together
 - `docs/GRAPH_INTELLIGENCE.md`: how an optional relationship/intelligence layer could later sit on top of the current artifact model
 - `docs/APP_SURFACE_AND_MCP.md`: how a future app surface could sit on top of the repo model and where MCP-connected systems would fit
+- `docs/CROSS_TOOL_PORTABILITY.md`: how the shared core, repo-specific overlay, and optional host adapters should relate across different tool environments
 - `docs/DOCUMENTATION_GOVERNANCE.md`: how to keep the repo fully documented without bloating the hot path
 - `docs/SELF_UPGRADE.md`: how maintainers should evolve the kit safely without drift or boundary mistakes
 - `docs/STARTER_PACKS.md`: optional project-shape overlays for faster adaptation into common product contexts
@@ -164,4 +167,5 @@ Customization makes that overlay stronger as the repo becomes more concrete.
 - local secrets belong in `.claude/settings.local.json` or environment variables, never tracked files
 - local private business and customer context belongs in `.claude/local-context/`, never tracked files by default
 - local private proof-of-concept or core-product incubation belongs in `.claude/local-context/`, never in tracked kit docs by default
+- a leftover local `.agents/` tree may still exist in some checkouts, but it is not part of the active mental model or validation contract
 - `CLAUDE.md` and `AGENTS.md` should stay concise because they are high-frequency briefing files
