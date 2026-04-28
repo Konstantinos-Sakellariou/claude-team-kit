@@ -13,6 +13,9 @@ The default core documentation files are:
 - `AGENTS.md`
 - `README.md`
 
+Tracked high-signal summary doc:
+- `docs/ONE_PAGER.md`
+
 Optional local continuity artifact:
 - `.claude/local-context/HANDOFF.md`
 
@@ -172,6 +175,23 @@ README.md is for humans — developers who open the repo for the first time. Upd
 - Keep examples working and current
 - If a section no longer applies, remove it — outdated docs are worse than no docs
 
+### docs/ONE_PAGER.md
+
+`docs/ONE_PAGER.md` is the high-signal nutshell summary of the repo.
+
+Update it when:
+
+**The repo identity changes** → adjust the “what this repo is” and “what it does” framing
+**The operating model changes** → update the “how it works” section or diagram
+**The main extension layers change materially** → update the layer summary
+**The repo boundary changes** → update what the repo is and is not
+
+How to update `docs/ONE_PAGER.md`:
+- keep it compact and readable
+- prefer structural truth over marketing language
+- update the graph only when the operating model truly changed
+- make it understandable to a newcomer in one pass
+
 ---
 
 ## Your Process
@@ -219,6 +239,9 @@ Use Edit (not Write) to make surgical changes. Preserve structure and style.
 - [Section]: [what was added/changed/removed]
 
 ### README.md changes
+- [Section]: [what was added/changed/removed]
+
+### docs/ONE_PAGER.md changes
 - [Section]: [what was added/changed/removed]
 
 ### Not updated (still accurate)

@@ -35,6 +35,11 @@ Use [`docs/CROSS_TOOL_PORTABILITY.md`](docs/CROSS_TOOL_PORTABILITY.md) for how t
 
 If you want the big-picture explanation of the recent boundary cleanup, portability model, and graph-versus-code-intelligence split, use [`docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md`](docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md).
 
+There is also now a public-safe optional code-intelligence stance.
+Use [`docs/CODE_INTELLIGENCE_INTEGRATION.md`](docs/CODE_INTELLIGENCE_INTEGRATION.md) for when code-aware search, symbol, dependency, or retrieval help may be worth considering without turning the shared kit into a runtime platform.
+
+If you want the repo explained in one pass, use [`docs/ONE_PAGER.md`](docs/ONE_PAGER.md).
+
 ## Quick Start
 
 If you want the easiest possible start:
@@ -150,6 +155,24 @@ It should also stay distinct from any later code-intelligence layer:
 - code intelligence = code-aware search, symbols, dependencies, and retrieval
 
 See [`docs/GRAPH_INTELLIGENCE.md`](docs/GRAPH_INTELLIGENCE.md) for the full model.
+
+## Code-Intelligence Integration
+
+This kit now also defines a safe stance on optional code intelligence:
+- still optional
+- still external-tooling-first
+- only worth considering when normal repo exploration is no longer enough
+
+See [`docs/CODE_INTELLIGENCE_INTEGRATION.md`](docs/CODE_INTELLIGENCE_INTEGRATION.md) for the boundary and decision table.
+
+## Worktree Parallel Execution
+
+This kit now also defines a safe stance on optional worktree-based parallel execution:
+- useful for larger tasks with truly separate write scopes
+- not needed for normal work
+- still governed by the same Git / GitHub quality gates
+
+See [`docs/WORKTREE_PARALLEL_EXECUTION.md`](docs/WORKTREE_PARALLEL_EXECUTION.md) for the guidance.
 
 ## App Surface And MCP Systems
 

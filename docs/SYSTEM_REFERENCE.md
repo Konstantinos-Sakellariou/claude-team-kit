@@ -23,6 +23,9 @@ Pair it with:
 - `docs/AGENT_SDK_USER_INPUT.md` for the optional future Agent SDK user-input compatibility layer
 - `docs/CROSS_TOOL_PORTABILITY.md` for the optional cross-tool portability and adapter-boundary model
 - `docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md` for the high-level explanation of how the recent canonical-surface, portability, and graph-boundary changes fit together
+- `docs/CODE_INTELLIGENCE_INTEGRATION.md` for the optional code-intelligence integration boundary and decision table
+- `docs/WORKTREE_PARALLEL_EXECUTION.md` for the optional worktree-based parallel execution guidance
+- `docs/ONE_PAGER.md` for the high-signal nutshell explanation of the repo
 
 ## Operating Layers
 
@@ -39,6 +42,8 @@ Pair it with:
 | Local Context | Private local-only company or strategy context | `.claude/local-context/` | Use for sensitive notes that should not be tracked | master, backlog, planning |
 | Durable Memory Model | Cross-layer continuity architecture | `docs/DURABLE_MEMORY.md` | Use to understand how agent memory, backlog, plans, ADRs, and local context fit together | agent memory, backlog, ADRs, local context, handoff |
 | Graph / Repo Intelligence | Optional relationship layer across repo artifacts | `docs/GRAPH_INTELLIGENCE.md` | Use to understand the optional graph/repo-intelligence boundary, when it is worth using, and how it stays distinct from broader code-intelligence work | durable memory, workflows, context-audit, future product surfaces, code-intelligence boundary |
+| Code-Intelligence Integration | Optional implementation-aware search and retrieval boundary | `docs/CODE_INTELLIGENCE_INTEGRATION.md` | Use to understand when code-aware search, symbols, dependencies, and retrieval may justify an optional integration path without changing the shared core | graph intelligence, context efficiency, future app surfaces, external tooling |
+| Worktree Parallel Execution | Optional coordination guidance for safe parallel branch work | `docs/WORKTREE_PARALLEL_EXECUTION.md` | Use to understand when worktrees are worth recommending and how they fit the existing Git / GitHub quality gate | Git/GitHub team, command/workflow guidance, larger implementation arcs |
 | App Surface And MCP Systems | Future product-surface and connector boundary | `docs/APP_SURFACE_AND_MCP.md` | Use to understand what should stay repo-native, what could become app-native later, and where MCP-connected systems fit safely | durable memory, graph intelligence, local context, future productization |
 | Artifacts Companion Layer | Optional presentation and onboarding layer | `docs/ARTIFACTS.md` | Use to understand how Artifacts can help explain, demo, or package proof-friendly views of the kit without replacing tracked docs | onboarding, app surface, starter packs, system reference |
 | Agent SDK User Input | Future structured-question and approval compatibility layer | `docs/AGENT_SDK_USER_INPUT.md` | Use to understand how future host-side user-input handling could improve bootstrap and approval flows without changing the current core boundary | app surface, bootstrap, approvals, future SDK hosts |
@@ -52,6 +57,7 @@ Pair it with:
 | Plans | Rich execution artifacts for approved work | `docs/plans/` and `.claude/local-context/plans/` | Save only with approval, defaulting to local for real next-step plans and using tracked plans only for public-safe examples or shareable references | backlog, idea-executor, local context |
 | ADRs | Durable architecture and policy decisions | `docs/adr/` | Save only with approval | master, architect, tech-writer |
 | Core Briefings | High-frequency summary docs | `README.md`, `CLAUDE.md`, `AGENTS.md` | Keep concise and link outward | everything |
+| One-Pager | High-signal nutshell explanation for humans | `docs/ONE_PAGER.md` | Use when someone needs the repo explained in one quick pass | architecture, README, workspace updater |
 
 ## Canonical Boundary
 

@@ -808,6 +808,13 @@ For **any commit, push, or PR creation** always also run:
 - `@github-safety-guard` — reviews staged or pending changes for secrets, sensitive information, and public-disclosure risks
 - Present its report to the user before proceeding with the commit or push
 
+For **substantial implementation work with clearly separable write scopes** you may recommend git worktrees as an optional coordination aid:
+- only recommend them when the slices are genuinely independent
+- keep ownership explicit per slice
+- keep the merge and review path understandable
+- do not push worktrees for small, linear, or overlapping tasks
+- treat them as a branch/workflow aid, not as a second orchestration system
+
 Before **substantial work in a git-tracked repo** prefer a lightweight sync-readiness check:
 - only do this when the repo has a remote and the task is more than a tiny tactical change
 - inspect lightweight signals such as `git status -sb`, `git branch -vv`, and `git remote -v`
@@ -1067,6 +1074,7 @@ The default core documentation files are:
 - `CLAUDE.md`
 - `AGENTS.md`
 - `README.md`
+- `docs/ONE_PAGER.md` when the repo identity, operating model, or extension boundaries changed materially
 
 The important distinction:
 - `@workspace-updater` always runs after significant work

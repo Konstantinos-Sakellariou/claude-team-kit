@@ -61,6 +61,8 @@ Repo-level docs explain and package that implementation:
 - `docs/CONTEXT_EFFICIENCY.md`: how to keep context lean, high-signal, and cheaper to reuse across sessions
 - `docs/DURABLE_MEMORY.md`: how memory layers, privacy boundaries, and retrieval expectations fit together
 - `docs/GRAPH_INTELLIGENCE.md`: how an optional relationship/intelligence layer could later sit on top of the current artifact model
+- `docs/CODE_INTELLIGENCE_INTEGRATION.md`: how a separate optional code-aware search and retrieval layer should remain bounded, optional, and external-tooling-first
+- `docs/WORKTREE_PARALLEL_EXECUTION.md`: how optional worktree-based parallel execution should stay a coordination aid rather than a runtime orchestration layer
 - `docs/APP_SURFACE_AND_MCP.md`: how a future app surface could sit on top of the repo model and where MCP-connected systems would fit
 - `docs/CROSS_TOOL_PORTABILITY.md`: how the shared core, repo-specific overlay, and optional host adapters should relate across different tool environments
 - `docs/DOCUMENTATION_GOVERNANCE.md`: how to keep the repo fully documented without bloating the hot path
@@ -74,6 +76,7 @@ Repo-level docs explain and package that implementation:
 - `docs/PROJECT_CUSTOMIZATION.md`: how to adapt the kit to a real project
 - `docs/VISION.example.md`: tracked starter for a local repo vision
 - `docs/ROADMAP.example.md`: tracked starter for a local repo roadmap
+- `docs/ONE_PAGER.md`: high-signal nutshell explanation of the repo
 - local `docs/VISION.md` / `docs/ROADMAP.md`: optional private strategy surfaces
 
 ## Operating Model

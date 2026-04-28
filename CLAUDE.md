@@ -21,11 +21,14 @@ Owner: Konstantinos Sakellariou
 - See `docs/LOCAL_CONTEXT.md` for the private local context layer
 - See `docs/DURABLE_MEMORY.md` for the durable-memory architecture and tracked-vs-local memory split
 - See `docs/GRAPH_INTELLIGENCE.md` for the optional graph/repo-intelligence layer and rollout boundary
+- See `docs/CODE_INTELLIGENCE_INTEGRATION.md` for the optional code-intelligence integration boundary and decision table
+- See `docs/WORKTREE_PARALLEL_EXECUTION.md` for the optional worktree-based parallel execution guidance
 - See `docs/APP_SURFACE_AND_MCP.md` for the future app-surface boundary and MCP-connected systems model
 - See `docs/ARTIFACTS.md` for the optional Artifacts companion-layer stance
 - See `docs/AGENT_SDK_USER_INPUT.md` for the optional future Agent SDK user-input compatibility layer
 - See `docs/CROSS_TOOL_PORTABILITY.md` for the optional cross-tool portability and adapter-boundary model
 - See `docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md` for the high-level explanation of the canonical-surface cleanup, portability model, and relationship-layer boundary
+- See `docs/ONE_PAGER.md` for the high-signal nutshell explanation of what this repo is, what it does, and how it works
 - See `docs/SELF_UPGRADE.md` for the maintainer guide on evolving the kit safely
 - See `docs/STARTER_PACKS.md` for optional project-shape overlays such as SaaS, API, AI/ML, and startup-studio repos
 - See `docs/SOLUTION_PACKS.md` for the optional startup-stack and product-foundation pack contract

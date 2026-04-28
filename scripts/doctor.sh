@@ -64,11 +64,14 @@ check_file "docs/BOOTSTRAP.md" "docs/BOOTSTRAP.md exists"
 check_file "docs/CONTEXT_EFFICIENCY.md" "docs/CONTEXT_EFFICIENCY.md exists"
 check_file "docs/DURABLE_MEMORY.md" "docs/DURABLE_MEMORY.md exists"
 check_file "docs/GRAPH_INTELLIGENCE.md" "docs/GRAPH_INTELLIGENCE.md exists"
+check_file "docs/CODE_INTELLIGENCE_INTEGRATION.md" "docs/CODE_INTELLIGENCE_INTEGRATION.md exists"
+check_file "docs/WORKTREE_PARALLEL_EXECUTION.md" "docs/WORKTREE_PARALLEL_EXECUTION.md exists"
 check_file "docs/APP_SURFACE_AND_MCP.md" "docs/APP_SURFACE_AND_MCP.md exists"
 check_file "docs/ARTIFACTS.md" "docs/ARTIFACTS.md exists"
 check_file "docs/AGENT_SDK_USER_INPUT.md" "docs/AGENT_SDK_USER_INPUT.md exists"
 check_file "docs/CROSS_TOOL_PORTABILITY.md" "docs/CROSS_TOOL_PORTABILITY.md exists"
 check_file "docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md" "docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md exists"
+check_file "docs/ONE_PAGER.md" "docs/ONE_PAGER.md exists"
 check_file "docs/RTK_INTEGRATION.md" "docs/RTK_INTEGRATION.md exists"
 check_file "docs/LOCAL_CONTEXT.md" "docs/LOCAL_CONTEXT.md exists"
 check_file "docs/TEAMS.md" "docs/TEAMS.md exists"
@@ -177,6 +180,14 @@ if grep -q "docs/VISION.example.md" "$ROOT_DIR/README.md" && \
    grep -q "docs/CROSS_TOOL_PORTABILITY.md" "$ROOT_DIR/README.md" && \
    grep -q "docs/CROSS_TOOL_PORTABILITY.md" "$ROOT_DIR/CLAUDE.md" && \
    grep -q "docs/CROSS_TOOL_PORTABILITY.md" "$ROOT_DIR/AGENTS.md" && \
+   grep -q "docs/CODE_INTELLIGENCE_INTEGRATION.md" "$ROOT_DIR/README.md" && \
+   grep -q "docs/CODE_INTELLIGENCE_INTEGRATION.md" "$ROOT_DIR/CLAUDE.md" && \
+   grep -q "docs/CODE_INTELLIGENCE_INTEGRATION.md" "$ROOT_DIR/AGENTS.md" && \
+   grep -q "docs/WORKTREE_PARALLEL_EXECUTION.md" "$ROOT_DIR/CLAUDE.md" && \
+   grep -q "docs/WORKTREE_PARALLEL_EXECUTION.md" "$ROOT_DIR/AGENTS.md" && \
+   grep -q "docs/ONE_PAGER.md" "$ROOT_DIR/README.md" && \
+   grep -q "docs/ONE_PAGER.md" "$ROOT_DIR/CLAUDE.md" && \
+   grep -q "docs/ONE_PAGER.md" "$ROOT_DIR/AGENTS.md" && \
    grep -q "@.claude/rules/documentation-governance.md" "$ROOT_DIR/CLAUDE.md" && \
    grep -q "@.claude/rules/documentation-governance.md" "$ROOT_DIR/AGENTS.md" && \
    grep -q "@.claude/rules/repo-cleanup.md" "$ROOT_DIR/CLAUDE.md" && \
@@ -187,9 +198,9 @@ if grep -q "docs/VISION.example.md" "$ROOT_DIR/README.md" && \
    grep -q "@.claude/rules/context-efficiency.md" "$ROOT_DIR/AGENTS.md" && \
    grep -q "@.claude/rules/github-quality-gate.md" "$ROOT_DIR/CLAUDE.md" && \
    grep -q "@.claude/rules/github-quality-gate.md" "$ROOT_DIR/AGENTS.md"; then
-  pass "README.md, CLAUDE.md, and AGENTS.md reference the vision and roadmap templates, starter packs, solution packs, design packs, cross-tool portability guide, self-upgrade guide, and governance docs"
+  pass "README.md, CLAUDE.md, and AGENTS.md reference the vision and roadmap templates, starter packs, solution packs, design packs, cross-tool portability guide, code-intelligence guide, worktree guide, one-pager, self-upgrade guide, and governance docs"
 else
-  fail "README.md, CLAUDE.md, or AGENTS.md are missing the vision template link, roadmap template link, starter-packs link, solution-packs link, design-packs link, cross-tool portability link, self-upgrade guide link, or one or more governance rule references"
+  fail "README.md, CLAUDE.md, or AGENTS.md are missing the vision template link, roadmap template link, starter-packs link, solution-packs link, design-packs link, cross-tool portability link, code-intelligence link, worktree link, one-pager link, self-upgrade guide link, or one or more governance rule references"
 fi
 
 if grep -q "@.claude/rules/ml-workflow.md" "$ROOT_DIR/CLAUDE.md" && \
