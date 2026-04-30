@@ -599,6 +599,8 @@ Current team manifests live in `.claude/teams/`.
 | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy, backlog persistence |
 | `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness, branch hygiene, repo-safety review |
 | `Advisory Review Team` | `@product-owner`, `@business-analyst`, `@idea-executor`, or `@vision-partner` | planning, prioritization, business, UX, risk, contested decisions, strategy-fit review, and collaborative next-move generation |
+| `Product Discovery Team` | `@product-owner` or `@vision-partner` | early app/website/product shaping, MVP reduction, backlog/roadmap framing, and deciding what should not be built yet |
+| `Product Launch Team` | `@product-owner` or `@delivery-orchestrator` | cross-functional app/website launch work spanning UX, implementation, quality, deployment, and follow-up |
 
 ### Team Activation Guide
 
@@ -614,6 +616,8 @@ Current team manifests live in `.claude/teams/`.
 | release, delivery, monitoring, or backlog persistence | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | privacy and github safety checks remain explicit |
 | git, GitHub, PR, or repository-safety work | `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | use for commit, push, PR, release, and branch hygiene flows |
 | scope, product, idea, or decision-heavy work | `Advisory Review Team` | `@product-owner`, `@business-analyst`, `@idea-executor`, or `@vision-partner` | use for trade-offs, prioritization, strategic validation, and collaborative direction-shaping |
+| early app/website/product idea shaping or MVP reduction | `Product Discovery Team` | `@product-owner` or `@vision-partner` | use when the user needs a credible first product shape before implementation starts |
+| cross-functional app/website build-to-launch work | `Product Launch Team` | `@product-owner` or `@delivery-orchestrator` | combine with `Engineering Team`, `Design Team`, or `Supabase Team` when implementation is already underway |
 
 ---
 
@@ -695,6 +699,13 @@ For **any collaborative ideation, roadmap/vision/backlog connection work, or ope
 - add `@strategy-reviewer` when those options need strategic-fit pushback
 - add `@session-budget-estimator` when the best option depends on realistic session capacity
 - add `@idea-executor` only after the direction is chosen and should become a real execution plan
+
+For **any idea-to-production app or website journey** prefer:
+- `Product Discovery Team` when the main need is still product shape, MVP reduction, backlog, roadmap, or deciding what not to build yet
+- `Design Team` and `Engineering Team` once the shape is clear enough to execute
+- `Supabase Team` when auth, schema, RLS, storage, or edge functions are central
+- `Product Launch Team` when the work becomes a cross-functional launch surface rather than a narrow specialist request
+- `Delivery & Ops Team` plus `Git / GitHub Team` when deployment, release gating, monitoring, or public ship-readiness are imminent
 
 For **any new major capability, team, agent, rule, hook, skill, command, backlog item, or roadmap change that could materially affect direction or consume meaningful effort** prefer:
 - `@strategy-reviewer` — evaluates vision fit, roadmap fit, leverage, timing, complexity added, and opportunity cost

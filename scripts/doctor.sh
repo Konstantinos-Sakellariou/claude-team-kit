@@ -78,6 +78,7 @@ check_file "docs/AGENT_SDK_USER_INPUT.md" "docs/AGENT_SDK_USER_INPUT.md exists"
 check_file "docs/CROSS_TOOL_PORTABILITY.md" "docs/CROSS_TOOL_PORTABILITY.md exists"
 check_file "docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md" "docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md exists"
 check_file "docs/ONE_PAGER.md" "docs/ONE_PAGER.md exists"
+check_file "docs/IDEA_TO_PRODUCTION.md" "docs/IDEA_TO_PRODUCTION.md exists"
 check_file "docs/RTK_INTEGRATION.md" "docs/RTK_INTEGRATION.md exists"
 check_file "docs/LOCAL_CONTEXT.md" "docs/LOCAL_CONTEXT.md exists"
 check_file "docs/TEAMS.md" "docs/TEAMS.md exists"
@@ -204,6 +205,9 @@ if grep -q "docs/VISION.example.md" "$ROOT_DIR/README.md" && \
    grep -q "docs/ANNOTATION_AWARE_CONTEXT_PROTOCOL.md" "$ROOT_DIR/README.md" && \
    grep -q "docs/ANNOTATION_AWARE_CONTEXT_PROTOCOL.md" "$ROOT_DIR/CLAUDE.md" && \
    grep -q "docs/ANNOTATION_AWARE_CONTEXT_PROTOCOL.md" "$ROOT_DIR/AGENTS.md" && \
+   grep -q "docs/IDEA_TO_PRODUCTION.md" "$ROOT_DIR/README.md" && \
+   grep -q "docs/IDEA_TO_PRODUCTION.md" "$ROOT_DIR/CLAUDE.md" && \
+   grep -q "docs/IDEA_TO_PRODUCTION.md" "$ROOT_DIR/AGENTS.md" && \
    grep -q "docs/WORKTREE_PARALLEL_EXECUTION.md" "$ROOT_DIR/CLAUDE.md" && \
    grep -q "docs/WORKTREE_PARALLEL_EXECUTION.md" "$ROOT_DIR/AGENTS.md" && \
    grep -q "docs/ONE_PAGER.md" "$ROOT_DIR/README.md" && \
@@ -219,9 +223,9 @@ if grep -q "docs/VISION.example.md" "$ROOT_DIR/README.md" && \
    grep -q "@.claude/rules/context-efficiency.md" "$ROOT_DIR/AGENTS.md" && \
    grep -q "@.claude/rules/github-quality-gate.md" "$ROOT_DIR/CLAUDE.md" && \
    grep -q "@.claude/rules/github-quality-gate.md" "$ROOT_DIR/AGENTS.md"; then
-  pass "README.md, CLAUDE.md, and AGENTS.md reference the vision and roadmap templates, starter packs, solution packs, design packs, cross-tool portability guide, code-intelligence guide, optional-dependency guide, external-skill-repo guide, project-DNA guide, playbook guide, annotation-protocol guide, worktree guide, one-pager, self-upgrade guide, and governance docs"
+  pass "README.md, CLAUDE.md, and AGENTS.md reference the vision and roadmap templates, starter packs, solution packs, design packs, cross-tool portability guide, code-intelligence guide, optional-dependency guide, external-skill-repo guide, project-DNA guide, playbook guide, annotation-protocol guide, idea-to-production guide, worktree guide, one-pager, self-upgrade guide, and governance docs"
 else
-  fail "README.md, CLAUDE.md, or AGENTS.md are missing the vision template link, roadmap template link, starter-packs link, solution-packs link, design-packs link, cross-tool portability link, code-intelligence link, optional-dependency link, external-skill-repo link, project-DNA link, playbook link, annotation-protocol link, worktree link, one-pager link, self-upgrade guide link, or one or more governance rule references"
+  fail "README.md, CLAUDE.md, or AGENTS.md are missing the vision template link, roadmap template link, starter-packs link, solution-packs link, design-packs link, cross-tool portability link, code-intelligence link, optional-dependency link, external-skill-repo link, project-DNA link, playbook link, annotation-protocol link, idea-to-production link, worktree link, one-pager link, self-upgrade guide link, or one or more governance rule references"
 fi
 
 if grep -q "@.claude/rules/ml-workflow.md" "$ROOT_DIR/CLAUDE.md" && \
@@ -257,7 +261,7 @@ else
   fail ".claude/teams directory is missing"
 fi
 
-for team in engineering-team ai-ml-team data-team supabase-team design-team content-publishing-team delivery-ops-team git-github-team advisory-review-team; do
+for team in engineering-team ai-ml-team data-team supabase-team design-team content-publishing-team delivery-ops-team git-github-team advisory-review-team product-discovery-team product-launch-team; do
   if [ -f "$ROOT_DIR/.claude/teams/${team}.md" ]; then
     pass "${team} manifest exists"
   else

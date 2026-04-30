@@ -40,7 +40,7 @@ Owner: Konstantinos Sakellariou
 - See `docs/SOLUTION_PACKS.md` for the optional startup-stack and product-foundation pack contract
 - See `docs/DESIGN_PACKS.md` for the optional design-pack and `DESIGN.md` workflow contract
 - See `docs/SYSTEM_REFERENCE.md` for the full feature inventory and connection map
-- See `docs/PROJECT_CUSTOMIZATION.md` when adapting this kit to a real repo
+- See `docs/PROJECT_CUSTOMIZATION.md` when adapting this kit to a real repo, and `docs/IDEA_TO_PRODUCTION.md` for the high-level app/website journey
 - Canonical implementation lives in `.claude/`
 - Key directories: `.claude/`, `.claude/local-context/` (local only), `docs/`, `docs/plans/`, `docs/adr/`, `scripts/`
 
@@ -173,6 +173,8 @@ They are not a runtime feature, they do not replace agents, and `@master` must s
 | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy |
 | `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness |
 | `Advisory Review Team` | `@product-owner`, `@business-analyst`, or `@idea-executor` | planning, prioritization, strategy-fit review |
+| `Product Discovery Team` | `@product-owner` or `@vision-partner` | early app/website/product shaping, MVP reduction, backlog/roadmap framing |
+| `Product Launch Team` | `@product-owner` or `@delivery-orchestrator` | cross-functional website/app launch coordination from build through ship |
 
 ## Key Agent Surfaces
 

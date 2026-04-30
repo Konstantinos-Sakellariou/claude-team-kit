@@ -15,6 +15,7 @@ The default core documentation files are:
 
 Tracked high-signal summary doc:
 - `docs/ONE_PAGER.md`
+- `docs/IDEA_TO_PRODUCTION.md`
 
 Optional local continuity artifact:
 - `.claude/local-context/HANDOFF.md`

@@ -29,7 +29,7 @@ Teams improve the workflow in a few practical ways:
 
 ## Team Model
 
-This kit currently defines ten reusable teams:
+This kit currently defines twelve reusable teams:
 
 | Team | Lead | Typical Scope |
 |---|---|---|
@@ -43,6 +43,8 @@ This kit currently defines ten reusable teams:
 | `Delivery & Ops Team` | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, privacy, backlog persistence |
 | `Git / GitHub Team` | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness, branch hygiene, repo-safety review |
 | `Advisory Review Team` | `@product-owner`, `@business-analyst`, or `@idea-executor` | planning, product, business, risk, strategic-fit review, and decision support |
+| `Product Discovery Team` | `@product-owner` or `@vision-partner` | app/website idea shaping, MVP reduction, backlog/roadmap framing, and deciding what should not be built yet |
+| `Product Launch Team` | `@product-owner` or `@delivery-orchestrator` | cross-functional app/website launch work spanning UX, implementation, quality, deployment, and follow-up |
 
 The canonical team manifests live in `.claude/teams/`.
 
@@ -184,6 +186,70 @@ Add `@session-budget-estimator` when the question is not only "is this valuable?
 - what fits in one realistic Claude/Codex session
 - whether reset limits make the item too large right now
 - whether the work should be split before execution starts
+
+## Product Discovery Team Notes
+
+The `Product Discovery Team` exists because "I have an idea for an app or website" is not yet an engineering request.
+
+It usually combines:
+- product framing
+- audience and problem clarification
+- MVP reduction
+- scope pushback
+- backlog and roadmap shaping
+- deciding what is necessary now versus later
+
+Default expectation for meaningful discovery-team flows:
+- `@product-owner` or `@vision-partner`
+- `@business-analyst`
+- `@product-designer`
+
+Add when needed:
+- `@customer-advocate`
+- `@idea-executor`
+- `@strategy-reviewer`
+- `@session-budget-estimator`
+
+## Product Launch Team Notes
+
+The `Product Launch Team` exists because shipping an app or website cleanly is often broader than either pure engineering or pure delivery.
+
+It usually combines:
+- product-surface scope control
+- cross-functional implementation coordination
+- UX and design boundary checks
+- launch-readiness gates
+- deployment follow-up
+- analytics or monitoring awareness
+
+Default expectation for meaningful product-launch flows:
+- `@product-owner` or `@delivery-orchestrator`
+- `@product-designer`
+- `@senior-developer`
+
+Add when needed:
+- `@architect`
+- `@qa-engineer`
+- `@privacy-reviewer`
+- `@github-safety-guard`
+- `@analytics-engineer`
+- `@delivery-monitor`
+
+## What We Still Do Not Need
+
+To keep the shared kit reusable, we should resist adding every startup function as a first-class team.
+
+Not needed as core shared teams right now:
+- separate growth-only team
+- separate marketing-only team
+- separate investor-only team
+- separate sales-only team
+- separate frontend-only team
+
+Those are better handled through:
+- combinations of existing teams
+- downstream product-specific overlays
+- future domain packs only when the pattern becomes clearly reusable
 
 ## Customization Guidance
 

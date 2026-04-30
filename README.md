@@ -2,7 +2,7 @@
 
 [![Validate Workspace Kit](https://img.shields.io/github/actions/workflow/status/Konstantinos-Sakellariou/claude-team-kit/validate.yml?branch=main&label=validate)](https://github.com/Konstantinos-Sakellariou/claude-team-kit/actions/workflows/validate.yml)
 ![Agents](https://img.shields.io/badge/agents-53-0ea5e9)
-![Teams](https://img.shields.io/badge/teams-10-14b8a6)
+![Teams](https://img.shields.io/badge/teams-12-14b8a6)
 ![Skills](https://img.shields.io/badge/skills-20-f97316)
 ![Local Context](https://img.shields.io/badge/local_context-supported-22c55e)
 
@@ -54,6 +54,8 @@ There is also now a public-safe annotation-aware protocol evaluation.
 Use [`docs/ANNOTATION_AWARE_CONTEXT_PROTOCOL.md`](docs/ANNOTATION_AWARE_CONTEXT_PROTOCOL.md) for the bounded stance on whether mature repos should ever adopt a lightweight annotation layer.
 
 If you want the repo explained in one pass, use [`docs/ONE_PAGER.md`](docs/ONE_PAGER.md).
+
+If you want the journey from initial idea to shipped app or website explained in one pass, use [`docs/IDEA_TO_PRODUCTION.md`](docs/IDEA_TO_PRODUCTION.md).
 
 ## Quick Start
 
@@ -109,7 +111,7 @@ For significant work, the report should also make clear:
 ```text
 .claude/
 ├── agents/          53 specialized agents across engineering, AI/ML, data, design, content, delivery, and advisory
-├── teams/           10 reusable team manifests that @master can activate for recurring workflows
+├── teams/           12 reusable team manifests that @master can activate for recurring workflows
 ├── skills/          20 reusable skills (code-review, fix-bug, business-case, create-pr, context-audit, triage-input, repo-cleanup...)
 ├── rules/           Modular rule files — docs, artifacts, context, Python, TypeScript, security, testing, git, performance, API design, AI/ML workflow
 ├── hooks/           Shell automations (auto-format, secret detection, file protection, doc-drift warning, tracked-artifact warning...)
@@ -566,8 +568,12 @@ Teams are reusable orchestration bundles that `@master` can activate for recurri
 | `Delivery & Ops Team` | release, delivery, monitoring, privacy, backlog persistence |
 | `Git / GitHub Team` | commit, push, PR, release readiness, branch hygiene, repo-safety review |
 | `Advisory Review Team` | planning, prioritization, strategy, business, and next-move support |
+| `Product Discovery Team` | early app/website/product shaping, MVP reduction, backlog/roadmap framing |
+| `Product Launch Team` | cross-functional website/app launch coordination from build through ship |
 
 The canonical team definitions live in `.claude/teams/`. See [`docs/TEAMS.md`](docs/TEAMS.md) for the full model and operating rules, [`docs/SUPABASE_REFERENCE.md`](docs/SUPABASE_REFERENCE.md) for the Supabase-specific reference, [`docs/DATA_REFERENCE.md`](docs/DATA_REFERENCE.md) for the data-domain reference, and [`docs/DESIGN_REFERENCE.md`](docs/DESIGN_REFERENCE.md) for the design-domain reference.
+
+For the high-level lifecycle path from idea to shipped product, see [`docs/IDEA_TO_PRODUCTION.md`](docs/IDEA_TO_PRODUCTION.md).
 
 **Parallel vs sequential — `@master` decides:**
 

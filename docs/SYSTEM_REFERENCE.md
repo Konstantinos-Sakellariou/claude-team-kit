@@ -32,6 +32,7 @@ Pair it with:
 - `docs/PLAYBOOKS_AND_BATCH_WORKFLOWS.md` for the repeatable playbook and batch-workflow contract
 - `docs/ANNOTATION_AWARE_CONTEXT_PROTOCOL.md` for the bounded annotation-aware protocol evaluation
 - `docs/ONE_PAGER.md` for the high-signal nutshell explanation of the repo
+- `docs/IDEA_TO_PRODUCTION.md` for the visible lifecycle path from idea to shipped app or website
 
 ## Operating Layers
 
@@ -70,6 +71,7 @@ Pair it with:
 | ADRs | Durable architecture and policy decisions | `docs/adr/` | Save only with approval | master, architect, tech-writer |
 | Core Briefings | High-frequency summary docs | `README.md`, `CLAUDE.md`, `AGENTS.md` | Keep concise and link outward | everything |
 | One-Pager | High-signal nutshell explanation for humans | `docs/ONE_PAGER.md` | Use when someone needs the repo explained in one quick pass | architecture, README, workspace updater |
+| Idea To Production Guide | High-level lifecycle path from product idea to shipped surface | `docs/IDEA_TO_PRODUCTION.md` | Use when a repo needs a visible answer for how `@master` should guide app/website work from discovery to launch | teams, workflows, customization, launch planning |
 
 ## Canonical Boundary
 
@@ -91,6 +93,8 @@ If a local `.agents/` folder exists in a checkout, treat it as legacy local comp
 | Delivery & Ops Team | `@delivery-orchestrator` or safety lead | release, delivery, monitoring, backlog persistence | privacy, changelog, experimentation | `docs/TEAMS.md` |
 | Git / GitHub Team | `@github-safety-guard` or `@risk-officer` | commit, push, PR, release readiness | code review, PR packaging, production readiness | `docs/TEAMS.md` |
 | Advisory Review Team | `@product-owner`, `@business-analyst`, `@idea-executor`, or `@vision-partner` | planning, prioritization, strategic validation, collaborative direction-shaping | customer, strategy review, judge, devil's advocate, session-budget estimation, tech writer | `docs/TEAMS.md` |
+| Product Discovery Team | `@product-owner` or `@vision-partner` | early app/website/product shaping, MVP reduction, backlog/roadmap framing | business analyst, product designer, customer advocate, idea executor, strategy review | `docs/TEAMS.md` |
+| Product Launch Team | `@product-owner` or `@delivery-orchestrator` | cross-functional app/website launch coordination from build through ship | product designer, senior developer, architect, QA, privacy, analytics, delivery monitor | `docs/TEAMS.md` |
 
 ## Agent Inventory
 

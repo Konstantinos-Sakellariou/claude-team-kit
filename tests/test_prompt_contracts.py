@@ -1061,6 +1061,63 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn("private proof-of-concept or core-product incubation notes", local_context)
         self.assertIn(".claude/local-context/proof-of-concept/", system_reference)
 
+    def test_product_discovery_team_is_defined_and_visible(self) -> None:
+        team = read(".claude/teams/product-discovery-team.md")
+        master = read(".claude/agents/master.md")
+        readme = read("README.md")
+        claude = read("CLAUDE.md")
+        agents = read("AGENTS.md")
+        teams_doc = read("docs/TEAMS.md")
+        system_reference = read("docs/SYSTEM_REFERENCE.md")
+
+        self.assertIn("# Product Discovery Team", team)
+        self.assertIn("MVP reduction", team)
+        self.assertIn("Product Discovery Team", master)
+        self.assertIn("what should not be built yet", master)
+        self.assertIn("Product Discovery Team", readme)
+        self.assertIn("Product Discovery Team", claude)
+        self.assertIn("Product Discovery Team", agents)
+        self.assertIn("Product Discovery Team", teams_doc)
+        self.assertIn("Product Discovery Team", system_reference)
+
+    def test_product_launch_team_is_defined_and_visible(self) -> None:
+        team = read(".claude/teams/product-launch-team.md")
+        master = read(".claude/agents/master.md")
+        readme = read("README.md")
+        claude = read("CLAUDE.md")
+        agents = read("AGENTS.md")
+        teams_doc = read("docs/TEAMS.md")
+        system_reference = read("docs/SYSTEM_REFERENCE.md")
+
+        self.assertIn("# Product Launch Team", team)
+        self.assertIn("launch-ready", team)
+        self.assertIn("Product Launch Team", master)
+        self.assertIn("cross-functional app/website build-to-launch work", master)
+        self.assertIn("Product Launch Team", readme)
+        self.assertIn("Product Launch Team", claude)
+        self.assertIn("Product Launch Team", agents)
+        self.assertIn("Product Launch Team", teams_doc)
+        self.assertIn("Product Launch Team", system_reference)
+
+    def test_idea_to_production_guide_is_tracked_and_visible(self) -> None:
+        guide = read("docs/IDEA_TO_PRODUCTION.md")
+        readme = read("README.md")
+        claude = read("CLAUDE.md")
+        agents = read("AGENTS.md")
+        system_reference = read("docs/SYSTEM_REFERENCE.md")
+        updater = read(".claude/agents/workspace-updater.md")
+
+        self.assertIn("# Idea To Production", guide)
+        self.assertIn("## The Recommended Journey", guide)
+        self.assertIn("Product Discovery Team", guide)
+        self.assertIn("Product Launch Team", guide)
+        self.assertIn("What Is Not Needed Yet", guide)
+        self.assertIn("docs/IDEA_TO_PRODUCTION.md", readme)
+        self.assertIn("docs/IDEA_TO_PRODUCTION.md", claude)
+        self.assertIn("docs/IDEA_TO_PRODUCTION.md", agents)
+        self.assertIn("docs/IDEA_TO_PRODUCTION.md", system_reference)
+        self.assertIn("docs/IDEA_TO_PRODUCTION.md", updater)
+
     def test_github_quality_gate_agents_and_rule_are_visible(self) -> None:
         code_reviewer = read(".claude/agents/code-reviewer.md")
         pr_operator = read(".claude/agents/pr-operator.md")
