@@ -23,6 +23,10 @@ The clean model is:
 2. repo-specific overlay
 3. optional tool-specific adapter
 
+That same discipline should hold for external repos too:
+- use `docs/OPTIONAL_DEPENDENCIES_AND_ADAPTERS.md` to classify whether something is a dependency, an adapter, or just inspiration
+- use `docs/EXTERNAL_SKILL_REPOS.md` when the question is really about skill packaging and distribution
+
 ## Portability Tiers
 
 ### Tier 1 — Native Fit

@@ -24,7 +24,13 @@ Pair it with:
 - `docs/CROSS_TOOL_PORTABILITY.md` for the optional cross-tool portability and adapter-boundary model
 - `docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md` for the high-level explanation of how the recent canonical-surface, portability, and graph-boundary changes fit together
 - `docs/CODE_INTELLIGENCE_INTEGRATION.md` for the optional code-intelligence integration boundary and decision table
+- `docs/CODE_REVIEW_GRAPH_ADAPTER_EXAMPLE.md` for the first concrete optional code-intelligence adapter example
+- `docs/OPTIONAL_DEPENDENCIES_AND_ADAPTERS.md` for the external dependency and adapter classification policy
+- `docs/EXTERNAL_SKILL_REPOS.md` for the external skill-repo contract
+- `docs/PROJECT_DNA_AND_STATE.md` for the optional project-DNA and persistent-state boundary
 - `docs/WORKTREE_PARALLEL_EXECUTION.md` for the optional worktree-based parallel execution guidance
+- `docs/PLAYBOOKS_AND_BATCH_WORKFLOWS.md` for the repeatable playbook and batch-workflow contract
+- `docs/ANNOTATION_AWARE_CONTEXT_PROTOCOL.md` for the bounded annotation-aware protocol evaluation
 - `docs/ONE_PAGER.md` for the high-signal nutshell explanation of the repo
 
 ## Operating Layers
@@ -43,7 +49,13 @@ Pair it with:
 | Durable Memory Model | Cross-layer continuity architecture | `docs/DURABLE_MEMORY.md` | Use to understand how agent memory, backlog, plans, ADRs, and local context fit together | agent memory, backlog, ADRs, local context, handoff |
 | Graph / Repo Intelligence | Optional relationship layer across repo artifacts | `docs/GRAPH_INTELLIGENCE.md` | Use to understand the optional graph/repo-intelligence boundary, when it is worth using, and how it stays distinct from broader code-intelligence work | durable memory, workflows, context-audit, future product surfaces, code-intelligence boundary |
 | Code-Intelligence Integration | Optional implementation-aware search and retrieval boundary | `docs/CODE_INTELLIGENCE_INTEGRATION.md` | Use to understand when code-aware search, symbols, dependencies, and retrieval may justify an optional integration path without changing the shared core | graph intelligence, context efficiency, future app surfaces, external tooling |
+| Code-Review-Graph Adapter Example | Concrete example of a removable external code-intelligence adapter | `docs/CODE_REVIEW_GRAPH_ADAPTER_EXAMPLE.md` | Use to understand how one real tool can fit the code-intelligence boundary without becoming a required dependency | code intelligence, portability, context efficiency, advanced repos |
+| Optional Dependencies And Adapters | Policy for classifying external repos and integrations | `docs/OPTIONAL_DEPENDENCIES_AND_ADAPTERS.md` | Use to decide whether an external repo should be a required dependency, optional adapter, packaging inspiration, or inspiration only | code intelligence, portability, skill distribution, future integrations |
+| External Skill Repos | Contract for reusable external skill packs | `docs/EXTERNAL_SKILL_REPOS.md` | Use to decide when specialization belongs in an external skill repo rather than the shared core | skills, customization, portability, starter packs |
+| Project DNA And State | Optional durable repo-identity and assumption artifact | `docs/PROJECT_DNA_AND_STATE.md` | Use to understand when a customized repo may need a compact identity-and-state artifact, and how it should differ from briefings, local context, backlog, roadmap, and handoff | durable memory, local context, customization, playbooks, handoff |
 | Worktree Parallel Execution | Optional coordination guidance for safe parallel branch work | `docs/WORKTREE_PARALLEL_EXECUTION.md` | Use to understand when worktrees are worth recommending and how they fit the existing Git / GitHub quality gate | Git/GitHub team, command/workflow guidance, larger implementation arcs |
+| Playbooks And Batch Workflows | Optional contract for durable repeatable workflow patterns | `docs/PLAYBOOKS_AND_BATCH_WORKFLOWS.md` | Use to understand how repeatable sequences should sit alongside commands, plans, backlog, and handoff without becoming a runtime layer | commands, handoff, workflow guidance, larger maintenance flows |
+| Annotation-Aware Context Protocol | Bounded evaluation of lightweight codebase annotation conventions | `docs/ANNOTATION_AWARE_CONTEXT_PROTOCOL.md` | Use to understand whether mature repos should ever adopt a narrow annotation-aware coordination protocol, and what should block it | project DNA, code intelligence, durable memory, mature repos |
 | App Surface And MCP Systems | Future product-surface and connector boundary | `docs/APP_SURFACE_AND_MCP.md` | Use to understand what should stay repo-native, what could become app-native later, and where MCP-connected systems fit safely | durable memory, graph intelligence, local context, future productization |
 | Artifacts Companion Layer | Optional presentation and onboarding layer | `docs/ARTIFACTS.md` | Use to understand how Artifacts can help explain, demo, or package proof-friendly views of the kit without replacing tracked docs | onboarding, app surface, starter packs, system reference |
 | Agent SDK User Input | Future structured-question and approval compatibility layer | `docs/AGENT_SDK_USER_INPUT.md` | Use to understand how future host-side user-input handling could improve bootstrap and approval flows without changing the current core boundary | app surface, bootstrap, approvals, future SDK hosts |

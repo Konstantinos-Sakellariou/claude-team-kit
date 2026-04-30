@@ -38,6 +38,21 @@ If you want the big-picture explanation of the recent boundary cleanup, portabil
 There is also now a public-safe optional code-intelligence stance.
 Use [`docs/CODE_INTELLIGENCE_INTEGRATION.md`](docs/CODE_INTELLIGENCE_INTEGRATION.md) for when code-aware search, symbol, dependency, or retrieval help may be worth considering without turning the shared kit into a runtime platform.
 
+There is also now a public-safe optional dependency and adapter stance.
+Use [`docs/OPTIONAL_DEPENDENCIES_AND_ADAPTERS.md`](docs/OPTIONAL_DEPENDENCIES_AND_ADAPTERS.md) for how external repos should be classified before they become anything stronger than inspiration.
+
+There is also now a public-safe external skill-repo stance.
+Use [`docs/EXTERNAL_SKILL_REPOS.md`](docs/EXTERNAL_SKILL_REPOS.md) for how reusable external skill packs should relate to the shared core.
+
+There is also now a public-safe optional project-DNA stance.
+Use [`docs/PROJECT_DNA_AND_STATE.md`](docs/PROJECT_DNA_AND_STATE.md) for when a customized repo may need a lightweight identity-and-state artifact without duplicating the core briefings or turning `HANDOFF.md` into a planning surface.
+
+There is also now a public-safe playbook and batch-workflow stance.
+Use [`docs/PLAYBOOKS_AND_BATCH_WORKFLOWS.md`](docs/PLAYBOOKS_AND_BATCH_WORKFLOWS.md) for how repeatable multi-step workflows should be represented without creating a second orchestration system.
+
+There is also now a public-safe annotation-aware protocol evaluation.
+Use [`docs/ANNOTATION_AWARE_CONTEXT_PROTOCOL.md`](docs/ANNOTATION_AWARE_CONTEXT_PROTOCOL.md) for the bounded stance on whether mature repos should ever adopt a lightweight annotation layer.
+
 If you want the repo explained in one pass, use [`docs/ONE_PAGER.md`](docs/ONE_PAGER.md).
 
 ## Quick Start
@@ -165,6 +180,26 @@ This kit now also defines a safe stance on optional code intelligence:
 
 See [`docs/CODE_INTELLIGENCE_INTEGRATION.md`](docs/CODE_INTELLIGENCE_INTEGRATION.md) for the boundary and decision table.
 
+See [`docs/CODE_REVIEW_GRAPH_ADAPTER_EXAMPLE.md`](docs/CODE_REVIEW_GRAPH_ADAPTER_EXAMPLE.md) for the first concrete optional adapter example.
+
+## Optional Dependencies And Adapters
+
+This kit now also defines a safe stance on external repos and dependencies:
+- hard dependencies should be rare
+- optional adapters are the preferred advanced integration model
+- many strong external repos should influence packaging or protocol guidance instead of the core dependency graph
+
+See [`docs/OPTIONAL_DEPENDENCIES_AND_ADAPTERS.md`](docs/OPTIONAL_DEPENDENCIES_AND_ADAPTERS.md) for the policy.
+
+## External Skill Repos
+
+This kit now also defines how external skill repos should relate to the shared core:
+- broadly reusable skills belong in the core
+- specialized bundles belong in external repos
+- the kit should stay a governance and packaging surface, not a marketplace
+
+See [`docs/EXTERNAL_SKILL_REPOS.md`](docs/EXTERNAL_SKILL_REPOS.md) for the contract.
+
 ## Worktree Parallel Execution
 
 This kit now also defines a safe stance on optional worktree-based parallel execution:
@@ -173,6 +208,33 @@ This kit now also defines a safe stance on optional worktree-based parallel exec
 - still governed by the same Git / GitHub quality gates
 
 See [`docs/WORKTREE_PARALLEL_EXECUTION.md`](docs/WORKTREE_PARALLEL_EXECUTION.md) for the guidance.
+
+## Project DNA And State
+
+This kit now also defines a safe stance on optional project DNA:
+- only for repos that keep rediscovering the same durable identity or assumptions
+- lighter than a strategy wiki
+- distinct from backlog, roadmap, local context, and `HANDOFF.md`
+
+See [`docs/PROJECT_DNA_AND_STATE.md`](docs/PROJECT_DNA_AND_STATE.md) for the contract.
+
+## Playbooks And Batch Workflows
+
+This kit now also defines a safe stance on repeatable playbooks and batch workflows:
+- playbooks capture durable repeatable workflow patterns
+- commands stay thin entrypoints
+- `HANDOFF.md` stays the continuity artifact, not the process definition
+
+See [`docs/PLAYBOOKS_AND_BATCH_WORKFLOWS.md`](docs/PLAYBOOKS_AND_BATCH_WORKFLOWS.md) for the contract.
+
+## Annotation-Aware Context Protocol
+
+This kit now also defines a bounded evaluation stance on annotation-aware coordination protocols:
+- not default
+- only for mature customized repos
+- only if lighter memory and intelligence surfaces are insufficient
+
+See [`docs/ANNOTATION_AWARE_CONTEXT_PROTOCOL.md`](docs/ANNOTATION_AWARE_CONTEXT_PROTOCOL.md) for the evaluation.
 
 ## App Surface And MCP Systems
 

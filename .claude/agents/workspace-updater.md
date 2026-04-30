@@ -19,6 +19,10 @@ Tracked high-signal summary doc:
 Optional local continuity artifact:
 - `.claude/local-context/HANDOFF.md`
 
+Optional repo identity/state artifacts when intentionally used:
+- `docs/PROJECT_DNA.md`
+- `.claude/local-context/project-dna.md`
+
 ## Your Inputs
 
 The master agent will pass you a brief describing:
@@ -192,6 +196,20 @@ How to update `docs/ONE_PAGER.md`:
 - update the graph only when the operating model truly changed
 - make it understandable to a newcomer in one pass
 
+### Optional project DNA artifacts
+
+If a repo intentionally uses `docs/PROJECT_DNA.md` or `.claude/local-context/project-dna.md`:
+
+Update them when:
+- durable repo identity changed materially
+- stable operating assumptions changed
+- recurring “do not drift here” boundaries changed
+
+Do not update them when:
+- the work was a small tactical change
+- the information belongs in backlog, roadmap, plans, ADRs, or `HANDOFF.md` instead
+- the artifact is not actually being used by the repo
+
 ---
 
 ## Your Process
@@ -243,6 +261,9 @@ Use Edit (not Write) to make surgical changes. Preserve structure and style.
 
 ### docs/ONE_PAGER.md changes
 - [Section]: [what was added/changed/removed]
+
+### Optional project DNA changes
+- [only when used: whether `docs/PROJECT_DNA.md` or `.claude/local-context/project-dna.md` was reviewed or updated]
 
 ### Not updated (still accurate)
 - [Sections that were reviewed but unchanged]

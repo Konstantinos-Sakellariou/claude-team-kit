@@ -62,7 +62,13 @@ Repo-level docs explain and package that implementation:
 - `docs/DURABLE_MEMORY.md`: how memory layers, privacy boundaries, and retrieval expectations fit together
 - `docs/GRAPH_INTELLIGENCE.md`: how an optional relationship/intelligence layer could later sit on top of the current artifact model
 - `docs/CODE_INTELLIGENCE_INTEGRATION.md`: how a separate optional code-aware search and retrieval layer should remain bounded, optional, and external-tooling-first
+- `docs/CODE_REVIEW_GRAPH_ADAPTER_EXAMPLE.md`: one concrete example of how an external code-intelligence adapter can fit without becoming a required dependency
+- `docs/OPTIONAL_DEPENDENCIES_AND_ADAPTERS.md`: how external repos should be classified before they become required dependencies, optional adapters, or inspiration only
+- `docs/EXTERNAL_SKILL_REPOS.md`: how external skill repositories should complement the shared core without turning it into a marketplace
+- `docs/PROJECT_DNA_AND_STATE.md`: how an optional identity-and-state artifact may help mature customized repos without duplicating core briefings or memory surfaces
 - `docs/WORKTREE_PARALLEL_EXECUTION.md`: how optional worktree-based parallel execution should stay a coordination aid rather than a runtime orchestration layer
+- `docs/PLAYBOOKS_AND_BATCH_WORKFLOWS.md`: how repeatable playbooks should encode stable workflows without becoming a second command or runtime system
+- `docs/ANNOTATION_AWARE_CONTEXT_PROTOCOL.md`: how annotation-aware coordination should remain a bounded evaluation rather than a default repo behavior
 - `docs/APP_SURFACE_AND_MCP.md`: how a future app surface could sit on top of the repo model and where MCP-connected systems would fit
 - `docs/CROSS_TOOL_PORTABILITY.md`: how the shared core, repo-specific overlay, and optional host adapters should relate across different tool environments
 - `docs/DOCUMENTATION_GOVERNANCE.md`: how to keep the repo fully documented without bloating the hot path

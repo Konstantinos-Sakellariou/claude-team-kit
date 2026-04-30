@@ -27,6 +27,7 @@ Use [`docs/DURABLE_MEMORY.md`](docs/DURABLE_MEMORY.md) when you need the full cr
 The setup script can scaffold these starter files:
 - `.claude/local-context/README.md`
 - `.claude/local-context/project-private.md`
+- `.claude/local-context/project-dna.md`
 - `.claude/local-context/customers.md`
 - `.claude/local-context/constraints.md`
 - `.claude/local-context/HANDOFF.md`
@@ -41,6 +42,13 @@ Examples:
 - proof-of-concept offer shaping or product incubation work
 
 Use only the files you actually need.
+
+`project-dna.md` is the best fit when:
+- the repo has durable identity or operating assumptions that are more stable than a handoff
+- those assumptions are too sensitive or too fluid for tracked docs
+- the repo would benefit from one compact identity/state artifact instead of rediscovering the same context repeatedly
+
+See [`docs/PROJECT_DNA_AND_STATE.md`](docs/PROJECT_DNA_AND_STATE.md) for the optional project-DNA contract and how it differs from briefings, backlog, roadmap, and handoff.
 
 `HANDOFF.md` is the best fit when:
 - a substantial session is ending mid-stream

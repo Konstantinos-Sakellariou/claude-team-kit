@@ -136,6 +136,9 @@ For this repo, the best first output is documentation and a boundary contract:
 
 That is enough to help downstream repos make better decisions without forcing any runtime commitment here.
 
+The first concrete example path now lives in:
+- `docs/CODE_REVIEW_GRAPH_ADAPTER_EXAMPLE.md`
+
 ## Possible Future Adapter Shape
 
 If the value becomes real later, a future optional adapter could expose:

@@ -39,6 +39,9 @@ Avoid:
 | Handoff | Session-bridge memory | `.claude/local-context/HANDOFF.md` | local only | where work stopped and what the next model should know |
 | Estimation log | Practical learning memory | `.claude/local-context/estimation-log.md` | local only | estimate-versus-actual history and mode preferences |
 
+Customized repos may also choose an optional project-DNA artifact when durable repo identity and operating assumptions no longer fit cleanly inside the hot-path briefings.
+See [`docs/PROJECT_DNA_AND_STATE.md`](docs/PROJECT_DNA_AND_STATE.md) for that boundary.
+
 ## Memory Flow
 
 ```mermaid

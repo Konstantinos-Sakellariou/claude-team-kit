@@ -24,7 +24,7 @@ More concretely, it provides:
 - quality gates for code, docs, and GitHub work
 - durable memory and artifact guidance
 - optional starter packs, solution packs, and design packs
-- optional future-facing boundaries for graph intelligence, code intelligence, app surfaces, and host portability
+- optional future-facing boundaries for graph intelligence, code intelligence, external adapters, skill distribution, app surfaces, and host portability
 
 ## How It Works
 
@@ -69,7 +69,7 @@ flowchart TD
    backlog, plans, ADRs, docs, memory, local context
 
 4. `Optional extension layer`
-   starter packs, solution packs, design packs, graph boundary, code-intelligence boundary, cross-tool portability
+   starter packs, solution packs, design packs, graph boundary, code-intelligence boundary, external adapter policy, skill-repo guidance, cross-tool portability
 
 ## What It Is Not
 

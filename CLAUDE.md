@@ -12,8 +12,8 @@ Owner: Konstantinos Sakellariou
 
 ## Architecture
 - See `docs/ARCHITECTURE.md`
-- See `docs/VISION.example.md` for the tracked vision template and `docs/VISION.md` for the optional local repo-specific version
-- See `docs/ROADMAP.example.md` for the tracked roadmap template and `docs/ROADMAP.md` for the optional local repo-specific version
+- See `docs/VISION.example.md` / `docs/VISION.md` for the tracked vision template and optional local repo-specific version
+- See `docs/ROADMAP.example.md` / `docs/ROADMAP.md` for the tracked roadmap template and optional local repo-specific version
 - See `docs/BOOTSTRAP.md` for the new-repo bootstrap flow
 - See `docs/CONTEXT_EFFICIENCY.md` for context-efficiency, request-shaping, and large-input triage rules
 - See `docs/RTK_INTEGRATION.md` for the optional RTK local-efficiency integration path
@@ -22,7 +22,13 @@ Owner: Konstantinos Sakellariou
 - See `docs/DURABLE_MEMORY.md` for the durable-memory architecture and tracked-vs-local memory split
 - See `docs/GRAPH_INTELLIGENCE.md` for the optional graph/repo-intelligence layer and rollout boundary
 - See `docs/CODE_INTELLIGENCE_INTEGRATION.md` for the optional code-intelligence integration boundary and decision table
+- See `docs/CODE_REVIEW_GRAPH_ADAPTER_EXAMPLE.md` for the first concrete optional external adapter example
+- See `docs/OPTIONAL_DEPENDENCIES_AND_ADAPTERS.md` for the optional dependency and adapter policy
+- See `docs/EXTERNAL_SKILL_REPOS.md` for the external skill-repo contract
+- See `docs/PROJECT_DNA_AND_STATE.md` for the optional project-DNA and persistent-state boundary
 - See `docs/WORKTREE_PARALLEL_EXECUTION.md` for the optional worktree-based parallel execution guidance
+- See `docs/PLAYBOOKS_AND_BATCH_WORKFLOWS.md` for the repeatable playbook and batch-workflow contract
+- See `docs/ANNOTATION_AWARE_CONTEXT_PROTOCOL.md` for the bounded annotation-aware protocol evaluation
 - See `docs/APP_SURFACE_AND_MCP.md` for the future app-surface boundary and MCP-connected systems model
 - See `docs/ARTIFACTS.md` for the optional Artifacts companion-layer stance
 - See `docs/AGENT_SDK_USER_INPUT.md` for the optional future Agent SDK user-input compatibility layer
@@ -47,8 +53,7 @@ Owner: Konstantinos Sakellariou
 - Review example plan: `sed -n '1,240p' docs/plans/example-execution-plan.md`
 - Review vision template: `sed -n '1,240p' docs/VISION.example.md`
 - Review roadmap template: `sed -n '1,240p' docs/ROADMAP.example.md`
-- Review local vision if present: `sed -n '1,240p' docs/VISION.md 2>/dev/null`
-- Review local roadmap if present: `sed -n '1,240p' docs/ROADMAP.md 2>/dev/null`
+- Review local vision or roadmap if present: `sed -n '1,240p' docs/VISION.md 2>/dev/null` / `sed -n '1,240p' docs/ROADMAP.md 2>/dev/null`
 - Review local estimation log if present: `sed -n '1,240p' .claude/local-context/estimation-log.md 2>/dev/null`
 - Review context-efficiency guide: `sed -n '1,240p' docs/CONTEXT_EFFICIENCY.md`
 - Review private local context guide: `sed -n '1,240p' docs/LOCAL_CONTEXT.md`
@@ -63,15 +68,12 @@ Owner: Konstantinos Sakellariou
 - Review design packs: `sed -n '1,240p' docs/DESIGN_PACKS.md`
 - Inspect local context files: `find .claude/local-context -maxdepth 1 -type f 2>/dev/null | sort`
 - Review changes: `git diff --stat`
-- Inspect agents: `find .claude/agents -maxdepth 1 -type f | sort`
-- Inspect teams: `find .claude/teams -maxdepth 1 -type f | sort`
+- Inspect agents or teams: `find .claude/agents -maxdepth 1 -type f | sort` / `find .claude/teams -maxdepth 1 -type f | sort`
 - Inspect skills: `find .claude/skills -maxdepth 1 -mindepth 1 -type d | sort`
 - Inspect command layer: `find .claude/commands -maxdepth 1 -type f | sort`
 
 ## Environment
-- Copy `.env.example` → `.env` for optional local configuration
-- Primary local config: `.claude/settings.local.json`
-- Common env vars: `GITHUB_TOKEN`
+- Copy `.env.example` → `.env` for optional local configuration; primary local config: `.claude/settings.local.json`; common env var: `GITHUB_TOKEN`
 
 ---
 

@@ -91,6 +91,7 @@ Tooling discipline:
 - prefer local CLI tools over equivalent MCP tools when they solve the task cleanly with less overhead
 - do not rely on every available MCP server just because it exists; use only the tools the task actually needs
 - if an optional local efficiency tool such as RTK is installed and the command is noisy, you may use it, but never assume it exists
+- treat external repos and advanced tooling as optional adapters by default unless the shared core genuinely requires them; prefer removable integrations over new hard dependencies
 
 ## Model Routing Policy
 
@@ -145,6 +146,11 @@ Commands do not:
 - bypass approvals
 - replace natural-language requests
 - replace agents or teams
+
+For repeatable multi-step workflow shapes:
+- prefer a thin command as the entrypoint when one helps
+- prefer a playbook doc as the durable workflow contract when the sequence is stable
+- keep `HANDOFF.md` for session continuity only, not as the canonical process definition
 
 When a user invokes a supported command such as `/bootstrap-repo`, `/customize-repo`, `/save-backlog`, `/plan-idea`, `/write-adr`, `/release-check`, `/sync-docs`, `/triage-input`, or `/context-audit`:
 - identify the command explicitly
@@ -300,6 +306,7 @@ When customization is needed:
 - distinguish between:
   - reusable kit layer
   - repo-specific overlay
+- if repeated rediscovery points to missing durable repo identity or operating assumptions, you may recommend an optional project-DNA artifact instead of continuing to bloat the hot-path briefings
 - recommend only the narrowest useful changes first
 - apply larger repo-shaping changes only when the user intent is clear
 
