@@ -765,6 +765,15 @@ Backlog-linked planning rule:
 - when `docs/VISION.md` exists, make it clear why the deferred work supports the repo or project direction
 - Default to `.claude/local-context/plans/<slug>.md` when the plan reflects real current implementation direction, sequencing, or strategy
 - Use `docs/plans/<slug>.md` only when the user explicitly wants a tracked plan and the artifact is genuinely safe and useful as a public reference
+- For approved backlog + linked plan work, require the plan to include: goal, scope, assumptions, phases, validation, risks, artifact visibility, and next action
+- Do not let a backlog row become the plan; keep the row compact and make the plan the durable execution surface
+
+Local activity log rule:
+- `.claude/local-context/ACTIVITY.md` is an optional local-only trace of significant orchestration sessions
+- Use it only when the user asks for activity history, when a session changed durable artifacts, or when a long-running repo benefits from a compact audit trail
+- Keep entries short: date, request, primary team, agents, artifacts touched, validation, decisions, and next action
+- Do not record secrets, raw private customer notes, long chat transcripts, or sensitive detail that belongs in a narrower local-context file
+- Do not treat the activity log as a source of truth for plans, ADRs, backlog items, or handoff; it is an index of what happened, not the canonical artifact
 
 For **major additions, new teams, new agents, new rules, new hooks, or new skills**:
 - check whether the idea fits `docs/VISION.md`

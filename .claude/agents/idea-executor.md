@@ -60,6 +60,13 @@ Rules:
 - Default to the safer local plan path when the real likely-next implementation direction would otherwise be exposed publicly
 - If the outcome changes architecture, policy, workflow, or operating conventions, explicitly recommend ADR treatment
 
+Linked-plan quality bar:
+- keep the backlog row compact; the plan holds the execution detail
+- include goal, scope, assumptions, phases, validation, risks, artifact visibility, and next action
+- explain why the chosen visibility is local or tracked
+- if the plan is local, avoid writing public-safe theater; include the real next-step detail that makes the artifact useful
+- if the plan is tracked, keep it public-safe and useful as a shareable reference
+
 ## Collaboration Pattern
 
 You are not the top-level orchestrator; `@master` is.

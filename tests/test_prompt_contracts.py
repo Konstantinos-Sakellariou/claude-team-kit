@@ -12,6 +12,8 @@ def read(path: str) -> str:
 class PromptContractTests(unittest.TestCase):
     def test_master_defines_backlog_mode_and_linked_plan_flow(self) -> None:
         master = read(".claude/agents/master.md")
+        backlog_updater = read(".claude/agents/backlog-updater.md")
+        idea_executor = read(".claude/agents/idea-executor.md")
 
         self.assertIn("Backlog mode rules:", master)
         self.assertIn("Private backlog", master)
@@ -19,6 +21,31 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn("backlog + linked plan", master)
         self.assertIn("Before I save this backlog item:", master)
         self.assertIn("Approve saving both?", master)
+        self.assertIn("Do not let a backlog row become the plan", master)
+        self.assertIn("Minimum linked-plan structure:", backlog_updater)
+        self.assertIn("## Artifact Visibility", backlog_updater)
+        self.assertIn("Linked-plan quality bar:", idea_executor)
+        self.assertIn("explain why the chosen visibility is local or tracked", idea_executor)
+
+    def test_local_activity_log_is_optional_and_local_only(self) -> None:
+        master = read(".claude/agents/master.md")
+        updater = read(".claude/agents/workspace-updater.md")
+        setup = read("scripts/setup.sh")
+        readme = read("README.md")
+        local_context = read("docs/LOCAL_CONTEXT.md")
+        durable_memory = read("docs/DURABLE_MEMORY.md")
+        system_reference = read("docs/SYSTEM_REFERENCE.md")
+        gitignore = read(".gitignore")
+
+        self.assertIn("Local activity log rule:", master)
+        self.assertIn(".claude/local-context/ACTIVITY.md", master)
+        self.assertIn("Optional local-only trace", setup)
+        self.assertIn("Special Case: Local Activity Log", updater)
+        self.assertIn(".claude/local-context/ACTIVITY.md", readme)
+        self.assertIn("ACTIVITY.md` is the best fit", local_context)
+        self.assertIn("Activity log", durable_memory)
+        self.assertIn(".claude/local-context/ACTIVITY.md", system_reference)
+        self.assertIn(".claude/local-context/", gitignore)
 
     def test_master_defines_lightweight_and_full_reporting(self) -> None:
         master = read(".claude/agents/master.md")

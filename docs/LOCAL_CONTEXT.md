@@ -31,6 +31,7 @@ The setup script can scaffold these starter files:
 - `.claude/local-context/customers.md`
 - `.claude/local-context/constraints.md`
 - `.claude/local-context/HANDOFF.md`
+- `.claude/local-context/ACTIVITY.md`
 
 When a plan should stay private, keep it under:
 - `.claude/local-context/plans/`
@@ -56,6 +57,22 @@ See [`docs/PROJECT_DNA_AND_STATE.md`](docs/PROJECT_DNA_AND_STATE.md) for the opt
 - the repo needs a compact local “where we left off” bridge without rewriting stable docs
 
 Keep the handoff short, operational, and local-only.
+
+`ACTIVITY.md` is the best fit when:
+- the repo wants a compact local audit trail of significant orchestration sessions
+- teams or agents changed durable artifacts and the user may later ask what happened
+- the work is worth indexing, but not worth a full handoff or new tracked doc
+
+Keep activity entries short:
+- date and short session title
+- request
+- primary team and agents
+- artifacts touched
+- validation run
+- decisions made
+- next action
+
+Do not use `ACTIVITY.md` as a transcript, metrics store, private customer notebook, or replacement for backlog, plans, ADRs, or `HANDOFF.md`.
 
 ## How `@master` Should Use It
 
@@ -100,6 +117,7 @@ The same rule applies to plans:
 - public-safe example plans or intentionally shareable implementation references can live in `docs/plans/`
 - private strategy or roadmap plans should stay in `.claude/local-context/plans/`
 - when a plan reflects the repo's real likely-next work, prefer the local plan path unless the user explicitly wants it tracked
+- substantial deferred work should usually stay compact in the backlog and put execution detail in a linked plan after approval
 
 The same boundary must hold for any future app surface:
 - the app may help surface or organize private local context

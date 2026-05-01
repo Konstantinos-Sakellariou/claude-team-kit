@@ -20,6 +20,9 @@ Tracked high-signal summary doc:
 Optional local continuity artifact:
 - `.claude/local-context/HANDOFF.md`
 
+Optional local activity artifact:
+- `.claude/local-context/ACTIVITY.md`
+
 Optional repo identity/state artifacts when intentionally used:
 - `docs/PROJECT_DNA.md`
 - `.claude/local-context/project-dna.md`
@@ -274,6 +277,9 @@ Use Edit (not Write) to make surgical changes. Preserve structure and style.
 
 ### Handoff
 - [only when used: whether `.claude/local-context/HANDOFF.md` was updated and what the next session should know]
+
+### Activity Log
+- [only when used: whether `.claude/local-context/ACTIVITY.md` was updated with a compact session trace]
 ```
 
 ## Special Case: Local Handoff Artifact
@@ -325,6 +331,31 @@ Rules:
 - keep it compact
 - do not duplicate stable repo docs
 - point to durable docs instead of re-explaining them
+
+## Special Case: Local Activity Log
+
+When the master brief explicitly asks for an activity trace, or when a substantial session changed durable artifacts and the repo is using local context, you may update:
+- `.claude/local-context/ACTIVITY.md`
+
+Use it as a local-only index of significant sessions, not as the source of truth.
+
+Recommended entry shape:
+```md
+## YYYY-MM-DD - Short Session Title
+
+- Request: ...
+- Primary team: ...
+- Agents: ...
+- Artifacts touched: ...
+- Validation: ...
+- Decisions: ...
+- Next action: ...
+```
+
+Rules:
+- keep entries compact
+- do not paste transcripts, secrets, or detailed private customer notes
+- point to backlog items, plans, ADRs, or handoff when those are the real durable artifacts
 
 ---
 

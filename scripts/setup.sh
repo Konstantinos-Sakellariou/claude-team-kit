@@ -92,9 +92,52 @@ EOF
 
 ## Timing Or Organizational Constraints
 EOF
+  cat > "$LOCAL_CONTEXT_DIR/ACTIVITY.md" <<'EOF'
+# Activity Log
+
+Optional local-only trace of significant orchestration sessions.
+
+Use compact entries:
+
+## YYYY-MM-DD - Short Session Title
+
+- Request:
+- Primary team:
+- Agents:
+- Artifacts touched:
+- Validation:
+- Decisions:
+- Next action:
+
+Do not paste transcripts, secrets, or detailed private customer notes here.
+EOF
   echo "OK: Created .claude/local-context/ starter files"
 else
   echo "OK: Private local context already present"
+fi
+
+ACTIVITY_FILE="$LOCAL_CONTEXT_DIR/ACTIVITY.md"
+if [ -d "$LOCAL_CONTEXT_DIR" ] && [ ! -f "$ACTIVITY_FILE" ]; then
+  cat > "$ACTIVITY_FILE" <<'EOF'
+# Activity Log
+
+Optional local-only trace of significant orchestration sessions.
+
+Use compact entries:
+
+## YYYY-MM-DD - Short Session Title
+
+- Request:
+- Primary team:
+- Agents:
+- Artifacts touched:
+- Validation:
+- Decisions:
+- Next action:
+
+Do not paste transcripts, secrets, or detailed private customer notes here.
+EOF
+  echo "OK: Created .claude/local-context/ACTIVITY.md"
 fi
 
 echo
@@ -103,4 +146,5 @@ echo "1. Edit .claude/settings.local.json and/or .env with your GitHub token"
 echo "2. Review CLAUDE.md before using this repo as a template in another project"
 echo "3. Use BACKLOG.md locally for private planning details, or create docs/BACKLOG.md from docs/BACKLOG.example.md for a tracked public backlog"
 echo "4. Add any sensitive startup, customer, or strategy notes to .claude/local-context/ and keep that folder local-only"
-echo "5. Run ./scripts/doctor.sh to validate the workspace"
+echo "5. Optionally use .claude/local-context/ACTIVITY.md as a compact local-only session trace"
+echo "6. Run ./scripts/doctor.sh to validate the workspace"

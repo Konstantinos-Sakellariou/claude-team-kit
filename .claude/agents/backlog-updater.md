@@ -93,6 +93,8 @@ When `@idea-executor` produced a meaningful execution plan and the user approved
 - persist the backlog row
 - create or update the approved plan path
 - set `Artifact / Plan` to that path
+- keep the backlog row as the index entry, not the whole execution plan
+- make the plan file the durable execution surface
 
 Visibility rule:
 - do not assume that approval to save a plan also means approval to track it publicly
@@ -103,6 +105,17 @@ Visibility rule:
 Default path rule:
 - prefer `.claude/local-context/plans/<slug>.md` for real next-step implementation plans
 - use `docs/plans/<slug>.md` only when the user explicitly wants a tracked plan and the plan is safe and useful as a public-facing reference
+
+Minimum linked-plan structure:
+- `# <Plan Title>`
+- `## Goal`
+- `## Scope`
+- `## Assumptions`
+- `## Phases`
+- `## Validation`
+- `## Risks`
+- `## Artifact Visibility`
+- `## Next Action`
 
 When approval was not given:
 - keep the full plan in chat

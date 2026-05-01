@@ -606,6 +606,51 @@ fi
 
 check_file "docs/assets/claude-team-kit-hero.svg" "docs/assets/claude-team-kit-hero.svg exists"
 
+if python3 - "$ROOT_DIR/README.md" "$ROOT_DIR" <<'PY' >/dev/null 2>&1
+import re
+import sys
+from pathlib import Path
+
+readme = Path(sys.argv[1])
+root = Path(sys.argv[2])
+text = readme.read_text()
+
+if text.count("```") % 2:
+    sys.exit(1)
+
+link_pattern = re.compile(r'!?\[[^\]]*\]\(([^)]+)\)')
+for raw_target in link_pattern.findall(text):
+    target = raw_target.strip()
+    if (
+        not target
+        or target.startswith("#")
+        or "://" in target
+        or target.startswith("mailto:")
+        or target.startswith("tel:")
+    ):
+        continue
+    path_part = target.split("#", 1)[0]
+    if not path_part:
+        continue
+    if not (root / path_part).exists():
+        sys.exit(1)
+
+for block in re.findall(r'```mermaid\n(.*?)\n```', text, flags=re.S):
+    if not block.strip().startswith(("flowchart ", "sequenceDiagram", "gantt")):
+        sys.exit(1)
+    try:
+        block.encode("ascii")
+    except UnicodeEncodeError:
+        sys.exit(1)
+
+sys.exit(0)
+PY
+then
+  pass "README.md local links, code fences, and Mermaid blocks are structurally valid"
+else
+  fail "README.md has broken local links, unbalanced code fences, or risky Mermaid blocks"
+fi
+
 if grep -q 'github/actions/workflow/status/Konstantinos-Sakellariou/claude-team-kit/validate.yml' "$ROOT_DIR/README.md"; then
   pass "README.md includes the validation badge"
 else

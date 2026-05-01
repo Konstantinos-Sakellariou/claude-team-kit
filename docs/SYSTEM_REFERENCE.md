@@ -287,6 +287,7 @@ Hooks should reinforce hygiene, not replace judgment.
 | `.claude/local-context/plans/` | local private strategy and roadmap plans |
 | `.claude/local-context/estimation-log.md` | local private estimate-versus-actual history and mode preference |
 | `.claude/local-context/HANDOFF.md` | local private continuity artifact for unfinished sessions and tool/model handoff |
+| `.claude/local-context/ACTIVITY.md` | optional local private activity trace for significant orchestration sessions |
 | `.claude/local-context/proof-of-concept/` | local private POC or core-product incubation material that can inform `@master` without becoming tracked kit truth |
 | `docs/adr/` | approved architecture/policy decisions |
 | `.claude/local-context/` | private local context |

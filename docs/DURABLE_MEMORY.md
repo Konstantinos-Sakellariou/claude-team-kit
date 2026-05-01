@@ -37,6 +37,7 @@ Avoid:
 | ADRs | Decision memory | `docs/adr/` | tracked with approval | durable architecture, policy, or workflow decisions |
 | Local context | Private operating memory | `.claude/local-context/` | local only | company, customer, POC, product, and strategy context |
 | Handoff | Session-bridge memory | `.claude/local-context/HANDOFF.md` | local only | where work stopped and what the next model should know |
+| Activity log | Local trace memory | `.claude/local-context/ACTIVITY.md` | local only | compact index of significant orchestration sessions |
 | Estimation log | Practical learning memory | `.claude/local-context/estimation-log.md` | local only | estimate-versus-actual history and mode preferences |
 
 Customized repos may also choose an optional project-DNA artifact when durable repo identity and operating assumptions no longer fit cleanly inside the hot-path briefings.
@@ -53,12 +54,14 @@ flowchart TD
     MASTER --> MEMORY["Agent memory<br/>reusable heuristics"]
     MASTER --> LOCAL["Local context<br/>private operating truth"]
     MASTER --> HANDOFF["HANDOFF.md<br/>session bridge"]
+    MASTER --> ACTIVITY["ACTIVITY.md<br/>local trace"]
     MASTER --> EST["Estimation log<br/>local learning"]
 
     BACKLOG --> PLAN
     PLAN --> ADR
     LOCAL --> PLAN
     LOCAL --> HANDOFF
+    ACTIVITY --> MASTER
     MEMORY --> MASTER
     ADR --> MASTER
     PLAN --> MASTER
@@ -87,6 +90,7 @@ Examples:
 - private founder or product question -> read only the relevant local-context file
 - repeated role-specific judgment -> read the agent's own `MEMORY.md`
 - unfinished session -> read `HANDOFF.md` before pulling broad context back in
+- "what happened recently?" -> read `ACTIVITY.md` if the repo uses it, then follow links to backlog, plans, ADRs, or handoff as needed
 
 ## Example Use
 
@@ -133,6 +137,23 @@ The practical recipe is:
 - agent memory captures reusable role-specific patterns
 - `@workspace-updater` keeps the tracked hot path aligned when behavior changes
 - `HANDOFF.md` bridges unfinished sessions without inflating stable docs
+- `ACTIVITY.md` can provide a compact local-only trace of significant sessions when a repo benefits from it
+
+## Backlog + Linked Plan Flow
+
+Use this flow when an idea is important enough to preserve but too detailed for a single backlog row.
+
+Default behavior:
+1. `@idea-executor` shapes the idea into a concrete execution plan.
+2. `@master` recommends `backlog + linked plan` when the work is substantial and deferred.
+3. `@master` asks for explicit approval before saving the backlog row and plan.
+4. `@backlog-updater` keeps the backlog row compact and links to the plan path.
+5. The plan stores goal, scope, assumptions, phases, validation, risks, artifact visibility, and next action.
+
+Visibility rule:
+- use `.claude/local-context/plans/<slug>.md` for real likely-next implementation, strategy, sequencing, or company-operating work
+- use `docs/plans/<slug>.md` only when the user explicitly wants a tracked plan and the plan is safe as a public reference
+- approving the plan is not the same as approving tracked visibility
 
 This makes continuity composable:
 - decision continuity

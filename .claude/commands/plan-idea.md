@@ -15,9 +15,11 @@ Turn an idea into a validated execution plan rather than leaving it as vague dis
 1. shape the idea into an execution plan
 2. pressure-test tradeoffs and assumptions
 3. recommend chat only, backlog only, or backlog plus linked plan
-4. save the artifact only with approval
+4. recommend local versus tracked visibility for any linked plan
+5. save the artifact only with approval
 
 ## Output
 
 - execution plan
 - artifact recommendation
+- optional backlog + linked plan recommendation
