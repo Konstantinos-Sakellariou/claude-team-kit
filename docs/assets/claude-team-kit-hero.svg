@@ -11,7 +11,7 @@
       <stop stop-color="#0EA5E9"/>
       <stop offset="1" stop-color="#14B8A6"/>
     </linearGradient>
-    <linearGradient id="panel" x1="690" y1="70" x2="1086" y2="346" gradientUnits="userSpaceOnUse">
+    <linearGradient id="panel" x1="800" y1="82" x2="1094" y2="338" gradientUnits="userSpaceOnUse">
       <stop stop-color="#0F172A"/>
       <stop offset="1" stop-color="#1E293B"/>
     </linearGradient>
@@ -35,10 +35,10 @@
     <path d="M151 80L63 130" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round"/>
   </g>
 
-  <text x="350" y="132" fill="#0F172A" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="50" font-weight="800">claude-team-kit</text>
-  <text x="352" y="178" fill="#334155" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="22">Drop an orchestrated AI team into any repo.</text>
-  <text x="352" y="212" fill="#334155" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="22">Start with @master. Build with teams, skills, rules,</text>
-  <text x="352" y="246" fill="#334155" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="22">hooks, memory, and local context.</text>
+  <text x="350" y="132" fill="#0F172A" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="44" font-weight="800">claude-team-kit</text>
+  <text x="352" y="178" fill="#334155" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="21">Drop an orchestrated AI team into any repo.</text>
+  <text x="352" y="211" fill="#334155" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="21">Start with @master. Build with teams,</text>
+  <text x="352" y="244" fill="#334155" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="21">skills, rules, hooks, memory, and context.</text>
 
   <g transform="translate(352 292)">
     <rect x="0" y="0" width="130" height="38" rx="19" fill="#E0F2FE"/>
@@ -49,17 +49,17 @@
     <text x="333" y="25" text-anchor="middle" fill="#C2410C" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="15" font-weight="800">20 skills</text>
   </g>
 
-  <rect x="706" y="72" width="388" height="276" rx="24" fill="url(#panel)"/>
-  <text x="742" y="118" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="24" font-weight="800">Operational Layers</text>
+  <rect x="800" y="82" width="294" height="256" rx="24" fill="url(#panel)"/>
+  <text x="824" y="124" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="19" font-weight="800">Operational Layers</text>
 
-  <g transform="translate(742 148)">
-    <rect x="0" y="0" width="308" height="44" rx="14" fill="#0B3556"/>
-    <text x="22" y="28" fill="#D9F2FF" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="16" font-weight="700">1. User request enters @master</text>
+  <g transform="translate(824 154)">
+    <rect x="0" y="0" width="246" height="40" rx="13" fill="#0B3556"/>
+    <text x="18" y="25" fill="#D9F2FF" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="13.5" font-weight="700">1. Request enters @master</text>
 
-    <rect x="0" y="60" width="308" height="44" rx="14" fill="#0F766E"/>
-    <text x="22" y="88" fill="#D5FBF5" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="16" font-weight="700">2. Teams and agents route the work</text>
+    <rect x="0" y="58" width="246" height="40" rx="13" fill="#0F766E"/>
+    <text x="18" y="83" fill="#D5FBF5" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="13.5" font-weight="700">2. Teams route the work</text>
 
-    <rect x="0" y="120" width="308" height="44" rx="14" fill="#334155"/>
-    <text x="22" y="148" fill="#E2E8F0" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="16" font-weight="700">3. Gates review, then docs sync</text>
+    <rect x="0" y="116" width="246" height="40" rx="13" fill="#334155"/>
+    <text x="18" y="141" fill="#E2E8F0" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="13.5" font-weight="700">3. Gates review and sync</text>
   </g>
 </svg>
