@@ -111,6 +111,27 @@ Use compact entries:
 
 Do not paste transcripts, secrets, or detailed private customer notes here.
 EOF
+  mkdir -p "$LOCAL_CONTEXT_DIR/research"
+  cat > "$LOCAL_CONTEXT_DIR/research/README.md" <<'EOF'
+# Local Research Notes
+
+Use this folder for local-first reviews that should outlive a chat:
+- external repo fit reviews
+- tool evaluations
+- image or design reference critiques
+- ecosystem or marketplace scans
+
+Suggested structure:
+- source
+- what it is
+- strongest borrowable ideas
+- best fit with this repo
+- cautions
+- recommendation
+- backlog implications
+
+Keep raw research local unless a public-safe conclusion is later approved for tracked docs.
+EOF
   echo "OK: Created .claude/local-context/ starter files"
 else
   echo "OK: Private local context already present"
@@ -140,6 +161,36 @@ EOF
   echo "OK: Created .claude/local-context/ACTIVITY.md"
 fi
 
+RESEARCH_DIR="$LOCAL_CONTEXT_DIR/research"
+if [ -d "$LOCAL_CONTEXT_DIR" ] && [ ! -d "$RESEARCH_DIR" ]; then
+  mkdir -p "$RESEARCH_DIR"
+fi
+
+RESEARCH_README="$RESEARCH_DIR/README.md"
+if [ -d "$RESEARCH_DIR" ] && [ ! -f "$RESEARCH_README" ]; then
+  cat > "$RESEARCH_README" <<'EOF'
+# Local Research Notes
+
+Use this folder for local-first reviews that should outlive a chat:
+- external repo fit reviews
+- tool evaluations
+- image or design reference critiques
+- ecosystem or marketplace scans
+
+Suggested structure:
+- source
+- what it is
+- strongest borrowable ideas
+- best fit with this repo
+- cautions
+- recommendation
+- backlog implications
+
+Keep raw research local unless a public-safe conclusion is later approved for tracked docs.
+EOF
+  echo "OK: Created .claude/local-context/research/README.md"
+fi
+
 echo
 echo "Next steps:"
 echo "1. Edit .claude/settings.local.json and/or .env with your GitHub token"
@@ -147,4 +198,5 @@ echo "2. Review CLAUDE.md before using this repo as a template in another projec
 echo "3. Use BACKLOG.md locally for private planning details, or create docs/BACKLOG.md from docs/BACKLOG.example.md for a tracked public backlog"
 echo "4. Add any sensitive startup, customer, or strategy notes to .claude/local-context/ and keep that folder local-only"
 echo "5. Optionally use .claude/local-context/ACTIVITY.md as a compact local-only session trace"
-echo "6. Run ./scripts/doctor.sh to validate the workspace"
+echo "6. Use .claude/local-context/research/ for durable repo, tool, and image review memos"
+echo "7. Run ./scripts/doctor.sh to validate the workspace"

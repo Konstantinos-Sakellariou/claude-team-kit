@@ -32,15 +32,23 @@ The setup script can scaffold these starter files:
 - `.claude/local-context/constraints.md`
 - `.claude/local-context/HANDOFF.md`
 - `.claude/local-context/ACTIVITY.md`
+- `.claude/local-context/research/README.md`
 
 When a plan should stay private, keep it under:
 - `.claude/local-context/plans/`
+
+When reference reviews should stay private and local-first, keep them under:
+- `.claude/local-context/research/`
 
 Examples:
 - private roadmap execution notes
 - company-building phase plans
 - strategy-bearing horizon plans
 - proof-of-concept offer shaping or product incubation work
+- repo fit reviews
+- tool evaluation memos
+- image or design reference critiques
+- ecosystem or marketplace scans
 
 Use only the files you actually need.
 
@@ -73,6 +81,12 @@ Keep activity entries short:
 - next action
 
 Do not use `ACTIVITY.md` as a transcript, metrics store, private customer notebook, or replacement for backlog, plans, ADRs, or `HANDOFF.md`.
+
+`research/` is the best fit when:
+- you are reviewing external repos, tools, images, workflows, or ecosystem signals
+- the review should outlive the current chat
+- the result should stay local unless a public-safe conclusion is later approved
+- the outcome may influence backlog or roadmap direction, but is not itself a tracked policy doc
 
 ## How `@master` Should Use It
 

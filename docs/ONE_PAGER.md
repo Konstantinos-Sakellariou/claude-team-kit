@@ -47,14 +47,19 @@ The repo itself stays file-first:
 
 ```mermaid
 flowchart TD
-    USER["User request"] --> MASTER["@master"]
-    MASTER --> TEAM["Agents / Teams"]
-    TEAM --> RESULT["Implementation / review / planning outcome"]
-    RESULT --> WU["@workspace-updater"]
-    WU --> DOCS["Tracked docs stay aligned"]
+    USER["You ask @master"] --> MASTER["@master"]
+    MASTER --> ROUTE{"Route work"}
+    ROUTE --> DIRECT["Handle directly"]
+    ROUTE --> TEAM["Use agents or teams"]
+    DIRECT --> WORK["Build, review, or research"]
+    TEAM --> WORK
+    WORK --> GATES["Quality gates"]
+    GATES --> WU["@workspace-updater"]
+    WU --> DOCS["Answer + artifact sync"]
 
-    MASTER --> LOCAL["Optional local context"]
-    MASTER --> ART["Backlog / plans / ADRs / memory"]
+    MASTER -.-> LOCAL["Optional local context"]
+    MASTER -.-> ART["Backlog / plan / ADR / memory"]
+    GATES -.-> ART
 ```
 
 ## The Main Layers

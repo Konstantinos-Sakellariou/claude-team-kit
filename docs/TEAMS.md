@@ -29,7 +29,7 @@ Teams improve the workflow in a few practical ways:
 
 ## Team Model
 
-This kit currently defines twelve reusable teams:
+This kit currently defines thirteen reusable teams:
 
 | Team | Lead | Typical Scope |
 |---|---|---|
@@ -45,6 +45,7 @@ This kit currently defines twelve reusable teams:
 | `Advisory Review Team` | `@product-owner`, `@business-analyst`, or `@idea-executor` | planning, product, business, risk, strategic-fit review, and decision support |
 | `Product Discovery Team` | `@product-owner` or `@vision-partner` | app/website idea shaping, MVP reduction, backlog/roadmap framing, and deciding what should not be built yet |
 | `Product Launch Team` | `@product-owner` or `@delivery-orchestrator` | cross-functional app/website launch work spanning UX, implementation, quality, deployment, and follow-up |
+| `Research & Discovery Team` | `@researcher` or `@vision-partner` | external repo/tool/image reviews, ecosystem scans, and source-backed fit evaluation |
 
 The canonical team manifests live in `.claude/teams/`.
 
@@ -234,6 +235,28 @@ Add when needed:
 - `@github-safety-guard`
 - `@analytics-engineer`
 - `@delivery-monitor`
+
+## Research & Discovery Team Notes
+
+The `Research & Discovery Team` exists because not every useful external input should become a feature, and not every review should vanish into chat history.
+
+It usually combines:
+- source-backed research
+- repo or tool fit review
+- image or design reference critique
+- ecosystem and marketplace scanning
+- bounded adoption guidance
+- local-first memo capture
+
+Default expectation for meaningful research/discovery flows:
+- `@researcher`
+- `@strategy-reviewer` when the source might influence roadmap or core direction
+
+Add when needed:
+- `@vision-partner`
+- `@tech-writer`
+- `@backlog-updater`
+- `@source-verifier`
 
 ## What We Still Do Not Need
 

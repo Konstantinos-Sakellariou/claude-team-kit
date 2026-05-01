@@ -152,7 +152,7 @@ For repeatable multi-step workflow shapes:
 - prefer a playbook doc as the durable workflow contract when the sequence is stable
 - keep `HANDOFF.md` for session continuity only, not as the canonical process definition
 
-When a user invokes a supported command such as `/bootstrap-repo`, `/customize-repo`, `/save-backlog`, `/plan-idea`, `/write-adr`, `/release-check`, `/sync-docs`, `/triage-input`, or `/context-audit`:
+When a user invokes a supported command such as `/bootstrap-repo`, `/customize-repo`, `/save-backlog`, `/plan-idea`, `/write-adr`, `/release-check`, `/sync-docs`, `/triage-input`, `/context-audit`, or `/review-reference`:
 - identify the command explicitly
 - map it to the owning workflow
 - announce the lead team, lead agent, support, and expected outputs
@@ -601,6 +601,7 @@ Current team manifests live in `.claude/teams/`.
 | `Advisory Review Team` | `@product-owner`, `@business-analyst`, `@idea-executor`, or `@vision-partner` | planning, prioritization, business, UX, risk, contested decisions, strategy-fit review, and collaborative next-move generation |
 | `Product Discovery Team` | `@product-owner` or `@vision-partner` | early app/website/product shaping, MVP reduction, backlog/roadmap framing, and deciding what should not be built yet |
 | `Product Launch Team` | `@product-owner` or `@delivery-orchestrator` | cross-functional app/website launch work spanning UX, implementation, quality, deployment, and follow-up |
+| `Research & Discovery Team` | `@researcher` or `@vision-partner` | external repo reviews, tool evaluations, image/reference fit review, ecosystem scans, and source-backed discovery work |
 
 ### Team Activation Guide
 
@@ -618,6 +619,7 @@ Current team manifests live in `.claude/teams/`.
 | scope, product, idea, or decision-heavy work | `Advisory Review Team` | `@product-owner`, `@business-analyst`, `@idea-executor`, or `@vision-partner` | use for trade-offs, prioritization, strategic validation, and collaborative direction-shaping |
 | early app/website/product idea shaping or MVP reduction | `Product Discovery Team` | `@product-owner` or `@vision-partner` | use when the user needs a credible first product shape before implementation starts |
 | cross-functional app/website build-to-launch work | `Product Launch Team` | `@product-owner` or `@delivery-orchestrator` | combine with `Engineering Team`, `Design Team`, or `Supabase Team` when implementation is already underway |
+| external repo, tool, image, or ecosystem-fit review | `Research & Discovery Team` | `@researcher` or `@vision-partner` | use when the main need is source-backed fit judgment and bounded adoption guidance |
 
 ---
 
@@ -631,6 +633,7 @@ Read current agents from `.claude/agents/` at session start. Default routing:
 | Architecture decision | `@architect` | `@researcher`, `@devils-advocate` |
 | Bug / broken thing | `@debugger` | `@senior-developer` (fix) |
 | Research topic | `@researcher` | — |
+| External repo/tool/image/reference fit review | `@researcher` | `@vision-partner`, `@strategy-reviewer`, `@backlog-updater` |
 | Backlog capture / save for later | `@backlog-updater` | `@product-owner`, `@project-manager` |
 | Session budget / reset-limit / model-capacity estimate | `@session-budget-estimator` | `@project-manager`, `@idea-executor`, `@business-analyst` |
 | Collaborative next-move generation / vision-backlog-roadmap connection | `@vision-partner` | `@strategy-reviewer`, `@session-budget-estimator`, `@product-owner`, `@business-analyst` |
@@ -699,6 +702,14 @@ For **any collaborative ideation, roadmap/vision/backlog connection work, or ope
 - add `@strategy-reviewer` when those options need strategic-fit pushback
 - add `@session-budget-estimator` when the best option depends on realistic session capacity
 - add `@idea-executor` only after the direction is chosen and should become a real execution plan
+
+For **any external repo review, tool evaluation, image/reference critique, or ecosystem scan that should inform repo direction** prefer:
+- activate the `Research & Discovery Team`
+- keep `@researcher` as the default lead when evidence quality and synthesis are the main needs
+- add `@vision-partner` when the user needs stronger option generation or interpretation beyond raw findings
+- add `@strategy-reviewer` when the reviewed source could influence the roadmap, core architecture, or a new major capability
+- add `@backlog-updater` only when the result becomes deferred work worth persisting
+- keep the raw memo local-first under `.claude/local-context/research/` unless the user explicitly wants a tracked public-safe output
 
 For **any idea-to-production app or website journey** prefer:
 - `Product Discovery Team` when the main need is still product shape, MVP reduction, backlog, roadmap, or deciding what not to build yet

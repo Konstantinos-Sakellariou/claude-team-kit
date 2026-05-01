@@ -80,17 +80,54 @@ class PromptContractTests(unittest.TestCase):
             ".claude/commands/sync-docs.md",
             ".claude/commands/triage-input.md",
             ".claude/commands/context-audit.md",
+            ".claude/commands/review-reference.md",
         ]:
             self.assertTrue((ROOT / path).exists(), path)
 
         self.assertIn("## Command Layer", master)
         self.assertIn("/bootstrap-repo", master)
         self.assertIn("/customize-repo", master)
+        self.assertIn("/review-reference", master)
         self.assertIn("Workflow Commands", readme)
         self.assertIn("Inspect command layer", claude)
         self.assertIn("Inspect command layer", agents)
         self.assertIn(".claude/commands/", architecture)
         self.assertIn("Current command set:", system_reference)
+
+    def test_research_discovery_workflow_is_tracked_and_visible(self) -> None:
+        master = read(".claude/agents/master.md")
+        researcher = read(".claude/agents/researcher.md")
+        team = read(".claude/teams/research-discovery-team.md")
+        command = read(".claude/commands/review-reference.md")
+        readme = read("README.md")
+        claude = read("CLAUDE.md")
+        agents = read("AGENTS.md")
+        architecture = read("docs/ARCHITECTURE.md")
+        local_context = read("docs/LOCAL_CONTEXT.md")
+        durable_memory = read("docs/DURABLE_MEMORY.md")
+        teams_doc = read("docs/TEAMS.md")
+        system_reference = read("docs/SYSTEM_REFERENCE.md")
+        setup = read("scripts/setup.sh")
+
+        self.assertIn("Research & Discovery Team", master)
+        self.assertIn("/review-reference", master)
+        self.assertIn("External repo/tool/image/reference fit review", master)
+        self.assertIn("## Special Case: Reference And Repo-Fit Reviews", researcher)
+        self.assertIn("Research & Discovery Team", team)
+        self.assertIn("reference-review workflow", command)
+        self.assertIn("docs/RESEARCH_AND_DISCOVERY.md", readme)
+        self.assertIn("docs/RESEARCH_AND_DISCOVERY.md", claude)
+        self.assertIn("docs/RESEARCH_AND_DISCOVERY.md", agents)
+        self.assertIn("docs/RESEARCH_AND_DISCOVERY.md", architecture)
+        self.assertIn(".claude/local-context/research/", readme)
+        self.assertIn(".claude/local-context/research/", claude)
+        self.assertIn(".claude/local-context/research/", agents)
+        self.assertIn(".claude/local-context/research/", local_context)
+        self.assertIn("Research notes", durable_memory)
+        self.assertIn("Research & Discovery Team", teams_doc)
+        self.assertIn("Research & Discovery Team", system_reference)
+        self.assertIn("/review-reference", system_reference)
+        self.assertIn(".claude/local-context/research/README.md", setup)
 
     def test_master_defines_bootstrap_flow(self) -> None:
         master = read(".claude/agents/master.md")

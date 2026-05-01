@@ -32,6 +32,7 @@ Pair it with:
 - `docs/PLAYBOOKS_AND_BATCH_WORKFLOWS.md` for the repeatable playbook and batch-workflow contract
 - `docs/ANNOTATION_AWARE_CONTEXT_PROTOCOL.md` for the bounded annotation-aware protocol evaluation
 - `docs/ONE_PAGER.md` for the high-signal nutshell explanation of the repo
+- `docs/RESEARCH_AND_DISCOVERY.md` for the local-first research, reference-review, and ecosystem-scan workflow
 - `docs/IDEA_TO_PRODUCTION.md` for the visible lifecycle path from idea to shipped app or website
 
 ## Operating Layers
@@ -47,6 +48,7 @@ Pair it with:
 | Hooks | Lightweight automation and hygiene reinforcement | `.claude/hooks/` | Fire through workspace settings | rules, doctor, tests |
 | Memory | Persistent per-agent memory | `.claude/agent-memory/` | Read and update through the agent lifecycle | agents, local context |
 | Local Context | Private local-only company or strategy context | `.claude/local-context/` | Use for sensitive notes that should not be tracked | master, backlog, planning |
+| Research Notes | Local-first reference-review and ecosystem-scan memory | `.claude/local-context/research/` | Use for repo, tool, image, and market-fit memos that should persist without becoming tracked docs | local context, researcher, backlog, strategy review |
 | Durable Memory Model | Cross-layer continuity architecture | `docs/DURABLE_MEMORY.md` | Use to understand how agent memory, backlog, plans, ADRs, and local context fit together | agent memory, backlog, ADRs, local context, handoff |
 | Graph / Repo Intelligence | Optional relationship layer across repo artifacts | `docs/GRAPH_INTELLIGENCE.md` | Use to understand the optional graph/repo-intelligence boundary, when it is worth using, and how it stays distinct from broader code-intelligence work | durable memory, workflows, context-audit, future product surfaces, code-intelligence boundary |
 | Code-Intelligence Integration | Optional implementation-aware search and retrieval boundary | `docs/CODE_INTELLIGENCE_INTEGRATION.md` | Use to understand when code-aware search, symbols, dependencies, and retrieval may justify an optional integration path without changing the shared core | graph intelligence, context efficiency, future app surfaces, external tooling |
@@ -95,6 +97,7 @@ If a local `.agents/` folder exists in a checkout, treat it as legacy local comp
 | Advisory Review Team | `@product-owner`, `@business-analyst`, `@idea-executor`, or `@vision-partner` | planning, prioritization, strategic validation, collaborative direction-shaping | customer, strategy review, judge, devil's advocate, session-budget estimation, tech writer | `docs/TEAMS.md` |
 | Product Discovery Team | `@product-owner` or `@vision-partner` | early app/website/product shaping, MVP reduction, backlog/roadmap framing | business analyst, product designer, customer advocate, idea executor, strategy review | `docs/TEAMS.md` |
 | Product Launch Team | `@product-owner` or `@delivery-orchestrator` | cross-functional app/website launch coordination from build through ship | product designer, senior developer, architect, QA, privacy, analytics, delivery monitor | `docs/TEAMS.md` |
+| Research & Discovery Team | `@researcher` or `@vision-partner` | external repo/tool/image reviews, ecosystem scans, fit evaluation, source-backed discovery | strategy review, tech writer, backlog updater, source verifier | `docs/TEAMS.md` |
 
 ## Agent Inventory
 
@@ -234,6 +237,7 @@ Current command set:
 - `/sync-docs`
 - `/triage-input`
 - `/context-audit`
+- `/review-reference`
 
 Bootstrap can also expand into a company-building workflow when the repo is founder-shaped and the problem is not only technical setup but product and operating-model definition.
 
@@ -288,6 +292,7 @@ Hooks should reinforce hygiene, not replace judgment.
 | `.claude/local-context/estimation-log.md` | local private estimate-versus-actual history and mode preference |
 | `.claude/local-context/HANDOFF.md` | local private continuity artifact for unfinished sessions and tool/model handoff |
 | `.claude/local-context/ACTIVITY.md` | optional local private activity trace for significant orchestration sessions |
+| `.claude/local-context/research/` | local-first repo/tool/image review memos and ecosystem scans |
 | `.claude/local-context/proof-of-concept/` | local private POC or core-product incubation material that can inform `@master` without becoming tracked kit truth |
 | `docs/adr/` | approved architecture/policy decisions |
 | `.claude/local-context/` | private local context |
@@ -302,6 +307,7 @@ Start here depending on the need:
 - product direction model: `docs/VISION.example.md`
 - phased sequencing model: `docs/ROADMAP.example.md`
 - repo boundary and structure: `docs/ARCHITECTURE.md`
+- research and reference reviews: `docs/RESEARCH_AND_DISCOVERY.md`
 - documentation policy: `docs/DOCUMENTATION_GOVERNANCE.md`
 - maintainer upgrade path: `docs/SELF_UPGRADE.md`
 - optional project-shape overlays: `docs/STARTER_PACKS.md`

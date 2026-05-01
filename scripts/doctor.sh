@@ -78,6 +78,7 @@ check_file "docs/AGENT_SDK_USER_INPUT.md" "docs/AGENT_SDK_USER_INPUT.md exists"
 check_file "docs/CROSS_TOOL_PORTABILITY.md" "docs/CROSS_TOOL_PORTABILITY.md exists"
 check_file "docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md" "docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md exists"
 check_file "docs/ONE_PAGER.md" "docs/ONE_PAGER.md exists"
+check_file "docs/RESEARCH_AND_DISCOVERY.md" "docs/RESEARCH_AND_DISCOVERY.md exists"
 check_file "docs/IDEA_TO_PRODUCTION.md" "docs/IDEA_TO_PRODUCTION.md exists"
 check_file "docs/RTK_INTEGRATION.md" "docs/RTK_INTEGRATION.md exists"
 check_file "docs/LOCAL_CONTEXT.md" "docs/LOCAL_CONTEXT.md exists"
@@ -119,7 +120,7 @@ else
   fail ".claude/commands directory is missing"
 fi
 
-for command in bootstrap-repo customize-repo save-backlog plan-idea write-adr release-check sync-docs triage-input context-audit; do
+for command in bootstrap-repo customize-repo save-backlog plan-idea write-adr release-check sync-docs triage-input context-audit review-reference; do
   if [ -f "$ROOT_DIR/.claude/commands/${command}.md" ]; then
     pass "${command} command exists"
   else
@@ -261,7 +262,7 @@ else
   fail ".claude/teams directory is missing"
 fi
 
-for team in engineering-team ai-ml-team data-team supabase-team design-team content-publishing-team delivery-ops-team git-github-team advisory-review-team product-discovery-team product-launch-team; do
+for team in engineering-team ai-ml-team data-team supabase-team design-team content-publishing-team delivery-ops-team git-github-team advisory-review-team product-discovery-team product-launch-team research-discovery-team; do
   if [ -f "$ROOT_DIR/.claude/teams/${team}.md" ]; then
     pass "${team} manifest exists"
   else

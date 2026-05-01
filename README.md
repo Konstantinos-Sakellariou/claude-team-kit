@@ -2,13 +2,13 @@
 
 [![Validate Workspace Kit](https://img.shields.io/github/actions/workflow/status/Konstantinos-Sakellariou/claude-team-kit/validate.yml?branch=main&label=validate)](https://github.com/Konstantinos-Sakellariou/claude-team-kit/actions/workflows/validate.yml)
 ![Agents](https://img.shields.io/badge/agents-53-0ea5e9)
-![Teams](https://img.shields.io/badge/teams-12-14b8a6)
+![Teams](https://img.shields.io/badge/teams-13-14b8a6)
 ![Skills](https://img.shields.io/badge/skills-20-f97316)
 ![Local Context](https://img.shields.io/badge/local_context-supported-22c55e)
 
 ![claude-team-kit hero](docs/assets/claude-team-kit-hero.svg)
 
-A drop-in workspace kit for Claude-style coding tools. It gives a repo an orchestrated AI team through `@master`, 53 specialized agents, 12 reusable team manifests, 20 reusable skills, rules, hooks, memory, and local context.
+A drop-in workspace kit for Claude-style coding tools. It gives a repo an orchestrated AI team through `@master`, 53 specialized agents, 13 reusable team manifests, 20 reusable skills, rules, hooks, memory, and local context.
 
 The goal is simple: copy the kit into a real project, run the setup checks, then start working through one visible orchestrator.
 
@@ -30,7 +30,7 @@ It is a workspace kit, not a background orchestration runtime. The canonical imp
 |---|---|
 | `@master` | One entrypoint that scopes work, selects teams/agents, reports what happened, and triggers the final doc-impact gate |
 | Agents | 53 specialized agents across engineering, AI/ML, data, design, content, delivery, advisory, Git/GitHub, and product workflows |
-| Teams | 12 reusable team manifests for recurring collaboration patterns |
+| Teams | 13 reusable team manifests for recurring collaboration patterns |
 | Skills | 20 reusable skills, including `code-review`, `fix-bug`, `write-tests`, `write-docs`, `security-audit`, `context-audit`, `triage-input`, and `repo-cleanup` |
 | Rules and hooks | Documentation governance, artifact safety, context efficiency, GitHub quality gates, release governance, security, testing, and language rules |
 | Durable artifacts | Backlog, plans, ADRs, local context, handoff, and memory surfaces with public/private boundaries |
@@ -83,13 +83,19 @@ You talk to `@master`; `@master` decides the team, agents, gates, and artifact u
 
 ```mermaid
 flowchart LR
-    USER["User request"] --> MASTER["@master"]
-    MASTER --> PLAN["Scope and plan"]
-    PLAN --> TEAMS["Teams and agents"]
-    TEAMS --> WORK["Build, review, or advise"]
+    USER["You ask @master"] --> MASTER["@master"]
+    MASTER --> ROUTE{"Route work"}
+    ROUTE --> DIRECT["Handle directly"]
+    ROUTE --> TEAMS["Use agents or teams"]
+    DIRECT --> WORK["Build, review, or research"]
+    TEAMS --> WORK
     WORK --> GATES["Quality gates"]
     GATES --> UPDATE["@workspace-updater"]
-    UPDATE --> DONE["Done"]
+    UPDATE --> DONE["Answer + artifact sync"]
+
+    MASTER -. consults .-> LOCAL["Optional local context"]
+    MASTER -. updates .-> ART["Backlog / plan / ADR / memory"]
+    GATES -. may update .-> ART
 ```
 
 By default, `@master` also reports which teams and agents were selected, what each one did, and the outcome. If no delegation was needed, `@master` should say that explicitly.
@@ -120,6 +126,7 @@ Teams are reusable orchestration bundles that `@master` can activate for recurri
 | Sync core docs after changes | Use `/sync-docs`; `@workspace-updater` is the adaptive doc-impact gate |
 | Triage a noisy input | Use `/triage-input`; the default large-input workflow is classify, sample, summarize, then route narrowly |
 | Audit context quality | Use `/context-audit`; use `repo-cleanup` after this kit is copied into a real repo |
+| Review an external reference | Use `/review-reference`; save durable repo/tool/image reviews locally under `.claude/local-context/research/` |
 
 Current command set:
 - `/bootstrap-repo`
@@ -131,6 +138,7 @@ Current command set:
 - `/sync-docs`
 - `/triage-input`
 - `/context-audit`
+- `/review-reference`
 
 These command definitions live in `.claude/commands/`. Commands do not bypass `@master`; they make repeatable workflows easier to trigger.
 
@@ -143,7 +151,7 @@ The command layer is a thin set of named workflow entrypoints on top of `@master
 ```text
 .claude/
 ├── agents/          53 specialized agents
-├── teams/           12 reusable team manifests
+├── teams/           13 reusable team manifests
 ├── skills/          20 reusable skills
 ├── rules/           Modular behavior and governance rules
 ├── hooks/           Shell checks for formatting, secrets, drift, artifacts, and safety
@@ -179,6 +187,7 @@ Teams are reusable orchestration bundles. They keep recurring flows consistent w
 | `Advisory Review Team` | planning, prioritization, strategy, business, and next-move support |
 | `Product Discovery Team` | early app/website/product shaping, MVP reduction, backlog/roadmap framing |
 | `Product Launch Team` | cross-functional website/app launch coordination from build through ship |
+| `Research & Discovery Team` | external repo/tool/image reviews, ecosystem scans, and source-backed fit evaluation |
 
 The canonical team definitions live in `.claude/teams/`. See [docs/TEAMS.md](docs/TEAMS.md), [docs/AGENT_WORKFLOWS.md](docs/AGENT_WORKFLOWS.md), [docs/SUPABASE_REFERENCE.md](docs/SUPABASE_REFERENCE.md), [docs/DATA_REFERENCE.md](docs/DATA_REFERENCE.md), and [docs/DESIGN_REFERENCE.md](docs/DESIGN_REFERENCE.md).
 
@@ -189,13 +198,14 @@ Use `.claude/local-context/` for sensitive local-only startup, customer, company
 Useful local surfaces:
 - `.claude/local-context/HANDOFF.md` for compact session continuity
 - `.claude/local-context/ACTIVITY.md` for an optional compact trace of significant orchestration sessions
+- `.claude/local-context/research/` for local-first repo reviews, tool evaluations, and image/reference memos
 - `.claude/local-context/estimation-log.md` for real estimate-versus-actual learning
 - `.claude/local-context/plans/` for private planning artifacts
 - private `BACKLOG.md` for local deferred work
 
 If backlog preference is known, `@master` and `@backlog-updater` should reuse it unless the user overrides it. If it is unknown, `@master` should ask whether backlog capture belongs in private local `BACKLOG.md` or tracked public `docs/BACKLOG.md`.
 
-See [docs/LOCAL_CONTEXT.md](docs/LOCAL_CONTEXT.md), [docs/DURABLE_MEMORY.md](docs/DURABLE_MEMORY.md), and [docs/PROJECT_DNA_AND_STATE.md](docs/PROJECT_DNA_AND_STATE.md).
+See [docs/LOCAL_CONTEXT.md](docs/LOCAL_CONTEXT.md), [docs/DURABLE_MEMORY.md](docs/DURABLE_MEMORY.md), [docs/PROJECT_DNA_AND_STATE.md](docs/PROJECT_DNA_AND_STATE.md), and [docs/RESEARCH_AND_DISCOVERY.md](docs/RESEARCH_AND_DISCOVERY.md).
 
 ## New Repo Bootstrap
 
@@ -281,6 +291,7 @@ The README is the front door. Use these docs when you need the deeper model.
 | Topic | Start Here |
 |---|---|
 | One-pass explanation | [docs/ONE_PAGER.md](docs/ONE_PAGER.md) |
+| Research workflow | [docs/RESEARCH_AND_DISCOVERY.md](docs/RESEARCH_AND_DISCOVERY.md) |
 | Full feature inventory | [docs/SYSTEM_REFERENCE.md](docs/SYSTEM_REFERENCE.md) |
 | Architecture boundary | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) |
 | Documentation governance | [docs/DOCUMENTATION_GOVERNANCE.md](docs/DOCUMENTATION_GOVERNANCE.md) |

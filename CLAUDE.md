@@ -34,10 +34,9 @@ Owner: Konstantinos Sakellariou
 - See `docs/AGENT_SDK_USER_INPUT.md` for the optional future Agent SDK user-input compatibility layer
 - See `docs/CROSS_TOOL_PORTABILITY.md` for the optional cross-tool portability and adapter-boundary model
 - See `docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md` for the high-level explanation of the canonical-surface cleanup, portability model, and relationship-layer boundary
-- See `docs/ONE_PAGER.md` for the high-signal nutshell explanation of what this repo is, what it does, and how it works
+- See `docs/ONE_PAGER.md` for the high-signal nutshell explanation of what this repo is, what it does, and how it works, and `docs/RESEARCH_AND_DISCOVERY.md` for the local-first research, reference-review, and ecosystem-scan workflow
 - See `docs/SELF_UPGRADE.md` for the maintainer guide on evolving the kit safely
-- See `docs/STARTER_PACKS.md` for optional project-shape overlays such as SaaS, API, AI/ML, and startup-studio repos
-- See `docs/SOLUTION_PACKS.md` for the optional startup-stack and product-foundation pack contract
+- See `docs/STARTER_PACKS.md` for optional project-shape overlays such as SaaS, API, AI/ML, and startup-studio repos, and `docs/SOLUTION_PACKS.md` for the optional startup-stack and product-foundation pack contract
 - See `docs/DESIGN_PACKS.md` for the optional design-pack and `DESIGN.md` workflow contract
 - See `docs/SYSTEM_REFERENCE.md` for the full feature inventory and connection map
 - See `docs/PROJECT_CUSTOMIZATION.md` when adapting this kit to a real repo, and `docs/IDEA_TO_PRODUCTION.md` for the high-level app/website journey
@@ -175,6 +174,7 @@ They are not a runtime feature, they do not replace agents, and `@master` must s
 | `Advisory Review Team` | `@product-owner`, `@business-analyst`, or `@idea-executor` | planning, prioritization, strategy-fit review |
 | `Product Discovery Team` | `@product-owner` or `@vision-partner` | early app/website/product shaping, MVP reduction, backlog/roadmap framing |
 | `Product Launch Team` | `@product-owner` or `@delivery-orchestrator` | cross-functional website/app launch coordination from build through ship |
+| `Research & Discovery Team` | `@researcher` or `@vision-partner` | external repo/tool/image reviews, ecosystem scans, and fit evaluation |
 
 ## Key Agent Surfaces
 
@@ -206,7 +206,7 @@ The hot-path agents to keep in mind here are:
 - Any executive/org-model architecture, company-operating structure, or public-kit vs private-product boundary question → `Executive Team` should lead
 - Any request to "backlog" or save work for later → `@backlog-updater` updates the chosen backlog and can link an approved plan; any substantial idea exploration that should become a plan → `@idea-executor` leads the execution-plan shaping with supporting reviewers
 - Any backlog reprioritization, roadmap sequencing question, "what next?" question, or reset-limit/session-budget concern → `@session-budget-estimator` estimates in the preferred mode
-- Any open-ended "think with me", "what directions are strongest?", or vision/roadmap/backlog connection question → `@vision-partner` generates grounded next-move options before critique or execution planning
+- Any open-ended "think with me", "what directions are strongest?", or vision/roadmap/backlog connection question → `@vision-partner` generates grounded next-move options before critique or execution planning; any external repo review, tool evaluation, image/reference critique, or ecosystem scan that should inform a real decision → `Research & Discovery Team` should lead
 - Any new major capability, team, agent, rule, hook, skill, command, backlog item, or roadmap change with meaningful scope/cost implications → `@strategy-reviewer` checks strategic fit before we treat it as a strong next move
 - Any durable architecture, policy, workflow, or repo-structure decision → `@master` proposes an ADR by default and coordinates `@architect`, `@devils-advocate`, `@judge`, and `@tech-writer`
 - Any strategic, startup, customer, or company-sensitive request → `@master` should consult the private local context layer first when it exists; any content ready to publish → `@editorial-reviewer` must pass it first
@@ -254,7 +254,7 @@ The hot-path agents to keep in mind here are:
 - Project-specific sync workflows belong in narrow extensions to `@master` and `@workspace-updater`, not in the generic core loop; `@master` must remain the only top-level orchestrator, and `@workspace-updater` must remain the mandatory final doc-impact gate for the core docs
 - `@master` must make orchestration visible in the chat by default: selected agents, actions taken, and final report; `@tech-writer` is the primary ADR author once `@master` receives explicit approval to save the record
 - `BACKLOG.md` is the private local backlog; start it from `BACKLOG.example.md` and do not rely on chat history alone; `docs/BACKLOG.md` is the optional public tracked backlog; start it from `docs/BACKLOG.example.md` when a repo wants visible backlog history
-- `.claude/local-context/HANDOFF.md` is the optional local continuity artifact for unfinished sessions, tool/model switching, and compact “where we left off” context; real estimate-versus-actual learning should stay local in `.claude/local-context/estimation-log.md`, not in tracked docs
+- `.claude/local-context/HANDOFF.md` is the optional local continuity artifact for unfinished sessions, tool/model switching, and compact “where we left off” context; `.claude/local-context/research/` is the local-first home for durable repo/tool/image review memos; real estimate-versus-actual learning should stay local in `.claude/local-context/estimation-log.md`, not in tracked docs
 - Approved public-safe example plans or shareable implementation references belong in `docs/plans/`; real next-step strategy or sequencing plans belong in `.claude/local-context/plans/`; approved architecture or policy decisions belong in `docs/adr/`
 - For substantial deferred ideas, prefer a backlog entry plus a linked plan rather than a backlog row alone, and default to `.claude/local-context/plans/` unless the user explicitly wants the plan tracked and it is safe to publish
 - `README.md`, `CLAUDE.md`, and `AGENTS.md` must stay in sync when workflow, commands, or structure change
