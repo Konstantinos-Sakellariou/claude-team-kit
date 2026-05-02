@@ -34,7 +34,7 @@ Owner: Konstantinos Sakellariou
 - See `docs/AGENT_SDK_USER_INPUT.md` for the optional future Agent SDK user-input compatibility layer
 - See `docs/CROSS_TOOL_PORTABILITY.md` for the optional cross-tool portability and adapter-boundary model
 - See `docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md` for the high-level explanation of the canonical-surface cleanup, portability model, and relationship-layer boundary
-- See `docs/ONE_PAGER.md` for the high-signal nutshell explanation of what this repo is, what it does, and how it works, and `docs/RESEARCH_AND_DISCOVERY.md` for the local-first research, reference-review, and ecosystem-scan workflow
+- See `docs/ONE_PAGER.md` for the high-signal nutshell explanation of what this repo is, what it does, and how it works, `docs/RESEARCH_AND_DISCOVERY.md` for the local-first research, reference-review, and ecosystem-scan workflow, and `docs/FEEDBACK_AND_LEARNING.md` for the objective local feedback loop
 - See `docs/SELF_UPGRADE.md` for the maintainer guide on evolving the kit safely
 - See `docs/STARTER_PACKS.md` for optional project-shape overlays such as SaaS, API, AI/ML, and startup-studio repos, and `docs/SOLUTION_PACKS.md` for the optional startup-stack and product-foundation pack contract
 - See `docs/DESIGN_PACKS.md` for the optional design-pack and `DESIGN.md` workflow contract
@@ -54,6 +54,7 @@ Owner: Konstantinos Sakellariou
 - Review roadmap template: `sed -n '1,240p' docs/ROADMAP.example.md`
 - Review local vision or roadmap if present: `sed -n '1,240p' docs/VISION.md 2>/dev/null` / `sed -n '1,240p' docs/ROADMAP.md 2>/dev/null`
 - Review local estimation log if present: `sed -n '1,240p' .claude/local-context/estimation-log.md 2>/dev/null`
+- Review local feedback log if present: `sed -n '1,240p' .claude/local-context/FEEDBACK.md 2>/dev/null`
 - Review context-efficiency guide: `sed -n '1,240p' docs/CONTEXT_EFFICIENCY.md`
 - Review private local context guide: `sed -n '1,240p' docs/LOCAL_CONTEXT.md`
 - Review durable-memory guide: `sed -n '1,240p' docs/DURABLE_MEMORY.md`
@@ -178,7 +179,7 @@ They are not a runtime feature, they do not replace agents, and `@master` must s
 
 ## Key Agent Surfaces
 
-For the full 53-agent roster and cross-layer map, use `docs/SYSTEM_REFERENCE.md`.
+For the full 54-agent roster and cross-layer map, use `docs/SYSTEM_REFERENCE.md`.
 
 The hot-path agents to keep in mind here are:
 - `@master` — mandatory entry point and orchestrator
@@ -186,6 +187,7 @@ The hot-path agents to keep in mind here are:
 - `@github-safety-guard`, `@code-reviewer`, `@production-readiness-reviewer` — GitHub quality gates
 - `@backlog-updater` and `@idea-executor` — deferred work and plan persistence
 - `@vision-partner` — collaborative direction-shaping and next-move generation across vision, roadmap, and backlog
+- `@feedback-analyst` — objective workflow-feedback capture, root-cause classification, and improvement recommendations
 - `@session-budget-estimator` — session-sized effort, model-mix, and reset-pressure estimation
 - `@strategy-reviewer` — strategic fit, roadmap fit, and timing pushback for major additions
 - `@data-scientist`, `@ml-engineer`, `@model-evaluator` — AI/ML lead/gate pattern
@@ -205,6 +207,8 @@ The hot-path agents to keep in mind here are:
 - Any app-flow, onboarding, layout, brand, or UI-system work → `@product-designer`, `@brand-designer`, or `Design Team` should lead
 - Any executive/org-model architecture, company-operating structure, or public-kit vs private-product boundary question → `Executive Team` should lead
 - Any request to "backlog" or save work for later → `@backlog-updater` updates the chosen backlog and can link an approved plan; any substantial idea exploration that should become a plan → `@idea-executor` leads the execution-plan shaping with supporting reviewers
+- Any underdefined "help me decide what to build" or "interview me and shape the direction" request → `Product Discovery Team` should lead, `@master` should suggest or run `/envision`, and `@idea-executor` should join only when the direction is ready to become a plan
+- Any report that something did not work well, was confusing, or missed expectations → `@feedback-analyst` should structure it, `@master` should suggest or run `/log-feedback`, and `@workspace-updater` should refresh the local feedback artifact when warranted
 - Any backlog reprioritization, roadmap sequencing question, "what next?" question, or reset-limit/session-budget concern → `@session-budget-estimator` estimates in the preferred mode
 - Any open-ended "think with me", "what directions are strongest?", or vision/roadmap/backlog connection question → `@vision-partner` generates grounded next-move options before critique or execution planning; any external repo review, tool evaluation, image/reference critique, or ecosystem scan that should inform a real decision → `Research & Discovery Team` should lead
 - Any new major capability, team, agent, rule, hook, skill, command, backlog item, or roadmap change with meaningful scope/cost implications → `@strategy-reviewer` checks strategic fit before we treat it as a strong next move
@@ -254,7 +258,7 @@ The hot-path agents to keep in mind here are:
 - Project-specific sync workflows belong in narrow extensions to `@master` and `@workspace-updater`, not in the generic core loop; `@master` must remain the only top-level orchestrator, and `@workspace-updater` must remain the mandatory final doc-impact gate for the core docs
 - `@master` must make orchestration visible in the chat by default: selected agents, actions taken, and final report; `@tech-writer` is the primary ADR author once `@master` receives explicit approval to save the record
 - `BACKLOG.md` is the private local backlog; start it from `BACKLOG.example.md` and do not rely on chat history alone; `docs/BACKLOG.md` is the optional public tracked backlog; start it from `docs/BACKLOG.example.md` when a repo wants visible backlog history
-- `.claude/local-context/HANDOFF.md` is the optional local continuity artifact for unfinished sessions, tool/model switching, and compact “where we left off” context; `.claude/local-context/research/` is the local-first home for durable repo/tool/image review memos; real estimate-versus-actual learning should stay local in `.claude/local-context/estimation-log.md`, not in tracked docs
+- `.claude/local-context/HANDOFF.md` is the optional local continuity artifact for unfinished sessions, tool/model switching, and compact “where we left off” context; `.claude/local-context/FEEDBACK.md` is the optional local workflow-learning log for things that did not work well and why; `.claude/local-context/research/` is the local-first home for durable repo/tool/image review memos; real estimate-versus-actual learning should stay local in `.claude/local-context/estimation-log.md`, not in tracked docs
 - Approved public-safe example plans or shareable implementation references belong in `docs/plans/`; real next-step strategy or sequencing plans belong in `.claude/local-context/plans/`; approved architecture or policy decisions belong in `docs/adr/`
 - For substantial deferred ideas, prefer a backlog entry plus a linked plan rather than a backlog row alone, and default to `.claude/local-context/plans/` unless the user explicitly wants the plan tracked and it is safe to publish
 - `README.md`, `CLAUDE.md`, and `AGENTS.md` must stay in sync when workflow, commands, or structure change

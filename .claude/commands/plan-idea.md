@@ -18,6 +18,8 @@ Turn an idea into a validated execution plan rather than leaving it as vague dis
 4. recommend local versus tracked visibility for any linked plan
 5. save the artifact only with approval
 
+If the idea is still too fuzzy to plan well, recommend `/envision` first.
+
 ## Output
 
 - execution plan

@@ -49,6 +49,7 @@ Pair it with:
 | Memory | Persistent per-agent memory | `.claude/agent-memory/` | Read and update through the agent lifecycle | agents, local context |
 | Local Context | Private local-only company or strategy context | `.claude/local-context/` | Use for sensitive notes that should not be tracked | master, backlog, planning |
 | Research Notes | Local-first reference-review and ecosystem-scan memory | `.claude/local-context/research/` | Use for repo, tool, image, and market-fit memos that should persist without becoming tracked docs | local context, researcher, backlog, strategy review |
+| Feedback Log | Local-first workflow learning memory | `.claude/local-context/FEEDBACK.md` | Use for objective records of what did not work well, why, and what should improve | local context, feedback analyst, workspace updater |
 | Durable Memory Model | Cross-layer continuity architecture | `docs/DURABLE_MEMORY.md` | Use to understand how agent memory, backlog, plans, ADRs, and local context fit together | agent memory, backlog, ADRs, local context, handoff |
 | Graph / Repo Intelligence | Optional relationship layer across repo artifacts | `docs/GRAPH_INTELLIGENCE.md` | Use to understand the optional graph/repo-intelligence boundary, when it is worth using, and how it stays distinct from broader code-intelligence work | durable memory, workflows, context-audit, future product surfaces, code-intelligence boundary |
 | Code-Intelligence Integration | Optional implementation-aware search and retrieval boundary | `docs/CODE_INTELLIGENCE_INTEGRATION.md` | Use to understand when code-aware search, symbols, dependencies, and retrieval may justify an optional integration path without changing the shared core | graph intelligence, context efficiency, future app surfaces, external tooling |
@@ -180,6 +181,7 @@ If a local `.agents/` folder exists in a checkout, treat it as legacy local comp
 | `@project-manager` | Coordination, timing, execution tracking |
 | `@business-analyst` | Requirements, ROI, business framing |
 | `@customer-advocate` | User and reader experience |
+| `@feedback-analyst` | Objective workflow-feedback capture, root-cause classification, and improvement recommendations |
 | `@strategy-reviewer` | Vision fit, roadmap fit, leverage, timing, and strategic pushback |
 | `@vision-partner` | Collaborative next-move generation and vision/roadmap/backlog connection |
 | `@devils-advocate` | Challenge assumptions |
@@ -230,6 +232,7 @@ They are best for:
 Current command set:
 - `/bootstrap-repo`
 - `/customize-repo`
+- `/envision`
 - `/save-backlog`
 - `/plan-idea`
 - `/write-adr`
@@ -238,6 +241,7 @@ Current command set:
 - `/triage-input`
 - `/context-audit`
 - `/review-reference`
+- `/log-feedback`
 
 Bootstrap can also expand into a company-building workflow when the repo is founder-shaped and the problem is not only technical setup but product and operating-model definition.
 
@@ -292,6 +296,7 @@ Hooks should reinforce hygiene, not replace judgment.
 | `.claude/local-context/estimation-log.md` | local private estimate-versus-actual history and mode preference |
 | `.claude/local-context/HANDOFF.md` | local private continuity artifact for unfinished sessions and tool/model handoff |
 | `.claude/local-context/ACTIVITY.md` | optional local private activity trace for significant orchestration sessions |
+| `.claude/local-context/FEEDBACK.md` | optional local private workflow-learning log for misses, confusion, and corrective action |
 | `.claude/local-context/research/` | local-first repo/tool/image review memos and ecosystem scans |
 | `.claude/local-context/proof-of-concept/` | local private POC or core-product incubation material that can inform `@master` without becoming tracked kit truth |
 | `docs/adr/` | approved architecture/policy decisions |

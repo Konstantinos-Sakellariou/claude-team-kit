@@ -38,6 +38,7 @@ Avoid:
 | Local context | Private operating memory | `.claude/local-context/` | local only | company, customer, POC, product, and strategy context |
 | Handoff | Session-bridge memory | `.claude/local-context/HANDOFF.md` | local only | where work stopped and what the next model should know |
 | Activity log | Local trace memory | `.claude/local-context/ACTIVITY.md` | local only | compact index of significant orchestration sessions |
+| Feedback log | Local learning memory | `.claude/local-context/FEEDBACK.md` | local only | objective notes on what did not work well and why |
 | Research notes | Local review memory | `.claude/local-context/research/` | local only | external repo/tool/image review memos and ecosystem scans |
 | Estimation log | Practical learning memory | `.claude/local-context/estimation-log.md` | local only | estimate-versus-actual history and mode preferences |
 
@@ -56,6 +57,7 @@ flowchart TD
     MASTER --> LOCAL["Local context<br/>private operating truth"]
     MASTER --> HANDOFF["HANDOFF.md<br/>session bridge"]
     MASTER --> ACTIVITY["ACTIVITY.md<br/>local trace"]
+    MASTER --> FEEDBACK["FEEDBACK.md<br/>local learning"]
     MASTER --> RESEARCH["research/<br/>review memory"]
     MASTER --> EST["Estimation log<br/>local learning"]
 
@@ -63,6 +65,7 @@ flowchart TD
     PLAN --> ADR
     LOCAL --> PLAN
     LOCAL --> HANDOFF
+    LOCAL --> FEEDBACK
     LOCAL --> RESEARCH
     ACTIVITY --> MASTER
     MEMORY --> MASTER
@@ -94,6 +97,7 @@ Examples:
 - repeated role-specific judgment -> read the agent's own `MEMORY.md`
 - unfinished session -> read `HANDOFF.md` before pulling broad context back in
 - "what happened recently?" -> read `ACTIVITY.md` if the repo uses it, then follow links to backlog, plans, ADRs, handoff, or research notes as needed
+- "what has been going wrong or causing confusion?" -> read `FEEDBACK.md` if the repo uses it before repeating the same weak workflow
 - "what did we already learn from external references?" -> read `.claude/local-context/research/` before re-running the same ecosystem scan
 
 ## Example Use
@@ -142,6 +146,7 @@ The practical recipe is:
 - `@workspace-updater` keeps the tracked hot path aligned when behavior changes
 - `HANDOFF.md` bridges unfinished sessions without inflating stable docs
 - `ACTIVITY.md` can provide a compact local-only trace of significant sessions when a repo benefits from it
+- `FEEDBACK.md` can preserve objective workflow misses, expectation gaps, and corrective actions without polluting tracked docs
 - `research/` can preserve external repo, tool, image, and ecosystem reviews without promoting raw research into tracked docs
 
 ## Backlog + Linked Plan Flow

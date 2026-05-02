@@ -23,6 +23,9 @@ Optional local continuity artifact:
 Optional local activity artifact:
 - `.claude/local-context/ACTIVITY.md`
 
+Optional local feedback artifact:
+- `.claude/local-context/FEEDBACK.md`
+
 Optional repo identity/state artifacts when intentionally used:
 - `docs/PROJECT_DNA.md`
 - `.claude/local-context/project-dna.md`
@@ -356,6 +359,35 @@ Rules:
 - keep entries compact
 - do not paste transcripts, secrets, or detailed private customer notes
 - point to backlog items, plans, ADRs, or handoff when those are the real durable artifacts
+
+## Special Case: Feedback And Learning Log
+
+When the master brief explicitly says a workflow, result, prompt, command, or interaction should be captured as operational feedback, you may update:
+- `.claude/local-context/FEEDBACK.md`
+
+Use it as a local-only learning log, not as a transcript or blame diary.
+
+Recommended entry shape:
+```md
+## YYYY-MM-DD - Short Title
+
+- Request: ...
+- Expected: ...
+- Observed: ...
+- Evidence: ...
+- Impact: ...
+- Root-cause class: ...
+- Responsibility split: ...
+- Corrective action: ...
+- Status: ...
+- Related artifacts: ...
+```
+
+Rules:
+- keep it objective and evidence-based
+- do not turn it into a general bug tracker or roadmap doc
+- record user misuse plainly when it matters, but note when the workflow invited the mistake
+- point to backlog, plans, ADRs, or tracked docs when those become the real durable follow-up
 
 ---
 

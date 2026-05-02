@@ -61,6 +61,7 @@ Repo-level docs explain and package that implementation:
 - `docs/CONTEXT_EFFICIENCY.md`: how to keep context lean, high-signal, and cheaper to reuse across sessions
 - `docs/DURABLE_MEMORY.md`: how memory layers, privacy boundaries, and retrieval expectations fit together
 - `docs/RESEARCH_AND_DISCOVERY.md`: how external repo reviews, tool evaluation, image/reference critique, and ecosystem scans should stay local-first and fit-driven
+- `docs/FEEDBACK_AND_LEARNING.md`: how workflow misses, confusion, and expectation gaps should be captured objectively in a local-first learning loop
 - `docs/GRAPH_INTELLIGENCE.md`: how an optional relationship/intelligence layer could later sit on top of the current artifact model
 - `docs/CODE_INTELLIGENCE_INTEGRATION.md`: how a separate optional code-aware search and retrieval layer should remain bounded, optional, and external-tooling-first
 - `docs/CODE_REVIEW_GRAPH_ADAPTER_EXAMPLE.md`: one concrete example of how an external code-intelligence adapter can fit without becoming a required dependency

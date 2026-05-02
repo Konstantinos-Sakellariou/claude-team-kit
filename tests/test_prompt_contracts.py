@@ -73,6 +73,7 @@ class PromptContractTests(unittest.TestCase):
         for path in [
             ".claude/commands/bootstrap-repo.md",
             ".claude/commands/customize-repo.md",
+            ".claude/commands/envision.md",
             ".claude/commands/save-backlog.md",
             ".claude/commands/plan-idea.md",
             ".claude/commands/write-adr.md",
@@ -81,18 +82,60 @@ class PromptContractTests(unittest.TestCase):
             ".claude/commands/triage-input.md",
             ".claude/commands/context-audit.md",
             ".claude/commands/review-reference.md",
+            ".claude/commands/log-feedback.md",
         ]:
             self.assertTrue((ROOT / path).exists(), path)
 
         self.assertIn("## Command Layer", master)
         self.assertIn("/bootstrap-repo", master)
         self.assertIn("/customize-repo", master)
+        self.assertIn("/envision", master)
         self.assertIn("/review-reference", master)
+        self.assertIn("/log-feedback", master)
         self.assertIn("Workflow Commands", readme)
         self.assertIn("Inspect command layer", claude)
         self.assertIn("Inspect command layer", agents)
         self.assertIn(".claude/commands/", architecture)
         self.assertIn("Current command set:", system_reference)
+
+    def test_discovery_interview_and_feedback_workflows_are_tracked(self) -> None:
+        master = read(".claude/agents/master.md")
+        updater = read(".claude/agents/workspace-updater.md")
+        envision = read(".claude/commands/envision.md")
+        plan_idea = read(".claude/commands/plan-idea.md")
+        log_feedback = read(".claude/commands/log-feedback.md")
+        feedback_analyst = read(".claude/agents/feedback-analyst.md")
+        readme = read("README.md")
+        claude = read("CLAUDE.md")
+        agents = read("AGENTS.md")
+        architecture = read("docs/ARCHITECTURE.md")
+        local_context = read("docs/LOCAL_CONTEXT.md")
+        durable_memory = read("docs/DURABLE_MEMORY.md")
+        feedback_doc = read("docs/FEEDBACK_AND_LEARNING.md")
+        system_reference = read("docs/SYSTEM_REFERENCE.md")
+        setup = read("scripts/setup.sh")
+
+        self.assertIn("Command suggestion and auto-run rules:", master)
+        self.assertIn("proactively suggest or run `/envision`", master)
+        self.assertIn("proactively suggest or run `/plan-idea`", master)
+        self.assertIn("proactively suggest or run `/log-feedback`", master)
+        self.assertIn("Product Discovery Team", master)
+        self.assertIn("@feedback-analyst", master)
+        self.assertIn("interview the user", envision)
+        self.assertIn("recommend `/envision` first", plan_idea)
+        self.assertIn("structured feedback entry", log_feedback)
+        self.assertIn("root-cause class", feedback_analyst)
+        self.assertIn("Special Case: Feedback And Learning Log", updater)
+        self.assertIn(".claude/local-context/FEEDBACK.md", readme)
+        self.assertIn("docs/FEEDBACK_AND_LEARNING.md", readme)
+        self.assertIn(".claude/local-context/FEEDBACK.md", claude)
+        self.assertIn(".claude/local-context/FEEDBACK.md", agents)
+        self.assertIn("docs/FEEDBACK_AND_LEARNING.md", architecture)
+        self.assertIn(".claude/local-context/FEEDBACK.md", local_context)
+        self.assertIn("Feedback log", durable_memory)
+        self.assertIn("Use `/log-feedback`", feedback_doc)
+        self.assertIn(".claude/local-context/FEEDBACK.md", system_reference)
+        self.assertIn("Created .claude/local-context/FEEDBACK.md", setup)
 
     def test_research_discovery_workflow_is_tracked_and_visible(self) -> None:
         master = read(".claude/agents/master.md")
@@ -972,7 +1015,7 @@ class PromptContractTests(unittest.TestCase):
         self.assertIn("strong next-move patterns", memory)
         self.assertIn("Collaborative next-move generation / vision-backlog-roadmap connection", master)
         self.assertIn("@vision-partner", readme)
-        self.assertIn("53 specialized agents", readme)
+        self.assertIn("54 specialized agents", readme)
         self.assertIn("@vision-partner", claude)
         self.assertIn("@vision-partner", agents)
         self.assertIn("@vision-partner", system_reference)

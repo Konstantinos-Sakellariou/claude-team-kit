@@ -32,6 +32,7 @@ The setup script can scaffold these starter files:
 - `.claude/local-context/constraints.md`
 - `.claude/local-context/HANDOFF.md`
 - `.claude/local-context/ACTIVITY.md`
+- `.claude/local-context/FEEDBACK.md`
 - `.claude/local-context/research/README.md`
 
 When a plan should stay private, keep it under:
@@ -81,6 +82,25 @@ Keep activity entries short:
 - next action
 
 Do not use `ACTIVITY.md` as a transcript, metrics store, private customer notebook, or replacement for backlog, plans, ADRs, or `HANDOFF.md`.
+
+`FEEDBACK.md` is the best fit when:
+- something in the workflow, result, prompt, command, or interaction did not work well
+- the issue should outlive the current chat so the repo can learn from it
+- the signal is operational and objective rather than a roadmap or policy conclusion
+- the right next step may be backlog follow-up, doc clarification, or root-cause review later
+
+Keep feedback entries short and evidence-based:
+- request
+- expected behavior
+- observed behavior
+- evidence
+- impact
+- root-cause class
+- responsibility split
+- corrective action
+- status
+
+Do not use `FEEDBACK.md` as a transcript, general bug tracker, strategy memo, or replacement for backlog, plans, ADRs, or tracked docs.
 
 `research/` is the best fit when:
 - you are reviewing external repos, tools, images, workflows, or ecosystem signals

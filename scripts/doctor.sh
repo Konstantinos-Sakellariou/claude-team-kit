@@ -79,6 +79,7 @@ check_file "docs/CROSS_TOOL_PORTABILITY.md" "docs/CROSS_TOOL_PORTABILITY.md exis
 check_file "docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md" "docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md exists"
 check_file "docs/ONE_PAGER.md" "docs/ONE_PAGER.md exists"
 check_file "docs/RESEARCH_AND_DISCOVERY.md" "docs/RESEARCH_AND_DISCOVERY.md exists"
+check_file "docs/FEEDBACK_AND_LEARNING.md" "docs/FEEDBACK_AND_LEARNING.md exists"
 check_file "docs/IDEA_TO_PRODUCTION.md" "docs/IDEA_TO_PRODUCTION.md exists"
 check_file "docs/RTK_INTEGRATION.md" "docs/RTK_INTEGRATION.md exists"
 check_file "docs/LOCAL_CONTEXT.md" "docs/LOCAL_CONTEXT.md exists"
@@ -120,7 +121,7 @@ else
   fail ".claude/commands directory is missing"
 fi
 
-for command in bootstrap-repo customize-repo save-backlog plan-idea write-adr release-check sync-docs triage-input context-audit review-reference; do
+for command in bootstrap-repo customize-repo envision save-backlog plan-idea write-adr release-check sync-docs triage-input context-audit review-reference log-feedback; do
   if [ -f "$ROOT_DIR/.claude/commands/${command}.md" ]; then
     pass "${command} command exists"
   else

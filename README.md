@@ -1,14 +1,14 @@
 # claude-team-kit
 
 [![Validate Workspace Kit](https://img.shields.io/github/actions/workflow/status/Konstantinos-Sakellariou/claude-team-kit/validate.yml?branch=main&label=validate)](https://github.com/Konstantinos-Sakellariou/claude-team-kit/actions/workflows/validate.yml)
-![Agents](https://img.shields.io/badge/agents-53-0ea5e9)
+![Agents](https://img.shields.io/badge/agents-54-0ea5e9)
 ![Teams](https://img.shields.io/badge/teams-13-14b8a6)
 ![Skills](https://img.shields.io/badge/skills-20-f97316)
 ![Local Context](https://img.shields.io/badge/local_context-supported-22c55e)
 
 ![claude-team-kit hero](docs/assets/claude-team-kit-hero.svg)
 
-A drop-in workspace kit for Claude-style coding tools. It gives a repo an orchestrated AI team through `@master`, 53 specialized agents, 13 reusable team manifests, 20 reusable skills, rules, hooks, memory, and local context.
+A drop-in workspace kit for Claude-style coding tools. It gives a repo an orchestrated AI team through `@master`, 54 specialized agents, 13 reusable team manifests, 20 reusable skills, rules, hooks, memory, and local context.
 
 The goal is simple: copy the kit into a real project, run the setup checks, then start working through one visible orchestrator.
 
@@ -29,7 +29,7 @@ It is a workspace kit, not a background orchestration runtime. The canonical imp
 | Layer | What it gives you |
 |---|---|
 | `@master` | One entrypoint that scopes work, selects teams/agents, reports what happened, and triggers the final doc-impact gate |
-| Agents | 53 specialized agents across engineering, AI/ML, data, design, content, delivery, advisory, Git/GitHub, and product workflows |
+| Agents | 54 specialized agents across engineering, AI/ML, data, design, content, delivery, advisory, Git/GitHub, and product workflows |
 | Teams | 13 reusable team manifests for recurring collaboration patterns |
 | Skills | 20 reusable skills, including `code-review`, `fix-bug`, `write-tests`, `write-docs`, `security-audit`, `context-audit`, `triage-input`, and `repo-cleanup` |
 | Rules and hooks | Documentation governance, artifact safety, context efficiency, GitHub quality gates, release governance, security, testing, and language rules |
@@ -70,12 +70,14 @@ Expected result:
 Good first prompts:
 - `@master help me bootstrap this repo for a SaaS app`
 - `@master customize this repo for the actual product we are building`
+- `@master help me decide what we should build first`
 - `@master turn this into a Supabase product workspace`
 - `@master review this repo and tell me the best next 3 moves`
 
 If the copied repo still looks generic, `@master` should use a guided initialization style: it asks small high-signal questions, accepts partial answers, labels temporary assumptions, and helps decide what should go into tracked docs versus `.claude/local-context/`.
 
 If the repo is already customized but still vague, use `/customize-repo` or ask `@master` for a customization pass.
+If the build itself is still underdefined, `@master` should suggest or run `/envision` before forcing an execution plan. Once the direction is chosen, `@master` should suggest or run `/plan-idea` when a structured rollout would help.
 
 ## Core Mental Model
 
@@ -119,6 +121,7 @@ Teams are reusable orchestration bundles that `@master` can activate for recurri
 |---|---|
 | Initialize a copied repo | Ask `@master` to bootstrap it, or use `/bootstrap-repo`; see [docs/BOOTSTRAP.md](docs/BOOTSTRAP.md) |
 | Make a generic repo specific | Use `/customize-repo`; see [docs/PROJECT_CUSTOMIZATION.md](docs/PROJECT_CUSTOMIZATION.md) |
+| Figure out what to build | Use `/envision`; `@master` should interview lightly, offer options, recommend one, and roll out the next steps |
 | Save deferred work | Use `/save-backlog`; private `BACKLOG.md` is the default local registry |
 | Shape a substantial idea | Use `/plan-idea`; approving a plan is not the same as approving a tracked public plan |
 | Record a durable decision | Use `/write-adr`; `@master` should propose an ADR by default for durable architecture, policy, workflow, or repo-structure decisions |
@@ -127,10 +130,12 @@ Teams are reusable orchestration bundles that `@master` can activate for recurri
 | Triage a noisy input | Use `/triage-input`; the default large-input workflow is classify, sample, summarize, then route narrowly |
 | Audit context quality | Use `/context-audit`; use `repo-cleanup` after this kit is copied into a real repo |
 | Review an external reference | Use `/review-reference`; save durable repo/tool/image reviews locally under `.claude/local-context/research/` |
+| Capture something that did not work well | Use `/log-feedback`; keep objective local learning in `.claude/local-context/FEEDBACK.md` |
 
 Current command set:
 - `/bootstrap-repo`
 - `/customize-repo`
+- `/envision`
 - `/save-backlog`
 - `/plan-idea`
 - `/write-adr`
@@ -139,6 +144,7 @@ Current command set:
 - `/triage-input`
 - `/context-audit`
 - `/review-reference`
+- `/log-feedback`
 
 These command definitions live in `.claude/commands/`. Commands do not bypass `@master`; they make repeatable workflows easier to trigger.
 
@@ -150,7 +156,7 @@ The command layer is a thin set of named workflow entrypoints on top of `@master
 
 ```text
 .claude/
-├── agents/          53 specialized agents
+├── agents/          54 specialized agents
 ├── teams/           13 reusable team manifests
 ├── skills/          20 reusable skills
 ├── rules/           Modular behavior and governance rules
@@ -198,6 +204,7 @@ Use `.claude/local-context/` for sensitive local-only startup, customer, company
 Useful local surfaces:
 - `.claude/local-context/HANDOFF.md` for compact session continuity
 - `.claude/local-context/ACTIVITY.md` for an optional compact trace of significant orchestration sessions
+- `.claude/local-context/FEEDBACK.md` for objective local workflow feedback and root-cause notes
 - `.claude/local-context/research/` for local-first repo reviews, tool evaluations, and image/reference memos
 - `.claude/local-context/estimation-log.md` for real estimate-versus-actual learning
 - `.claude/local-context/plans/` for private planning artifacts
@@ -205,7 +212,7 @@ Useful local surfaces:
 
 If backlog preference is known, `@master` and `@backlog-updater` should reuse it unless the user overrides it. If it is unknown, `@master` should ask whether backlog capture belongs in private local `BACKLOG.md` or tracked public `docs/BACKLOG.md`.
 
-See [docs/LOCAL_CONTEXT.md](docs/LOCAL_CONTEXT.md), [docs/DURABLE_MEMORY.md](docs/DURABLE_MEMORY.md), [docs/PROJECT_DNA_AND_STATE.md](docs/PROJECT_DNA_AND_STATE.md), and [docs/RESEARCH_AND_DISCOVERY.md](docs/RESEARCH_AND_DISCOVERY.md).
+See [docs/LOCAL_CONTEXT.md](docs/LOCAL_CONTEXT.md), [docs/DURABLE_MEMORY.md](docs/DURABLE_MEMORY.md), [docs/PROJECT_DNA_AND_STATE.md](docs/PROJECT_DNA_AND_STATE.md), [docs/RESEARCH_AND_DISCOVERY.md](docs/RESEARCH_AND_DISCOVERY.md), and [docs/FEEDBACK_AND_LEARNING.md](docs/FEEDBACK_AND_LEARNING.md).
 
 ## New Repo Bootstrap
 

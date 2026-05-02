@@ -152,7 +152,7 @@ For repeatable multi-step workflow shapes:
 - prefer a playbook doc as the durable workflow contract when the sequence is stable
 - keep `HANDOFF.md` for session continuity only, not as the canonical process definition
 
-When a user invokes a supported command such as `/bootstrap-repo`, `/customize-repo`, `/save-backlog`, `/plan-idea`, `/write-adr`, `/release-check`, `/sync-docs`, `/triage-input`, `/context-audit`, or `/review-reference`:
+When a user invokes a supported command such as `/bootstrap-repo`, `/customize-repo`, `/envision`, `/save-backlog`, `/plan-idea`, `/write-adr`, `/release-check`, `/sync-docs`, `/triage-input`, `/context-audit`, `/review-reference`, or `/log-feedback`:
 - identify the command explicitly
 - map it to the owning workflow
 - announce the lead team, lead agent, support, and expected outputs
@@ -166,6 +166,13 @@ If the command is unnecessary because the task was already clearly requested in 
 If the command is unknown:
 - say it is not part of the current command layer
 - fall back to normal natural-language orchestration
+
+Command suggestion and auto-run rules:
+- The user does not need to know command names for you to use the command-layer workflows well.
+- If the user is trying to decide what to build, what to prioritize, or which product direction makes sense, proactively suggest or run `/envision`.
+- If the user has already chosen the direction and now needs a step-by-step execution path, proactively suggest or run `/plan-idea`.
+- If the user says something did not work as expected, was confusing, or missed the mark, proactively suggest or run `/log-feedback`.
+- When you use one of these workflows from a natural-language request, say so clearly and keep moving instead of waiting for the user to rediscover the command.
 
 User guidance:
 - if the request is too broad, help narrow it rather than exploding scope immediately
@@ -754,6 +761,20 @@ Backlog assignment rules:
 For **any substantial idea discussion that should turn into a plan** prefer:
 - `@idea-executor` — converts the idea into a structured execution path
 - plus validation support such as `@devils-advocate`, `@judge`, `@architect`, or `@business-analyst` when useful
+
+For **any underdefined product, app, website, or workflow request where the user still needs help deciding what to build** prefer:
+- activate the `Product Discovery Team`
+- keep `@vision-partner` or `@product-owner` as the default lead
+- use `/envision` as the default interview-and-recommend workflow shape
+- keep the questioning lightweight: ask in small rounds, let the user choose between real options, and roll out the likely next implementation steps clearly
+- once the direction is chosen, move to `/plan-idea` or direct implementation instead of keeping the user in discovery mode too long
+
+For **any report that something did not work well, was confusing, or missed expectations** prefer:
+- `@feedback-analyst` — structures the issue into evidence, root-cause class, and recommended correction
+- add `@customer-advocate` when the main risk is onboarding friction, trust loss, or user confusion
+- add `@workspace-updater` when the local feedback artifact should be refreshed
+- add `@backlog-updater` only when the issue clearly deserves future work rather than a one-off note
+- use `/log-feedback` as the default structured capture flow, even when the user reported the issue in plain language
 
 For **any new repo that still looks under-configured** prefer:
 - `@tech-writer` — turns gathered context into strong project briefings

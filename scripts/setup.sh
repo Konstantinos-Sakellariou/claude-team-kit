@@ -111,6 +111,28 @@ Use compact entries:
 
 Do not paste transcripts, secrets, or detailed private customer notes here.
 EOF
+  cat > "$LOCAL_CONTEXT_DIR/FEEDBACK.md" <<'EOF'
+# Feedback Log
+
+Optional local-only record of what did not work well and why.
+
+Use compact entries:
+
+## YYYY-MM-DD - Short Title
+
+- Request:
+- Expected:
+- Observed:
+- Evidence:
+- Impact:
+- Root-cause class:
+- Responsibility split:
+- Corrective action:
+- Status:
+- Related artifacts:
+
+Keep this objective. Record evidence, not vibes. Do not paste transcripts, secrets, or sensitive customer detail here.
+EOF
   mkdir -p "$LOCAL_CONTEXT_DIR/research"
   cat > "$LOCAL_CONTEXT_DIR/research/README.md" <<'EOF'
 # Local Research Notes
@@ -161,6 +183,33 @@ EOF
   echo "OK: Created .claude/local-context/ACTIVITY.md"
 fi
 
+FEEDBACK_FILE="$LOCAL_CONTEXT_DIR/FEEDBACK.md"
+if [ -d "$LOCAL_CONTEXT_DIR" ] && [ ! -f "$FEEDBACK_FILE" ]; then
+  cat > "$FEEDBACK_FILE" <<'EOF'
+# Feedback Log
+
+Optional local-only record of what did not work well and why.
+
+Use compact entries:
+
+## YYYY-MM-DD - Short Title
+
+- Request:
+- Expected:
+- Observed:
+- Evidence:
+- Impact:
+- Root-cause class:
+- Responsibility split:
+- Corrective action:
+- Status:
+- Related artifacts:
+
+Keep this objective. Record evidence, not vibes. Do not paste transcripts, secrets, or sensitive customer detail here.
+EOF
+  echo "OK: Created .claude/local-context/FEEDBACK.md"
+fi
+
 RESEARCH_DIR="$LOCAL_CONTEXT_DIR/research"
 if [ -d "$LOCAL_CONTEXT_DIR" ] && [ ! -d "$RESEARCH_DIR" ]; then
   mkdir -p "$RESEARCH_DIR"
@@ -198,5 +247,6 @@ echo "2. Review CLAUDE.md before using this repo as a template in another projec
 echo "3. Use BACKLOG.md locally for private planning details, or create docs/BACKLOG.md from docs/BACKLOG.example.md for a tracked public backlog"
 echo "4. Add any sensitive startup, customer, or strategy notes to .claude/local-context/ and keep that folder local-only"
 echo "5. Optionally use .claude/local-context/ACTIVITY.md as a compact local-only session trace"
-echo "6. Use .claude/local-context/research/ for durable repo, tool, and image review memos"
-echo "7. Run ./scripts/doctor.sh to validate the workspace"
+echo "6. Optionally use .claude/local-context/FEEDBACK.md as an objective local-only workflow learning log"
+echo "7. Use .claude/local-context/research/ for durable repo, tool, and image review memos"
+echo "8. Run ./scripts/doctor.sh to validate the workspace"
