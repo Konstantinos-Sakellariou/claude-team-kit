@@ -2,7 +2,6 @@ import json
 import os
 import subprocess
 import tempfile
-import time
 import unittest
 from pathlib import Path
 from typing import Dict, Optional
@@ -25,25 +24,6 @@ def run_hook(name: str, payload: dict, env: Optional[Dict[str, str]] = None) -> 
         env=merged_env,
         check=False,
     )
-
-
-class ProtectFilesHookTests(unittest.TestCase):
-    def test_blocks_protected_env_file(self) -> None:
-        result = run_hook(
-            "protect-files.sh",
-            {"tool_input": {"file_path": ".env"}},
-        )
-
-        self.assertEqual(result.returncode, 2)
-        self.assertIn("BLOCKED", result.stderr)
-
-    def test_allows_regular_file(self) -> None:
-        result = run_hook(
-            "protect-files.sh",
-            {"tool_input": {"file_path": "src/app.ts"}},
-        )
-
-        self.assertEqual(result.returncode, 0)
 
 
 class BlockSecretsHookTests(unittest.TestCase):
@@ -75,25 +55,6 @@ class BlockSecretsHookTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0)
 
 
-class ValidateSqlQueryHookTests(unittest.TestCase):
-    def test_blocks_destructive_query(self) -> None:
-        result = run_hook(
-            "validate-sql-query.sh",
-            {"tool_input": {"command": "psql -c 'DROP TABLE users'"}},
-        )
-
-        self.assertEqual(result.returncode, 2)
-        self.assertIn("SQL SAFETY CHECK", result.stderr)
-
-    def test_allows_safe_command(self) -> None:
-        result = run_hook(
-            "validate-sql-query.sh",
-            {"tool_input": {"command": "npm run lint"}},
-        )
-
-        self.assertEqual(result.returncode, 0)
-
-
 class AutoFormatHookTests(unittest.TestCase):
     def test_formats_json_files(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -115,18 +76,6 @@ class AutoFormatHookTests(unittest.TestCase):
         )
 
         self.assertEqual(result.returncode, 0)
-
-
-class NotifyOnCompleteHookTests(unittest.TestCase):
-    def test_skips_short_sessions(self) -> None:
-        result = run_hook(
-            "notify-on-complete.sh",
-            {},
-            env={"CLAUDE_SESSION_START": str(int(time.time()))},
-        )
-
-        self.assertEqual(result.returncode, 0)
-        self.assertEqual(result.stdout, "")
 
 
 class WarnDocDriftHookTests(unittest.TestCase):
@@ -191,59 +140,6 @@ class WarnDocDriftHookTests(unittest.TestCase):
 
             self.assertEqual(result.returncode, 0)
             self.assertIn("core briefings", result.stderr)
-
-
-class WarnTrackedArtifactHookTests(unittest.TestCase):
-    def test_warns_for_tracked_public_backlog(self) -> None:
-        with tempfile.TemporaryDirectory() as tmpdir:
-            repo = Path(tmpdir)
-            docs = repo / "docs"
-            docs.mkdir()
-            backlog = docs / "BACKLOG.md"
-            backlog.write_text("# backlog\n")
-
-            result = run_hook(
-                "warn-tracked-artifact.sh",
-                {"tool_input": {"file_path": str(backlog)}},
-                env={"CLAUDE_PROJECT_DIR": str(repo)},
-            )
-
-            self.assertEqual(result.returncode, 0)
-            self.assertIn("TRACKED ARTIFACT CHECK", result.stderr)
-            self.assertIn("docs/BACKLOG.md", result.stderr)
-
-    def test_warns_for_tracked_plan_or_adr(self) -> None:
-        with tempfile.TemporaryDirectory() as tmpdir:
-            repo = Path(tmpdir)
-            plans = repo / "docs" / "plans"
-            plans.mkdir(parents=True)
-            plan = plans / "future-work.md"
-            plan.write_text("# plan\n")
-
-            result = run_hook(
-                "warn-tracked-artifact.sh",
-                {"tool_input": {"file_path": str(plan)}},
-                env={"CLAUDE_PROJECT_DIR": str(repo)},
-            )
-
-            self.assertEqual(result.returncode, 0)
-            self.assertIn("TRACKED ARTIFACT CHECK", result.stderr)
-            self.assertIn(".claude/local-context/plans/", result.stderr)
-
-    def test_stays_quiet_for_local_backlog(self) -> None:
-        with tempfile.TemporaryDirectory() as tmpdir:
-            repo = Path(tmpdir)
-            backlog = repo / "BACKLOG.md"
-            backlog.write_text("# backlog\n")
-
-            result = run_hook(
-                "warn-tracked-artifact.sh",
-                {"tool_input": {"file_path": str(backlog)}},
-                env={"CLAUDE_PROJECT_DIR": str(repo)},
-            )
-
-            self.assertEqual(result.returncode, 0)
-            self.assertEqual(result.stderr, "")
 
 
 if __name__ == "__main__":

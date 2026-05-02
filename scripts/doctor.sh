@@ -33,95 +33,55 @@ check_file() {
 echo "==> claude-team-kit doctor"
 echo "Root: $ROOT_DIR"
 
+# Core files
 check_file "README.md" "README.md exists"
 check_file "CLAUDE.md" "CLAUDE.md exists"
 check_file "AGENTS.md" "AGENTS.md exists"
 check_file "BACKLOG.example.md" "BACKLOG.example.md exists"
 check_file "docs/BACKLOG.example.md" "docs/BACKLOG.example.md exists"
+
+# Core docs
 check_file "docs/ARCHITECTURE.md" "docs/ARCHITECTURE.md exists"
 check_file "docs/DOCUMENTATION_GOVERNANCE.md" "docs/DOCUMENTATION_GOVERNANCE.md exists"
 check_file "docs/ROADMAP.example.md" "docs/ROADMAP.example.md exists"
-check_file "docs/SELF_UPGRADE.md" "docs/SELF_UPGRADE.md exists"
-check_file "docs/STARTER_PACKS.md" "docs/STARTER_PACKS.md exists"
-check_file "docs/SOLUTION_PACKS.md" "docs/SOLUTION_PACKS.md exists"
-check_file "docs/DESIGN_PACKS.md" "docs/DESIGN_PACKS.md exists"
-check_file "docs/design-packs/README.md" "docs/design-packs/README.md exists"
-check_file "docs/design-packs/clean-saas.md" "docs/design-packs/clean-saas.md exists"
-check_file "docs/design-packs/startup-studio.md" "docs/design-packs/startup-studio.md exists"
-check_file "docs/design-packs/premium-service.md" "docs/design-packs/premium-service.md exists"
-check_file "docs/design-packs/technical-console.md" "docs/design-packs/technical-console.md exists"
-check_file "docs/solution-packs/README.md" "docs/solution-packs/README.md exists"
-check_file "docs/solution-packs/supabase-foundation.md" "docs/solution-packs/supabase-foundation.md exists"
-check_file "docs/solution-packs/github-cicd-foundation.md" "docs/solution-packs/github-cicd-foundation.md exists"
-check_file "docs/solution-packs/vercel-foundation.md" "docs/solution-packs/vercel-foundation.md exists"
-check_file "docs/starter-packs/saas-app.md" "docs/starter-packs/saas-app.md exists"
-check_file "docs/starter-packs/api-service.md" "docs/starter-packs/api-service.md exists"
-check_file "docs/starter-packs/ai-ml-product.md" "docs/starter-packs/ai-ml-product.md exists"
-check_file "docs/starter-packs/startup-studio.md" "docs/starter-packs/startup-studio.md exists"
-check_file "docs/SYSTEM_REFERENCE.md" "docs/SYSTEM_REFERENCE.md exists"
 check_file "docs/VISION.example.md" "docs/VISION.example.md exists"
 check_file "docs/BOOTSTRAP.md" "docs/BOOTSTRAP.md exists"
 check_file "docs/CONTEXT_EFFICIENCY.md" "docs/CONTEXT_EFFICIENCY.md exists"
 check_file "docs/DURABLE_MEMORY.md" "docs/DURABLE_MEMORY.md exists"
-check_file "docs/GRAPH_INTELLIGENCE.md" "docs/GRAPH_INTELLIGENCE.md exists"
-check_file "docs/CODE_INTELLIGENCE_INTEGRATION.md" "docs/CODE_INTELLIGENCE_INTEGRATION.md exists"
-check_file "docs/CODE_REVIEW_GRAPH_ADAPTER_EXAMPLE.md" "docs/CODE_REVIEW_GRAPH_ADAPTER_EXAMPLE.md exists"
-check_file "docs/OPTIONAL_DEPENDENCIES_AND_ADAPTERS.md" "docs/OPTIONAL_DEPENDENCIES_AND_ADAPTERS.md exists"
-check_file "docs/EXTERNAL_SKILL_REPOS.md" "docs/EXTERNAL_SKILL_REPOS.md exists"
-check_file "docs/PROJECT_DNA_AND_STATE.md" "docs/PROJECT_DNA_AND_STATE.md exists"
-check_file "docs/WORKTREE_PARALLEL_EXECUTION.md" "docs/WORKTREE_PARALLEL_EXECUTION.md exists"
-check_file "docs/PLAYBOOKS_AND_BATCH_WORKFLOWS.md" "docs/PLAYBOOKS_AND_BATCH_WORKFLOWS.md exists"
-check_file "docs/ANNOTATION_AWARE_CONTEXT_PROTOCOL.md" "docs/ANNOTATION_AWARE_CONTEXT_PROTOCOL.md exists"
-check_file "docs/APP_SURFACE_AND_MCP.md" "docs/APP_SURFACE_AND_MCP.md exists"
+check_file "docs/LOCAL_CONTEXT.md" "docs/LOCAL_CONTEXT.md exists"
+check_file "docs/PROJECT_CUSTOMIZATION.md" "docs/PROJECT_CUSTOMIZATION.md exists"
+check_file "docs/RTK_INTEGRATION.md" "docs/RTK_INTEGRATION.md exists"
 check_file "docs/ARTIFACTS.md" "docs/ARTIFACTS.md exists"
-check_file "docs/AGENT_SDK_USER_INPUT.md" "docs/AGENT_SDK_USER_INPUT.md exists"
-check_file "docs/CROSS_TOOL_PORTABILITY.md" "docs/CROSS_TOOL_PORTABILITY.md exists"
-check_file "docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md" "docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md exists"
-check_file "docs/ONE_PAGER.md" "docs/ONE_PAGER.md exists"
 check_file "docs/RESEARCH_AND_DISCOVERY.md" "docs/RESEARCH_AND_DISCOVERY.md exists"
 check_file "docs/FEEDBACK_AND_LEARNING.md" "docs/FEEDBACK_AND_LEARNING.md exists"
-check_file "docs/IDEA_TO_PRODUCTION.md" "docs/IDEA_TO_PRODUCTION.md exists"
-check_file "docs/RTK_INTEGRATION.md" "docs/RTK_INTEGRATION.md exists"
-check_file "docs/LOCAL_CONTEXT.md" "docs/LOCAL_CONTEXT.md exists"
-check_file "docs/TEAMS.md" "docs/TEAMS.md exists"
-check_file "docs/AGENT_WORKFLOWS.md" "docs/AGENT_WORKFLOWS.md exists"
-check_file "docs/PROJECT_CUSTOMIZATION.md" "docs/PROJECT_CUSTOMIZATION.md exists"
-check_file "docs/DESIGN_REFERENCE.md" "docs/DESIGN_REFERENCE.md exists"
-check_file "docs/plans/example-execution-plan.md" "docs/plans/example-execution-plan.md exists"
 check_file "docs/adr/README.md" "docs/adr/README.md exists"
+check_file "docs/assets/claude-team-kit-hero.svg" "docs/assets/claude-team-kit-hero.svg exists"
+
+# Config and environment
 check_file ".claude/settings.json" ".claude/settings.json exists"
 check_file ".mcp.json" ".mcp.json exists"
 check_file ".env.example" ".env.example exists"
-check_file ".claude/rules/documentation-governance.md" ".claude/rules/documentation-governance.md exists"
-check_file ".claude/rules/repo-cleanup.md" ".claude/rules/repo-cleanup.md exists"
-check_file ".claude/rules/artifact-governance.md" ".claude/rules/artifact-governance.md exists"
-check_file ".claude/rules/context-efficiency.md" ".claude/rules/context-efficiency.md exists"
-check_file ".claude/rules/github-quality-gate.md" ".claude/rules/github-quality-gate.md exists"
-check_file ".claude/rules/release-governance.md" ".claude/rules/release-governance.md exists"
-check_file ".claude/rules/ml-workflow.md" ".claude/rules/ml-workflow.md exists"
-check_file ".claude/hooks/warn-doc-drift.sh" ".claude/hooks/warn-doc-drift.sh exists"
-check_file ".claude/hooks/warn-tracked-artifact.sh" ".claude/hooks/warn-tracked-artifact.sh exists"
-check_file ".claude/agent-memory/backlog-updater/MEMORY.md" ".claude/agent-memory/backlog-updater/MEMORY.md exists"
-check_file ".claude/agents/session-budget-estimator.md" ".claude/agents/session-budget-estimator.md exists"
-check_file ".claude/agent-memory/session-budget-estimator/MEMORY.md" ".claude/agent-memory/session-budget-estimator/MEMORY.md exists"
-check_file ".claude/agents/strategy-reviewer.md" ".claude/agents/strategy-reviewer.md exists"
-check_file ".claude/agent-memory/strategy-reviewer/MEMORY.md" ".claude/agent-memory/strategy-reviewer/MEMORY.md exists"
-check_file ".claude/agents/product-designer.md" ".claude/agents/product-designer.md exists"
-check_file ".claude/agent-memory/product-designer/MEMORY.md" ".claude/agent-memory/product-designer/MEMORY.md exists"
-check_file ".claude/agents/ui-designer.md" ".claude/agents/ui-designer.md exists"
-check_file ".claude/agent-memory/ui-designer/MEMORY.md" ".claude/agent-memory/ui-designer/MEMORY.md exists"
-check_file ".claude/agents/brand-designer.md" ".claude/agents/brand-designer.md exists"
-check_file ".claude/agent-memory/brand-designer/MEMORY.md" ".claude/agent-memory/brand-designer/MEMORY.md exists"
-check_file ".claude/agents/design-systems-architect.md" ".claude/agents/design-systems-architect.md exists"
-check_file ".claude/agent-memory/design-systems-architect/MEMORY.md" ".claude/agent-memory/design-systems-architect/MEMORY.md exists"
 
+# Starter rules (5)
+check_file ".claude/rules/code-quality.md" ".claude/rules/code-quality.md exists"
+check_file ".claude/rules/documentation-governance.md" ".claude/rules/documentation-governance.md exists"
+check_file ".claude/rules/context-efficiency.md" ".claude/rules/context-efficiency.md exists"
+check_file ".claude/rules/security.md" ".claude/rules/security.md exists"
+check_file ".claude/rules/git-workflow.md" ".claude/rules/git-workflow.md exists"
+
+# Starter hooks (3)
+check_file ".claude/hooks/warn-doc-drift.sh" ".claude/hooks/warn-doc-drift.sh exists"
+check_file ".claude/hooks/block-secrets.sh" ".claude/hooks/block-secrets.sh exists"
+check_file ".claude/hooks/auto-format.sh" ".claude/hooks/auto-format.sh exists"
+
+# Starter commands (6)
 if [ -d "$ROOT_DIR/.claude/commands" ]; then
   pass ".claude/commands exists"
 else
   fail ".claude/commands directory is missing"
 fi
 
-for command in bootstrap-repo customize-repo envision save-backlog plan-idea write-adr release-check sync-docs triage-input context-audit review-reference log-feedback; do
+for command in bootstrap-repo customize-repo plan-idea save-backlog write-adr triage-input; do
   if [ -f "$ROOT_DIR/.claude/commands/${command}.md" ]; then
     pass "${command} command exists"
   else
@@ -129,6 +89,22 @@ for command in bootstrap-repo customize-repo envision save-backlog plan-idea wri
   fi
 done
 
+# Starter teams (2)
+if [ -d "$ROOT_DIR/.claude/teams" ]; then
+  pass ".claude/teams exists"
+else
+  fail ".claude/teams directory is missing"
+fi
+
+for team in engineering-team product-team; do
+  if [ -f "$ROOT_DIR/.claude/teams/${team}.md" ]; then
+    pass "${team} manifest exists"
+  else
+    fail "${team} manifest is missing"
+  fi
+done
+
+# settings.json checks
 if python3 - "$ROOT_DIR/.claude/settings.json" <<'PY' >/dev/null 2>&1
 import json
 import sys
@@ -148,10 +124,47 @@ else
   fail ".claude/settings.json does not register the doc-drift warning hook"
 fi
 
-if grep -q 'warn-tracked-artifact.sh' "$ROOT_DIR/.claude/settings.json"; then
-  pass ".claude/settings.json registers the tracked-artifact warning hook"
+if python3 -m json.tool "$ROOT_DIR/.claude/settings.json" >/dev/null 2>&1; then
+  pass "settings.json is valid JSON"
 else
-  fail ".claude/settings.json does not register the tracked-artifact warning hook"
+  fail "settings.json is not valid JSON"
+fi
+
+if python3 -m json.tool "$ROOT_DIR/.claude/settings.local.json.example" >/dev/null 2>&1; then
+  pass "settings.local.json.example is valid JSON"
+else
+  fail "settings.local.json.example is not valid JSON"
+fi
+
+if python3 -m json.tool "$ROOT_DIR/.mcp.json" >/dev/null 2>&1; then
+  pass ".mcp.json is valid JSON"
+else
+  fail ".mcp.json is not valid JSON"
+fi
+
+if [ -f "$ROOT_DIR/.claude/settings.local.json" ]; then
+  pass ".claude/settings.local.json exists"
+else
+  warn ".claude/settings.local.json has not been created yet"
+fi
+
+if [ -f "$ROOT_DIR/.env" ]; then
+  pass ".env exists"
+else
+  warn ".env has not been created yet"
+fi
+
+if [ -f "$ROOT_DIR/BACKLOG.md" ]; then
+  pass "BACKLOG.md exists locally"
+else
+  warn "BACKLOG.md has not been created locally yet"
+fi
+
+# CLAUDE.md / AGENTS.md rule references
+if grep -q "@.claude/rules/" "$ROOT_DIR/CLAUDE.md"; then
+  pass "CLAUDE.md references .claude rules"
+else
+  fail "CLAUDE.md rule references are missing"
 fi
 
 if grep -q "@.Codex/rules/" "$ROOT_DIR/AGENTS.md"; then
@@ -162,119 +175,21 @@ else
   warn "AGENTS.md rule references could not be verified"
 fi
 
-if grep -q "@.claude/rules/" "$ROOT_DIR/CLAUDE.md"; then
-  pass "CLAUDE.md references .claude rules"
-else
-  fail "CLAUDE.md rule references are missing"
+# Hook executability
+if [ -d "$ROOT_DIR/.claude/hooks" ]; then
+  non_exec_hooks=$(find "$ROOT_DIR/.claude/hooks" -maxdepth 1 -type f ! -perm -111 | wc -l | tr -d ' ')
+  if [ "$non_exec_hooks" = "0" ]; then
+    pass "All hook scripts are executable"
+  else
+    fail "Some hook scripts are not executable"
+  fi
 fi
 
-if grep -q "docs/VISION.example.md" "$ROOT_DIR/README.md" && \
-   grep -q "docs/VISION.example.md" "$ROOT_DIR/CLAUDE.md" && \
-   grep -q "docs/VISION.example.md" "$ROOT_DIR/AGENTS.md" && \
-   grep -q "docs/ROADMAP.example.md" "$ROOT_DIR/README.md" && \
-   grep -q "docs/ROADMAP.example.md" "$ROOT_DIR/CLAUDE.md" && \
-   grep -q "docs/ROADMAP.example.md" "$ROOT_DIR/AGENTS.md" && \
-   grep -q "docs/SELF_UPGRADE.md" "$ROOT_DIR/README.md" && \
-   grep -q "docs/SELF_UPGRADE.md" "$ROOT_DIR/CLAUDE.md" && \
-   grep -q "docs/SELF_UPGRADE.md" "$ROOT_DIR/AGENTS.md" && \
-   grep -q "docs/STARTER_PACKS.md" "$ROOT_DIR/README.md" && \
-   grep -q "docs/STARTER_PACKS.md" "$ROOT_DIR/CLAUDE.md" && \
-   grep -q "docs/STARTER_PACKS.md" "$ROOT_DIR/AGENTS.md" && \
-   grep -q "docs/SOLUTION_PACKS.md" "$ROOT_DIR/README.md" && \
-   grep -q "docs/SOLUTION_PACKS.md" "$ROOT_DIR/CLAUDE.md" && \
-   grep -q "docs/SOLUTION_PACKS.md" "$ROOT_DIR/AGENTS.md" && \
-   grep -q "docs/DESIGN_PACKS.md" "$ROOT_DIR/README.md" && \
-   grep -q "docs/DESIGN_PACKS.md" "$ROOT_DIR/CLAUDE.md" && \
-   grep -q "docs/DESIGN_PACKS.md" "$ROOT_DIR/AGENTS.md" && \
-   grep -q "docs/CROSS_TOOL_PORTABILITY.md" "$ROOT_DIR/README.md" && \
-   grep -q "docs/CROSS_TOOL_PORTABILITY.md" "$ROOT_DIR/CLAUDE.md" && \
-   grep -q "docs/CROSS_TOOL_PORTABILITY.md" "$ROOT_DIR/AGENTS.md" && \
-   grep -q "docs/CODE_INTELLIGENCE_INTEGRATION.md" "$ROOT_DIR/README.md" && \
-   grep -q "docs/CODE_INTELLIGENCE_INTEGRATION.md" "$ROOT_DIR/CLAUDE.md" && \
-   grep -q "docs/CODE_INTELLIGENCE_INTEGRATION.md" "$ROOT_DIR/AGENTS.md" && \
-   grep -q "docs/OPTIONAL_DEPENDENCIES_AND_ADAPTERS.md" "$ROOT_DIR/README.md" && \
-   grep -q "docs/OPTIONAL_DEPENDENCIES_AND_ADAPTERS.md" "$ROOT_DIR/CLAUDE.md" && \
-   grep -q "docs/OPTIONAL_DEPENDENCIES_AND_ADAPTERS.md" "$ROOT_DIR/AGENTS.md" && \
-   grep -q "docs/EXTERNAL_SKILL_REPOS.md" "$ROOT_DIR/README.md" && \
-   grep -q "docs/EXTERNAL_SKILL_REPOS.md" "$ROOT_DIR/CLAUDE.md" && \
-   grep -q "docs/EXTERNAL_SKILL_REPOS.md" "$ROOT_DIR/AGENTS.md" && \
-   grep -q "docs/PROJECT_DNA_AND_STATE.md" "$ROOT_DIR/README.md" && \
-   grep -q "docs/PROJECT_DNA_AND_STATE.md" "$ROOT_DIR/CLAUDE.md" && \
-   grep -q "docs/PROJECT_DNA_AND_STATE.md" "$ROOT_DIR/AGENTS.md" && \
-   grep -q "docs/PLAYBOOKS_AND_BATCH_WORKFLOWS.md" "$ROOT_DIR/README.md" && \
-   grep -q "docs/PLAYBOOKS_AND_BATCH_WORKFLOWS.md" "$ROOT_DIR/CLAUDE.md" && \
-   grep -q "docs/PLAYBOOKS_AND_BATCH_WORKFLOWS.md" "$ROOT_DIR/AGENTS.md" && \
-   grep -q "docs/ANNOTATION_AWARE_CONTEXT_PROTOCOL.md" "$ROOT_DIR/README.md" && \
-   grep -q "docs/ANNOTATION_AWARE_CONTEXT_PROTOCOL.md" "$ROOT_DIR/CLAUDE.md" && \
-   grep -q "docs/ANNOTATION_AWARE_CONTEXT_PROTOCOL.md" "$ROOT_DIR/AGENTS.md" && \
-   grep -q "docs/IDEA_TO_PRODUCTION.md" "$ROOT_DIR/README.md" && \
-   grep -q "docs/IDEA_TO_PRODUCTION.md" "$ROOT_DIR/CLAUDE.md" && \
-   grep -q "docs/IDEA_TO_PRODUCTION.md" "$ROOT_DIR/AGENTS.md" && \
-   grep -q "docs/WORKTREE_PARALLEL_EXECUTION.md" "$ROOT_DIR/CLAUDE.md" && \
-   grep -q "docs/WORKTREE_PARALLEL_EXECUTION.md" "$ROOT_DIR/AGENTS.md" && \
-   grep -q "docs/ONE_PAGER.md" "$ROOT_DIR/README.md" && \
-   grep -q "docs/ONE_PAGER.md" "$ROOT_DIR/CLAUDE.md" && \
-   grep -q "docs/ONE_PAGER.md" "$ROOT_DIR/AGENTS.md" && \
-   grep -q "@.claude/rules/documentation-governance.md" "$ROOT_DIR/CLAUDE.md" && \
-   grep -q "@.claude/rules/documentation-governance.md" "$ROOT_DIR/AGENTS.md" && \
-   grep -q "@.claude/rules/repo-cleanup.md" "$ROOT_DIR/CLAUDE.md" && \
-   grep -q "@.claude/rules/repo-cleanup.md" "$ROOT_DIR/AGENTS.md" && \
-   grep -q "@.claude/rules/artifact-governance.md" "$ROOT_DIR/CLAUDE.md" && \
-   grep -q "@.claude/rules/artifact-governance.md" "$ROOT_DIR/AGENTS.md" && \
-   grep -q "@.claude/rules/context-efficiency.md" "$ROOT_DIR/CLAUDE.md" && \
-   grep -q "@.claude/rules/context-efficiency.md" "$ROOT_DIR/AGENTS.md" && \
-   grep -q "@.claude/rules/github-quality-gate.md" "$ROOT_DIR/CLAUDE.md" && \
-   grep -q "@.claude/rules/github-quality-gate.md" "$ROOT_DIR/AGENTS.md"; then
-  pass "README.md, CLAUDE.md, and AGENTS.md reference the vision and roadmap templates, starter packs, solution packs, design packs, cross-tool portability guide, code-intelligence guide, optional-dependency guide, external-skill-repo guide, project-DNA guide, playbook guide, annotation-protocol guide, idea-to-production guide, worktree guide, one-pager, self-upgrade guide, and governance docs"
-else
-  fail "README.md, CLAUDE.md, or AGENTS.md are missing the vision template link, roadmap template link, starter-packs link, solution-packs link, design-packs link, cross-tool portability link, code-intelligence link, optional-dependency link, external-skill-repo link, project-DNA link, playbook link, annotation-protocol link, idea-to-production link, worktree link, one-pager link, self-upgrade guide link, or one or more governance rule references"
-fi
-
-if grep -q "@.claude/rules/ml-workflow.md" "$ROOT_DIR/CLAUDE.md" && \
-   grep -q "@.claude/rules/ml-workflow.md" "$ROOT_DIR/AGENTS.md"; then
-  pass "CLAUDE.md and AGENTS.md reference the AI/ML workflow rule"
-else
-  fail "CLAUDE.md and AGENTS.md are not aligned on the AI/ML workflow rule"
-fi
-
-if grep -q "@.claude/rules/release-governance.md" "$ROOT_DIR/CLAUDE.md" && \
-   grep -q "@.claude/rules/release-governance.md" "$ROOT_DIR/AGENTS.md" && \
-   [ -f "$ROOT_DIR/docs/RELEASE_GOVERNANCE.md" ]; then
-  pass "CLAUDE.md, AGENTS.md, and docs track the release-governance layer"
-else
-  fail "Release-governance rule or docs are not aligned"
-fi
-
-if grep -q 'Every request goes through `@master`. Always\.' "$ROOT_DIR/README.md"; then
-  pass "README.md states that master is always the entrypoint"
-else
-  fail "README.md does not clearly require master as the entrypoint"
-fi
-
+# master.md content checks
 if grep -q 'Every request enters through you\.' "$ROOT_DIR/.claude/agents/master.md"; then
   pass "master agent prompt states that every request enters through master"
 else
   fail "master agent prompt is missing the mandatory entrypoint rule"
-fi
-
-if [ -d "$ROOT_DIR/.claude/teams" ]; then
-  pass ".claude/teams exists"
-else
-  fail ".claude/teams directory is missing"
-fi
-
-for team in engineering-team ai-ml-team data-team supabase-team design-team content-publishing-team delivery-ops-team git-github-team advisory-review-team product-discovery-team product-launch-team research-discovery-team; do
-  if [ -f "$ROOT_DIR/.claude/teams/${team}.md" ]; then
-    pass "${team} manifest exists"
-  else
-    fail "${team} manifest is missing"
-  fi
-done
-
-if grep -q '## Team System' "$ROOT_DIR/.claude/agents/master.md"; then
-  pass "master agent prompt defines the team system"
-else
-  fail "master agent prompt is missing the team system section"
 fi
 
 if grep -q '## New Repo Bootstrap' "$ROOT_DIR/.claude/agents/master.md" && \
@@ -284,14 +199,6 @@ if grep -q '## New Repo Bootstrap' "$ROOT_DIR/.claude/agents/master.md" && \
   pass "master agent prompt defines the new-repo bootstrap flow and guided initialization mode"
 else
   fail "master agent prompt is missing the new-repo bootstrap flow or guided initialization mode"
-fi
-
-if grep -q 'Guided initialization should:' "$ROOT_DIR/docs/BOOTSTRAP.md" && \
-   grep -q '## Suggested Rounds' "$ROOT_DIR/docs/BOOTSTRAP.md" && \
-   grep -q 'guided initialization' "$ROOT_DIR/README.md"; then
-  pass "bootstrap docs define guided initialization behavior"
-else
-  fail "bootstrap docs are missing guided initialization behavior"
 fi
 
 if grep -q '## Context Efficiency And Scope Discipline' "$ROOT_DIR/.claude/agents/master.md" && \
@@ -306,34 +213,16 @@ if grep -q '## Model Routing Policy' "$ROOT_DIR/.claude/agents/master.md" && \
    grep -q '`Haiku`' "$ROOT_DIR/.claude/agents/master.md" && \
    grep -q '`Sonnet`' "$ROOT_DIR/.claude/agents/master.md" && \
    grep -q '`Opus`' "$ROOT_DIR/.claude/agents/master.md" && \
-   grep -q '## Model Routing' "$ROOT_DIR/docs/CONTEXT_EFFICIENCY.md" && \
-   grep -q 'Haiku' "$ROOT_DIR/README.md"; then
-  pass "model-routing guidance is aligned across master, context docs, and README"
+   grep -q '## Model Routing' "$ROOT_DIR/docs/CONTEXT_EFFICIENCY.md"; then
+  pass "model-routing guidance is aligned across master and context docs"
 else
-  fail "model-routing guidance is not aligned across master, context docs, and README"
+  fail "model-routing guidance is not aligned across master and context docs"
 fi
 
-if grep -q '@session-budget-estimator' "$ROOT_DIR/.claude/agents/master.md" && \
-   grep -q 'Session Mode' "$ROOT_DIR/.claude/agents/master.md" && \
-   grep -q 'Roadmap Mode' "$ROOT_DIR/.claude/agents/master.md" && \
-   grep -q 'Hybrid Mode' "$ROOT_DIR/.claude/agents/master.md" && \
-   grep -q '@session-budget-estimator' "$ROOT_DIR/CLAUDE.md" && \
-   grep -q '@session-budget-estimator' "$ROOT_DIR/AGENTS.md" && \
-   grep -q 'session-budget-estimator' "$ROOT_DIR/docs/SYSTEM_REFERENCE.md"; then
-  pass "session-budget estimation is wired into master, core briefings, and system reference"
+if grep -q '## Execution Report' "$ROOT_DIR/.claude/agents/master.md"; then
+  pass "master agent prompt defines a default execution report"
 else
-  fail "session-budget estimation is not aligned across master, briefings, and system reference"
-fi
-
-if grep -q '@strategy-reviewer' "$ROOT_DIR/.claude/agents/master.md" && \
-   grep -q 'Automatic strategy-review trigger rules:' "$ROOT_DIR/.claude/agents/master.md" && \
-   grep -q '@strategy-reviewer' "$ROOT_DIR/CLAUDE.md" && \
-   grep -q '@strategy-reviewer' "$ROOT_DIR/AGENTS.md" && \
-   grep -q '@strategy-reviewer' "$ROOT_DIR/docs/SYSTEM_REFERENCE.md" && \
-   grep -q '@strategy-reviewer' "$ROOT_DIR/docs/TEAMS.md"; then
-  pass "strategy-review is wired into master, core briefings, and advisory docs"
-else
-  fail "strategy-review is not aligned across master, briefings, and advisory docs"
+  fail "master agent prompt is missing a default execution report"
 fi
 
 if grep -q '## Private Local Context' "$ROOT_DIR/.claude/agents/master.md" && \
@@ -356,100 +245,6 @@ else
   fail "master agent prompt is missing visible agent selection reporting"
 fi
 
-if grep -q '## Execution Report' "$ROOT_DIR/.claude/agents/master.md"; then
-  pass "master agent prompt defines a default execution report"
-else
-  fail "master agent prompt is missing a default execution report"
-fi
-
-if [ -f "$ROOT_DIR/.claude/agents/github-safety-guard.md" ]; then
-  pass "github-safety-guard agent exists"
-else
-  fail "github-safety-guard agent is missing"
-fi
-
-for agent in code-reviewer pr-operator production-readiness-reviewer; do
-  if [ -f "$ROOT_DIR/.claude/agents/${agent}.md" ]; then
-    pass "${agent} agent exists"
-  else
-    fail "${agent} agent is missing"
-  fi
-done
-
-if grep -q '.claude/local-context/' "$ROOT_DIR/.claude/agents/github-safety-guard.md"; then
-  pass "github-safety-guard protects the private local-context layer"
-else
-  fail "github-safety-guard does not protect the private local-context layer"
-fi
-
-if [ -f "$ROOT_DIR/.claude/agents/backlog-updater.md" ]; then
-  pass "backlog-updater agent exists"
-else
-  fail "backlog-updater agent is missing"
-fi
-
-if grep -q 'Assigned' "$ROOT_DIR/.claude/agents/backlog-updater.md" && \
-   grep -q 'Artifact / Plan' "$ROOT_DIR/.claude/agents/backlog-updater.md" && \
-   grep -q 'docs/BACKLOG.md' "$ROOT_DIR/.claude/agents/backlog-updater.md"; then
-  pass "backlog-updater prompt defines assignment, artifact links, and public/private backlog modes"
-else
-  fail "backlog-updater prompt is missing assignment, artifact links, or backlog mode rules"
-fi
-
-if [ -f "$ROOT_DIR/.claude/agents/idea-executor.md" ]; then
-  pass "idea-executor agent exists"
-else
-  fail "idea-executor agent is missing"
-fi
-
-for agent in data-scientist ml-engineer model-evaluator mlops-engineer research-scientist; do
-  if [ -f "$ROOT_DIR/.claude/agents/${agent}.md" ]; then
-    pass "${agent} agent exists"
-  else
-    fail "${agent} agent is missing"
-  fi
-done
-
-for agent in data-engineer analytics-engineer data-analyst experiment-analyst data-governance-reviewer; do
-  if [ -f "$ROOT_DIR/.claude/agents/${agent}.md" ]; then
-    pass "${agent} agent exists"
-  else
-    fail "${agent} agent is missing"
-  fi
-done
-
-if grep -q '@github-safety-guard' "$ROOT_DIR/.claude/agents/master.md"; then
-  pass "master agent prompt routes commit and push work through github-safety-guard"
-else
-  fail "master agent prompt does not route commit and push work through github-safety-guard"
-fi
-
-if grep -q '@backlog-updater' "$ROOT_DIR/.claude/agents/master.md"; then
-  pass "master agent prompt routes backlog capture through backlog-updater"
-else
-  fail "master agent prompt does not route backlog capture through backlog-updater"
-fi
-
-if grep -q '@idea-executor' "$ROOT_DIR/.claude/agents/master.md"; then
-  pass "master agent prompt routes idea planning through idea-executor"
-else
-  fail "master agent prompt does not route idea planning through idea-executor"
-fi
-
-if grep -q 'Backlog mode rules' "$ROOT_DIR/.claude/agents/master.md" && \
-   grep -q 'backlog + linked plan' "$ROOT_DIR/.claude/agents/master.md"; then
-  pass "master agent prompt defines backlog mode selection and linked-plan behavior"
-else
-  fail "master agent prompt is missing backlog mode selection or linked-plan behavior"
-fi
-
-if grep -q 'AI/ML: Model training & pipeline implementation' "$ROOT_DIR/.claude/agents/master.md" || \
-   grep -q 'AI/ML: Model training & pipelines' "$ROOT_DIR/.claude/agents/master.md"; then
-  pass "master agent prompt defines AI/ML routing"
-else
-  fail "master agent prompt is missing AI/ML routing"
-fi
-
 if grep -q 'ADR-worthy decision / durable trade-off' "$ROOT_DIR/.claude/agents/master.md" && \
    grep -q 'treat it as ADR-candidate work by default' "$ROOT_DIR/.claude/agents/master.md"; then
   pass "master agent prompt defines default ADR routing for durable decisions"
@@ -457,6 +252,20 @@ else
   fail "master agent prompt is missing default ADR routing for durable decisions"
 fi
 
+# workspace-updater
+if grep -q 'CLAUDE.md, AGENTS.md, and README.md' "$ROOT_DIR/.claude/agents/workspace-updater.md"; then
+  pass "workspace-updater prompt covers all core documentation files"
+else
+  fail "workspace-updater prompt does not cover all core documentation files"
+fi
+
+if grep -q '## Special Case: Private Local Context Boundary' "$ROOT_DIR/.claude/agents/workspace-updater.md"; then
+  pass "workspace-updater respects the private local-context boundary"
+else
+  fail "workspace-updater is missing the private local-context boundary"
+fi
+
+# ADR guidance
 if grep -q 'docs/adr/001-decision-name.md' "$ROOT_DIR/docs/adr/README.md" && \
    grep -q 'docs/adr/001-decision-name.md' "$ROOT_DIR/.claude/agents/tech-writer.md"; then
   pass "Tracked ADR docs agree on the canonical filename format"
@@ -471,50 +280,11 @@ else
   fail "Tracked ADR guidance is missing the required section contract"
 fi
 
-if grep -q 'Optional ADR sections:' "$ROOT_DIR/docs/adr/README.md" && \
-   grep -q 'Include when useful:' "$ROOT_DIR/.claude/agents/tech-writer.md"; then
-  pass "Tracked ADR guidance defines optional sections consistently"
+# README content checks
+if grep -q 'Every request goes through `@master`. Always\.' "$ROOT_DIR/README.md"; then
+  pass "README.md states that master is always the entrypoint"
 else
-  fail "Tracked ADR guidance is missing the optional section contract"
-fi
-
-if grep -q 'Do not save to `docs/plans/` or `docs/adr/` automatically' "$ROOT_DIR/.claude/agents/idea-executor.md" && \
-   grep -q 'must ask the user for explicit approval' "$ROOT_DIR/.claude/agents/idea-executor.md" && \
-   grep -q 'explicitly recommend ADR treatment' "$ROOT_DIR/.claude/agents/idea-executor.md"; then
-  pass "idea-executor prompt requires approval before saving plan artifacts"
-else
-  fail "idea-executor prompt is missing artifact approval rules"
-fi
-
-if grep -q 'Approve saving it there' "$ROOT_DIR/.claude/agents/master.md"; then
-  pass "master agent prompt defines an explicit approval prompt for saved idea artifacts"
-else
-  fail "master agent prompt is missing an explicit approval prompt for saved idea artifacts"
-fi
-
-if grep -q 'Approve saving it there' "$ROOT_DIR/.claude/agents/master.md" && \
-   grep -q 'Before I save this decision' "$ROOT_DIR/.claude/agents/master.md"; then
-  pass "master agent prompt defines an explicit ADR approval prompt"
-else
-  fail "master agent prompt is missing an explicit ADR approval prompt"
-fi
-
-if grep -q 'primary writer for the final record' "$ROOT_DIR/.claude/agents/tech-writer.md"; then
-  pass "tech-writer prompt defines ADR authorship responsibility"
-else
-  fail "tech-writer prompt is missing ADR authorship responsibility"
-fi
-
-if grep -q 'CLAUDE.md, AGENTS.md, and README.md' "$ROOT_DIR/.claude/agents/workspace-updater.md"; then
-  pass "workspace-updater prompt covers all core documentation files"
-else
-  fail "workspace-updater prompt does not cover all core documentation files"
-fi
-
-if grep -q '## Special Case: Private Local Context Boundary' "$ROOT_DIR/.claude/agents/workspace-updater.md"; then
-  pass "workspace-updater respects the private local-context boundary"
-else
-  fail "workspace-updater is missing the private local-context boundary"
+  fail "README.md does not clearly require master as the entrypoint"
 fi
 
 if grep -q 'By default, `@master` also reports which teams and agents were selected' "$ROOT_DIR/README.md"; then
@@ -530,41 +300,36 @@ else
   fail "README.md does not document the reusable team system"
 fi
 
-if [ -f "$ROOT_DIR/docs/SUPABASE_REFERENCE.md" ] && \
-   grep -q 'Supabase Team' "$ROOT_DIR/README.md" && \
-   grep -q 'Supabase Team' "$ROOT_DIR/CLAUDE.md" && \
-   grep -q 'Supabase Team' "$ROOT_DIR/AGENTS.md" && \
-   grep -q 'Supabase Team' "$ROOT_DIR/docs/TEAMS.md" && \
-   grep -q 'Workflow 10 — Supabase Team Flow' "$ROOT_DIR/docs/AGENT_WORKFLOWS.md" && \
-   grep -q 'Supabase domain-pack reference' "$ROOT_DIR/docs/SYSTEM_REFERENCE.md" && \
-   grep -q 'If The Project Uses Supabase' "$ROOT_DIR/docs/PROJECT_CUSTOMIZATION.md"; then
-  pass "Supabase team docs and reference are aligned"
+if grep -q 'propose an ADR by default' "$ROOT_DIR/README.md"; then
+  pass "README.md documents default ADR handling"
 else
-  fail "Supabase team docs and reference are not aligned"
+  fail "README.md does not document default ADR handling"
 fi
 
-if [ -f "$ROOT_DIR/docs/DATA_REFERENCE.md" ] && \
-   grep -q 'Data Team' "$ROOT_DIR/.claude/agents/master.md" && \
-   grep -q 'Data Team' "$ROOT_DIR/README.md" && \
-   grep -q 'Data Team' "$ROOT_DIR/CLAUDE.md" && \
-   grep -q 'Data Team' "$ROOT_DIR/AGENTS.md" && \
-   grep -q 'Data Team' "$ROOT_DIR/docs/TEAMS.md" && \
-   grep -q 'Workflow 11 — Data Team Flow' "$ROOT_DIR/docs/AGENT_WORKFLOWS.md" && \
-   grep -q 'If The Project Has A Real Data Stack' "$ROOT_DIR/docs/PROJECT_CUSTOMIZATION.md"; then
-  pass "Data Team docs and reference are aligned"
+if grep -q "## Context Efficiency" "$ROOT_DIR/README.md" && \
+   grep -q "explicit model-routing stance" "$ROOT_DIR/README.md"; then
+  pass "README.md documents context-efficiency and model-routing guidance"
 else
-  fail "Data Team docs and reference are not aligned"
+  fail "README.md is missing context-efficiency or model-routing guidance"
 fi
 
-if grep -q 'Teams are reusable orchestration bundles' "$ROOT_DIR/CLAUDE.md" && \
-   grep -q '## Available Teams' "$ROOT_DIR/CLAUDE.md" && \
-   grep -q 'Teams are reusable orchestration bundles' "$ROOT_DIR/AGENTS.md" && \
-   grep -q '## Available Teams' "$ROOT_DIR/AGENTS.md"; then
-  pass "CLAUDE.md and AGENTS.md document the team abstraction"
+# Core docs alignment check (Starter scope)
+if grep -q "docs/VISION.example.md" "$ROOT_DIR/README.md" && \
+   grep -q "docs/VISION.example.md" "$ROOT_DIR/CLAUDE.md" && \
+   grep -q "docs/VISION.example.md" "$ROOT_DIR/AGENTS.md" && \
+   grep -q "docs/ROADMAP.example.md" "$ROOT_DIR/README.md" && \
+   grep -q "docs/ROADMAP.example.md" "$ROOT_DIR/CLAUDE.md" && \
+   grep -q "docs/ROADMAP.example.md" "$ROOT_DIR/AGENTS.md" && \
+   grep -q "@.claude/rules/documentation-governance.md" "$ROOT_DIR/CLAUDE.md" && \
+   grep -q "@.claude/rules/documentation-governance.md" "$ROOT_DIR/AGENTS.md" && \
+   grep -q "@.claude/rules/context-efficiency.md" "$ROOT_DIR/CLAUDE.md" && \
+   grep -q "@.claude/rules/context-efficiency.md" "$ROOT_DIR/AGENTS.md"; then
+  pass "README.md, CLAUDE.md, and AGENTS.md reference the vision/roadmap templates and governance rules"
 else
-  fail "CLAUDE.md and AGENTS.md are not aligned on the team abstraction"
+  fail "README.md, CLAUDE.md, or AGENTS.md are missing vision/roadmap template links or governance rule references"
 fi
 
+# Bootstrap alignment
 if grep -q '## New Repo Bootstrap' "$ROOT_DIR/README.md" && \
    grep -q 'docs/BOOTSTRAP.md' "$ROOT_DIR/README.md" && \
    grep -q 'Bootstrap should stay flexible:' "$ROOT_DIR/CLAUDE.md" && \
@@ -574,6 +339,7 @@ else
   fail "Core docs are not aligned on the bootstrap flow"
 fi
 
+# Private local context alignment
 if grep -q '## Private Local Context' "$ROOT_DIR/README.md" && \
    grep -q 'docs/LOCAL_CONTEXT.md' "$ROOT_DIR/README.md" && \
    grep -q 'private local context layer' "$ROOT_DIR/CLAUDE.md" && \
@@ -583,6 +349,7 @@ else
   fail "Core docs are not aligned on the private local-context layer"
 fi
 
+# Context efficiency alignment
 if grep -q '## Context Efficiency' "$ROOT_DIR/README.md" && \
    grep -q 'docs/CONTEXT_EFFICIENCY.md' "$ROOT_DIR/README.md" && \
    grep -q 'docs/CONTEXT_EFFICIENCY.md' "$ROOT_DIR/CLAUDE.md" && \
@@ -592,6 +359,7 @@ else
   fail "Core docs are not aligned on context-efficiency guidance"
 fi
 
+# Request shaping
 if grep -q '## How To Ask Well' "$ROOT_DIR/README.md" && \
    grep -q 'exact file paths' "$ROOT_DIR/CLAUDE.md" && \
    grep -q 'exact file paths' "$ROOT_DIR/AGENTS.md"; then
@@ -600,14 +368,33 @@ else
   fail "Core docs are not aligned on request-shaping guidance"
 fi
 
+# Team abstraction
+if grep -q 'Teams are reusable orchestration bundles' "$ROOT_DIR/CLAUDE.md" && \
+   grep -q '## Available Teams' "$ROOT_DIR/CLAUDE.md" && \
+   grep -q 'Teams are reusable orchestration bundles' "$ROOT_DIR/AGENTS.md" && \
+   grep -q '## Available Teams' "$ROOT_DIR/AGENTS.md"; then
+  pass "CLAUDE.md and AGENTS.md document the team abstraction"
+else
+  fail "CLAUDE.md and AGENTS.md are not aligned on the team abstraction"
+fi
+
+# Bootstrap docs
+if grep -q 'Guided initialization should:' "$ROOT_DIR/docs/BOOTSTRAP.md" && \
+   grep -q '## Suggested Rounds' "$ROOT_DIR/docs/BOOTSTRAP.md" && \
+   grep -q 'guided initialization' "$ROOT_DIR/README.md"; then
+  pass "bootstrap docs define guided initialization behavior"
+else
+  fail "bootstrap docs are missing guided initialization behavior"
+fi
+
+# .gitignore
 if grep -q '^\.claude/local-context/$' "$ROOT_DIR/.gitignore"; then
   pass ".gitignore protects the private local-context folder"
 else
   fail ".gitignore does not protect the private local-context folder"
 fi
 
-check_file "docs/assets/claude-team-kit-hero.svg" "docs/assets/claude-team-kit-hero.svg exists"
-
+# README structural checks
 if python3 - "$ROOT_DIR/README.md" "$ROOT_DIR" <<'PY' >/dev/null 2>&1
 import re
 import sys
@@ -659,6 +446,7 @@ else
   fail "README.md is missing the validation badge"
 fi
 
+# CLAUDE.md / AGENTS.md size check
 claude_lines=$(wc -l < "$ROOT_DIR/CLAUDE.md" | tr -d ' ')
 agents_lines=$(wc -l < "$ROOT_DIR/AGENTS.md" | tr -d ' ')
 if [ "$claude_lines" -le 260 ]; then
@@ -673,59 +461,7 @@ else
   warn "AGENTS.md is getting large for an always-loaded briefing file ($agents_lines lines)"
 fi
 
-if grep -q 'propose an ADR by default' "$ROOT_DIR/README.md"; then
-  pass "README.md documents default ADR handling"
-else
-  fail "README.md does not document default ADR handling"
-fi
-
-if grep -q 'AI/ML Team' "$ROOT_DIR/README.md"; then
-  pass "README.md documents the AI/ML team"
-else
-  fail "README.md does not document the AI/ML team"
-fi
-
-if grep -q "workspace kit" "$ROOT_DIR/README.md"; then
-  pass "README.md describes the repo as a workspace kit"
-else
-  warn "README.md may not clearly describe the current product scope"
-fi
-
-if [ -d "$ROOT_DIR/.claude/hooks" ]; then
-  non_exec_hooks=$(find "$ROOT_DIR/.claude/hooks" -maxdepth 1 -type f ! -perm -111 | wc -l | tr -d ' ')
-  if [ "$non_exec_hooks" = "0" ]; then
-    pass "All hook scripts are executable"
-  else
-    fail "Some hook scripts are not executable"
-  fi
-fi
-
-for path in "$ROOT_DIR/.claude/settings.json" "$ROOT_DIR/.claude/settings.local.json.example" "$ROOT_DIR/.mcp.json"; do
-  if python3 -m json.tool "$path" >/dev/null 2>&1; then
-    pass "$(basename "$path") is valid JSON"
-  else
-    fail "$(basename "$path") is not valid JSON"
-  fi
-done
-
-if [ -f "$ROOT_DIR/.claude/settings.local.json" ]; then
-  pass ".claude/settings.local.json exists"
-else
-  warn ".claude/settings.local.json has not been created yet"
-fi
-
-if [ -f "$ROOT_DIR/.env" ]; then
-  pass ".env exists"
-else
-  warn ".env has not been created yet"
-fi
-
-if [ -f "$ROOT_DIR/BACKLOG.md" ]; then
-  pass "BACKLOG.md exists locally"
-else
-  warn "BACKLOG.md has not been created locally yet"
-fi
-
+# Agent / team / skill counts
 agent_count=$(find "$ROOT_DIR/.claude/agents" -maxdepth 1 -type f | wc -l | tr -d ' ')
 team_count=$(find "$ROOT_DIR/.claude/teams" -maxdepth 1 -type f 2>/dev/null | wc -l | tr -d ' ')
 skill_count=$(find "$ROOT_DIR/.claude/skills" -maxdepth 1 -mindepth 1 -type d | wc -l | tr -d ' ')

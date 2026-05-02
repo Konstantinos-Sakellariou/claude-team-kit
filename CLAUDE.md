@@ -148,11 +148,11 @@ The Starter tier includes 15 agents:
 ## Default Reporting Rules
 
 - `@master` must announce the selected agents before or as work begins
-- `@master` must identify the primary team and activation reason when team routing is used
+- `@master` must identify the primary team, team lead, and activation reason when team routing is used
 - `@master` must still return a lightweight visible report even when no delegation was needed
 - `@master` must summarize what each selected agent did
 - if `@master` handled the task alone, it must say so explicitly and explain why delegation was unnecessary
-- Before saving planning artifacts into `docs/adr/`, `@master` must ask for explicit user approval
+- Before saving planning artifacts into `docs/adr/`, `@master` must ask for explicit user approval; when visibility is ambiguous, `@master` must ask explicitly which visibility the user wants — local private or tracked public
 - If backlog preference is unknown, `@master` must ask whether to use private local `BACKLOG.md` or tracked public `docs/BACKLOG.md`
 - Once backlog preference is chosen explicitly, `@master` should remember and reuse it
 
@@ -161,8 +161,8 @@ The Starter tier includes 15 agents:
 # Important Notes
 - This repo is a workspace kit, not a runtime orchestration engine; the canonical implementation lives in `.claude/`; repo docs must describe that implementation accurately
 - `docs/VISION.example.md` and `docs/ROADMAP.example.md` are tracked starters for local strategy docs; local `docs/VISION.md` and `docs/ROADMAP.md` are optional private strategy surfaces and should stay out of git when they contain real operating direction
-- Large noisy inputs should follow the default triage workflow in `docs/CONTEXT_EFFICIENCY.md`: classify, sample, summarize, then route narrowly
-- New repos should go through the adaptive bootstrap flow before major work if the project briefings still look generic; `CLAUDE.md` and `AGENTS.md` are loaded often, so keep them high-signal and move deep detail into linked docs
+- Large noisy inputs should follow the default triage workflow in `docs/CONTEXT_EFFICIENCY.md`: classify, sample, summarize, then route narrowly; prefer specialist-first routing for noisy domain-heavy tasks when the right owner is already clear
+- New repos should go through the adaptive bootstrap flow before major work if the project briefings still look generic. Bootstrap should stay flexible: gather only enough context to make the next step safe, then proceed. `CLAUDE.md` and `AGENTS.md` are loaded often, so keep them high-signal and move deep detail into linked docs
 - The private local context layer lives in `.claude/local-context/`; keep it local-only and use it for sensitive business or customer notes; if `.claude/local-context/` exists, treat it as a private local context layer rather than a tracked documentation target
 - `docs/DURABLE_MEMORY.md` defines how agent memory, backlog, plans, ADRs, local context, handoff, and estimation logs should interconnect
 - Team manifests live in `.claude/teams/`; they are a `@master` routing abstraction, not a Claude-native platform feature; command definitions live in `.claude/commands/`; they are thin workflow entrypoints interpreted by `@master`, not a second orchestration system

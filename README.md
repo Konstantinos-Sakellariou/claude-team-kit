@@ -16,7 +16,11 @@ A drop-in AI team workspace for Claude Code. Copy it into your repo, run setup, 
 
 **Every request goes through `@master`. Always.**
 
-## What's In This Tier
+## Who This Is For
+
+Founders and developers who want a real AI team in their repo without spending hours configuring agents from scratch. Drop it in, run setup, and `@master` is live in under 5 minutes — routing work across engineering, product, brand, and technical writing specialists.
+
+## What You Get
 
 | Layer | Starter |
 |---|---|
@@ -30,21 +34,13 @@ A drop-in AI team workspace for Claude Code. Copy it into your repo, run setup, 
 | Durable memory | Backlog, ADRs, local context, handoff surfaces |
 | Validation | `./scripts/setup.sh`, `./scripts/doctor.sh`, tests |
 
+The Starter kit packages **15 specialized agents**, **8 reusable skills**, and **2 reusable team manifests** — all in `.claude/`.
+
 ## Quick Start
 
 ### 1. Copy the kit into your repo
 
-Use this repository as a template or copy the tracked kit files into a project that should use the workspace system.
-
-The most important files and folders are:
-- `.claude/`
-- `CLAUDE.md`
-- `AGENTS.md`
-- `README.md`
-- `docs/`
-- `scripts/`
-- `.mcp.json`
-- `.env.example`
+The most important files and folders are: `.claude/`, `CLAUDE.md`, `AGENTS.md`, `docs/`, `scripts/`, `.mcp.json`, `.env.example`
 
 ### 2. Run setup and validation
 
@@ -54,11 +50,6 @@ The most important files and folders are:
 python3 -m unittest discover -s tests -v
 ```
 
-Expected result:
-- `doctor.sh` should finish without errors
-- local warnings about missing `.env` or `.claude/settings.local.json` are normal before local setup
-- the Python test suite should pass
-
 ### 3. Start with `@master`
 
 Good first prompts:
@@ -67,9 +58,9 @@ Good first prompts:
 - `@master help me decide what we should build first`
 - `@master review this repo and tell me the best next 3 moves`
 
-If the copied repo still looks generic, `@master` should use a guided initialization style: it asks small high-signal questions, accepts partial answers, labels temporary assumptions, and helps decide what should go into tracked docs versus `.claude/local-context/`.
+If the copied repo still looks generic, `@master` should use a guided initialization style: asking in small rounds, accepting partial answers, and separating tracked repo truth from `.claude/local-context/`.
 
-If the repo is already customized but still vague, use `/customize-repo` or ask `@master` for a customization pass. Once the direction is chosen, `@master` should suggest or run `/plan-idea` when a structured rollout would help.
+If the repo is customized but vague, use `/customize-repo`. Once direction is clear, use `/plan-idea` for a structured rollout.
 
 ## Core Mental Model
 
@@ -94,6 +85,19 @@ flowchart LR
 
 By default, `@master` also reports which teams and agents were selected, what each one did, and the outcome. If no delegation was needed, `@master` should say that explicitly.
 
+For all tasks, `@master` should at least report:
+- whether delegation happened
+- which teams or agents ran, or that `@master` handled it alone
+- what happened
+- what comes next
+
+For significant work, the report should also make clear:
+- which team was primary, if a team was used
+- who led that team
+- why that team was activated
+
+Teams are reusable orchestration bundles that `@master` activates for recurring workflows — not a runtime engine.
+
 ## Common Workflows
 
 | Need | Start here |
@@ -103,9 +107,12 @@ By default, `@master` also reports which teams and agents were selected, what ea
 | Save deferred work | Use `/save-backlog`; private `BACKLOG.md` is the default local registry |
 | Shape a substantial idea | Use `/plan-idea`; approving a plan is not the same as approving a tracked public plan |
 | Record a durable decision | Use `/write-adr`; `@master` should propose an ADR by default for durable decisions |
-| Triage a noisy input | Use `/triage-input`; the default large-input workflow is classify, sample, summarize, then route narrowly |
+| Triage a noisy input | Use `/triage-input`; default large-input workflow: classify, sample, summarize, then route narrowly |
 
-Starter commands:
+## Workflow Commands
+
+Starter commands — defined in `.claude/commands/`. Commands do not bypass `@master`; they make repeatable workflows easier to trigger.
+
 - `/bootstrap-repo`
 - `/customize-repo`
 - `/plan-idea`
@@ -113,27 +120,7 @@ Starter commands:
 - `/write-adr`
 - `/triage-input`
 
-These command definitions live in `.claude/commands/`. Commands do not bypass `@master`; they make repeatable workflows easier to trigger.
-
 > **Want more commands?** Pro adds `/envision`, `/create-pr`, `/sprint-plan`, `/generate-changelog`, `/security-review`, and more. [See Pro →](https://launchfoundry.co/pricing)
-
-## Repo Structure
-
-```text
-.claude/
-├── agents/          15 specialized agents
-├── teams/           2 reusable team manifests
-├── skills/          8 reusable skills
-├── rules/           5 foundational rules
-├── hooks/           3 shell hooks (secrets, format, drift)
-└── local-context/   Optional local-only business, customer, and strategy context
-docs/                Architecture, governance, and workflow docs
-scripts/             Setup and validation helpers
-tests/               Prompt-contract, hook, and doctor tests
-CLAUDE.md            Main Claude-compatible project briefing
-AGENTS.md            Compatibility briefing for tools that consume AGENTS.md
-BACKLOG.example.md   Starter for private local backlog work
-```
 
 ## Available Teams
 
@@ -148,41 +135,44 @@ The canonical team definitions live in `.claude/teams/`.
 
 > **Pro includes 17 teams** — AI/ML, Data, Supabase, Design, Content & Publishing, Git / GitHub, Advisory Review, and more. [See Pro →](https://launchfoundry.co/pricing)
 
-## Private Local Context
+## What Teams Mean
 
-Use `.claude/local-context/` for sensitive local-only startup, customer, company, or strategy notes. `@master` may consult it when relevant, but it should never copy private local-context details into tracked docs automatically.
-
-Useful local surfaces:
-- `.claude/local-context/HANDOFF.md` for compact session continuity
-- `.claude/local-context/FEEDBACK.md` for objective local workflow feedback and root-cause notes
-- `.claude/local-context/research/` for local-first repo reviews and tool evaluations
-- `.claude/local-context/estimation-log.md` for real estimate-versus-actual learning
-- `.claude/local-context/plans/` for private planning artifacts
-- private `BACKLOG.md` for local deferred work
-
-See [docs/LOCAL_CONTEXT.md](docs/LOCAL_CONTEXT.md) and [docs/DURABLE_MEMORY.md](docs/DURABLE_MEMORY.md).
+Teams keep recurring flows consistent. `@master` still reports the actual agents selected and the final synthesized outcome whenever a team is activated.
 
 ## New Repo Bootstrap
 
-When `claude-team-kit` is copied into a repo other than itself, `@master` should check whether `CLAUDE.md`, `AGENTS.md`, and `README.md` still look generic before major work begins.
-
-If they do, `@master` should switch into guided initialization style:
+When `claude-team-kit` is copied into a repo, `@master` should check whether `CLAUDE.md`, `AGENTS.md`, and `README.md` still look generic. If they do, switch into guided initialization style:
 - ask in small rounds
 - accept partial answers
-- offer candidate categories when the user is unsure
 - make labeled temporary assumptions when needed
-- separate safe tracked repo truth from private local context
+- separate tracked repo truth from private local context
 
-See [docs/BOOTSTRAP.md](docs/BOOTSTRAP.md) and [docs/PROJECT_CUSTOMIZATION.md](docs/PROJECT_CUSTOMIZATION.md).
+When product or company-building workflow mode is needed, bootstrap can extend into founder-shaping rounds. See [docs/BOOTSTRAP.md](docs/BOOTSTRAP.md) and [docs/PROJECT_CUSTOMIZATION.md](docs/PROJECT_CUSTOMIZATION.md).
+
+## Private Local Context
+
+Use `.claude/local-context/` for sensitive local-only startup, customer, or strategy notes. `@master` may consult it but should never copy it into tracked docs automatically.
+
+Useful local surfaces:
+- `.claude/local-context/HANDOFF.md` — session continuity
+- `.claude/local-context/ACTIVITY.md` — optional compact orchestration trace (local only)
+- `.claude/local-context/FEEDBACK.md` — workflow feedback and root-cause notes
+- `.claude/local-context/research/` — local-first repo reviews and tool evaluations
+- `.claude/local-context/estimation-log.md` — real estimate-versus-actual learning
+- `.claude/local-context/plans/` — private planning artifacts
+- private `BACKLOG.md` — local deferred work
+
+If backlog preference is unknown, `@master` should ask whether to use private local `BACKLOG.md` or tracked public `docs/BACKLOG.md`. Once chosen, reuse it unless overridden.
+
+See [docs/LOCAL_CONTEXT.md](docs/LOCAL_CONTEXT.md) and [docs/DURABLE_MEMORY.md](docs/DURABLE_MEMORY.md).
 
 ## Context Efficiency
 
-The default guidance:
-- read narrow first
-- keep always-loaded briefings concise
-- use focused docs for depth
-- triage large logs, diffs, and dumps before analysis
-- prefer specialist-first routing for noisy tasks when the right owner is clear
+The kit has an explicit model-routing stance: `Haiku` for cheap summarization, `Sonnet` for most implementation and docs work, `Opus` for deep reasoning and contested decisions.
+
+Default context guidance:
+- read narrow first; prefer specialist-first routing for noisy tasks when the right owner is clear
+- keep always-loaded briefings concise; triage large logs, diffs, and dumps before full analysis
 
 See [docs/CONTEXT_EFFICIENCY.md](docs/CONTEXT_EFFICIENCY.md) and [docs/RTK_INTEGRATION.md](docs/RTK_INTEGRATION.md).
 
@@ -206,17 +196,14 @@ See [docs/CONTEXT_EFFICIENCY.md](docs/CONTEXT_EFFICIENCY.md) and [docs/RTK_INTEG
 
 ## Roadmap And Backlog
 
-Use the vision and roadmap templates to give `@master` strategic context:
-- [docs/VISION.example.md](docs/VISION.example.md) shows the template for direction
-- [docs/ROADMAP.example.md](docs/ROADMAP.example.md) shows the template for phased sequencing
-- local `docs/VISION.md` and `docs/ROADMAP.md` hold your actual private direction
-- private `BACKLOG.md` captures local deferred work (start from `BACKLOG.example.md`)
-
-If backlog preference is unknown, `@master` should ask whether to use private local `BACKLOG.md` or tracked public `docs/BACKLOG.md`.
+- [docs/VISION.example.md](docs/VISION.example.md) — template for product direction
+- [docs/ROADMAP.example.md](docs/ROADMAP.example.md) — template for phased sequencing
+- local `docs/VISION.md` and `docs/ROADMAP.md` — your actual private direction
+- private `BACKLOG.md` — local deferred work (start from `BACKLOG.example.md`)
 
 ## How To Ask Well
 
-High-signal requests make the system cheaper and better. Best inputs usually include:
+High-signal requests make the system cheaper and better. Best inputs:
 - exact file paths
 - exact errors or failing commands
 - expected outcome
@@ -227,17 +214,14 @@ Examples:
 - `@master fix the failing doctor check in scripts/doctor.sh`
 - `@master review the auth changes and focus on security regressions`
 
-Broad requests are fine, but `@master` should narrow them before doing a large sweep.
-
 ## Maintainer Notes
 
-When changing agents, teams, commands, skills, rules, hooks, artifact policy, or workflow behavior:
+When changing agents, teams, commands, skills, rules, hooks, or workflow behavior:
 - update the canonical implementation in `.claude/`
-- keep `README.md`, `CLAUDE.md`, and `AGENTS.md` aligned when the public operating model changes
-- keep the hot path lean and move depth into focused docs
+- keep `README.md`, `CLAUDE.md`, and `AGENTS.md` aligned
 - run `./scripts/setup.sh` and `./scripts/doctor.sh`
 - run `python3 -m unittest discover -s tests -v`
 
-The repo includes a doc-drift warning hook and a block-secrets hook to keep core docs and artifact placement honest.
+The repo includes a doc-drift warning hook and a block-secrets hook.
 
 See [docs/DOCUMENTATION_GOVERNANCE.md](docs/DOCUMENTATION_GOVERNANCE.md) before major upgrades.
