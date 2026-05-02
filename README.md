@@ -12,7 +12,7 @@
 
 A drop-in AI team workspace for Claude Code. Copy it into your repo, run setup, and your AI team is live in under 5 minutes. Every request goes through `@master`, which routes to 15 specialized agents across engineering, product, and design.
 
-**Want the full system?** The Pro tier includes 50+ agents, 10+ teams, all rules and hooks, and a configured expansion pack matched to your business type. [See what's included →](https://launchfoundry.co/pricing)
+**Want the full system?** The Pro tier includes 61 agents, 17 teams, all rules and hooks, and a configured expansion pack matched to your business type. [See what's included →](https://launchfoundry.co/pricing)
 
 **Every request goes through `@master`. Always.**
 
@@ -65,13 +65,11 @@ Good first prompts:
 - `@master help me bootstrap this repo for a SaaS app`
 - `@master customize this repo for the actual product we are building`
 - `@master help me decide what we should build first`
-- `@master turn this into a Supabase product workspace`
 - `@master review this repo and tell me the best next 3 moves`
 
 If the copied repo still looks generic, `@master` should use a guided initialization style: it asks small high-signal questions, accepts partial answers, labels temporary assumptions, and helps decide what should go into tracked docs versus `.claude/local-context/`.
 
-If the repo is already customized but still vague, use `/customize-repo` or ask `@master` for a customization pass.
-If the build itself is still underdefined, `@master` should suggest or run `/envision` before forcing an execution plan. Once the direction is chosen, `@master` should suggest or run `/plan-idea` when a structured rollout would help.
+If the repo is already customized but still vague, use `/customize-repo` or ask `@master` for a customization pass. Once the direction is chosen, `@master` should suggest or run `/plan-idea` when a structured rollout would help.
 
 ## Core Mental Model
 
@@ -96,68 +94,40 @@ flowchart LR
 
 By default, `@master` also reports which teams and agents were selected, what each one did, and the outcome. If no delegation was needed, `@master` should say that explicitly.
 
-For all tasks, `@master` should at least report:
-- whether delegation happened
-- which teams or agents ran, or that `@master` handled it alone
-- what happened
-- what comes next
-
-For significant work, the report should also make clear:
-- which team was primary, if a team was used
-- who led that team
-- why that team was activated
-
-Teams are reusable orchestration bundles that `@master` can activate for recurring workflows. They are routing manifests, not a runtime engine.
-
 ## Common Workflows
 
 | Need | Start here |
 |---|---|
 | Initialize a copied repo | Ask `@master` to bootstrap it, or use `/bootstrap-repo`; see [docs/BOOTSTRAP.md](docs/BOOTSTRAP.md) |
 | Make a generic repo specific | Use `/customize-repo`; see [docs/PROJECT_CUSTOMIZATION.md](docs/PROJECT_CUSTOMIZATION.md) |
-| Figure out what to build | Use `/envision`; `@master` should interview lightly, offer options, recommend one, and roll out the next steps |
 | Save deferred work | Use `/save-backlog`; private `BACKLOG.md` is the default local registry |
 | Shape a substantial idea | Use `/plan-idea`; approving a plan is not the same as approving a tracked public plan |
-| Record a durable decision | Use `/write-adr`; `@master` should propose an ADR by default for durable architecture, policy, workflow, or repo-structure decisions |
-| Check release or PR readiness | Use `/release-check`; see [docs/RELEASE_GOVERNANCE.md](docs/RELEASE_GOVERNANCE.md) |
-| Sync core docs after changes | Use `/sync-docs`; `@workspace-updater` is the adaptive doc-impact gate |
+| Record a durable decision | Use `/write-adr`; `@master` should propose an ADR by default for durable decisions |
 | Triage a noisy input | Use `/triage-input`; the default large-input workflow is classify, sample, summarize, then route narrowly |
-| Audit context quality | Use `/context-audit`; use `repo-cleanup` after this kit is copied into a real repo |
-| Review an external reference | Use `/review-reference`; save durable repo/tool/image reviews locally under `.claude/local-context/research/` |
-| Capture something that did not work well | Use `/log-feedback`; keep objective local learning in `.claude/local-context/FEEDBACK.md` |
 
-Current command set:
+Starter commands:
 - `/bootstrap-repo`
 - `/customize-repo`
-- `/envision`
-- `/save-backlog`
 - `/plan-idea`
+- `/save-backlog`
 - `/write-adr`
-- `/release-check`
-- `/sync-docs`
 - `/triage-input`
-- `/context-audit`
-- `/review-reference`
-- `/log-feedback`
 
 These command definitions live in `.claude/commands/`. Commands do not bypass `@master`; they make repeatable workflows easier to trigger.
 
-## Workflow Commands
-
-The command layer is a thin set of named workflow entrypoints on top of `@master`, teams, agents, and skills. Use commands when you want a repeatable path; use plain `@master` requests when you want a more conversational route.
+> **Want more commands?** Pro adds `/envision`, `/create-pr`, `/sprint-plan`, `/generate-changelog`, `/security-review`, and more. [See Pro →](https://launchfoundry.co/pricing)
 
 ## Repo Structure
 
 ```text
 .claude/
-├── agents/          54 specialized agents
-├── teams/           13 reusable team manifests
-├── skills/          20 reusable skills
-├── rules/           Modular behavior and governance rules
-├── hooks/           Shell checks for formatting, secrets, drift, artifacts, and safety
-├── agent-memory/    Persistent per-agent memory
+├── agents/          15 specialized agents
+├── teams/           2 reusable team manifests
+├── skills/          8 reusable skills
+├── rules/           5 foundational rules
+├── hooks/           3 shell hooks (secrets, format, drift)
 └── local-context/   Optional local-only business, customer, and strategy context
-docs/                Focused docs, packs, workflows, examples, and architecture notes
+docs/                Architecture, governance, and workflow docs
 scripts/             Setup and validation helpers
 tests/               Prompt-contract, hook, and doctor tests
 CLAUDE.md            Main Claude-compatible project briefing
@@ -165,48 +135,32 @@ AGENTS.md            Compatibility briefing for tools that consume AGENTS.md
 BACKLOG.example.md   Starter for private local backlog work
 ```
 
-The full feature and connection map lives in [docs/SYSTEM_REFERENCE.md](docs/SYSTEM_REFERENCE.md).
-
-## What Teams Mean
-
-Teams are reusable orchestration bundles. They keep recurring flows consistent while `@master` still reports the actual agents selected and the final synthesized outcome.
-
 ## Available Teams
 
-| Team | Typical Use |
-|---|---|
-| `Engineering Team` | implementation, debugging, architecture, engineering review |
-| `AI/ML Team` | model framing, training, evaluation, rollout readiness |
-| `Data Team` | pipelines, warehouse modeling, analytics, experimentation, data governance |
-| `Supabase Team` | auth, schema, migrations, RLS, storage, edge functions, rollout safety |
-| `Design Team` | product UX, UI layout, design-system consistency, brand-sensitive presentation work |
-| `Executive Team` | executive/org-model architecture, company-operating structure, and public/private operating-boundary work |
-| `Content & Publishing Team` | planning, drafting, editorial review, source-backed publishing |
-| `Delivery & Ops Team` | release, delivery, monitoring, privacy, backlog persistence |
-| `Git / GitHub Team` | commit, push, PR, release readiness, branch hygiene, repo-safety review |
-| `Advisory Review Team` | planning, prioritization, strategy, business, and next-move support |
-| `Product Discovery Team` | early app/website/product shaping, MVP reduction, backlog/roadmap framing |
-| `Product Launch Team` | cross-functional website/app launch coordination from build through ship |
-| `Research & Discovery Team` | external repo/tool/image reviews, ecosystem scans, and source-backed fit evaluation |
+Teams are reusable orchestration bundles. `@master` activates them for recurring workflows and reports which agents actually ran.
 
-The canonical team definitions live in `.claude/teams/`. See [docs/TEAMS.md](docs/TEAMS.md), [docs/AGENT_WORKFLOWS.md](docs/AGENT_WORKFLOWS.md), [docs/SUPABASE_REFERENCE.md](docs/SUPABASE_REFERENCE.md), [docs/DATA_REFERENCE.md](docs/DATA_REFERENCE.md), and [docs/DESIGN_REFERENCE.md](docs/DESIGN_REFERENCE.md).
+| Team | Lead | Typical Use |
+|---|---|---|
+| `Engineering Team` | `@senior-developer` or `@architect` | features, debugging, architecture, code review |
+| `Product Team` | `@product-owner` or `@product-designer` | requirements, UX flows, scope decisions, product docs |
+
+The canonical team definitions live in `.claude/teams/`.
+
+> **Pro includes 17 teams** — AI/ML, Data, Supabase, Design, Content & Publishing, Git / GitHub, Advisory Review, and more. [See Pro →](https://launchfoundry.co/pricing)
 
 ## Private Local Context
 
-Use `.claude/local-context/` for sensitive local-only startup, customer, company, proof-of-concept, or strategy notes. `@master` may consult it when relevant, but it should never copy private local-context details into tracked docs automatically.
+Use `.claude/local-context/` for sensitive local-only startup, customer, company, or strategy notes. `@master` may consult it when relevant, but it should never copy private local-context details into tracked docs automatically.
 
 Useful local surfaces:
 - `.claude/local-context/HANDOFF.md` for compact session continuity
-- `.claude/local-context/ACTIVITY.md` for an optional compact trace of significant orchestration sessions
 - `.claude/local-context/FEEDBACK.md` for objective local workflow feedback and root-cause notes
-- `.claude/local-context/research/` for local-first repo reviews, tool evaluations, and image/reference memos
+- `.claude/local-context/research/` for local-first repo reviews and tool evaluations
 - `.claude/local-context/estimation-log.md` for real estimate-versus-actual learning
 - `.claude/local-context/plans/` for private planning artifacts
 - private `BACKLOG.md` for local deferred work
 
-If backlog preference is known, `@master` and `@backlog-updater` should reuse it unless the user overrides it. If it is unknown, `@master` should ask whether backlog capture belongs in private local `BACKLOG.md` or tracked public `docs/BACKLOG.md`.
-
-See [docs/LOCAL_CONTEXT.md](docs/LOCAL_CONTEXT.md), [docs/DURABLE_MEMORY.md](docs/DURABLE_MEMORY.md), [docs/PROJECT_DNA_AND_STATE.md](docs/PROJECT_DNA_AND_STATE.md), [docs/RESEARCH_AND_DISCOVERY.md](docs/RESEARCH_AND_DISCOVERY.md), and [docs/FEEDBACK_AND_LEARNING.md](docs/FEEDBACK_AND_LEARNING.md).
+See [docs/LOCAL_CONTEXT.md](docs/LOCAL_CONTEXT.md) and [docs/DURABLE_MEMORY.md](docs/DURABLE_MEMORY.md).
 
 ## New Repo Bootstrap
 
@@ -219,13 +173,9 @@ If they do, `@master` should switch into guided initialization style:
 - make labeled temporary assumptions when needed
 - separate safe tracked repo truth from private local context
 
-When product, customer, or operating-model shaping is part of setup, bootstrap can expand into company-building workflow mode. The private local context layer helps keep sensitive company, customer, and strategy notes out of tracked docs by default.
-
-For repos that are no longer generic but still not specific enough, move from bootstrap into customization. See [docs/BOOTSTRAP.md](docs/BOOTSTRAP.md), [docs/PROJECT_CUSTOMIZATION.md](docs/PROJECT_CUSTOMIZATION.md), and [docs/IDEA_TO_PRODUCTION.md](docs/IDEA_TO_PRODUCTION.md).
+See [docs/BOOTSTRAP.md](docs/BOOTSTRAP.md) and [docs/PROJECT_CUSTOMIZATION.md](docs/PROJECT_CUSTOMIZATION.md).
 
 ## Context Efficiency
-
-This kit should stay efficient as well as capable.
 
 The default guidance:
 - read narrow first
@@ -233,105 +183,36 @@ The default guidance:
 - use focused docs for depth
 - triage large logs, diffs, and dumps before analysis
 - prefer specialist-first routing for noisy tasks when the right owner is clear
-- keep model routing intentional
-
-The kit has an explicit model-routing stance:
-- `Haiku` for cheap summarization and repetitive low-risk condensation
-- `Sonnet` as the default for most implementation and docs work
-- `Opus` for architecture, contested decisions, deep debugging, and other genuinely heavy reasoning tasks
-
-Low-risk cheaper-by-default agents now include:
-- `@backlog-curator`
-- `@changelog-writer`
-- `@feedback-synthesizer`
-- `@delivery-monitor`
 
 See [docs/CONTEXT_EFFICIENCY.md](docs/CONTEXT_EFFICIENCY.md) and [docs/RTK_INTEGRATION.md](docs/RTK_INTEGRATION.md).
 
-## Quality Gates
+## Docs Reference
 
-GitHub-bound work should use the visible GitHub Quality Gate. Before code-affecting commit, push, or PR packaging, `@master` should route through the Git / GitHub Team and surface the safety report for the user to approve.
-
-The gate covers:
-- sync-readiness and branch hygiene, including a quick sync check or pull when the branch may be stale
-- `@github-safety-guard`
-- `@code-reviewer`
-- `@qa-engineer`
-- `@pr-operator`
-- `@production-readiness-reviewer` when risk warrants it
-
-This kit also includes a stricter release-governance layer for release-heavy paths. Release-heavy paths should end in a visible `READY`, `READY WITH NOTED RISK`, or `NOT READY` summary.
-
-See [.claude/rules/github-quality-gate.md](.claude/rules/github-quality-gate.md), [.claude/rules/release-governance.md](.claude/rules/release-governance.md), [docs/RELEASE_GOVERNANCE.md](docs/RELEASE_GOVERNANCE.md), and [docs/TEAMS.md](docs/TEAMS.md).
-
-## Starter, Solution, And Design Packs
-
-Packs are optional adaptation layers. They help a copied repo start faster without turning the shared core into one universal app template.
-
-| Pack Type | Use It For | Docs |
-|---|---|---|
-| Starter packs | Repo-shape overlays such as SaaS, API service, AI/ML product, or startup studio | [docs/STARTER_PACKS.md](docs/STARTER_PACKS.md) |
-| Solution packs | Stack foundations such as Supabase, GitHub/CI/CD, and Vercel | [docs/SOLUTION_PACKS.md](docs/SOLUTION_PACKS.md) |
-| Design packs | Visual, brand, and design-system foundations | [docs/DESIGN_PACKS.md](docs/DESIGN_PACKS.md) |
-
-Current solution packs:
-- [Supabase Application Foundation](docs/solution-packs/supabase-foundation.md)
-- [GitHub And CI/CD Foundation](docs/solution-packs/github-cicd-foundation.md)
-- [Vercel Deployment Foundation](docs/solution-packs/vercel-foundation.md)
-
-Current design-pack library:
-- [Clean SaaS Product](docs/design-packs/clean-saas.md)
-- [Startup Studio / Founder Service](docs/design-packs/startup-studio.md)
-- [Premium Service / Advisory](docs/design-packs/premium-service.md)
-- [Technical Console / Dashboard](docs/design-packs/technical-console.md)
-
-## Advanced Docs
-
-The README is the front door. Use these docs when you need the deeper model.
-
-| Topic | Start Here |
+| Topic | Doc |
 |---|---|
-| One-pass explanation | [docs/ONE_PAGER.md](docs/ONE_PAGER.md) |
-| Research workflow | [docs/RESEARCH_AND_DISCOVERY.md](docs/RESEARCH_AND_DISCOVERY.md) |
-| Full feature inventory | [docs/SYSTEM_REFERENCE.md](docs/SYSTEM_REFERENCE.md) |
 | Architecture boundary | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) |
 | Documentation governance | [docs/DOCUMENTATION_GOVERNANCE.md](docs/DOCUMENTATION_GOVERNANCE.md) |
 | Durable memory | [docs/DURABLE_MEMORY.md](docs/DURABLE_MEMORY.md) |
-| Graph/repo intelligence | [docs/GRAPH_INTELLIGENCE.md](docs/GRAPH_INTELLIGENCE.md) |
-| Code-intelligence integration | [docs/CODE_INTELLIGENCE_INTEGRATION.md](docs/CODE_INTELLIGENCE_INTEGRATION.md) |
-| Code-review-graph adapter example | [docs/CODE_REVIEW_GRAPH_ADAPTER_EXAMPLE.md](docs/CODE_REVIEW_GRAPH_ADAPTER_EXAMPLE.md) |
-| Optional dependencies and adapters | [docs/OPTIONAL_DEPENDENCIES_AND_ADAPTERS.md](docs/OPTIONAL_DEPENDENCIES_AND_ADAPTERS.md) |
-| External skill repos | [docs/EXTERNAL_SKILL_REPOS.md](docs/EXTERNAL_SKILL_REPOS.md) |
-| Cross-tool portability | [docs/CROSS_TOOL_PORTABILITY.md](docs/CROSS_TOOL_PORTABILITY.md) |
-| Portability and intelligence overview | [docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md](docs/PORTABILITY_AND_INTELLIGENCE_OVERVIEW.md) |
-| App surface and MCP systems | [docs/APP_SURFACE_AND_MCP.md](docs/APP_SURFACE_AND_MCP.md) |
+| Bootstrap flow | [docs/BOOTSTRAP.md](docs/BOOTSTRAP.md) |
+| Context efficiency | [docs/CONTEXT_EFFICIENCY.md](docs/CONTEXT_EFFICIENCY.md) |
+| Local context layer | [docs/LOCAL_CONTEXT.md](docs/LOCAL_CONTEXT.md) |
+| Project customization | [docs/PROJECT_CUSTOMIZATION.md](docs/PROJECT_CUSTOMIZATION.md) |
 | Artifacts companion layer | [docs/ARTIFACTS.md](docs/ARTIFACTS.md) |
-| Agent SDK user input | [docs/AGENT_SDK_USER_INPUT.md](docs/AGENT_SDK_USER_INPUT.md) |
-| Project DNA and state | [docs/PROJECT_DNA_AND_STATE.md](docs/PROJECT_DNA_AND_STATE.md) |
-| Playbooks and batch workflows | [docs/PLAYBOOKS_AND_BATCH_WORKFLOWS.md](docs/PLAYBOOKS_AND_BATCH_WORKFLOWS.md) |
-| Annotation-aware context protocol | [docs/ANNOTATION_AWARE_CONTEXT_PROTOCOL.md](docs/ANNOTATION_AWARE_CONTEXT_PROTOCOL.md) |
-| Worktree parallel execution | [docs/WORKTREE_PARALLEL_EXECUTION.md](docs/WORKTREE_PARALLEL_EXECUTION.md) |
-| Roadmap template | [docs/ROADMAP.example.md](docs/ROADMAP.example.md) |
+| Research workflow | [docs/RESEARCH_AND_DISCOVERY.md](docs/RESEARCH_AND_DISCOVERY.md) |
+| Feedback loop | [docs/FEEDBACK_AND_LEARNING.md](docs/FEEDBACK_AND_LEARNING.md) |
+| RTK integration | [docs/RTK_INTEGRATION.md](docs/RTK_INTEGRATION.md) |
 | Vision template | [docs/VISION.example.md](docs/VISION.example.md) |
-| Self-upgrade guide | [docs/SELF_UPGRADE.md](docs/SELF_UPGRADE.md) |
-
-Key distinction: graph/repo intelligence = artifact relationships. Code intelligence = code-aware search, symbols, dependencies, and retrieval. Both are optional by design.
+| Roadmap template | [docs/ROADMAP.example.md](docs/ROADMAP.example.md) |
 
 ## Roadmap And Backlog
 
-Use the vision and roadmap together:
-- [docs/VISION.example.md](docs/VISION.example.md) shows the public template for direction
-- local `docs/VISION.md` may hold the actual repo direction when it is safe to keep locally
-- [docs/ROADMAP.example.md](docs/ROADMAP.example.md) shows the public template for phased sequencing
-- local `docs/ROADMAP.md` may hold private real sequencing
-- private `BACKLOG.md` captures local deferred work
-- optional tracked `docs/BACKLOG.md` captures public backlog history
+Use the vision and roadmap templates to give `@master` strategic context:
+- [docs/VISION.example.md](docs/VISION.example.md) shows the template for direction
+- [docs/ROADMAP.example.md](docs/ROADMAP.example.md) shows the template for phased sequencing
+- local `docs/VISION.md` and `docs/ROADMAP.md` hold your actual private direction
+- private `BACKLOG.md` captures local deferred work (start from `BACKLOG.example.md`)
 
-For capacity and sequencing, use `@session-budget-estimator` in `Session Mode`, `Roadmap Mode`, or `Hybrid Mode`.
-
-For strategic fit, use `@strategy-reviewer`, which should classify major additions as `Strong fit`, `Moderate fit`, `Weak fit`, or `Misaligned`.
-
-For collaborative next-move generation, use `@vision-partner` to connect vision, roadmap, and backlog into grounded options.
+If backlog preference is unknown, `@master` should ask whether to use private local `BACKLOG.md` or tracked public `docs/BACKLOG.md`.
 
 ## How To Ask Well
 
@@ -354,9 +235,9 @@ When changing agents, teams, commands, skills, rules, hooks, artifact policy, or
 - update the canonical implementation in `.claude/`
 - keep `README.md`, `CLAUDE.md`, and `AGENTS.md` aligned when the public operating model changes
 - keep the hot path lean and move depth into focused docs
-- run `./scripts/doctor.sh`
+- run `./scripts/setup.sh` and `./scripts/doctor.sh`
 - run `python3 -m unittest discover -s tests -v`
 
-The repo includes a doc-drift warning hook and tracked-artifact warning shell hooks to keep core docs and artifact placement honest.
+The repo includes a doc-drift warning hook and a block-secrets hook to keep core docs and artifact placement honest.
 
-Use [docs/SELF_UPGRADE.md](docs/SELF_UPGRADE.md) and [docs/DOCUMENTATION_GOVERNANCE.md](docs/DOCUMENTATION_GOVERNANCE.md) before major upgrades.
+See [docs/DOCUMENTATION_GOVERNANCE.md](docs/DOCUMENTATION_GOVERNANCE.md) before major upgrades.
