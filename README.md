@@ -1,40 +1,34 @@
-# claude-team-kit
+# claude-team-kit — Starter Tier
 
 [![Validate Workspace Kit](https://img.shields.io/github/actions/workflow/status/Konstantinos-Sakellariou/claude-team-kit/validate.yml?branch=main&label=validate)](https://github.com/Konstantinos-Sakellariou/claude-team-kit/actions/workflows/validate.yml)
-![Agents](https://img.shields.io/badge/agents-54-0ea5e9)
-![Teams](https://img.shields.io/badge/teams-13-14b8a6)
-![Skills](https://img.shields.io/badge/skills-20-f97316)
+![Agents](https://img.shields.io/badge/agents-15-0ea5e9)
+![Teams](https://img.shields.io/badge/teams-2-14b8a6)
+![Skills](https://img.shields.io/badge/skills-8-f97316)
 ![Local Context](https://img.shields.io/badge/local_context-supported-22c55e)
 
 ![claude-team-kit hero](docs/assets/claude-team-kit-hero.svg)
 
-A drop-in workspace kit for Claude-style coding tools. It gives a repo an orchestrated AI team through `@master`, 54 specialized agents, 13 reusable team manifests, 20 reusable skills, rules, hooks, memory, and local context.
+**This is the Starter tier of [Launch Foundry](https://launchfoundry.co) — free, fully functional, and ready to install.**
 
-The goal is simple: copy the kit into a real project, run the setup checks, then start working through one visible orchestrator.
+A drop-in AI team workspace for Claude Code. Copy it into your repo, run setup, and your AI team is live in under 5 minutes. Every request goes through `@master`, which routes to 15 specialized agents across engineering, product, and design.
+
+**Want the full system?** The Pro tier includes 50+ agents, 10+ teams, all rules and hooks, and a configured expansion pack matched to your business type. [See what's included →](https://launchfoundry.co/pricing)
 
 **Every request goes through `@master`. Always.**
 
-## Who This Is For
+## What's In This Tier
 
-`claude-team-kit` is for:
-- solo builders who want a serious AI coding workspace
-- startup founders and early teams turning rough repos into guided product workspaces
-- agencies, consultants, and platform teams who reuse agent/rule infrastructure across projects
-- maintainers who want quality gates, durable memory, and public/private context boundaries from day one
-
-It is a workspace kit, not a background orchestration runtime. The canonical implementation lives in `.claude/`, and the docs explain how to adapt it safely.
-
-## What You Get
-
-| Layer | What it gives you |
+| Layer | Starter |
 |---|---|
-| `@master` | One entrypoint that scopes work, selects teams/agents, reports what happened, and triggers the final doc-impact gate |
-| Agents | 54 specialized agents across engineering, AI/ML, data, design, content, delivery, advisory, Git/GitHub, and product workflows |
-| Teams | 13 reusable team manifests for recurring collaboration patterns |
-| Skills | 20 reusable skills, including `code-review`, `fix-bug`, `write-tests`, `write-docs`, `security-audit`, `context-audit`, `triage-input`, and `repo-cleanup` |
-| Rules and hooks | Documentation governance, artifact safety, context efficiency, GitHub quality gates, release governance, security, testing, and language rules |
-| Durable artifacts | Backlog, plans, ADRs, local context, handoff, and memory surfaces with public/private boundaries |
-| Validation | `./scripts/setup.sh`, `./scripts/doctor.sh`, and `python3 -m unittest discover -s tests -v` |
+| `@master` | Orchestrator — routes all work, selects agents, reports back |
+| Agents | 15 core agents: senior-developer, architect, product-owner, qa-engineer, security-auditor, debugger, researcher, tech-writer, business-analyst, content-writer, project-manager, brand-designer, product-designer, workspace-updater |
+| Teams | 2 teams: Engineering Team, Product Team |
+| Rules | 5 foundational rules: code-quality, documentation-governance, context-efficiency, security, git-workflow |
+| Hooks | 3 hooks: block-secrets, auto-format, warn-doc-drift |
+| Commands | 6 commands: bootstrap-repo, customize-repo, plan-idea, save-backlog, write-adr, triage-input |
+| Skills | 8 skills: fix-bug, implement-feature, write-docs, git-commit, explain-code, write-tests, security-audit, repo-cleanup |
+| Durable memory | Backlog, ADRs, local context, handoff surfaces |
+| Validation | `./scripts/setup.sh`, `./scripts/doctor.sh`, tests |
 
 ## Quick Start
 
