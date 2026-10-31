@@ -1,4 +1,4 @@
-# claude-team-kit — Starter Tier
+# claude-team-kit — Starter Kit
 
 [![Validate Workspace Kit](https://img.shields.io/github/actions/workflow/status/Konstantinos-Sakellariou/claude-team-kit/validate.yml?branch=main&label=validate)](https://github.com/Konstantinos-Sakellariou/claude-team-kit/actions/workflows/validate.yml)
 ![Agents](https://img.shields.io/badge/agents-15-0ea5e9)
@@ -8,11 +8,11 @@
 
 ![claude-team-kit hero](docs/assets/claude-team-kit-hero.svg)
 
-**This is the Starter tier of [Launch Foundry](https://launchfoundry.co) — free, fully functional, and ready to install.**
+**This is the open Starter kit from [Launch Foundry](https://launchfoundry.co): free, fully functional, and ready to install.**
 
 A drop-in AI team workspace for Claude Code. Copy it into your repo, run setup, and your AI team is live in under 5 minutes. Every request goes through `@master`, which routes to 15 specialized agents across engineering, product, and design.
 
-**Want the full system?** The Pro tier includes 61 agents, 17 teams, all rules and hooks, and a configured expansion pack matched to your business type. [See what's included →](https://launchfoundry.co/pricing)
+**Want the full kit?** The full kit is free at [launchfoundry.co](https://launchfoundry.co/kit): 50+ agents, all teams, rules and hooks, every expansion pack, and a CLAUDE.md personalized to your project. [Get the full kit →](https://launchfoundry.co/kit)
 
 **Every request goes through `@master`. Always.**
 
@@ -120,7 +120,7 @@ Starter commands — defined in `.claude/commands/`. Commands do not bypass `@ma
 - `/write-adr`
 - `/triage-input`
 
-> **Want more commands?** Pro adds `/envision`, `/create-pr`, `/sprint-plan`, `/generate-changelog`, `/security-review`, and more. [See Pro →](https://launchfoundry.co/pricing)
+> **Want more?** The full kit adds commands like `/release-check`, `/sync-docs` and `/context-audit`, plus skills for PRs, security audits, sprint planning and more. It's free at [launchfoundry.co](https://launchfoundry.co/kit).
 
 ## Available Teams
 
@@ -133,7 +133,7 @@ Teams are reusable orchestration bundles. `@master` activates them for recurring
 
 The canonical team definitions live in `.claude/teams/`.
 
-> **Pro includes 17 teams** — AI/ML, Data, Supabase, Design, Content & Publishing, Git / GitHub, Advisory Review, and more. [See Pro →](https://launchfoundry.co/pricing)
+> **The full kit includes every team** (AI/ML, Data, Supabase, Design, Content & Publishing, Git / GitHub, Advisory Review and more). It's free at [launchfoundry.co](https://launchfoundry.co/kit).
 
 ## What Teams Mean
 
